@@ -1,40 +1,66 @@
-# Marketplace
+# DAW Host Services (_Marketplace_)
+
+## Logo
+
+![alt-text](https://i.imgur.com/GZR3STD.png "DAW Host Services Logo")
+
+## Description
+
+The main objective of this application is to be a hosting provider, which offers _Shared_, _VPS_, 
+_Dedicated Servers_ and other services. This website will allow you to rent servers for different
+purposes as blog, datacenter and any purpose you can imagine from small to large business companies.
+
+## Team Members
+
+| Full Name | Email | Github Profile |
+| ------------- | ------------- | ------------- |
+| Serghei Sergheev  | s.sergheev.2018@alumnos.urjc.es  | [sergheevdev](https://github.com/sergheevdev)  |
+| Allan Robert Cobb Bellido | ar.cobb.2018@alumnos.urjc.es  | [Allanmaster](https://github.com/Allanmaster)  |
+| Álvaro Noguerales Ramos  | a.noguerales.2016@alumnos.urjc.es  | [Anogue](https://github.com/Anogue)  |
+| Alberto Mautone | a.mautone.2020@alumnos.urjc.es  | [albehma](https://github.com/albehma)  |
+| Alejandro José Rodriguez Montero | aj.rodriguez.2018@alumnos.urjc.es  | [Alexrguez9](https://github.com/Alexrguez9)  |
+
+All the organisation will be done using a Trello board.
 
 ## Phase 0
 
-### Team Members
+### Theme
 
-- Serghei Sergheev - s.sergheev.2018@alumnos.urjc.es
-- Allan Robert Cobb Bellido - ar.cobb.2018@alumnos.urjc.es
-- Álvaro Noguerales Ramos - a.noguerales.2016@alumnos.urjc.es
-- Alberto Mautone - a.mautone.2020@alumnos.urjc.es
-- Alejandro José Rodriguez Montero - aj.rodriguez.2018@alumnos.urjc.es
+- We decided that we wanted to build a _Marketplace_ and finally decided to design a server rental application.
 
-### Tasks
+### Entities
 
-- Decide what kind of website we wanted to build (Marketplace)
-- Vote for a complicated algorithm to implement (Personalized offers, 75% discount for package renewal)
-- Decided which third-party technology to use (JWT Json Web Tokens)
-- Chosen a Bootstrap template which a member already had started as a base
-- Split and assigned the tasks to the different team members
-- Created a board to organize how we make progress (Trello)
+- **User**: a user will be the entity in charge of storing all kind of information related to authentication.
+- **Role**: a role which represents the authority related to a user and contains the pertinent permissions.
+- **Client**: a client will contain domain related (business) and private information about our client.
+- **Product**: a product will all its configurations and specifications.
+- **Category**: represents a category which will allow us to group related products.
 
-### Split Work
+### Roles and permissions
 
-- **Serghei**: Home, Pricing, Control Panel
-- **Allan**: About us, Privacy & Security
-- **Alex**: Error 404, My Products Panel
-- **Alvaro**: Profile, FAQ (Frequently Asked Questions)
-- **Alberto**: Terms of Use, Trademarks, Legal Stuff
+The previously mentioned _Role_ entity will be responsible of holding all the permissions.
 
-### Extra Remarks
+- **Unregistered User**: can read generic information (i.e. homepage, about us, pricing).
+- **Registered User**: can perform client tasks (i.e. can order or cancel products, change profile information, check their hired services).
+- **Administrator**: can effectuate moderation and administrative actions (i.e. disabling client account, checking statistics, modify accounts info).
 
-- Login & Register websites are finished but we need to integrate form validation
-- Layouts images generated are a base for orientation and you do not need to follow them
-- Single page for: Privacy & Security, Terms of Use, Trademarks, Legal Stuff
+### Images
 
-### Deadline
+- The application **Administator** can check all user profile pictures (avatars) and other information.
+- We'll be using **Icons** in different sections to improve accesibility.
 
-- **26th February 2021**
-- We need to finish all the website design before that date to be able to review it all
-  together and put ideas in common
+### Charts
+
+- The **Administrator** control panel will contain a section where you can visualize different statistics (i.e. daily purchases, accumulated earnings).
+
+### Third-party Additional Technology
+
+- [Gmail API](https://developers.google.com/gmail/api): for sending the client the rented server information to be able to connect to it confirming its order.
+- [Apache PDF Box](https://pdfbox.apache.org/): for generating the receipt when finished processing the order.
+
+### Advanced Algorithm
+
+- If it was your **first purchase**, give a 75% non-recurrent discount on inauguration (or on special events) (_will be configurable/toggleable on panel _).
+- **Incremental purchases:** every X services you rent in an interval of time give an additional 10% discount (_also configurable_).
+
+
