@@ -4,11 +4,11 @@
 
 ### Team Members
 
-- Serghei Sergheev
-- Allan Robert Cobb Bellido
-- Álvaro Noguerales Ramos
-- Alberto Mautone
-- Alejandro José Rodriguez Montero
+- Serghei Sergheev - s.sergheev.2018@alumnos.urjc.es
+- Allan Robert Cobb Bellido - ar.cobb.2018@alumnos.urjc.es
+- Álvaro Noguerales Ramos - a.noguerales.2016@alumnos.urjc.es
+- Alberto Mautone - a.mautone.2020@alumnos.urjc.es
+- Alejandro José Rodriguez Montero - aj.rodriguez.2018@alumnos.urjc.es
 
 ### Tasks
 
@@ -36,5 +36,5 @@
 ### Deadline
 
 - **26th February 2021**
-- We need to finish all the website design before that that to be able to review it all
+- We need to finish all the website design before that date to be able to review it all
   together and put ideas in common
