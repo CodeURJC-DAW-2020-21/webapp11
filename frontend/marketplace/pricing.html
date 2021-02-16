@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <!-- metadata -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/pricing.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
+    <!-- title -->
+    <title id="title">DAWHostServices</title>
+
+  </head>
+  <body>
+
+    <!-- screen size detector -->
+    <div id="screen-size-detector">
+      <div id="xs" class="d-block d-sm-none"></div>
+      <div id="sm" class="d-none d-sm-block d-md-none"></div>
+      <div id="md" class="d-none d-md-block d-lg-none"></div>
+      <div id="lg" class="d-none d-lg-block d-xl-none"></div>
+      <div id="xl" class="d-none d-xl-block"></div>
+    </div><!-- / screen size detector -->
+
+    <!-- content-wrapper -->
+    <div class="content-wrapper">
+      <header>
+
+        <!-- navigation -->
+        <nav class="navbar navbar-expand-md navbar-dark mx-2">
+
+          <!-- container -->
+          <div class="container-fluid">
+            
+            <!-- logo -->
+            <a id="logo" class="navbar-brand d-flex" href="home.html">
+              <span class="text-light">DAW</span>
+              <span class="text-secondary">Host</span>
+              <span class="text-light">Services</span>
+            </a><!-- / logo -->
+
+            <!-- hamburger -->
+            <button
+              class="navbar-toggler"
+              data-bs-target="#nav-items"
+              aria-controls="nav-items"
+              data-bs-toggle="collapse"
+              aria-expanded="false"
+              aria-label="Toggle navigation bar"
+              type="button"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button><!-- / hamburger -->
+
+            <!-- navigation items -->
+            <div id="nav-items" class="collapse navbar-collapse">
+
+              <!-- left side items -->
+              <ul class="navbar-nav me-auto mb-2 mb-md-0 mt-1">
+
+                <!-- links -->
+                <li class="nav-item nav-link dropdown mx-auto" >
+                  <div id="menu-item-products" class="d-flex justify-content-center"  data-bs-toggle="dropdown">
+                    <span>Products</span>
+                  </div>
+
+                  <ul id="menu-products-mobile" class="dropdown-menu bg-dark-blue" aria-labelledby="products-dropdown" >
+                    <li class="nav-item mx-auto">
+                      <div id="menu-product-mobile-shared" class="d-flex justify-content-center">
+                        <a href="pricing.html" class="nav-link card-title">
+                          <i class="bi bi-share text-light"></i>
+                          <span>Shared Server</span>  
+                        </a>
+                      </div>
+                    </li>
+                    <li class="nav-item mx-auto">
+                      <div id="menu-product-mobile-vps" class="d-flex justify-content-center">
+                        <a href="pricing.html" class="nav-link card-title">
+                          <i class="bi bi-hdd text-light"></i>
+                          <span>Virtual Private Server</span>  
+                        </a>
+                      </div>
+                    </li>
+                    <li class="nav-item mx-auto">
+                      <div id="menu-product-mobile-vps" class="d-flex justify-content-center">
+                        <a href="pricing.html" class="nav-link card-title">
+                          <i class="bi bi-hdd-rack text-light"></i>
+                          <span>Dedicated Server</span>  
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+
+                  <!-- products -->
+                  <ul id="menu-products-desktop" class="dropdown-menu bg-dark-blue" aria-labelledby="products-dropdown">
+
+                    <!-- dropdown header -->
+                    <li class="nav-item mx-auto">
+                      <h6 class="dropdown-header text-center">
+                        Choose what suits you best!
+                      </h6>
+                    </li><!-- / dropdown header -->
+
+                    <!-- shared server product -->
+                    <li>
+                      <div class="card h-100 bg-transparent m-2">
+                        <div class="card-body highlight p-1">
+                          <div class="row">
+                            <div class="col-2 d-flex justify-content-center align-items-center">
+                              <i class="bi bi-share text-light"></i>
+                            </div>
+                            <div class="col-10">
+                              <a href="pricing.html" class="card-title text-white animated-link">
+                                Shared Server
+                              </a>
+                              <h6 class="card-subtitle mb-2 text-muted">
+                                A Burstable Portion of vCPU.
+                              </h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li><!-- / shared server product -->
+
+                    <!-- vps product -->
+                    <li>
+                      <div id="menu-product-desktop-vps" class="card h-100 bg-transparent m-2">
+                        <div class="card-body highlight p-1">
+                          <div class="row">
+                            <div class="col-2 d-flex justify-content-center align-items-center">
+                              <i class="bi bi-hdd text-light"></i>
+                            </div>
+                            <div class="col-10">
+                              <a href="pricing.html" class="card-title text-white animated-link">
+                                Virtual Private Server
+                              </a>
+                              <h6 class="card-subtitle mb-2 text-muted">
+                                General Purpose Usage.
+                              </h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li><!-- / vps product -->
+
+                    <!-- dedicated server product -->
+                    <li>
+                      <div class="card bg-transparent highlight m-2">
+                        <div class="card-body highlight p-1">
+                          <div class="row">
+                            <div class="col-2 d-flex justify-content-center align-items-center">
+                              <i class="bi bi-hdd-rack text-light"></i>
+                            </div>
+                            <div class="col-10">
+                              <a href="pricing.html" class="card-title text-white animated-link">
+                                Dedicated Server
+                              </a>
+                              <h6 class="card-subtitle mb-2 text-muted">
+                                CPU & Memory Optimized
+                              </h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li><!-- / dedicated server product -->
+
+                  </ul><!-- / products -->
+
+                </li><!-- / links -->
+
+                <!-- pricing-nav-link -->
+                <li class="nav-item mx-auto">
+                  <a class="nav-link" href="pricing.html">Pricing</a>
+                </li><!-- / pricing-nav-link -->
+
+                <!-- about-nav-link -->
+                <li class="nav-item mx-auto">
+                  <a class="nav-link" href="#">About us</a>
+                </li><!-- / about-nav-link -->
+
+              </ul><!-- / left side items -->
+
+              <!-- right-side-items -->
+              <ul class="navbar-nav mt-2 mt-lg-0 mr-4">
+
+                <!-- account-nav-link -->
+                <li data-name="right-side-items" class="nav-item mx-auto">
+                  <a class="nav-link" href="login.html">
+                    <i class="bi bi-person-circle"></i>
+                    <span>Account</span>
+                  </a>
+                </li><!-- / account-nav-link -->
+
+              </ul><!-- / right-side-items -->
+
+            </div><!-- / navigation items -->
+
+          </div><!-- / container -->
+
+        </nav><!-- / navigation -->
+
+      </header>
+
+      <main>
+
+        <!-- infrastructure-features -->
+        <div data-name="infrastructure-features" class="container mt-5 text-light">
+
+
+          <!-- brief-description-->
+          <div class="row">
+            <div class="col-12 text-center text-white">
+              <h3>Select the plan for your application needs</h3>
+              <p class="text-secondary">
+                <i>No other plan offers more choice. With multiple configurations, you’re sure to find the right performance at the right price.</i>
+              </p>
+              <nav>
+                <div class="nav nav-tabs d-flex justify-content-center align-items-center " id="nav-tab" role="tablist">
+                  <button class="nav-link mx-1 bg-transparent text-white active" id="nav-home-tab" data-bs-toggle="tab" 
+                  data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"
+                  style="width: 220px;">
+                    <i class="bi bi-share text-light"></i>
+                    <span>Shared Server</span>
+                  </button>
+                  <button class="nav-link mx-1 bg-transparent text-white" id="nav-profile-tab" data-bs-toggle="tab" 
+                  data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"
+                  style="width: 220px;">
+                    <i class="bi bi-hdd text-light"></i>
+                    <span>Virtual Private Server</span>
+                  </button>
+                  <button class="nav-link mx-1 bg-transparent text-white" id="nav-contact-tab" data-bs-toggle="tab" 
+                  data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"
+                  style="width: 220px;">
+                    <i class="bi bi-hdd-rack text-light"></i>
+                    <span>Dedicated Server</span>
+                  </button>
+                </div>
+              </nav>
+              <div class="tab-content mt-5" id="nav-tabContent">
+                <div class="tab-pane fade show active text-center" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                  
+                  <!-- shared pricing -->
+                  <div id="pricing-wrapper-shared">
+
+                    <input id="pricing-id-shared" name="product_id" type="hidden">
+
+                    <!-- monthly price  -->
+                    <div class="row">
+                      <div class="col-12">
+                        <span id="pricing-cost-shared" style="font-size: 50px;">$10</span>
+                        <span style="font-size: 16px;">/MO</span>
+                      </div>
+                    </div><!-- / monthly price  -->
+
+                    <!-- hourly price  -->
+                    <div class="row">
+                      <div class="col-12">
+                        <small class="d-flex justify-content-center text-secondary">
+                          <span id="pricing-cost-hourly-shared">$.0075</span>
+                          <span>/hr</span>
+                        </small>
+                      </div>
+                    </div><!-- / hourly price  -->
+
+                    <!-- configuration selector  -->
+                    <div class="row">
+                      <div class="d-flex justify-content-center col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-2">
+                        <div class="input-group mb-3 px-4">
+                          <label for="pricing-range-shared" class="form-label">&nbsp;</label>
+                          <input id="pricing-range-shared" type="range" class="form-range custom-range" min="1" max="5" step="1.0">
+                        </div>
+                      </div>
+                    </div><!-- / configuration selector  -->
+
+                    <!-- specs -->
+                    <div class="row">
+                      <div class="d-flex justify-content-center col mx-auto mb-4">
+                        <div class="mx-2">
+                          <span id="pricing-spec-ram-shared" class="fw-bold">1 GB</span>
+                          <span>RAM</span>
+                        </div>
+                        <div class="mx-2">
+                          <span id="pricing-spec-cores-shared" class="fw-bold">1 vCPU</span>
+                          <span>CORE</span>
+                        </div>
+                        <div class="mx-2">
+                          <span id="pricing-spec-storage-shared" class="fw-bold">25 GB</span>
+                          <span id="pricing-spec-storage-type-shared">SSD</span>
+                        </div>
+                        <div class="mx-2">
+                          <span id="pricing-spec-bandwidth-shared" class="fw-bold">1 TB</span>
+                          <span>Transfer</span>
+                        </div>
+                      </div>
+                    </div><!-- / specs -->
+
+                    <!-- info  -->
+                    <div class="row">
+                      <div class="col-12 mb-3 px-5">
+                        <span id="pricing-info-shared">...</span>
+                      </div>
+                    </div><!-- / info  -->
+
+                    <!-- purchase  -->
+                    <div class="row">
+                      <div class="col mx-auto mb-2 d-flex align-items-center justify-content-center">
+                        <button id="pricing-spec-purchase-shared" type="button" class="btn btn-outline-light">
+                          <i class="bi bi-cart-plus"></i>
+                          <span>Buy now</span>
+                        </button>
+                      </div>
+                    </div><!-- / purchase  -->
+
+                  </div><!-- / shared pricing -->
+                  
+                </div>
+
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+                  <!-- vps pricing -->
+                  <div id="pricing-wrapper-vps">
+
+                    <input id="pricing-id-vps" name="product_id" type="hidden">
+
+                    <!-- monthly price  -->
+                    <div class="row">
+                      <div class="col-12">
+                        <span id="pricing-cost-vps" style="font-size: 50px;">$10</span>
+                        <span style="font-size: 16px;">/MO</span>
+                      </div>
+                    </div><!-- / monthly price  -->
+
+                    <!-- hourly price  -->
+                    <div class="row">
+                      <div class="col-12">
+                        <small class="d-flex justify-content-center text-secondary">
+                          <span id="pricing-cost-hourly-vps">$.0075</span>
+                          <span>/hr</span>
+                        </small>
+                      </div>
+                    </div><!-- / hourly price  -->
+
+                    <!-- configuration selector  -->
+                    <div class="row">
+                      <div class="d-flex justify-content-center col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-2">
+                        <div class="input-group mb-3 px-4">
+                          <label for="pricing-range-vps" class="form-label">&nbsp;</label>
+                          <input id="pricing-range-vps" type="range" class="form-range custom-range" min="1" max="5" step="1.0">
+                        </div>
+                      </div>
+                    </div><!-- / configuration selector  -->
+
+                    <!-- specs -->
+                    <div class="row">
+                      <div class="d-flex justify-content-center col mx-auto mb-4">
+                        <div class="mx-2">
+                          <span id="pricing-spec-ram-vps" class="fw-bold">1 GB</span>
+                          <span>RAM</span>
+                        </div>
+                        <div class="mx-2">
+                          <span id="pricing-spec-cores-vps" class="fw-bold">1 vCPU</span>
+                          <span>CORE</span>
+                        </div>
+                        <div class="mx-2">
+                          <span id="pricing-spec-storage-vps" class="fw-bold">25 GB</span>
+                          <span id="pricing-spec-storage-type-vps">SSD</span>
+                        </div>
+                        <div class="mx-2">
+                          <span id="pricing-spec-bandwidth-vps" class="fw-bold">1 TB</span>
+                          <span>Transfer</span>
+                        </div>
+                      </div>
+                    </div><!-- / specs -->
+
+                    <!-- info  -->
+                    <div class="row">
+                      <div class="col-12 mb-3 px-5">
+                        <span id="pricing-info-vps">...</span>
+                      </div>
+                    </div><!-- / info  -->
+
+                    <!-- purchase  -->
+                    <div class="row">
+                      <div class="col mx-auto mb-2 d-flex align-items-center justify-content-center">
+                        <button id="pricing-spec-purchase-vps" type="button" class="btn btn-outline-light">
+                          <i class="bi bi-cart-plus"></i>
+                          <span>Buy now</span>
+                        </button>
+                      </div>
+                    </div><!-- / purchase  -->
+
+                  </div><!-- / vps pricing -->
+
+                </div>
+                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+                  <!-- dedicated pricing -->
+                  <div id="pricing-wrapper-dedicated">
+
+                    <input id="pricing-id-dedicated" name="product_id" type="hidden">
+
+                    <!-- monthly price  -->
+                    <div class="row">
+                      <div class="col-12">
+                        <span id="pricing-cost-dedicated" style="font-size: 50px;">$10</span>
+                        <span style="font-size: 16px;">/MO</span>
+                      </div>
+                    </div><!-- / monthly price  -->
+
+                    <!-- hourly price  -->
+                    <div class="row">
+                      <div class="col-12">
+                        <small class="d-flex justify-content-center text-secondary">
+                          <span id="pricing-cost-hourly-dedicated">$.0075</span>
+                          <span>/hr</span>
+                        </small>
+                      </div>
+                    </div><!-- / hourly price  -->
+
+                    <!-- configuration selector  -->
+                    <div class="row">
+                      <div class="d-flex justify-content-center col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-2">
+                        <div class="input-group mb-3 px-4">
+                          <label for="pricing-range-dedicated" class="form-label">&nbsp;</label>
+                          <input id="pricing-range-dedicated" type="range" class="form-range custom-range" min="1" max="5" step="1.0">
+                        </div>
+                      </div>
+                    </div><!-- / configuration selector  -->
+
+                    <!-- specs -->
+                    <div class="row">
+                      <div class="d-flex justify-content-center col mx-auto mb-4">
+                        <div class="mx-2">
+                          <span id="pricing-spec-ram-dedicated" class="fw-bold">1 GB</span>
+                          <span>RAM</span>
+                        </div>
+                        <div class="mx-2">
+                          <span id="pricing-spec-cores-dedicated" class="fw-bold">1 vCPU</span>
+                          <span>CORE</span>
+                        </div>
+                        <div class="mx-2">
+                          <span id="pricing-spec-storage-dedicated" class="fw-bold">25 GB</span>
+                          <span id="pricing-spec-storage-type-dedicated">SSD</span>
+                        </div>
+                        <div class="mx-2">
+                          <span id="pricing-spec-bandwidth-dedicated" class="fw-bold">1 TB</span>
+                          <span>Transfer</span>
+                        </div>
+                      </div>
+                    </div><!-- / specs -->
+
+                    <!-- info  -->
+                    <div class="row">
+                      <div class="col-12 mb-3 px-5">
+                        <span id="pricing-info-dedicated">...</span>
+                      </div>
+                    </div><!-- / info  -->
+
+                    <!-- purchase  -->
+                    <div class="row">
+                      <div class="col mx-auto mb-2 d-flex align-items-center justify-content-center">
+                        <button id="pricing-spec-purchase-dedicated" type="button" class="btn btn-outline-light">
+                          <i class="bi bi-cart-plus"></i>
+                          <span>Buy now</span>
+                        </button>
+                      </div>
+                    </div><!-- / purchase  -->
+
+                  </div><!-- / dedicated pricing -->
+
+                </div>
+              </div>
+            </div>
+          </div><!-- / brief-description-->
+
+          <!-- infrastructure-features -->
+          <div data-name="features-container" class="row row-cols-1 row-cols-md-3 g-4 text-center">
+
+
+        </div><!-- / infrastructure-features -->
+      </main>
+
+      <script src="js/bootstrap.bundle.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="js/main.js"></script>
+      <script src="js/pricing.js"></script>
+
+    </div><!-- content-wrapper -->
+
+    <!-- footer -->
+  <footer class="footer">
+    <div class="text-center text-secondary font-small pt-2">
+
+      <!-- copyright-notice -->
+      <div>
+        <span>Copyright &copy; 2021</span>
+        <span class="text-light">CODE URJC</span>
+        <span>. All rights reserved.</span>
+      </div><!-- / copyright-notice -->
+
+      <!-- extra-links -->
+      <div class="p-0 m-0">
+        <div class="d-inline-flex justify-content-center" style="width: 100%">
+          <ul class="nav navbar-nav d-inline-flex">
+            <li class="nav-item">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <a class="nav-link" href="#"> Privacy & Security </a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="nav-link" href="#"> Terms of Use </a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="nav-link" href="#"> Trademarks </a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="nav-link" href="#"> Legal </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div><!-- / extra-links -->
+
+    </div>
+  </footer><!-- / footer -->
+
+  </body>
+
+  
+
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <!-- metadata -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
+    <!-- title -->
+    <title id="title">DAWHostServices</title>
+
+  </head>
+  <body>
+
+    <!-- screen size detector -->
+    <div id="screen-size-detector">
+      <div id="xs" class="d-block d-sm-none"></div>
+      <div id="sm" class="d-none d-sm-block d-md-none"></div>
+      <div id="md" class="d-none d-md-block d-lg-none"></div>
+      <div id="lg" class="d-none d-lg-block d-xl-none"></div>
+      <div id="xl" class="d-none d-xl-block"></div>
+    </div><!-- / screen size detector -->
+
+    <!-- content-wrapper -->
+    <div class="content-wrapper">
+      <header>
+
+        <!-- navigation -->
+        <nav class="navbar navbar-expand-md navbar-dark mx-2">
+
+          <!-- container -->
+          <div class="container-fluid">
+            
+            <!-- logo -->
+            <a id="logo" class="navbar-brand d-flex" href="home.html">
+              <span class="text-light">DAW</span>
+              <span class="text-secondary">Host</span>
+              <span class="text-light">Services</span>
+            </a><!-- / logo -->
+
+            <!-- hamburger -->
+            <button
+              class="navbar-toggler"
+              data-bs-target="#nav-items"
+              aria-controls="nav-items"
+              data-bs-toggle="collapse"
+              aria-expanded="false"
+              aria-label="Toggle navigation bar"
+              type="button"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button><!-- / hamburger -->
+
+            <!-- navigation items -->
+            <div id="nav-items" class="collapse navbar-collapse">
+
+              <!-- left side items -->
+              <ul class="navbar-nav me-auto mb-2 mb-md-0 mt-1">
+
+                <!-- links -->
+                <li class="nav-item nav-link dropdown mx-auto" >
+                  <div id="menu-item-products" class="d-flex justify-content-center"  data-bs-toggle="dropdown">
+                    <span>Products</span>
+                  </div>
+
+                  <!-- mobile products -->
+                  <ul id="menu-products-mobile" class="dropdown-menu products-menu bg-dark-blue" aria-labelledby="products-dropdown" >
+                    
+                    <!-- shared server -->
+                    <li class="nav-item mx-auto">
+                      <div id="menu-product-mobile-shared" class="d-flex justify-content-center">
+                        <a href="pricing.html" class="nav-link card-title">
+                          <i class="bi bi-share text-light"></i>
+                          <span class="animated-link">Shared Server</span>  
+                        </a>
+                      </div>
+                    </li><!-- / shared server -->
+
+                    <!-- vps -->
+                    <li class="nav-item mx-auto">
+                      <div id="menu-product-mobile-vps" class="d-flex justify-content-center">
+                        <a href="pricing.html" class="nav-link card-title">
+                          <i class="bi bi-hdd text-light"></i>
+                          <span class="animated-link">Virtual Private Server</span>  
+                        </a>
+                      </div>
+                    </li><!-- / vps -->
+
+                    <!-- dedicated server -->
+                    <li class="nav-item mx-auto">
+                      <div id="menu-product-mobile-vps" class="d-flex justify-content-center">
+                        <a href="pricing.html" class="nav-link card-title">
+                          <i class="bi bi-hdd-rack text-light"></i>
+                          <span class="animated-link">Dedicated Server</span>  
+                        </a>
+                      </div>
+                    </li><!-- / dedicated server -->
+                    
+                  </ul><!-- / mobile products -->
+
+                  <!-- desktop products -->
+                  <ul id="menu-products-desktop" class="dropdown-menu products-menu bg-dark-blue" aria-labelledby="products-dropdown">
+
+                    <!-- dropdown header -->
+                    <li class="nav-item mx-auto">
+                      <h6 class="dropdown-header text-center">
+                        Choose what suits you best!
+                      </h6>
+                    </li><!-- / dropdown header -->
+
+                    <!-- shared server -->
+                    <li>
+                      <div class="card h-100 bg-transparent m-2">
+                        <div class="card-body highlight p-1">
+                          <div class="row">
+                            <div class="col-2 d-flex justify-content-center align-items-center">
+                              <i class="bi bi-share text-light"></i>
+                            </div>
+                            <div class="col-10">
+                              <a href="pricing.html" class="card-title text-white animated-link">
+                                Shared Server
+                              </a>
+                              <h6 class="card-subtitle mb-2 text-muted">
+                                A Burstable Portion of vCPU.
+                              </h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li><!-- / shared server -->
+
+                    <!-- vps -->
+                    <li>
+                      <div id="menu-product-desktop-vps" class="card h-100 bg-transparent m-2">
+                        <div class="card-body highlight p-1">
+                          <div class="row">
+                            <div class="col-2 d-flex justify-content-center align-items-center">
+                              <i class="bi bi-hdd text-light"></i>
+                            </div>
+                            <div class="col-10">
+                              <a href="pricing.html" class="card-title text-white animated-link">
+                                Virtual Private Server
+                              </a>
+                              <h6 class="card-subtitle mb-2 text-muted">
+                                General Purpose Usage.
+                              </h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li><!-- / vps -->
+
+                    <!-- dedicated server -->
+                    <li>
+                      <div class="card bg-transparent highlight m-2">
+                        <div class="card-body highlight p-1">
+                          <div class="row">
+                            <div class="col-2 d-flex justify-content-center align-items-center">
+                              <i class="bi bi-hdd-rack text-light"></i>
+                            </div>
+                            <div class="col-10">
+                              <a href="pricing.html" class="card-title text-white animated-link">
+                                Dedicated Server
+                              </a>
+                              <h6 class="card-subtitle mb-2 text-muted">
+                                CPU & Memory Optimized
+                              </h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li><!-- / dedicated server -->
+
+                  </ul><!-- / desktop products -->
+
+                </li><!-- / links -->
+
+                <!-- pricing -->
+                <li class="nav-item mx-auto">
+                  <a class="nav-link" href="pricing.html">Pricing</a>
+                </li><!-- / pricing -->
+
+                <!-- about -->
+                <li class="nav-item mx-auto">
+                  <a class="nav-link" href="about.html">About us</a>
+                </li><!-- / about -->
+
+              </ul><!-- / left side items -->
+
+              <!-- right side items -->
+              <ul class="navbar-nav mt-2 mt-lg-0 mr-4">
+
+                <!-- unregistered account -->
+                <li class="nav-item mx-auto">
+                  <a class="nav-link" href="login.html">
+                    <i id="account-image" class="bi bi-person-circle"></i>
+                    <span id="account-name">Account</span>
+                  </a>
+                </li><!-- / unregistered account -->
+
+                <!-- logged-in account -->
+                <li class="nav-item mx-auto d-none">
+                  <div class="dropdown">
+                    <a class="nav-link dropdown-toggle text-center" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i id="account-image" class="bi bi-person-circle"></i>
+                        <small id="account-rank" class="fw-bold">ADMIN</small> 
+                        <span id="account-name">Jack Sparrow</span>
+                    </a>
+                    <ul class="dropdown-menu account-menu text-center bg-dark-blue" aria-labelledby="navbarDarkDropdownMenuLink">
+                      <li>
+                        <a class="nav-link animated-link" href="#">
+                          <i class="bi bi-bag"></i>
+                          <span>My Services</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="nav-link animated-link" href="#">
+                          <i class="bi bi-person-fill"></i>
+                          <span>Control Panel</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="nav-link animated-link" href="#">
+                          <i class="bi bi-person-fill"></i>
+                          <span>Profile</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="nav-link animated-link" href="#">
+                          <i class="bi bi-box-arrow-right"></i>
+                          <span>Logout</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                </li><!-- / logged-in account -->
+
+              </ul><!-- / right side items -->
+
+            </div><!-- / navigation items -->
+
+          </div><!-- / container -->
+
+        </nav><!-- / navigation -->
+
+      </header>
+
+      <main>
+        <div class="container">
+          <div class="row align-items-center justify-content-center text-center pt-5">
+            <div class="col-12 mb-2 text-white">
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-2 d-flex align-items-center justify-content-center">
+                  <div class="centered-box card w-100">
+
+                    <h3 class="card-title mt-3 mb-0"><i class="bi bi-person"></i> Account</h3>
+                    <div class="card-body">
+                      <p>
+                        Please, Sign in with existing account
+                      </p>
+                      <div class="input-group mb-3 px-4">
+                        <span class="input-group-text bg-transparent text-white" id="basic-addon1"><i class="bi bi-person-check-fill"></i></span>
+                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+                      <div class="input-group mb-3 px-4">
+                        <span class="input-group-text bg-transparent text-white" id="basic-addon1"><i class="bi bi-key-fill"></i></span>
+                        <input type="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+                      </div>
+
+                      <p class="card-text">
+                        <span>Or, you may want to</span>
+                        <a href="register.html" class="fw-bold">create a new account</a>
+                      </p>
+                      <button type="button" class="btn btn-sm btn-outline-light w-25">
+                        Login
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </main>
+
+      <script src="js/bootstrap.bundle.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="js/main.js"></script>
+
+    </div><!-- content-wrapper -->
+
+    <!-- footer -->
+    <footer class="footer">
+      <div class="text-center text-secondary font-small pt-2">
+
+        <!-- copyright-notice -->
+        <div>
+          <span>Copyright &copy; 2021</span>
+          <span class="text-light">CODE URJC</span>
+          <span>. All rights reserved.</span>
+        </div><!-- / copyright-notice -->
+
+        <!-- extra-links -->
+        <div class="p-0 m-0">
+          <div class="d-inline-flex justify-content-center" style="width: 100%">
+            <ul class="nav navbar-nav d-inline-flex">
+              <li class="nav-item">
+                <ul class="list-inline">
+                  <li class="list-inline-item">
+                    <a class="nav-link" href="#"> Privacy & Security </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="nav-link" href="#"> Terms of Use </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="nav-link" href="#"> Trademarks </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="nav-link" href="#"> Legal </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div><!-- / extra-links -->
+
+      </div>
+    </footer><!-- / footer -->
+
+  </body>
+
+  
+
+</html>

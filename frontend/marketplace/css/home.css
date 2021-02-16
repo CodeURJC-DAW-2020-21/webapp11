@@ -1,0 +1,186 @@
+/*
+ * Base structure
+ */
+
+body, html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(ellipse at bottom, #1b2735 15%, #161925 75%) no-repeat center center fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+.content-wrapper {
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex-shrink: 0;
+}
+
+/*
+ * Navigation 
+ */
+
+/* < auto dropdown on hover > */
+
+.products-menu {
+  width: 210px !important;
+  margin-top: -1px !important;
+}
+
+.account-menu {
+  margin-top: -1px !important;
+}
+
+@media (min-width: 768px) {
+  .dropdown:hover>.dropdown-menu {
+    display: block;
+  }
+  .products-menu {
+    width: 300px !important;
+    margin-top: -1px !important;
+  }
+  .account-menu {
+    width: 200px !important;
+    margin-top: -1px !important;
+  }
+}
+
+/* < / auto dropdown on hover > */
+
+/* < animated underline link > */
+
+.animated-link {
+	display: inline-block;
+	color: #fff;
+	text-decoration: none;
+}
+
+.animated-link::after {
+	content: '';
+	display: block;
+	width: 0;
+	height: 2px;
+	background: #fff;
+	transition: width .3s;
+}
+
+.animated-link:hover::after {
+	width: 100%;
+	transition: width .3s;
+}
+
+.animated-link-active {
+	display: inline-block;
+	color: #fff;
+	text-decoration: none;
+}
+
+.animated-link-active::after {
+	content: '';
+	display: block;
+	height: 2px;
+	background: #fff;
+}
+
+ /* < / animated underline link > */
+
+/*
+ * Carousel
+ */
+
+ /* < base > */
+
+ .carousel {
+  width: 100%;
+  min-height: 300px;
+  max-height: 860px;
+}
+
+ /* < / base > */
+
+  /* < animation > */
+
+.carousel-item {
+  transition-duration: 1.25s;
+}
+
+  /* < / animation > */
+
+/* < screen responsiveness > */
+
+@media (max-width: 1200px) {
+  .carousel {
+    width: 100%;
+    min-height: 570px;
+    max-height: 860px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .carousel {
+    width: 100%;
+    min-height: 500px;
+    max-height: 860px;
+  }
+}
+
+@media (max-width: 768px) {
+    .carousel {
+      width: 100%;
+      min-height: 460px;
+      max-height: 860px;
+    }
+}
+
+/* < / screen responsiveness > */
+
+/*
+ * Custom background colors
+ */
+
+.bg-dark-blue {
+  background: radial-gradient(ellipse at bottom, #1b2735 15%, #161925 75%);
+}
+
+/*
+ * Highlighting effect on hover
+ */
+
+.highlight {
+  transition: background 0.25s linear;
+  -webkit-transition: background 0.25s linear;
+  -moz-transition: background 0.25s linear;
+}
+
+/*
+ * Link styling
+ */
+
+a:link, a:visited {
+  color: white;
+}
+
+a:hover, a:active {
+  color: white;
+}
+
+/*
+ * Centered box styling
+ */
+
+.centered-box {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border: 1px solid #1b2735;
+  border-radius: 15px;
+  -moz-border-radius: 15px;
+}
+
