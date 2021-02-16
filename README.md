@@ -60,7 +60,7 @@ The previously mentioned _Role_ entity will be responsible of holding all the pe
 
 ### Advanced Algorithm
 
-- If it was your **first purchase**, give a 75% non-recurrent discount on inauguration (or on special events) (_will be configurable/toggleable on panel _).
+- If it was your **first purchase**, give a 75% non-recurrent discount on inauguration (or on special events) (_will be configurable/toggleable on panel_).
 - **Incremental purchases:** every X services you rent in an interval of time give an additional 10% discount (_also configurable_).
 
 
