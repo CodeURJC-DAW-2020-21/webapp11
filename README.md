@@ -46,7 +46,7 @@ The previously mentioned _Role_ entity will be responsible of holding all the pe
 
 ### Images
 
-- The application **Administator** can check all user profile pictures (avatars) and other information.
+- The application **Administrator** can check all user profile pictures (avatars) and other information.
 - We'll be using **Icons** in different sections to improve accesibility.
 
 ### Charts
