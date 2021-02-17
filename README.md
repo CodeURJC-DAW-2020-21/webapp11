@@ -35,8 +35,10 @@ All the organisation will be done using a _Trello_ board.
 - **Role**: a role or authority, holds a set of permissions that will allow a user perform certain actions.
 - **Client**: a client represents a business concrete client, which means, this entity will hold all the
   information necessary and related to the rental (i.e. full name, address, id number, etc).
-- **Product**: a product will contain a concrete configuration of specifications (_hardware and network_).
 - **Category**: represents a set which will group all kinds of related products into a single domain.
+- **Product**: a product will contain a concrete configuration (_hardware and network_).
+- **Configuration**: represents a _hardware and network_ concrete configuration and its cost.
+- **Specification**: is a concrete entity that contains the specification name, unit, value and type.
 - **Order**: represents a product rental action and contains order attributes (i.e. rental date, expiration 
   date, etc)
 - **Discount**: will represent a product sale (a.k.a. discount) for your first purchase and will contain all
