@@ -115,7 +115,7 @@
 
                     <!-- shared server -->
                     <li>
-                      <div class="card h-100 bg-transparent m-2">
+                      <div id="menu-product-desktop-shared" class="card bg-grey-transparent m-2">
                         <div class="card-body highlight p-1">
                           <div class="row">
                             <div class="col-2 d-flex justify-content-center align-items-center">
@@ -125,7 +125,8 @@
                               <a href="pricing.html" class="card-title text-white animated-link">
                                 Shared Server
                               </a>
-                              <h6 class="card-subtitle mb-2 text-muted">
+                              <h6 class="card-subtitle mb-2 text-muted text-truncate" 
+                                data-toggle="tooltip" data-placement="bottom" title="A Burstable Portion of vCPU.">
                                 A Burstable Portion of vCPU.
                               </h6>
                             </div>
@@ -136,17 +137,18 @@
 
                     <!-- vps -->
                     <li>
-                      <div id="menu-product-desktop-vps" class="card h-100 bg-transparent m-2">
+                      <div id="menu-product-desktop-vps" class="card bg-grey-transparent m-2">
                         <div class="card-body highlight p-1">
                           <div class="row">
                             <div class="col-2 d-flex justify-content-center align-items-center">
-                              <i class="bi bi-hdd text-light"></i>
+                              <i class="bi bi-hdd-rack text-light"></i>
                             </div>
                             <div class="col-10">
                               <a href="pricing.html" class="card-title text-white animated-link">
                                 Virtual Private Server
                               </a>
-                              <h6 class="card-subtitle mb-2 text-muted">
+                              <h6 class="card-subtitle mb-2 text-muted text-truncate" 
+                                data-toggle="tooltip" data-placement="bottom" title="General Purpose Usage.">
                                 General Purpose Usage.
                               </h6>
                             </div>
@@ -157,7 +159,7 @@
 
                     <!-- dedicated server -->
                     <li>
-                      <div class="card bg-transparent highlight m-2">
+                      <div id="menu-product-desktop-dedicated" class="card bg-grey-transparent m-2">
                         <div class="card-body highlight p-1">
                           <div class="row">
                             <div class="col-2 d-flex justify-content-center align-items-center">
@@ -167,8 +169,9 @@
                               <a href="pricing.html" class="card-title text-white animated-link">
                                 Dedicated Server
                               </a>
-                              <h6 class="card-subtitle mb-2 text-muted">
-                                CPU & Memory Optimized
+                              <h6 class="card-subtitle mb-2 text-muted text-truncate" 
+                                data-toggle="tooltip" data-placement="bottom" title="CPU & Memory Optimized.">
+                                CPU & Memory Optimized.
                               </h6>
                             </div>
                           </div>
@@ -206,11 +209,15 @@
                 <!-- logged-in account -->
                 <li class="nav-item mx-auto d-none">
                   <div class="dropdown">
+
+                    <!-- displayed name -->
                     <a class="nav-link dropdown-toggle text-center" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       <i id="account-image" class="bi bi-person-circle"></i>
                         <small id="account-rank" class="fw-bold">ADMIN</small> 
                         <span id="account-name">Jack Sparrow</span>
-                    </a>
+                    </a><!-- / displayed name -->
+
+                    <!-- account menu -->
                     <ul class="dropdown-menu account-menu text-center bg-dark-blue" aria-labelledby="navbarDarkDropdownMenuLink">
                       <li>
                         <a class="nav-link animated-link" href="#">
@@ -236,7 +243,7 @@
                           <span>Logout</span>
                         </a>
                       </li>
-                    </ul>
+                    </ul><!-- / account menu -->
                   </div>
                   
                 </li><!-- / logged-in account -->
@@ -404,7 +411,7 @@
 
             <!-- anti ddos -->
             <div class="col">
-              <div class="card h-100 highlight" style="background-color: rgba(245, 245, 245, 0.025)">
+              <div class="card h-100 highlight bg-grey-transparent">
                 <div class="card-body">
                   <h5 class="card-title">
                     <i class="bi bi-shield-check"></i>
@@ -422,7 +429,7 @@
 
             <!-- nvme -->
             <div class="col">
-              <div class="card h-100 highlight" style="background-color: rgba(245, 245, 245, 0.025)">
+              <div class="card h-100 highlight bg-grey-transparent">
                 <div class="card-body">
                   <h5 class="card-title">
                     <i class="bi bi-speedometer"></i>
@@ -439,7 +446,7 @@
 
             <!-- network -->
             <div class="col">
-              <div class="card h-100 highlight" style="background-color: rgba(245, 245, 245, 0.025)">
+              <div class="card h-100 highlight bg-grey-transparent">
                 <div class="card-body">
                   <h5 class="card-title">
                     <i class="bi bi-clock-history"></i>
@@ -483,6 +490,8 @@
 
     <!-- footer -->
     <footer class="footer">
+
+      <!-- footer container -->
       <div class="text-center text-secondary font-small pt-2">
 
         <!-- copyright notice -->
@@ -494,7 +503,7 @@
 
         <!-- extra links -->
         <div class="p-0 m-0">
-          <div class="d-inline-flex justify-content-center" style="width: 100%">
+          <div class="d-inline-flex justify-content-center w-100">
             <ul class="nav navbar-nav d-inline-flex">
               <li class="nav-item">
                 <ul class="list-inline">
@@ -516,7 +525,8 @@
           </div>
         </div><!-- / extra links -->
 
-      </div>
+      </div><!-- / footer container -->
+
     </footer><!-- / footer -->
 
   </body>

@@ -69,35 +69,43 @@
                     <span>Products</span>
                   </div>
 
-                  <ul id="menu-products-mobile" class="dropdown-menu bg-dark-blue" aria-labelledby="products-dropdown" >
+                  <!-- mobile products -->
+                  <ul id="menu-products-mobile" class="dropdown-menu products-menu bg-dark-blue" aria-labelledby="products-dropdown" >
+                    
+                    <!-- shared server -->
                     <li class="nav-item mx-auto">
                       <div id="menu-product-mobile-shared" class="d-flex justify-content-center">
                         <a href="pricing.html" class="nav-link card-title">
                           <i class="bi bi-share text-light"></i>
-                          <span>Shared Server</span>  
+                          <span class="animated-link">Shared Server</span>  
                         </a>
                       </div>
-                    </li>
+                    </li><!-- / shared server -->
+
+                    <!-- vps -->
                     <li class="nav-item mx-auto">
                       <div id="menu-product-mobile-vps" class="d-flex justify-content-center">
                         <a href="pricing.html" class="nav-link card-title">
                           <i class="bi bi-hdd text-light"></i>
-                          <span>Virtual Private Server</span>  
+                          <span class="animated-link">Virtual Private Server</span>  
                         </a>
                       </div>
-                    </li>
+                    </li><!-- / vps -->
+
+                    <!-- dedicated server -->
                     <li class="nav-item mx-auto">
                       <div id="menu-product-mobile-vps" class="d-flex justify-content-center">
                         <a href="pricing.html" class="nav-link card-title">
                           <i class="bi bi-hdd-rack text-light"></i>
-                          <span>Dedicated Server</span>  
+                          <span class="animated-link">Dedicated Server</span>  
                         </a>
                       </div>
-                    </li>
-                  </ul>
+                    </li><!-- / dedicated server -->
+                    
+                  </ul><!-- / mobile products -->
 
-                  <!-- products -->
-                  <ul id="menu-products-desktop" class="dropdown-menu bg-dark-blue" aria-labelledby="products-dropdown">
+                  <!-- desktop products -->
+                  <ul id="menu-products-desktop" class="dropdown-menu products-menu bg-dark-blue" aria-labelledby="products-dropdown">
 
                     <!-- dropdown header -->
                     <li class="nav-item mx-auto">
@@ -106,9 +114,9 @@
                       </h6>
                     </li><!-- / dropdown header -->
 
-                    <!-- shared server product -->
+                    <!-- shared server -->
                     <li>
-                      <div class="card h-100 bg-transparent m-2">
+                      <div id="menu-product-desktop-shared" class="card bg-grey-transparent m-2">
                         <div class="card-body highlight p-1">
                           <div class="row">
                             <div class="col-2 d-flex justify-content-center align-items-center">
@@ -118,39 +126,41 @@
                               <a href="pricing.html" class="card-title text-white animated-link">
                                 Shared Server
                               </a>
-                              <h6 class="card-subtitle mb-2 text-muted">
+                              <h6 class="card-subtitle mb-2 text-muted text-truncate" 
+                                data-toggle="tooltip" data-placement="bottom" title="A Burstable Portion of vCPU.">
                                 A Burstable Portion of vCPU.
                               </h6>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </li><!-- / shared server product -->
+                    </li><!-- / shared server -->
 
-                    <!-- vps product -->
+                    <!-- vps -->
                     <li>
-                      <div id="menu-product-desktop-vps" class="card h-100 bg-transparent m-2">
+                      <div id="menu-product-desktop-vps" class="card bg-grey-transparent m-2">
                         <div class="card-body highlight p-1">
                           <div class="row">
                             <div class="col-2 d-flex justify-content-center align-items-center">
-                              <i class="bi bi-hdd text-light"></i>
+                              <i class="bi bi-hdd-rack text-light"></i>
                             </div>
                             <div class="col-10">
                               <a href="pricing.html" class="card-title text-white animated-link">
                                 Virtual Private Server
                               </a>
-                              <h6 class="card-subtitle mb-2 text-muted">
+                              <h6 class="card-subtitle mb-2 text-muted text-truncate" 
+                                data-toggle="tooltip" data-placement="bottom" title="General Purpose Usage.">
                                 General Purpose Usage.
                               </h6>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </li><!-- / vps product -->
+                    </li><!-- / vps -->
 
-                    <!-- dedicated server product -->
+                    <!-- dedicated server -->
                     <li>
-                      <div class="card bg-transparent highlight m-2">
+                      <div id="menu-product-desktop-dedicated" class="card bg-grey-transparent m-2">
                         <div class="card-body highlight p-1">
                           <div class="row">
                             <div class="col-2 d-flex justify-content-center align-items-center">
@@ -160,43 +170,86 @@
                               <a href="pricing.html" class="card-title text-white animated-link">
                                 Dedicated Server
                               </a>
-                              <h6 class="card-subtitle mb-2 text-muted">
-                                CPU & Memory Optimized
+                              <h6 class="card-subtitle mb-2 text-muted text-truncate" 
+                                data-toggle="tooltip" data-placement="bottom" title="CPU & Memory Optimized.">
+                                CPU & Memory Optimized.
                               </h6>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </li><!-- / dedicated server product -->
+                    </li><!-- / dedicated server -->
 
-                  </ul><!-- / products -->
+                  </ul><!-- / desktop products -->
 
                 </li><!-- / links -->
 
-                <!-- pricing-nav-link -->
+                <!-- pricing -->
                 <li class="nav-item mx-auto">
                   <a class="nav-link" href="pricing.html">Pricing</a>
-                </li><!-- / pricing-nav-link -->
+                </li><!-- / pricing -->
 
-                <!-- about-nav-link -->
+                <!-- about -->
                 <li class="nav-item mx-auto">
-                  <a class="nav-link" href="#">About us</a>
-                </li><!-- / about-nav-link -->
+                  <a class="nav-link" href="about.html">About us</a>
+                </li><!-- / about -->
 
               </ul><!-- / left side items -->
 
-              <!-- right-side-items -->
+              <!-- right side items -->
               <ul class="navbar-nav mt-2 mt-lg-0 mr-4">
 
-                <!-- account-nav-link -->
-                <li data-name="right-side-items" class="nav-item mx-auto">
+                <!-- unregistered account -->
+                <li class="nav-item mx-auto">
                   <a class="nav-link" href="login.html">
-                    <i class="bi bi-person-circle"></i>
-                    <span>Account</span>
+                    <i id="account-image" class="bi bi-person-circle"></i>
+                    <span id="account-name">Account</span>
                   </a>
-                </li><!-- / account-nav-link -->
+                </li><!-- / unregistered account -->
 
-              </ul><!-- / right-side-items -->
+                <!-- logged-in account -->
+                <li class="nav-item mx-auto d-none">
+                  <div class="dropdown">
+
+                    <!-- displayed name -->
+                    <a class="nav-link dropdown-toggle text-center" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i id="account-image" class="bi bi-person-circle"></i>
+                        <small id="account-rank" class="fw-bold">ADMIN</small> 
+                        <span id="account-name">Jack Sparrow</span>
+                    </a><!-- / displayed name -->
+
+                    <!-- account menu -->
+                    <ul class="dropdown-menu account-menu text-center bg-dark-blue" aria-labelledby="navbarDarkDropdownMenuLink">
+                      <li>
+                        <a class="nav-link animated-link" href="#">
+                          <i class="bi bi-bag"></i>
+                          <span>My Services</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="nav-link animated-link" href="#">
+                          <i class="bi bi-person-fill"></i>
+                          <span>Control Panel</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="nav-link animated-link" href="#">
+                          <i class="bi bi-person-fill"></i>
+                          <span>Profile</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="nav-link animated-link" href="#">
+                          <i class="bi bi-box-arrow-right"></i>
+                          <span>Logout</span>
+                        </a>
+                      </li>
+                    </ul><!-- / account menu -->
+                  </div>
+                  
+                </li><!-- / logged-in account -->
+
+              </ul><!-- / right side items -->
 
             </div><!-- / navigation items -->
 
@@ -493,42 +546,45 @@
     </div><!-- content-wrapper -->
 
     <!-- footer -->
-  <footer class="footer">
-    <div class="text-center text-secondary font-small pt-2">
+    <footer class="footer">
 
-      <!-- copyright-notice -->
-      <div>
-        <span>Copyright &copy; 2021</span>
-        <span class="text-light">CODE URJC</span>
-        <span>. All rights reserved.</span>
-      </div><!-- / copyright-notice -->
+      <!-- footer container -->
+      <div class="text-center text-secondary font-small pt-2">
 
-      <!-- extra-links -->
-      <div class="p-0 m-0">
-        <div class="d-inline-flex justify-content-center" style="width: 100%">
-          <ul class="nav navbar-nav d-inline-flex">
-            <li class="nav-item">
-              <ul class="list-inline">
-                <li class="list-inline-item">
-                  <a class="nav-link" href="#"> Privacy & Security </a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="nav-link" href="#"> Terms of Use </a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="nav-link" href="#"> Trademarks </a>
-                </li>
-                <li class="list-inline-item">
-                  <a class="nav-link" href="#"> Legal </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div><!-- / extra-links -->
+        <!-- copyright notice -->
+        <div>
+          <span>Copyright &copy; 2021</span>
+          <span class="text-light">Code URJC</span>
+          <span>. All rights reserved.</span>
+        </div><!-- / copyright notice -->
 
-    </div>
-  </footer><!-- / footer -->
+        <!-- extra links -->
+        <div class="p-0 m-0">
+          <div class="d-inline-flex justify-content-center w-100">
+            <ul class="nav navbar-nav d-inline-flex">
+              <li class="nav-item">
+                <ul class="list-inline">
+                  <li class="list-inline-item">
+                    <a class="nav-link" href="privacy.html"> Privacy & Security </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="nav-link" href="terms.html"> Terms of Use </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="nav-link" href="trademarks.html"> Trademarks </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="nav-link" href="legal.html"> Legal </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div><!-- / extra links -->
+
+      </div><!-- / footer container -->
+
+    </footer><!-- / footer -->
 
   </body>
 
