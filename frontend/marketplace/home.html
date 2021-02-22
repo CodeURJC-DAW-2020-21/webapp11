@@ -9,7 +9,7 @@
     <!-- stylesheets -->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/main.css">
     
     <!-- title -->
     <title id="title">DAWHostServices</title>
@@ -241,16 +241,16 @@
               <!-- right side items -->
               <ul class="navbar-nav mt-2 mt-lg-0 mr-4">
 
-                <!-- unregistered account -->
-                <li class="nav-item mx-auto">
+                <!-- non-logged-in account -->
+                <li id="not-logged-in" class="nav-item mx-auto">
                   <a class="nav-link" href="login.html">
                     <i id="account-image" class="bi bi-person-circle"></i>
                     <span id="account-name">Account</span>
                   </a>
-                </li><!-- / unregistered account -->
+                </li><!-- / non-logged-in account -->
 
-                <!-- registered account -->
-                <li class="nav-item mx-auto d-none">
+                <!-- logged-in account -->
+                <li id="logged-in" class="nav-item mx-auto d-none">
                   <div class="dropdown">
 
                     <!-- displayed name -->
@@ -260,7 +260,11 @@
                        data-bs-toggle="dropdown" 
                        aria-expanded="false">
                       <i id="account-image" class="bi bi-person-circle"></i>
-                      <small id="account-rank" class="fw-bold">ADMIN</small>
+                      
+                      <small>
+                        <span id="account-rank" class="badge bg-danger">ADMIN</span>
+                      </small>
+                      
                       <span id="account-name">Jack Sparrow</span> 
                     </a><!-- / displayed name -->
 
@@ -278,7 +282,7 @@
                       <!-- control panel-->
                       <li>
                         <a href="panel.html" class="nav-link">
-                          <i class="bi bi-person-fill"></i>
+                          <i class="bi bi-toggles2"></i>
                           <span class="animated-link">Control Panel</span>
                         </a>
                       </li><!-- / control panel-->
@@ -302,7 +306,23 @@
                     </ul><!-- / account menu -->
 
                   </div>
-                </li><!-- / registered account -->
+                </li><!-- / logged-in account -->
+
+                <!-- account state toggler -->
+                <li class="nav-item mx-auto">
+                  <div class="container" style="padding-top: 12px;" >
+                    <div class="row align-items-center h-100">
+                      <div class="col-12 mx-auto">
+                        <div class="jumbotron">
+                          <label class="toggle-switch">
+                            <input id="login-toggler" type="checkbox">
+                            <span class="toggle-switch-slider round"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li><!-- / account state toggler -->
 
               </ul><!-- / right side items -->
 
