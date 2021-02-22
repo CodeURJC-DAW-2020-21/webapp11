@@ -37,15 +37,17 @@
           <div class="container-fluid">
 
             <!-- logo -->
-            <a id="logo" class="navbar-brand d-flex" href="home.html">
+            <a id="logo" href="home.html" class="navbar-brand d-flex">
               <span class="text-light">DAW</span>
               <span class="text-secondary">Host</span>
               <span class="text-light">Services</span> 
             </a><!-- / logo -->
 
             <!-- hamburger -->
-            <button class="navbar-toggler" data-bs-target="#nav-items" aria-controls="nav-items" data-bs-toggle="collapse"
-              aria-expanded="false" aria-label="Toggle navigation bar" type="button">
+            <button class="navbar-toggler" data-bs-target="#nav-items" 
+                    aria-controls="nav-items" data-bs-toggle="collapse"
+                    aria-expanded="false" aria-label="Toggle navigation menu" 
+                    type="button">
               <span class="navbar-toggler-icon"></span>
             </button><!-- / hamburger -->
 
@@ -57,122 +59,163 @@
 
                 <!-- links -->
                 <li class="nav-item nav-link dropdown mx-auto">
-                  <div id="menu-item-products" class="d-flex justify-content-center" data-bs-toggle="dropdown">
+                  <div id="menu-item-products" 
+                       class="d-flex justify-content-center" 
+                       data-bs-toggle="dropdown">
                     <span>Products</span>
                   </div>
 
                   <!-- mobile products -->
-                  <ul id="menu-products-mobile" class="dropdown-menu products-menu bg-dark-blue"
-                    aria-labelledby="products-dropdown">
+                  <ul id="menu-products-mobile" 
+                      class="dropdown-menu products-menu bg-dark-blue"
+                      aria-labelledby="products-dropdown">
 
-                    <!-- shared server -->
+                    <!-- shared server product -->
                     <li class="nav-item mx-auto">
-                      <div id="menu-product-mobile-shared" class="d-flex justify-content-center">
+                      <div id="menu-product-mobile-shared" 
+                           class="d-flex justify-content-center">
                         <a href="pricing.html" class="nav-link card-title">
                           <i class="bi bi-share text-light"></i>
                           <span class="animated-link">Shared Server</span>
                         </a>
                       </div>
-                    </li><!-- / shared server -->
+                    </li><!-- / shared server product -->
 
-                    <!-- vps -->
+                    <!-- vps product -->
                     <li class="nav-item mx-auto">
-                      <div id="menu-product-mobile-vps" class="d-flex justify-content-center">
+                      <div id="menu-product-mobile-vps" 
+                           class="d-flex justify-content-center">
                         <a href="pricing.html" class="nav-link card-title">
                           <i class="bi bi-hdd text-light"></i>
                           <span class="animated-link">Virtual Private Server</span>
                         </a>
                       </div>
-                    </li><!-- / vps -->
+                    </li><!-- / vps product -->
 
-                    <!-- dedicated server -->
+                    <!-- dedicated server product -->
                     <li class="nav-item mx-auto">
-                      <div id="menu-product-mobile-vps" class="d-flex justify-content-center">
+                      <div id="menu-product-mobile-vps" 
+                           class="d-flex justify-content-center">
                         <a href="pricing.html" class="nav-link card-title">
                           <i class="bi bi-hdd-rack text-light"></i>
                           <span class="animated-link">Dedicated Server</span>
                         </a>
                       </div>
-                    </li><!-- / dedicated server -->
+                    </li><!-- / dedicated server product -->
 
                   </ul><!-- / mobile products -->
 
                   <!-- desktop products -->
-                  <ul id="menu-products-desktop" class="dropdown-menu products-menu bg-dark-blue"
-                    aria-labelledby="products-dropdown">
+                  <ul id="menu-products-desktop" 
+                      class="dropdown-menu products-menu bg-dark-blue"
+                      aria-labelledby="products-dropdown">
 
-                    <!-- dropdown header -->
+                    <!-- dropdown header  -->
                     <li class="nav-item mx-auto">
                       <h6 class="dropdown-header text-center">
-                        Choose what suits you best!
+                        <span>Choose what suits you best!</span>
                       </h6>
                     </li><!-- / dropdown header -->
 
-                    <!-- shared server -->
+                    <!-- shared server product -->
                     <li>
                       <div id="menu-product-desktop-shared" class="card bg-grey-transparent m-2">
                         <div class="card-body highlight p-1">
                           <div class="row">
+
+                            <!-- icon -->
                             <div class="col-2 d-flex justify-content-center align-items-center">
                               <i class="bi bi-share text-light"></i>
-                            </div>
+                            </div><!-- / icon -->
+
+                            <!-- content -->
                             <div class="col-10">
+
+                              <!-- link -->
                               <a href="pricing.html" class="card-title text-white animated-link">
                                 Shared Server
-                              </a>
-                              <h6 class="card-subtitle mb-2 text-muted text-truncate" data-toggle="tooltip"
-                                data-placement="bottom" title="A Burstable Portion of vCPU.">
+                              </a><!-- / link -->
+
+                              <!-- description-->
+                              <h6 class="card-subtitle mb-2 text-muted text-truncate" 
+                                  title="A Burstable Portion of vCPU."
+                                  data-toggle="tooltip"
+                                  data-placement="bottom">
                                 A Burstable Portion of vCPU.
-                              </h6>
-                            </div>
+                              </h6><!-- / description-->
+
+                            </div><!-- / content -->
+
                           </div>
                         </div>
                       </div>
-                    </li><!-- / shared server -->
+                    </li><!-- / shared server product -->
 
-                    <!-- vps -->
+                    <!-- vps product -->
                     <li>
                       <div id="menu-product-desktop-vps" class="card bg-grey-transparent m-2">
                         <div class="card-body highlight p-1">
                           <div class="row">
+
+                            <!-- icon -->
                             <div class="col-2 d-flex justify-content-center align-items-center">
                               <i class="bi bi-hdd text-light"></i>
-                            </div>
+                            </div><!-- / icon -->
+
+                            <!-- content -->
                             <div class="col-10">
+
+                              <!-- link -->
                               <a href="pricing.html" class="card-title text-white animated-link">
                                 Virtual Private Server
-                              </a>
-                              <h6 class="card-subtitle mb-2 text-muted text-truncate" data-toggle="tooltip"
-                                data-placement="bottom" title="General Purpose Usage.">
+                              </a><!-- / link -->
+
+                              <!-- description-->
+                              <h6 class="card-subtitle mb-2 text-muted text-truncate" 
+                                  title="General Purpose Usage."
+                                  data-toggle="tooltip"
+                                  data-placement="bottom">
                                 General Purpose Usage.
-                              </h6>
-                            </div>
+                              </h6><!-- / description-->
+
+                            </div><!-- / content -->
+
                           </div>
                         </div>
                       </div>
-                    </li><!-- / vps -->
+                    </li><!-- / vps product -->
 
-                    <!-- dedicated server -->
+                    <!-- dedicated server product -->
                     <li>
                       <div id="menu-product-desktop-dedicated" class="card bg-grey-transparent m-2">
                         <div class="card-body highlight p-1">
                           <div class="row">
+
+                            <!-- icon -->
                             <div class="col-2 d-flex justify-content-center align-items-center">
                               <i class="bi bi-hdd-rack text-light"></i>
-                            </div>
+                            </div><!-- / icon -->
+
+                            <!-- content -->
                             <div class="col-10">
+
+                              <!-- link -->
                               <a href="pricing.html" class="card-title text-white animated-link">
                                 Dedicated Server
-                              </a>
+                              </a><!-- / link -->
+
+                              <!-- description-->
                               <h6 class="card-subtitle mb-2 text-muted text-truncate" data-toggle="tooltip"
                                 data-placement="bottom" title="CPU & Memory Optimized.">
                                 CPU & Memory Optimized.
-                              </h6>
-                            </div>
+                              </h6><!-- / description-->
+
+                            </div><!-- / content -->
+
                           </div>
                         </div>
                       </div>
-                    </li><!-- / dedicated server -->
+                    </li><!-- / dedicated server product -->
 
                   </ul><!-- / desktop products -->
 
@@ -201,7 +244,7 @@
                   </a>
                 </li><!-- / unregistered account -->
 
-                <!-- logged-in account -->
+                <!-- registered account -->
                 <li class="nav-item mx-auto d-none">
                   <div class="dropdown">
 
@@ -216,34 +259,43 @@
                     <!-- account menu -->
                     <ul class="dropdown-menu account-menu text-center bg-dark-blue"
                       aria-labelledby="navbarDarkDropdownMenuLink">
+                      
+                      <!-- my services-->
                       <li>
-                        <a class="nav-link animated-link" href="#">
+                        <a href="services.html" class="nav-link">
                           <i class="bi bi-bag"></i>
-                          <span>My Services</span>
+                          <span class="animated-link">My Services</span>
                         </a>
-                      </li>
+                      </li><!-- / my services-->
+
+                      <!-- control panel-->
                       <li>
-                        <a class="nav-link animated-link" href="#">
+                        <a href="panel.html" class="nav-link">
                           <i class="bi bi-person-fill"></i>
-                          <span>Control Panel</span>
+                          <span class="animated-link">Control Panel</span>
                         </a>
-                      </li>
+                      </li><!-- / control panel-->
+
+                      <!-- profile -->
                       <li>
-                        <a class="nav-link animated-link" href="#">
+                        <a href="profile.html" class="nav-link">
                           <i class="bi bi-person-fill"></i>
-                          <span>Profile</span>
+                          <span class="animated-link">Profile</span>
                         </a>
-                      </li>
+                      </li><!-- / profile -->
+
+                      <!-- logout -->
                       <li>
-                        <a class="nav-link animated-link" href="#">
+                        <a href="logout.html" class="nav-link">
                           <i class="bi bi-box-arrow-right"></i>
-                          <span>Logout</span>
+                          <span class="animated-link">Logout</span>
                         </a>
-                      </li>
+                      </li><!-- / logout -->
+
                     </ul><!-- / account menu -->
 
                   </div>
-                </li><!-- / logged-in account -->
+                </li><!-- / registered account -->
 
               </ul><!-- / right side items -->
 
