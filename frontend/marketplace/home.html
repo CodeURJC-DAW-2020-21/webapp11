@@ -552,9 +552,20 @@
 
         <!-- copyright notice -->
         <div>
-          <span>Copyright &copy; 2021</span>
-          <span class="text-light">Code URJC</span>
+
+          <!-- year -->
+          <span>
+            <span>Copyright &copy;</span> 
+            <script>document.write(new Date().getFullYear());</script>
+          </span><!-- / year -->
+
+          <!-- enterprise-->
+          <span class="text-light">
+            DAWHostServices
+          </span><!-- / enterprise-->
+
           <span>. All rights reserved.</span>
+
         </div><!-- / copyright notice -->
 
         <!-- extra links -->
@@ -563,18 +574,35 @@
             <ul class="nav navbar-nav d-inline-flex">
               <li class="nav-item">
                 <ul class="list-inline">
+
+                  <!-- privacy and security -->
                   <li class="list-inline-item">
-                    <a class="nav-link" href="privacy.html"> Privacy & Security </a>
-                  </li>
+                    <a class="nav-link" href="privacy.html">
+                      <span>Privacy & Security</span>
+                    </a>
+                  </li><!-- / privacy and security -->
+
+                  <!-- terms of use -->
                   <li class="list-inline-item">
-                    <a class="nav-link" href="terms.html"> Terms of Use </a>
-                  </li>
+                    <a class="nav-link" href="terms.html">
+                      <span>Terms of Use</span>
+                    </a>
+                  </li><!-- / terms of use -->
+
+                  <!-- trademarks -->
                   <li class="list-inline-item">
-                    <a class="nav-link" href="trademarks.html"> Trademarks </a>
-                  </li>
+                    <a class="nav-link" href="trademarks.html">
+                      <span>Trademarks
+                    </a>
+                  </li><!-- / trademarks -->
+
+                  <!-- legal -->
                   <li class="list-inline-item">
-                    <a class="nav-link" href="legal.html"> Legal </a>
-                  </li>
+                    <a class="nav-link" href="legal.html">
+                      <span>Legal</span>
+                    </a>
+                  </li><!-- / legal -->
+
                 </ul>
               </li>
             </ul>
