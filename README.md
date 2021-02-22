@@ -1,5 +1,10 @@
 # DAW Host Services
 
+## Context
+
+This project is an assignment for the _Web Application Development_ subject in the 
+Software Engineering Degree, at _University King Juan Carlos_, Spain (2020/2021).
+
 ## Logo
 
 ![alt-text](https://i.imgur.com/GZR3STD.png "DAW Host Services Logo")
@@ -33,10 +38,7 @@ All the organisation will be done using a _Trello_ board.
 
 - **User**: a user will be the entity in charge of storing all kinds of information related to authentication.
 - **Role**: a role or authority, holds a set of permissions that will allow a user perform certain actions.
-- **Client**: a client represents a business concrete client, which means, this entity will hold all the
-  information necessary and related to the rental (i.e. full name, address, id number, etc).
-- **Product**: a product will contain a concrete configuration of specifications (_hardware and network_).
-- **Category**: represents a set which will group all kinds of related products into a single domain.
+- **Product**: is an entity that contains all the information related to the product (i.e. price, category and specs)
 - **Order**: represents a product rental action and contains order attributes (i.e. rental date, expiration 
   date, etc)
 - **Discount**: will represent a product sale (a.k.a. discount) for your first purchase and will contain all
