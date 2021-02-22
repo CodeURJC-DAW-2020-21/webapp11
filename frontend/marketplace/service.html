@@ -273,7 +273,7 @@
       <div class="d-flex justify-content-center text-white text-center">
         <div class="row">
           <div class="col-12 px-5">
-            <h3>SERVICE #1234</h3>
+            <h3>SERVICE OVERVIEW</h3>
           </div>
         </div>
       </div><!-- / page title -->
@@ -304,22 +304,31 @@
                 <div class="row align-items-center h-100" style="font-size: 14px">
                   <div class="col-12 mx-auto">
                     <div class="jumbotron">
+
+                      <!-- service id -->
                       <div class="d-block">
                         <span class="fw-bold">Service Id:</span>
-                        <span>#1234</span>
-                      </div>
+                        <span id="service-id">1234</span>
+                      </div><!-- / service id -->
+
+                      <!-- service category -->
                       <div class="d-block">
                         <span class="fw-bold">Category:</span>
-                        <span>Shared</span>
-                      </div>
+                        <span id="service-category">Shared</span>
+                      </div><!-- / service category -->
+
+                      <!-- service purchase date -->
                       <div class="d-block">
                         <span class="fw-bold">Purchase Date:</span>
-                        <span>Mon, 22 Feb 2021 16:09:32</span>
-                      </div>
+                        <span id="service-purchase">Mon, 22 Feb 2021 16:09:32</span>
+                      </div><!-- / service purchase date -->
+
+                      <!-- service expiry date -->
                       <div class="d-block">
                         <span class="fw-bold">Expiry Date:</span>
-                        <span>Mon, 21 Mar 2021 16:09:32</span>
-                      </div>
+                        <span id="service-expiry">Mon, 21 Mar 2021 16:09:32</span>
+                      </div><!-- / service expiry date -->
+
                     </div>
                   </div>
                 </div>
@@ -340,21 +349,28 @@
                 <div class="row align-items-center h-100">
                   <div class="col-12 mx-auto">
                     <div class="jumbotron">
+
+                      <!-- renew service button -->
                       <div class="d-block">
-                        <button type="button" class="btn btn-outline-success btn-sm mb-2">
+                        <button id="renew-button" type="button" class="btn btn-outline-success btn-sm mb-2">
                           Renew Service
                         </button>
-                      </div>
+                      </div><!-- / renew service button -->
+
+                      <!-- cancel service button -->
                       <div class="d-block">
-                        <button type="button" class="btn btn-outline-danger btn-sm mb-2">
+                        <button id="cancel-button" type="button" class="btn btn-outline-danger btn-sm mb-2">
                           Cancel Service
                         </button>
-                      </div>
+                      </div><!-- / cancel service button -->
+
+                      <!-- download receipt button -->
                       <div class="d-block">
-                        <button type="button" class="btn btn-outline-light btn-sm mb-2">
+                        <button id="receipt-button" type="button" class="btn btn-outline-light btn-sm mb-2">
                           Download Receipt
                         </button>
-                      </div>
+                      </div><!-- / download receipt button -->
+
                     </div>
                   </div>
                 </div>
