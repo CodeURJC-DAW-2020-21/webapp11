@@ -2,6 +2,7 @@ $(document).ready(() => {
 
     registerNavigation();
     registerHighlightEffect();
+    registerLoginToggler();
 
 });
 
@@ -13,10 +14,10 @@ const registerNavigation = () => {
 
     const deviceNavigationStyleSwitcher = () => {
         const size = deviceSize();
-        if(size === "lg" || size === "xl" || size === "md") {
+        if (size === "lg" || size === "xl" || size === "md") {
             $("#menu-products-mobile:not([class*='d-none'])").addClass("d-none");
             $("#menu-products-desktop:is([class*='d-none'])").removeClass("d-none");
-            
+
         } else {
             $("#menu-products-desktop:not([class*='d-none'])").addClass("d-none");
             $("#menu-products-mobile:is([class*='d-none'])").removeClass("d-none");
@@ -46,9 +47,22 @@ const registerHighlightEffect = () => {
             .on("mouseleave", (event) => performColorSwitch(event.type, element));
     };
 
-    $(".highlight").each(function() { registerHighlight($(this)); });
-    
+    $(".highlight").each(function () { registerHighlight($(this)); });
+
 }
 
+const registerLoginToggler = () => {
 
+    $('#login-toggler').click(function() {
+        if ($(this).is(':checked')) {
+            $("#logged-in").removeClass("d-none");
+            $("#not-logged-in").addClass("d-none");
+        } else {
+            $("#not-logged-in").removeClass("d-none");
+            $("#logged-in").addClass("d-none");
+        }
+        console.log("HI");
+    });
+
+}
 
