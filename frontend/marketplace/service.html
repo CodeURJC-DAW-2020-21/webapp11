@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
 
-    <!-- metadata -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <!-- metadata -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- stylesheets -->
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/pricing.css">
-    
-    <!-- title -->
-    <title id="title">DAWHostServices</title>
+  <!-- stylesheets -->
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/service.css" />
 
-  </head>
-  <body>
+  <!-- title -->
+  <title id="title">DAWHostServices</title>
+</head>
 
-    <!-- screen size detector -->
-    <div id="screen-size-detector">
-      <div id="xs" class="d-block d-sm-none"></div>
-      <div id="sm" class="d-none d-sm-block d-md-none"></div>
-      <div id="md" class="d-none d-md-block d-lg-none"></div>
-      <div id="lg" class="d-none d-lg-block d-xl-none"></div>
-      <div id="xl" class="d-none d-xl-block"></div>
-    </div><!-- / screen size detector -->
+<body>
 
-    <!-- content-wrapper -->
-    <div class="content-wrapper">
-      <header>
+  <!-- screen size detector -->
+  <div id="screen-size-detector">
+    <div id="xs" class="d-block d-sm-none"></div>
+    <div id="sm" class="d-none d-sm-block d-md-none"></div>
+    <div id="md" class="d-none d-md-block d-lg-none"></div>
+    <div id="lg" class="d-none d-lg-block d-xl-none"></div>
+    <div id="xl" class="d-none d-xl-block"></div>
+  </div><!-- / screen size detector -->
+
+  <!-- content wrapper -->
+  <div class="content-wrapper">
+    <header>
 
         <!-- navigation -->
         <nav class="navbar navbar-expand-md navbar-dark mx-2">
@@ -333,293 +333,356 @@
 
         </nav><!-- / navigation -->
 
-      </header>
+    </header>
 
-      <main>
+    <main>
 
-        <!-- infrastructure-features -->
-        <div data-name="infrastructure-features" class="container mt-5 text-light">
+      <!-- service expired alert -->
+      <div id="flash-message" class="row m-0 d-none">
+        <div class="col m-2">
+          <div class="alert alert-transparent text-danger border border-danger fade show text-center" role="alert">
+            <strong>Your service seems to be expired</strong>
+            <span>You can't renew it, if you want another one feel free to order
+              it</span>
+          </div>
+        </div>
+      </div><!-- / service expired alert -->
 
+      <!-- page title -->
+      <div class="d-flex justify-content-center text-white text-center">
+        <div class="row">
+          <div class="col-12 px-5">
+            <h3>SERVICE OVERVIEW</h3>
+          </div>
+        </div>
+      </div><!-- / page title -->
 
-          <!-- brief-description-->
-          <div class="row">
-            <div class="col-12 text-center text-white">
-              <h3>Select the plan for your application needs</h3>
-              <p class="text-secondary">
-                <i>No other plan offers more choice. With multiple configurations, you’re sure to find the right performance at the right price.</i>
-              </p>
-              <nav>
-                <div class="nav nav-tabs d-flex justify-content-center align-items-center " id="nav-tab" role="tablist">
-                  <button class="nav-link mx-1 bg-transparent text-white active" id="nav-home-tab" data-bs-toggle="tab" 
-                  data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"
-                  style="width: 220px;">
-                    <i class="bi bi-share text-light"></i>
-                    <span>Shared Server</span>
-                  </button>
-                  <button class="nav-link mx-1 bg-transparent text-white" id="nav-profile-tab" data-bs-toggle="tab" 
-                  data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"
-                  style="width: 220px;">
-                    <i class="bi bi-hdd text-light"></i>
-                    <span>Virtual Private Server</span>
-                  </button>
-                  <button class="nav-link mx-1 bg-transparent text-white" id="nav-contact-tab" data-bs-toggle="tab" 
-                  data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"
-                  style="width: 220px;">
-                    <i class="bi bi-hdd-rack text-light"></i>
-                    <span>Dedicated Server</span>
-                  </button>
+      <!-- horizontal line -->
+      <div class="container text-light mt-0">
+        <hr />
+      </div><!-- / horizontal line -->
+
+      <!-- first content -->
+      <div class="row px-5 py-0 m-0">
+        <div class="col-12 px-5 py-0 text-center text-white">
+
+          <!-- boxes container -->
+          <div class="row justify-content-center">
+
+            <!-- service details -->
+            <div class="col-lg-4 col-sm-10 col-xs-12">
+
+              <!-- title -->
+              <h5>
+                <i class="bi bi-newspaper"></i>
+                <span class="animated-link">Service Details</span>
+              </h5><!-- / title -->
+
+              <!-- content -->
+              <div class="container border border-secondary rounded p-2" style="height: 150px">
+                <div class="row align-items-center h-100" style="font-size: 14px">
+                  <div class="col-12 mx-auto">
+                    <div class="jumbotron">
+
+                      <!-- service id -->
+                      <div class="d-block">
+                        <span class="fw-bold">Service Id:</span>
+                        <span id="service-id">1234</span>
+                      </div><!-- / service id -->
+
+                      <!-- service category -->
+                      <div class="d-block">
+                        <span class="fw-bold">Category:</span>
+                        <span id="service-category">Shared</span>
+                      </div><!-- / service category -->
+
+                      <!-- service purchase date -->
+                      <div class="d-block">
+                        <span class="fw-bold">Purchase Date:</span>
+                        <span id="service-purchase">Mon, 22 Feb 2021 16:09:32</span>
+                      </div><!-- / service purchase date -->
+
+                      <!-- service expiry date -->
+                      <div class="d-block">
+                        <span class="fw-bold">Expiry Date:</span>
+                        <span id="service-expiry">Mon, 21 Mar 2021 16:09:32</span>
+                      </div><!-- / service expiry date -->
+
+                    </div>
+                  </div>
                 </div>
-              </nav>
-              <div class="tab-content mt-5" id="nav-tabContent">
-                <div class="tab-pane fade show active text-center" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                  
-                  <!-- shared pricing -->
-                  <div id="pricing-wrapper-shared">
+              </div><!-- / content -->
 
-                    <input id="pricing-id-shared" name="product_id" type="hidden">
+            </div><!-- / service details -->
 
-                    <!-- monthly price  -->
-                    <div class="row">
-                      <div class="col-12">
-                        <span id="pricing-cost-shared" style="font-size: 50px;">$10</span>
-                        <span style="font-size: 16px;">/MO</span>
-                      </div>
-                    </div><!-- / monthly price  -->
+            <!-- service actions-->
+            <div class="col-lg-4 col-sm-10 col-xs-12">
+              <!-- title -->
+              <h5>
+                <i class="bi bi-disc"></i>
+                <span class="animated-link">Service Actions</span>
+              </h5><!-- / title -->
 
-                    <!-- hourly price  -->
-                    <div class="row">
-                      <div class="col-12">
-                        <small class="d-flex justify-content-center text-secondary">
-                          <span id="pricing-cost-hourly-shared">$.0075</span>
-                          <span>/hr</span>
-                        </small>
-                      </div>
-                    </div><!-- / hourly price  -->
+              <!-- content -->
+              <div class="container border border-secondary rounded p-2" style="height: 150px">
+                <div class="row align-items-center h-100">
+                  <div class="col-12 mx-auto">
+                    <div class="jumbotron">
 
-                    <!-- configuration selector  -->
-                    <div class="row">
-                      <div class="d-flex justify-content-center col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-2">
-                        <div class="input-group mb-3 px-4">
-                          <label for="pricing-range-shared" class="form-label">&nbsp;</label>
-                          <input id="pricing-range-shared" type="range" class="form-range custom-range" min="1" max="5" step="1.0">
-                        </div>
-                      </div>
-                    </div><!-- / configuration selector  -->
-
-                    <!-- specs -->
-                    <div class="row">
-                      <div class="d-flex justify-content-center col mx-auto mb-4">
-                        <div class="mx-2">
-                          <span id="pricing-spec-ram-shared" class="fw-bold">1 GB</span>
-                          <span>RAM</span>
-                        </div>
-                        <div class="mx-2">
-                          <span id="pricing-spec-cores-shared" class="fw-bold">1 vCPU</span>
-                          <span>CORE</span>
-                        </div>
-                        <div class="mx-2">
-                          <span id="pricing-spec-storage-shared" class="fw-bold">25 GB</span>
-                          <span id="pricing-spec-storage-type-shared">SSD</span>
-                        </div>
-                        <div class="mx-2">
-                          <span id="pricing-spec-bandwidth-shared" class="fw-bold">1 TB</span>
-                          <span>Transfer</span>
-                        </div>
-                      </div>
-                    </div><!-- / specs -->
-
-                    <!-- info  -->
-                    <div class="row">
-                      <div class="col-12 mb-3 px-5">
-                        <span id="pricing-info-shared">...</span>
-                      </div>
-                    </div><!-- / info  -->
-
-                    <!-- purchase  -->
-                    <div class="row">
-                      <div class="col mx-auto mb-2 d-flex align-items-center justify-content-center">
-                        <button id="pricing-spec-purchase-shared" type="button" class="btn btn-outline-light">
-                          <i class="bi bi-cart-plus"></i>
-                          <span>Buy now</span>
+                      <!-- renew service button -->
+                      <div class="d-block">
+                        <button id="renew-button" type="button" class="btn btn-outline-success btn-sm mb-2">
+                          Renew Service
                         </button>
-                      </div>
-                    </div><!-- / purchase  -->
+                      </div><!-- / renew service button -->
 
-                  </div><!-- / shared pricing -->
-                  
-                </div>
-
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-
-                  <!-- vps pricing -->
-                  <div id="pricing-wrapper-vps">
-
-                    <input id="pricing-id-vps" name="product_id" type="hidden">
-
-                    <!-- monthly price  -->
-                    <div class="row">
-                      <div class="col-12">
-                        <span id="pricing-cost-vps" style="font-size: 50px;">$10</span>
-                        <span style="font-size: 16px;">/MO</span>
-                      </div>
-                    </div><!-- / monthly price  -->
-
-                    <!-- hourly price  -->
-                    <div class="row">
-                      <div class="col-12">
-                        <small class="d-flex justify-content-center text-secondary">
-                          <span id="pricing-cost-hourly-vps">$.0075</span>
-                          <span>/hr</span>
-                        </small>
-                      </div>
-                    </div><!-- / hourly price  -->
-
-                    <!-- configuration selector  -->
-                    <div class="row">
-                      <div class="d-flex justify-content-center col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-2">
-                        <div class="input-group mb-3 px-4">
-                          <label for="pricing-range-vps" class="form-label">&nbsp;</label>
-                          <input id="pricing-range-vps" type="range" class="form-range custom-range" min="1" max="5" step="1.0">
-                        </div>
-                      </div>
-                    </div><!-- / configuration selector  -->
-
-                    <!-- specs -->
-                    <div class="row">
-                      <div class="d-flex justify-content-center col mx-auto mb-4">
-                        <div class="mx-2">
-                          <span id="pricing-spec-ram-vps" class="fw-bold">1 GB</span>
-                          <span>RAM</span>
-                        </div>
-                        <div class="mx-2">
-                          <span id="pricing-spec-cores-vps" class="fw-bold">1 vCPU</span>
-                          <span>CORE</span>
-                        </div>
-                        <div class="mx-2">
-                          <span id="pricing-spec-storage-vps" class="fw-bold">25 GB</span>
-                          <span id="pricing-spec-storage-type-vps">SSD</span>
-                        </div>
-                        <div class="mx-2">
-                          <span id="pricing-spec-bandwidth-vps" class="fw-bold">1 TB</span>
-                          <span>Transfer</span>
-                        </div>
-                      </div>
-                    </div><!-- / specs -->
-
-                    <!-- info  -->
-                    <div class="row">
-                      <div class="col-12 mb-3 px-5">
-                        <span id="pricing-info-vps">...</span>
-                      </div>
-                    </div><!-- / info  -->
-
-                    <!-- purchase  -->
-                    <div class="row">
-                      <div class="col mx-auto mb-2 d-flex align-items-center justify-content-center">
-                        <button id="pricing-spec-purchase-vps" type="button" class="btn btn-outline-light">
-                          <i class="bi bi-cart-plus"></i>
-                          <span>Buy now</span>
+                      <!-- cancel service button -->
+                      <div class="d-block">
+                        <button id="cancel-button" type="button" class="btn btn-outline-danger btn-sm mb-2">
+                          Cancel Service
                         </button>
-                      </div>
-                    </div><!-- / purchase  -->
+                      </div><!-- / cancel service button -->
 
-                  </div><!-- / vps pricing -->
-
-                </div>
-                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-
-                  <!-- dedicated pricing -->
-                  <div id="pricing-wrapper-dedicated">
-
-                    <input id="pricing-id-dedicated" name="product_id" type="hidden">
-
-                    <!-- monthly price  -->
-                    <div class="row">
-                      <div class="col-12">
-                        <span id="pricing-cost-dedicated" style="font-size: 50px;">$10</span>
-                        <span style="font-size: 16px;">/MO</span>
-                      </div>
-                    </div><!-- / monthly price  -->
-
-                    <!-- hourly price  -->
-                    <div class="row">
-                      <div class="col-12">
-                        <small class="d-flex justify-content-center text-secondary">
-                          <span id="pricing-cost-hourly-dedicated">$.0075</span>
-                          <span>/hr</span>
-                        </small>
-                      </div>
-                    </div><!-- / hourly price  -->
-
-                    <!-- configuration selector  -->
-                    <div class="row">
-                      <div class="d-flex justify-content-center col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-2">
-                        <div class="input-group mb-3 px-4">
-                          <label for="pricing-range-dedicated" class="form-label">&nbsp;</label>
-                          <input id="pricing-range-dedicated" type="range" class="form-range custom-range" min="1" max="5" step="1.0">
-                        </div>
-                      </div>
-                    </div><!-- / configuration selector  -->
-
-                    <!-- specs -->
-                    <div class="row">
-                      <div class="d-flex justify-content-center col mx-auto mb-4">
-                        <div class="mx-2">
-                          <span id="pricing-spec-ram-dedicated" class="fw-bold">1 GB</span>
-                          <span>RAM</span>
-                        </div>
-                        <div class="mx-2">
-                          <span id="pricing-spec-cores-dedicated" class="fw-bold">1 vCPU</span>
-                          <span>CORE</span>
-                        </div>
-                        <div class="mx-2">
-                          <span id="pricing-spec-storage-dedicated" class="fw-bold">25 GB</span>
-                          <span id="pricing-spec-storage-type-dedicated">SSD</span>
-                        </div>
-                        <div class="mx-2">
-                          <span id="pricing-spec-bandwidth-dedicated" class="fw-bold">1 TB</span>
-                          <span>Transfer</span>
-                        </div>
-                      </div>
-                    </div><!-- / specs -->
-
-                    <!-- info  -->
-                    <div class="row">
-                      <div class="col-12 mb-3 px-5">
-                        <span id="pricing-info-dedicated">...</span>
-                      </div>
-                    </div><!-- / info  -->
-
-                    <!-- purchase  -->
-                    <div class="row">
-                      <div class="col mx-auto mb-2 d-flex align-items-center justify-content-center">
-                        <button id="pricing-spec-purchase-dedicated" type="button" class="btn btn-outline-light">
-                          <i class="bi bi-cart-plus"></i>
-                          <span>Buy now</span>
+                      <!-- download receipt button -->
+                      <div class="d-block">
+                        <button id="receipt-button" type="button" class="btn btn-outline-light btn-sm mb-2">
+                          Download Receipt
                         </button>
-                      </div>
-                    </div><!-- / purchase  -->
+                      </div><!-- / download receipt button -->
 
-                  </div><!-- / dedicated pricing -->
+                    </div>
+                  </div>
+                </div>
+              </div><!-- / content -->
+
+            </div><!-- / service actions-->
+
+            <!-- server status -->
+            <div class="col-lg-4 col-sm-10 col-xs-12">
+
+              <!-- title -->
+              <h5>
+                <i class="bi bi-layers"></i>
+                <span class="animated-link">Server Status</span>
+              </h5><!-- / title -->
+
+              <!-- content -->
+              <div class="container border border-secondary rounded p-2" style="height: 150px">
+                <div class="row align-items-center h-100">
+                  <div class="col-12 mx-auto">
+                    <div class="jumbotron">
+
+                      <!-- cpu bar -->
+                      <div class="d-block mb-1">
+                        <div class="progress" data-bs-toggle="tooltip" title="CPU Usage Percentage (%)">
+                          <div id="statistic-cpu" class="progress-bar bg-primary" role="progressbar" aria-valuenow="0"
+                            aria-valuemin="0" aria-valuemax="100">
+                            <small class="fw-bold">
+                              <span>CPU:</span>
+                              <span id="statistic-cpu-percentage">0</span>
+                              <span>%</span>
+                            </small>
+                          </div>
+                        </div>
+                      </div><!-- / cpu bar -->
+
+                      <!-- ram bar -->
+                      <div class="d-block mb-1">
+                        <div class="progress" data-bs-toggle="tooltip" title="RAM Usage Percentage (%)">
+                          <div id="statistic-ram" class="progress-bar bg-success" role="progressbar" aria-valuenow="0"
+                            aria-valuemin="0" aria-valuemax="100">
+                            <small class="fw-bold">
+                              <span>RAM:</span>
+                              <span id="statistic-ram-percentage">0</span>
+                              <span>%</span>
+                            </small>
+                          </div>
+                        </div>
+                      </div><!-- / ram bar -->
+
+                      <!-- support info -->
+                      <div class="d-block mb-1">
+                        <small class="m-0 p-0 fw-light">
+                          <i class="bi bi-info"></i>
+                          <span>If you are having any trouble call technical
+                            support.</span>
+                        </small>
+                      </div><!-- / support info -->
+
+                      <!-- on service started buttons -->
+                      <div class="d-block mb-1">
+                        <button id="start-server" type="button" class="btn btn-sm btn-outline-success d-none"
+                          style="width: 110px">
+                          Start Server
+                        </button>
+                        <div id="stop-restart-server" class="btn-group" role="group">
+                          <button id="stop-server" type="button" class="btn btn-sm btn-outline-danger"
+                            style="width: 110px">
+                            Stop Server
+                          </button>
+                          <button id="restart-server" type="button" class="btn btn-sm btn-outline-warning"
+                            style="width: 110px">
+                            Restart Server
+                          </button>
+                        </div>
+                      </div><!-- / on service started buttons -->
+
+                      <!-- restart server spinner -->
+                      <div id="restart-server-info" class="d-none text-white">
+                        <div class="spinner-grow" style="width: 1rem; height: 1rem" role="status">
+                          <span class="visually-hidden">Restarting Server...</span>
+                        </div>
+                        <span>Restarting Server...</span>
+                      </div><!-- / restart server spinner -->
+
+                    </div>
+                  </div>
+                </div>
+              </div><!-- / content -->
+
+            </div><!-- / server status -->
+
+          </div><!-- / boxes container -->
+
+        </div>
+
+      </div><!-- / first content -->
+
+      <!-- horizontal line -->
+      <div class="container text-light mt-0">
+        <hr />
+      </div><!-- / horizontal line -->
+
+      <!-- second content -->
+      <div class="row px-5 py-0 m-0">
+        <div class="col-12 px-5 py-0 text-center text-white">
+
+          <!-- box container -->
+          <div class="row justify-content-center">
+
+            <!-- connection details -->
+            <div class="col-lg-12 col-sm-10 col-xs-12">
+
+              <!-- title -->
+              <h5>
+                <i class="bi bi-globe"></i>
+                <span class="animated-link">Connection Details</span>
+              </h5><!-- / title -->
+
+              <!-- content -->
+              <div class="container border border-secondary rounded">
+                <div class="row align-items-center h-100" style="font-size: 14px">
+
+                  <!-- left side -->
+                  <div class="col-lg-6 col-sm-12 col-xs-12 mx-auto">
+                    <div class="jumbotron">
+                      <div class="row p-3">
+                        <div class="col-12 pt-2 border border-secondary rounded">
+
+                          <!-- public ip address -->
+                          <div class="row mb-2">
+                            <div class="col-lg-4 col-sm-12 col-xs-12 text-center">
+                              <i class="bi bi-at"></i>
+                              <span>Public IP Address:</span>
+                            </div>
+                            <div class="col-lg-8 col-sm-12 col-xs-12 text-center">
+                              <input readonly type="text"
+                                class="text-center bg-transparent text-white border border-light w-100" value="127.0.0.1" />
+                            </div>
+                          </div><!-- / public ip address -->
+
+                          <!-- ssh port -->
+                          <div class="row mb-2">
+                            <div class="col-lg-4 col-sm-12 col-xs-12 text-center">
+                              <i class="bi bi-door-open"></i>
+                              <span>SSH Port:</span>
+                            </div>
+                            <div class="col-lg-8 col-sm-12 col-xs-12 text-center">
+                              <input readonly type="text"
+                                class="text-center bg-transparent text-white border border-light w-100" value="22" />
+                            </div>
+                          </div><!-- / ssh port -->
+
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- / left side -->
+
+                  <!-- right side -->
+                  <div class="col-lg-6 col-sm-12 col-xs-12 mx-auto">
+                    <div class="jumbotron">
+                      <div class="row p-3">
+                        <div class="col-12 pt-2 border border-secondary rounded">
+
+                          <!-- ssh user -->
+                          <div class="row mb-2">
+                            <div class="col-lg-4 col-sm-12 col-xs-12 text-center">
+                              <i class="bi bi-person"></i>
+                              <span>SSH User:</span>
+                            </div>
+                            <div class="col-lg-8 col-sm-12 col-xs-12 text-center">
+                              <input readonly type="text"
+                                class="text-center bg-transparent text-white border border-light w-100" value="root" />
+                            </div>
+                          </div><!-- / ssh user -->
+
+                          <!-- ssh password -->
+                          <div class="row mb-2">
+                            <div class="col-lg-4 col-sm-12 col-xs-12 text-center">
+                              <i class="bi bi-key"></i>
+                              <span>SSH Password:</span>
+                            </div>
+                            <div class="col-lg-8 col-sm-12 col-xs-12 text-center">
+                              <input readonly type="text"
+                                class="text-center bg-transparent text-white border border-light w-100"
+                                value="dGhldHJ1dGhpc291dHRoZXJl" />
+                            </div>
+                          </div><!-- / ssh password -->
+
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- / right side -->
 
                 </div>
-              </div>
-            </div>
-          </div><!-- / brief-description-->
+              </div><!-- / content -->
 
-          <!-- infrastructure-features -->
-          <div data-name="features-container" class="row row-cols-1 row-cols-md-3 g-4 text-center">
+            </div><!-- / connection details -->
 
+          </div><!-- / box container -->
 
-        </div><!-- / infrastructure-features -->
-      </main>
+        </div>
 
-      <script src="js/bootstrap.bundle.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <script src="js/main.js"></script>
-      <script src="js/pricing.js"></script>
+      </div><!-- / second content -->
 
-    </div><!-- content-wrapper -->
+      <!-- horizontal line -->
+      <div class="container text-light mt-0">
+        <hr />
+      </div><!-- / horizontal line -->
+
+      <div class="row px-5 mt-2 py-0 m-0">
+        <div class="col-12 px-5 py-0 text-center text-white">
+
+          <!-- title -->
+          <h5>
+            <i class="bi bi-question-circle"></i>
+            <span class="animated-link">Technical Support</span>
+          </h5><!-- / title -->
+          <p>
+            <pre >tech.support@dawhostservices.com</pre>
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/home.js"></script>
+    <script src="js/service.js"></script>
+  </div>
+  <!-- content wrapper -->
 
     <!-- footer -->
     <footer class="footer">
@@ -690,8 +753,6 @@
 
     </footer><!-- / footer -->
 
-  </body>
-
-  
+</body>
 
 </html>
