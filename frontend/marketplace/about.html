@@ -13,11 +13,22 @@
     
     <!-- title -->
     <title id="title">DAWHostServices</title>
-    
-</head>
-<body>
-  <div class="content-wrapper">
-    <header>
+
+  </head>
+  <body>
+
+    <!-- screen size detector -->
+    <div id="screen-size-detector">
+      <div id="xs" class="d-block d-sm-none"></div>
+      <div id="sm" class="d-none d-sm-block d-md-none"></div>
+      <div id="md" class="d-none d-md-block d-lg-none"></div>
+      <div id="lg" class="d-none d-lg-block d-xl-none"></div>
+      <div id="xl" class="d-none d-xl-block"></div>
+    </div><!-- / screen size detector -->
+
+    <!-- content wrapper -->
+    <div class="content-wrapper">
+      <header>
 
         <!-- navigation -->
         <nav class="navbar navbar-expand-md navbar-dark mx-2">
@@ -321,50 +332,147 @@
 
         </nav><!-- / navigation -->
 
-    </header>
-
-    <main>
-
-      <div class="container-fluid">
-        <!-- image -->
-        <div class="row">
-          <div class="col-12 p-4">
-            <div class="text-center"> <img src="./img/server.jpg"> </div>
-          </div>
-        </div>
-        <!-- content of about us-->
-        <div class="row justify-content-center text-white">
-          <div class="col-sm text-center p-3">
-            <h2>ORIGINS</h2>
-            <p> One day, we wanted server space for our own project we were doing, so we set out to do so. We couldn't find any website which was reliable to rent the type of server that we wanted. So after that experience, we wanted to ensure that nobody else would go through the same pain as us. We started with some few ideas, some failed, some worked out, but this is our final product. <b>This is how our company DAWHostServices was born.</b> </p>
-          </div>
-          <div class="col-sm text-center p-3">
-            <h2>PRESENT</h2>
-            <p> This website has our hearts put into it. We want to sell the best experience possible when renting server space, in other words, <b>fast, reliable and great</b>. It is so that our servers are at a great price. So if you are thinking about renting some server space, look no further, because you will not find a better place! We have a lot of competition in our area of work, with hundreds of companies giving the same services, so what does make us stand out from the competition? Our customer service and our range of configurations for different servers. </p>
-          </div>
-          <div class="col-sm text-center p-3">
-            <h2>FUTURE</h2>
-            <p> We have plans to offer a wider range of servers. Because in this age of ever-changing technology, everyone has to adapt, and we are no exception. Our motto is <b>Fail, Learn, Adapt and Success</b>. Firstly, we will encounter problems from which we need to learn. After the fact, with our new founded knowledge we can adapt ourselves to provide a better service and succeed in our company goals, which is the satisfaction of our clients by renting ever-improving servers. </p>
-          </div>
-        </div>
-        <div class="row justify-content-center text-white">
-          <div class="col-sm text-center p-3">
-            <h2>CONTACT INFO</h2> <a href="DAWHostServices@gmail.com">DAWHostServices@gmail.com</a> </div>
-        </div>
-        <div class="row">
-          <div class="col-auto text-white text-center"> </div>
-          <!-- /content of about us -->
-        </div>
-      </div>
+      </header>
       
-    </main>
+      <main>
+        <!-- page title -->
+        <div class="container">
+          <div class="row">
+            <div class="col-12 text-center text-white">
+              <h3>ABOUT US</h3> 
+            </div>  
+          </div>
+        </div><!-- / page title -->
 
-    <script src="js/bootstrap.bundle.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/home.js"></script>
+        <!-- horizontal line -->
+        <div class="container text-light mt-0">
+          <hr />
+        </div><!-- / horizontal line -->
 
-  </div> <!-- content wrapper -->
+        <!-- profile info-->
+        <div class="container border border-secondary rounded p-2">
+          <div class="row justify-content-center me-auto">
+
+            <!-- personal information -->
+            <div class="col-lg-3 col-md-10 col-sm-10 col-10 border border-light rounded p-1 pt-4 m-4 text-white">
+
+              <!-- title -->
+              <h5 class="text-center px-3">
+                <i class="bi bi-bar-chart-steps"></i>
+                <span class="animated-link">Origins</span>
+              </h5><!-- title -->
+
+              <div class="container">
+                <div class="row align-items-center h-100">
+                  <div class="col-12 mx-auto">
+                    <div class="jumbotron text-center">
+                      One day, we wanted server space for our own 
+                      project we were doing, so we set out to do 
+                      so. We couldn't find any website which was 
+                      reliable to rent the type of server that we 
+                      wanted. So after that experience, we wanted 
+                      to ensure that nobody else would go through 
+                      the same pain as us. We started with some 
+                      few ideas, some failed, some worked out, but 
+                      this is our final product. This is how our  
+                      company <span class="fw-bold">DAWHostServices 
+                      was born.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- / personal information -->
+          
+            <!-- profile picture -->
+            <div class="col-lg-3 col-md-10 col-sm-10 col-10 border border-light rounded p-1 pt-4 m-4 text-white">
+              
+              <!-- title -->
+              <h5 class="text-center px-3">
+                <i class="bi bi-clock"></i>
+                <span class="animated-link">Present</span>
+              </h5><!-- title -->
+
+              <div class="container">
+                <div class="row align-items-center h-100">
+                  <div class="col-12 mx-auto">
+                    <div class="jumbotron text-center">
+                      This website has our hearts put into it. We 
+                      want to sell the best experience possible 
+                      when renting server space, in other words, 
+                      <span class="fw-bold">fast, reliable and great
+                      </span>. It is so that our servers are at a great 
+                      price. So if you are thinking about renting some 
+                      server space, look no further, because you will 
+                      not find a better place! We have hundreds of 
+                      companies giving the same services, so what does 
+                      make us stand out from the competition? Our customer 
+                      service and our range of configurations for different 
+                      servers.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- / profile picture -->
+          
+            <!-- profile picture -->
+            <div class="col-lg-3 col-md-10 col-sm-10 col-10 border border-light rounded p-1 pt-4 m-4 text-white">
+              
+              <!-- title -->
+              <h5 class="text-center px-3">
+                <i class="bi bi-hand-index"></i>
+                <span class="animated-link">Future</span>
+              </h5><!-- title -->
+
+              <div class="container">
+                <div class="row align-items-center h-100">
+                  <div class="col-12 mx-auto">
+                    <div class="jumbotron text-center">
+                      We have plans to offer a wider range of 
+                      servers. Because in this age of ever-changing 
+                      technology, everyone has to adapt, and we 
+                      are no exception. Our motto is 
+                      <span class="fw-bold">Fail, Learn, Adapt and 
+                      Success</span>. Firstly, we will encounter 
+                      problems from which we need to learn. After 
+                      the fact, with our new founded knowledge we 
+                      can adapt ourselves to provide a better service 
+                      and succeed in our company goals, which is 
+                      the satisfaction of our clients by renting 
+                      ever-improving servers.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- / profile picture -->
+            
+          </div>
+
+          <div class="row px-5 mt-2 py-0 m-0">
+            <div class="col-12 px-5 py-0 text-center text-white">
+    
+              <!-- title -->
+              <h5>
+                <i class="bi bi-question-circle"></i>
+                <span class="animated-link">Reach us at</span>
+              </h5><!-- / title -->
+              <p>
+                <pre >contact@dawhostservices.com</pre>
+              </p>
+            </div>
+          </div>
+
+        </div><!-- / profile info-->
+
+      </main>
+
+      <script src="js/bootstrap.bundle.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="js/main.js"></script>
+
+    </div><!-- content wrapper -->
 
     <!-- footer -->
     <footer class="footer">
@@ -399,21 +507,21 @@
 
                   <!-- privacy and security -->
                   <li class="list-inline-item">
-                    <a class="nav-link" href="privacy.html">
+                    <a class="nav-link" href="legal.html">
                       <span>Privacy & Security</span>
                     </a>
                   </li><!-- / privacy and security -->
 
                   <!-- terms of use -->
                   <li class="list-inline-item">
-                    <a class="nav-link" href="terms.html">
+                    <a class="nav-link" href="legal.html">
                       <span>Terms of Use</span>
                     </a>
                   </li><!-- / terms of use -->
 
                   <!-- trademarks -->
                   <li class="list-inline-item">
-                    <a class="nav-link" href="trademarks.html">
+                    <a class="nav-link" href="legal.html">
                       <span>Trademarks
                     </a>
                   </li><!-- / trademarks -->
@@ -435,4 +543,6 @@
 
     </footer><!-- / footer -->
 
-</body>
+  </body>
+
+</html>
