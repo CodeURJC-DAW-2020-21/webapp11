@@ -1,3 +1,9 @@
-jQuery('button').click( function(e) {
-    jQuery('.collapse').collapse('hide');
+$(document).ready(() => {
+
+    $('button').click(() => {
+        $('.collapse').collapse('hide');
+    });
+
 });
+
+
