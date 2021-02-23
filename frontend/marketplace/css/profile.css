@@ -1,0 +1,13 @@
+/*
+ * Profile
+ */
+ 
+ .pic {
+        object-fit: scale-down;
+        width:300px;
+        height:300px;
+        border-radius:160px;
+        border:10px solid #666;
+        
+ }
+ 

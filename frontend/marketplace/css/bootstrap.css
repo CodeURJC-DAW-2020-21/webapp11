@@ -4311,7 +4311,7 @@ textarea.form-control-lg {
 }
 
 .accordion-button {
-  position: relative;
+  position: center;
   display: flex;
   align-items: center;
   width: 100%;
@@ -4331,6 +4331,7 @@ textarea.form-control-lg {
 }
 .accordion-button.collapsed {
   border-bottom-width: 0;
+  color: #ffffff;
 }
 .accordion-button:not(.collapsed) {
   color: #0c63e4;
