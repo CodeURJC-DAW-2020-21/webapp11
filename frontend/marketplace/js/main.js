@@ -61,8 +61,6 @@ const registerLoginToggler = () => {
             $("#not-logged-in").removeClass("d-none");
             $("#logged-in").addClass("d-none");
         }
-        console.log("HI");
     });
 
 }
-
