@@ -3,6 +3,7 @@ $(document).ready(() => {
     registerNavigation();
     registerHighlightEffect();
     registerLoginToggler();
+    registerLoadMoreAnimation();
 
 });
 
@@ -75,5 +76,29 @@ const registerLoginToggler = () => {
         }
         updateLoginStatus();
     });
+
+}
+
+const registerLoadMoreAnimation = () => {
+
+    $(".load-more-button").each(function(){
+        const currentButton = $(this);
+        console.log("hi");
+
+        currentButton.click(() => {
+            currentButton.addClass("d-none");
+            const contentId = currentButton.data('daw-loading-element');
+            $("#" + contentId).removeClass("d-none");
+
+            const addButtonBack = () => {
+                currentButton.removeClass("d-none");
+                $("#" + contentId).addClass("d-none");
+            }
+
+            setTimeout(() => addButtonBack(), 1000);
+            
+        });
+    });
+    
 
 }
