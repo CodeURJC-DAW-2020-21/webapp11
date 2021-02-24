@@ -53,14 +53,27 @@ const registerHighlightEffect = () => {
 
 const registerLoginToggler = () => {
 
-    $('#login-toggler').click(function() {
-        if ($(this).is(':checked')) {
+    const updateLoginStatus = () => {
+        if(localStorage.getItem("logged-in") === "true") {
             $("#logged-in").removeClass("d-none");
             $("#not-logged-in").addClass("d-none");
+            $('#login-toggler').prop('checked', true);
         } else {
             $("#not-logged-in").removeClass("d-none");
             $("#logged-in").addClass("d-none");
+            $('#login-toggler').prop('checked', false);
         }
+    }
+
+    updateLoginStatus();
+
+    $('#login-toggler').click(function() {
+        if ($(this).is(':checked')) {
+            localStorage.setItem("logged-in", "true");
+        } else {
+            localStorage.setItem("logged-in", "false");
+        }
+        updateLoginStatus();
     });
 
 }
