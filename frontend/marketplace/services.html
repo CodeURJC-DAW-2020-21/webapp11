@@ -361,16 +361,32 @@
 
         <!-- hired services -->
         <div class="row px-5 mx-0">
-          <div class="table-responsive col-12">
+          <div class="col-12">
             <table class="table table-bordered border-secondary text-white text-center">
 
               <!-- table header -->
               <thead>
                 <tr>
-                  <th scope="col">Service</th>
-                  <th scope="col">Configuration</th>
-                  <th scope="col">Manage</th>
-                  <th scope="col">Expiration Date</th>
+                  <th scope="col">
+                    <div class="d-flex align-items-center justify-content-center" style="height: 50px">
+                      Service
+                     </div>
+                  </th>
+                  <th scope="col">
+                    <div class="d-flex align-items-center justify-content-center" style="height: 50px">
+                      Configuration
+                     </div>
+                  </th>
+                  <th scope="col">
+                    <div class="d-flex align-items-center justify-content-center" style="height: 50px">
+                      Manage
+                     </div>
+                  </th>
+                  <th scope="col">
+                    <div class="d-flex align-items-center justify-content-center" style="height: 50px">
+                      Expiration Date
+                     </div>
+                  </th>
                 </tr>
               </thead><!-- / table header -->
 
@@ -409,7 +425,7 @@
                   </td>
                   <td>
                     <div>
-                      <p5>10/feb/2022</p5>
+                      <p5>Feb 10, 2022</p5>
                     </div>
                   </td>
                 </tr><!-- / concrete service -->
@@ -431,7 +447,7 @@
                       </li>
                       <li class="list-inline-item align-middle">
                         <span class="fw-bold">128 GB</span>
-                        <span class="fw-normal">M.2</span>
+                        <span class="fw-normal">STORAGE</span>
                       </li>
                       <li class="list-inline-item align-middle text-purple">
                         <span class="fw-bold">1 TB</span>
@@ -446,7 +462,7 @@
                   </td>
                   <td>
                     <div>
-                      <p5>21/nov/2022</p5>
+                      <p5>Nov 21, 2022</p5>
                     </div>
                   </td>
                 </tr><!-- / concrete service -->
@@ -469,7 +485,7 @@
                       </li>
                       <li class="list-inline-item align-middle">
                         <span class="fw-bold">2 TB</span>
-                        <span class="fw-normal">NVMe</span>
+                        <span class="fw-normal">STORAGE</span>
                       </li>
                       <li class="list-inline-item align-middle text-purple">
                         <span class="fw-bold">25 TB</span>
@@ -484,7 +500,7 @@
                   </td>
                   <td>
                     <div>
-                      <p5>18/jun/2022</p5>
+                      <p5>Jan 18, 2022</p5>
                     </div>
                   </td>
                 </tr><!-- / concrete service -->
@@ -496,10 +512,21 @@
             <!-- load more button -->
             <div class="row">
               <div class="col-12 text-center">
-                <button type="button" class="btn btn-sm btn-outline-light">
+                <button type="button" class="load-more-button btn btn-sm btn-outline-light" data-daw-loading-element="loading-more">
                   <i class="bi bi-plus-circle"></i>
                   <span class="align-middle">Load more</span>
                 </button>
+              </div>
+            </div><!-- / load more button -->
+
+            <!-- load more button -->
+            <div id="loading-more" class="row d-none">
+              <div class="col-12 text-center text-white">
+                <div class="d-flex justify-content-center">
+                  <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
               </div>
             </div><!-- / load more button -->
 
