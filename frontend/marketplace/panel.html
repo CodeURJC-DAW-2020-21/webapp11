@@ -449,7 +449,7 @@
                 
                 <!-- registered clients-->
                 <div class="row py-0 m-0">
-                  <div class="table-responsive col-12 ">
+                  <div class="col-12">
                     <table class="table table-bordered border-secondary text-white text-center">
 
                       <!-- table header -->
@@ -506,10 +506,21 @@
                     <!-- load more button -->
                     <div class="row">
                       <div class="col-12 text-center">
-                        <button type="button" class="btn btn-sm btn-outline-light">
+                        <button type="button" class="load-more-button btn btn-sm btn-outline-light" data-daw-loading-element="loading-more">
                           <i class="bi bi-plus-circle"></i>
                           <span class="align-middle">Load more</span>
                         </button>
+                      </div>
+                    </div><!-- / load more button -->
+        
+                    <!-- load more button -->
+                    <div id="loading-more" class="row d-none">
+                      <div class="col-12 text-center text-white">
+                        <div class="d-flex justify-content-center">
+                          <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                          </div>
+                        </div>
                       </div>
                     </div><!-- / load more button -->
 
