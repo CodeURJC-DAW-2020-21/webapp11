@@ -80,11 +80,15 @@ We will be using two kinds of algorithms based on discounts for products:
 2. Incremental purchases, every X services you rent in a concrete timespan, given an additional XX% discount
    on subsequent purchases, all percentages also configurable.
 
-### Screenshots
+### Screenshots (_animated gifs_)
 
 #### Visitor
 
 ![alt text](artifacts/frontend/visitor.gif)
+
+#### Client
+
+![alt text](artifacts/frontend/client.gif)
 
 ### Navigation Diagram
 
