@@ -77,13 +77,14 @@ represent an additional action which the user can perform (i.e. see a page, perf
 
 ### Images <a name="images"></a>
 
-- Each client will have its own _profile_ with an _avatar_ (_they will be able to change that avatar_).
+- Each client will have its own _profile_ with an _avatar_.
 - The website will be plenty of _icons_ to improve accesibility.
+- The _administrator_ will be able to see client profile pictures when managing clients from panel.
 
 ### Charts <a name="charts"></a>
 
-- The **administrator** control panel will be plenty of charts with different kinds of statistics
-  (i.e. daily purchases, accumulated earnings, etc).
+- The **administrator** control panel, will contain the weekly purchased services _pie chart_, 
+  weekly sales _time series chart_, and the total accumulated capital statistic.
 
 ### Third-party Additional Technology <a name="third-tech"></a>
 
