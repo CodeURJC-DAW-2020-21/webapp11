@@ -7,7 +7,7 @@ Software Engineering Degree, at _University King Juan Carlos_, Spain (2020/2021)
 
 ## Logo
 
-![alt text](artifacts/logo.png)
+![alt text](artifacts/header.png)
 
 ## Table of Contents
 
