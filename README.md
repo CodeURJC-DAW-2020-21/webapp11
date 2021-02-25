@@ -13,18 +13,20 @@ Software Engineering Degree, at _University King Juan Carlos_, Spain (2020/2021)
 
 **Phases 0 & 1**.
 * [Introduction](#introduction)
-* [Team Members](#members)  
-* [Theme](#theme)  
-* [Entities](#entities)  
-* [Roles and Permissions](#roles-and-perms)  
-* [Images](#images)  
-* [Charts](#charts)   
-* [Third Party Technology](#third-tech) 
-* [Advanced algorithm](#algorithm)
-* [Screenshots](#screenshots)
-* [Navigation Diagrams](#navigation)
+  * [Team Members](#members)  
+* [Starting Decisions](#start) 
+  * [Theme](#theme)   
+  * [Entities](#entities)  
+  * [Roles and Permissions](#roles-and-perms)  
+  * [Images](#images)  
+  * [Charts](#charts)   
+  * [Third Party Technology](#third-tech) 
+  * [Advanced algorithm](#algorithm)
+* [Visuals](#visuals)
+  * [Screenshots](#screenshots)
+  * [Navigation Diagram](#navigation)
 
-## Introduction <a name="introduction"></a>
+# Introduction <a name="introduction"></a>
 
 The main objective of this application is to simulate, as closely as possible, a hosting provider.
 A lot of different kinds of products will be available for rental, the products will be based on
@@ -43,7 +45,9 @@ have associated an expiration time (_when package usage time expires you need to
 
 All the organisation will be done using a _Trello_ board.
 
-## Phase 0
+## Phases 0 & 1
+
+# Starting Decisions <a name="start"></a>
 
 ### Theme <a name="theme"></a>
 
@@ -94,6 +98,8 @@ We will be using two kinds of algorithms based on discounts for products:
 1. Giving XX% non-recurrent discount on inauguration (or special events), this algorithm will be configurable.
 2. Incremental purchases, every X services you rent in a concrete timespan, given an additional XX% discount
    on subsequent purchases, all percentages also configurable.
+
+# Visuals <a name="visuals"></a>
 
 ### Screenshots (_animated gifs_) <a name="screenshots"></a>
 
