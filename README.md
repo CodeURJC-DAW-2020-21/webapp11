@@ -7,7 +7,7 @@ Software Engineering Degree, at _University King Juan Carlos_, Spain (2020/2021)
 
 ## Logo
 
-![alt-text](https://i.imgur.com/GZR3STD.png "DAW Host Services Logo")
+![alt text](artifacts/logo.png)
 
 ## Description
 
