@@ -24,7 +24,7 @@ Software Engineering Degree, at _University King Juan Carlos_, Spain (2020/2021)
   * [Advanced algorithm](#algorithm)
 * [Visuals](#visuals)
   * [Screenshots](#screenshots)
-  * [Navigation Diagrams](#navigation)
+  * [Navigation Diagram](#navigation)
 
 # Introduction <a name="introduction"></a>
 
@@ -45,7 +45,7 @@ have associated an expiration time (_when package usage time expires you need to
 
 All the organisation will be done using a _Trello_ board.
 
-## Phase 0
+## Phases 0 & 1
 
 # Starting Decisions <a name="start"></a>
 
