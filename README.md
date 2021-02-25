@@ -108,6 +108,13 @@ We will be using two kinds of algorithms based on discounts for products:
 
 ![alt text](artifacts/frontend/visitor.gif)
 
+Pages:
+- **Homepage**: main page when you enter the application, it contains basic information.
+- **About us**: describes the enterprise, its origins, present, and future.
+- **Pricing**: specifies the price for each package configuration available to purchase.
+- **Legal**: contains all legal, privacy & security, terms of use and trademarks.
+- **FAQ**: stands for frequently asked questions and contains the most asked questions about our services.
+
 #### Client View
 
 ![alt text](artifacts/frontend/client.gif)
