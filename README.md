@@ -14,13 +14,13 @@ Software Engineering Degree, at _University King Juan Carlos_, Spain (2020/2021)
 **Phases 0 & 1**.
 * [Introduction](#introduction)
   * [Team Members](#members)  
-* [Starting Decisions](#start) 
+* [Starting Decisions](#start)
   * [Theme](#theme)   
   * [Entities](#entities)  
   * [Roles and Permissions](#roles-and-perms)  
   * [Images](#images)  
   * [Charts](#charts)   
-  * [Third Party Technology](#third-tech) 
+  * [Third Party Technology](#third-tech)
   * [Advanced algorithm](#algorithm)
 * [Visuals](#visuals)
   * [Screenshots](#screenshots)
@@ -83,7 +83,7 @@ represent an additional action which the user can perform (i.e. see a page, perf
 
 ### Charts <a name="charts"></a>
 
-- The **administrator** control panel, will contain the weekly purchased services _pie chart_, 
+- The **administrator** control panel, will contain the weekly purchased services _pie chart_,
   weekly sales _time series chart_, and the total accumulated capital statistic.
 
 ### Third-party Additional Technology <a name="third-tech"></a>
@@ -111,9 +111,16 @@ We will be using two kinds of algorithms based on discounts for products:
 Pages:
 - **Homepage**: main page when you enter the application, it contains basic information.
 - **About us**: describes the enterprise, its origins, present, and future.
+- **Screenshots**: contains an overview of the user services panel and other interface stuff.
 - **Pricing**: specifies the price for each package configuration available to purchase.
 - **Legal**: contains all legal, privacy & security, terms of use and trademarks.
 - **FAQ**: stands for frequently asked questions and contains the most asked questions about our services.
+
+![alt text](artifacts/frontend/auth.gif)
+
+Pages:
+- **Login**: page to perform the authentication and log-in into our account.
+- **Register**: here we register providing our personal data and creating an account to become clients.
 
 #### Client View
 
