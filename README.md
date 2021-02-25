@@ -157,7 +157,7 @@ all kinds of information associated to them.
 This page provides you with information about the selected service in the previously 
 mentioned "My Services" page, and allows you to manage that concrete purchased service.
 
-![alt text](artifacts/fontend-screenshots/service.png)
+![alt text](artifacts/fontend-screenshots/overview.png)
 
 #### Administrator Panel
 
