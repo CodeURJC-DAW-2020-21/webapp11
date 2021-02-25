@@ -126,9 +126,17 @@ Pages:
 
 ![alt text](artifacts/frontend/client.gif)
 
+Pages:
+- **My Services**: a page where you can see a list of your recently purchased services.
+- **Service**: where you manage your concretely selected service from the previous page.
+- **Profile**: allows you to modify your personal information details.
+
 #### Admin View
 
 ![alt text](artifacts/frontend/admin.gif)
+
+Pages:
+- **Admin Panel**: a panel where you can see several charts with statistics and manage clients.
 
 ### Navigation Diagram <a name="navigation"></a>
 
