@@ -2,7 +2,7 @@
 
 ## Context
 
-This project is an assignment for the _Web Application Development_ subject in the 
+This project is an assignment for the _Web Application Development_ subject in the
 Software Engineering Degree, at _University King Juan Carlos_, Spain (2020/2021).
 
 ## Logo
@@ -12,8 +12,8 @@ Software Engineering Degree, at _University King Juan Carlos_, Spain (2020/2021)
 ## Description
 
 The main objective of this application is to simulate, as closely as possible, a hosting provider.
-A lot of different kinds of products will be available for rental, the products will be based on 
-multiple elegible configurations (_hardware and network specifications_). Each package rental will 
+A lot of different kinds of products will be available for rental, the products will be based on
+multiple elegible configurations (_hardware and network specifications_). Each package rental will
 have associated an expiration time (_when package usage time expires you need to renew it_).
 
 ## Team Members
@@ -39,7 +39,7 @@ All the organisation will be done using a _Trello_ board.
 - **User**: a user will be the entity in charge of storing all kinds of information related to authentication.
 - **Role**: a role or authority, holds a set of permissions that will allow a user perform certain actions.
 - **Product**: is an entity that contains all the information related to the product (i.e. price, category and specs)
-- **Order**: represents a product rental action and contains order attributes (i.e. rental date, expiration 
+- **Order**: represents a product rental action and contains order attributes (i.e. rental date, expiration
   date, etc)
 - **Discount**: will represent a product sale (a.k.a. discount) for your first purchase and will contain all
   the neccesary attributes related to that sale (i.e. sale duration, discount percentage).
@@ -68,7 +68,7 @@ represent an additional action which the user can perform (i.e. see a page, perf
 
 ### Third-party Additional Technology
 
-- [Gmail API](https://developers.google.com/gmail/api): we will be using the Gmail API with Spring Email 
+- [Gmail API](https://developers.google.com/gmail/api): we will be using the Gmail API with Spring Email
   to send order receipts and server information to the clients.
 - [Apache PDF Box](https://pdfbox.apache.org/): we will also be using Apache PDF Box to generate PDF's for
   the product receipts in the client rented services area.
@@ -77,7 +77,7 @@ represent an additional action which the user can perform (i.e. see a page, perf
 
 We will be using two kinds of algorithms based on discounts for products:
 1. Giving XX% non-recurrent discount on inauguration (or special events), this algorithm will be configurable.
-2. Incremental purchases, every X services you rent in a concrete timespan, given an additional XX% discount 
+2. Incremental purchases, every X services you rent in a concrete timespan, given an additional XX% discount
    on subsequent purchases, all percentages also configurable.
 
 ### Screenshots
@@ -154,7 +154,7 @@ all kinds of information associated to them.
 
 #### Service Overview
 
-This page provides you with information about the selected service in the previously 
+This page provides you with information about the selected service in the previously
 mentioned "My Services" page, and allows you to manage that concrete purchased service.
 
 ![alt text](artifacts/fontend-screenshots/overview.png)
@@ -170,3 +170,7 @@ In the next tab the admin will also be able
 to manage client account and modify their details as well as disable or enable their accounts.
 
 ![alt text](artifacts/fontend-screenshots/panel-2.png)
+
+### Navigation Diagram
+
+![alt text](artifacts/fontend-screenshots/navigation_diagram.png)
