@@ -174,7 +174,9 @@ const registerCategoryProductPurchase = (categories, purchaseUrl) => {
             
             const productId = $(`#pricing-id-${ category }`).text();
             const requestData = { product_id: productId, product_category: category };
-            alert(JSON.stringify(requestData));
+            console.log(JSON.stringify(requestData));
+
+            $(location).attr('href', 'services.html');
 
             /*
             In the future just use GET AJAX request to obtain the products

@@ -3,6 +3,7 @@ $(document).ready(() => {
     registerNavigation();
     registerHighlightEffect();
     registerLoginToggler();
+    registerLoadMoreAnimation();
 
 });
 
@@ -53,16 +54,51 @@ const registerHighlightEffect = () => {
 
 const registerLoginToggler = () => {
 
-    $('#login-toggler').click(function() {
-        if ($(this).is(':checked')) {
+    const updateLoginStatus = () => {
+        if(localStorage.getItem("logged-in") === "true") {
             $("#logged-in").removeClass("d-none");
             $("#not-logged-in").addClass("d-none");
+            $('#login-toggler').prop('checked', true);
         } else {
             $("#not-logged-in").removeClass("d-none");
             $("#logged-in").addClass("d-none");
+            $('#login-toggler').prop('checked', false);
         }
-        console.log("HI");
+    }
+
+    updateLoginStatus();
+
+    $('#login-toggler').click(function() {
+        if ($(this).is(':checked')) {
+            localStorage.setItem("logged-in", "true");
+        } else {
+            localStorage.setItem("logged-in", "false");
+        }
+        updateLoginStatus();
     });
 
 }
 
+const registerLoadMoreAnimation = () => {
+
+    $(".load-more-button").each(function(){
+        const currentButton = $(this);
+        console.log("hi");
+
+        currentButton.click(() => {
+            currentButton.addClass("d-none");
+            const contentId = currentButton.data('daw-loading-element');
+            $("#" + contentId).removeClass("d-none");
+
+            const addButtonBack = () => {
+                currentButton.removeClass("d-none");
+                $("#" + contentId).addClass("d-none");
+            }
+
+            setTimeout(() => addButtonBack(), 1000);
+            
+        });
+    });
+    
+
+}
