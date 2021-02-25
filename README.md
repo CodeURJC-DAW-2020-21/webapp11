@@ -82,13 +82,17 @@ We will be using two kinds of algorithms based on discounts for products:
 
 ### Screenshots (_animated gifs_)
 
-#### Visitor
+#### Visitor View
 
 ![alt text](artifacts/frontend/visitor.gif)
 
-#### Client
+#### Client View
 
 ![alt text](artifacts/frontend/client.gif)
+
+#### Admin View
+
+![alt text](artifacts/frontend/admin.gif)
 
 ### Navigation Diagram
 
