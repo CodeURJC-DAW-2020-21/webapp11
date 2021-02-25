@@ -173,4 +173,4 @@ to manage client account and modify their details as well as disable or enable t
 
 ### Navigation Diagram
 
-![alt text](artifacts/fontend-screenshots/navigation_diagram.png)
+![alt text](artifacts/navigation_diagram.png)
