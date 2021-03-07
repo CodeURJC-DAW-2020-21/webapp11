@@ -13,7 +13,6 @@ public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "role", ignore = true)
     @Mapping(target = "roles", ignore = true)
     @Mapping(target = "locked", ignore = true)
     @Mapping(target = "enabled", ignore = true)
@@ -23,7 +22,6 @@ public interface UserMapper {
     User asRegisterUser(RegisterUserRequestDto request);
 
     @Mapping(target = "id", source = "userId")
-    @Mapping(target = "role", ignore = true)
     @Mapping(target = "roles", ignore = true)
     @Mapping(target = "accumulativeDiscountsConsumed", ignore = true)
     @Mapping(target = "oneTimeDiscountsConsumed", ignore = true)

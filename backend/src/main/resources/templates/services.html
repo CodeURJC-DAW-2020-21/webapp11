@@ -26,7 +26,7 @@
       <div id="xl" class="d-none d-xl-block"></div>
     </div><!-- / screen size detector -->
 
-    <!-- content-wrapper -->
+    <!-- content wrapper -->
     <div class="content-wrapper">
       <header>
 
@@ -345,72 +345,211 @@
 
       <main>
 
-        <!-- center -->
-        <div class="container">
-          <div class="row align-items-center justify-content-center text-center pt-5">
-            <div class="col-12 mb-2 text-white">
-              <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-2 d-flex align-items-center justify-content-center">
-
-                  <!-- login box -->
-                  <div class="centered-box card w-100">
-                    
-                    <!-- title -->
-                    <h3 class="card-title mt-3 mb-0">
-                      <i class="bi bi-person"></i>
-                      <span>Account</span>
-                    </h3><!-- / title -->
-
-                    <!-- body -->
-                    <div class="card-body">
-
-                      <p><small id="flash-message" class="text-danger fw-bold"></small></p>
-
-                      <p>Please, Sign in with existing account</p>
-
-                      <!-- form inputs -->
-                      <div class="input-group mb-3 px-4">
-                        <span class="input-group-text bg-transparent text-white" id="username-label">
-                          <i class="bi bi-person-check-fill"></i>
-                        </span>
-                        <input id="username" type="text" class="form-control" placeholder="Username" 
-                               aria-label="Username" aria-describedby="username-label">
-                      </div>
-
-                      <div class="input-group mb-3 px-4">
-                        <span class="input-group-text bg-transparent text-white" id="password-label">
-                          <i class="bi bi-key-fill"></i>
-                        </span>
-                        <input id="password" type="password" class="form-control" placeholder="Password" 
-                               aria-label="Username" aria-describedby="password-label">
-                      </div><!-- / form inputs -->
-
-                      <p class="card-text">
-                        <span>Or, you may want to</span>
-                        <a href="register.html" class="fw-bold">create a new account</a>
-                      </p>
-
-                      <button id="login-button" type="button" class="btn btn-sm btn-outline-light w-25">
-                        Login
-                      </button>
-                    </div><!-- / body -->
-
-                  </div><!-- / login box -->
-
-                </div>
-              </div>
+        <!-- page title -->
+        <div class="d-flex justify-content-center text-white text-center">
+          <div class="row">
+            <div class="col-12 px-5">
+              <h3>
+                <span>My Services</span>
+              </h3> 
+              <p class="text-secondary mb-0">
+                <span class="fst-italic">
+                  "Manage your services easily from
+                  this user panel, click renew and enjoy!"
+                </span>
+              </p>
             </div>
           </div>
-        </div><!-- / center -->
+        </div><!-- / page title -->
+
+        <!-- horizontal line -->
+        <div class="container text-light mt-0">
+          <hr />
+        </div><!-- / horizontal line -->
+
+        <!-- hired services -->
+        <div class="row px-5 mx-0">
+          <div class="col-12">
+            <table class="table table-bordered border-secondary text-white text-center">
+
+              <!-- table header -->
+              <thead>
+                <tr>
+                  <th scope="col">
+                    <div class="d-flex align-items-center justify-content-center" style="height: 50px">
+                      Service
+                     </div>
+                  </th>
+                  <th scope="col">
+                    <div class="d-flex align-items-center justify-content-center" style="height: 50px">
+                      Configuration
+                     </div>
+                  </th>
+                  <th scope="col">
+                    <div class="d-flex align-items-center justify-content-center" style="height: 50px">
+                      Manage
+                     </div>
+                  </th>
+                  <th scope="col">
+                    <div class="d-flex align-items-center justify-content-center" style="height: 50px">
+                      Expiration Date
+                     </div>
+                  </th>
+                </tr>
+              </thead><!-- / table header -->
+
+              <tbody>
+
+                <!-- concrete service -->
+                <tr>
+                  <th scope="row">
+                    <i class="bi bi-share align-middle text-light"></i>
+                    <span class="fw-normal align-middle">Shared Server</span>
+                  </th>
+                  <td>
+                    <ul class="list-inline my-0">
+                      <li class="list-inline-item align-middle">
+                        <span class="fw-bold">1 GB</span>
+                        <span class="fw-normal">RAM</span>
+                      </li>
+                      <li class="list-inline-item align-middle">
+                        <span class="fw-bold">2 vCPU</span>
+                        <span class="fw-normal">CORE</span>
+                      </li>
+                      <li class="list-inline-item align-middle">
+                        <span class="fw-bold">32 GB</span>
+                        <span class="fw-normal">STORAGE</span>
+                      </li>
+                      <li class="list-inline-item align-middle text-purple">
+                        <span class="fw-bold">1 TB</span>
+                        <span class="fw-normal">TRANSFER</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td>
+                    <div class="btn-group btn-group-sm" role="group">
+                      <a href="service.html" type="button" class="btn btn-outline-light">View</a>
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <p5>Feb 10, 2022</p5>
+                    </div>
+                  </td>
+                </tr><!-- / concrete service -->
+
+                <!-- concrete service -->
+                <tr>
+                  <th scope="row">
+                    <i class="bi bi-hdd align-middle text-light"></i>
+                    <span class="fw-normal align-middle">Virtual Private Server</span></th>
+                  <td>
+                    <ul class="list-inline my-0">
+                      <li class="list-inline-item align-middle">
+                        <span class="fw-bold">1 GB</span>
+                        <span class="fw-normal">RAM</span>
+                      </li>
+                      <li class="list-inline-item align-middle">
+                        <span class="fw-bold">1 vCPU</span>
+                        <span class="fw-normal">CORE</span>
+                      </li>
+                      <li class="list-inline-item align-middle">
+                        <span class="fw-bold">128 GB</span>
+                        <span class="fw-normal">STORAGE</span>
+                      </li>
+                      <li class="list-inline-item align-middle text-purple">
+                        <span class="fw-bold">1 TB</span>
+                        <span class="fw-normal">TRANSFER</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td>
+                    <div class="btn-group btn-group-sm" role="group">
+                      <a href="service.html" type="button" class="btn btn-outline-light">View</a>
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <p5>Nov 21, 2022</p5>
+                    </div>
+                  </td>
+                </tr><!-- / concrete service -->
+
+                <!-- concrete service -->
+                <tr>
+                  <th scope="row">
+                    <i class="bi bi-hdd-rack align-middle text-light"></i>
+                    <span class="fw-normal align-middle">Virtual Private Server</span></th>
+                  </th>
+                  <td>
+                    <ul class="list-inline my-0">
+                      <li class="list-inline-item align-middle">
+                        <span class="fw-bold">16 GB</span>
+                        <span class="fw-normal">RAM</span>
+                      </li>
+                      <li class="list-inline-item align-middle">
+                        <span class="fw-bold">6 CPU</span>
+                        <span class="fw-normal">CORE</span>
+                      </li>
+                      <li class="list-inline-item align-middle">
+                        <span class="fw-bold">2 TB</span>
+                        <span class="fw-normal">STORAGE</span>
+                      </li>
+                      <li class="list-inline-item align-middle text-purple">
+                        <span class="fw-bold">25 TB</span>
+                        <span class="fw-normal">TRANSFER</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td>
+                    <div class="btn-group btn-group-sm" role="group">
+                      <a href="service.html" type="button" class="btn btn-outline-light">View</a>
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <p5>Jan 18, 2022</p5>
+                    </div>
+                  </td>
+                </tr><!-- / concrete service -->
+
+              </tbody>
+
+            </table>
+
+            <!-- load more button -->
+            <div class="row">
+              <div class="col-12 text-center">
+                <button type="button" class="load-more-button btn btn-sm btn-outline-light" data-daw-loading-element="loading-more">
+                  <i class="bi bi-plus-circle"></i>
+                  <span class="align-middle">Load more</span>
+                </button>
+              </div>
+            </div><!-- / load more button -->
+
+            <!-- load more button -->
+            <div id="loading-more" class="row d-none">
+              <div class="col-12 text-center text-white">
+                <div class="d-flex justify-content-center">
+                  <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              </div>
+            </div><!-- / load more button -->
+
+          </div>
+          
+        </div><!-- / hired services -->
         
+
       </main>
 
       <script src="js/bootstrap.bundle.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script src="js/main.js"></script>
-      <script src="js/login.js"></script>
 
-    </div><!-- / content-wrapper -->
+    </div><!-- content wrapper -->
 
     <!-- footer -->
     <footer class="footer">
@@ -460,7 +599,7 @@
                   <!-- trademarks -->
                   <li class="list-inline-item">
                     <a class="nav-link" href="legal.html">
-                      <span>Trademarks</span>
+                      <span>Trademarks
                     </a>
                   </li><!-- / trademarks -->
 

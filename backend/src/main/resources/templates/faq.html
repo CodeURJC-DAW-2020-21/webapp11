@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
 
-    <!-- metadata -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  
+  <!-- metadata -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- stylesheets -->
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/main.css">
-    
-    <!-- title -->
-    <title id="title">DAWHostServices</title>
+  <!-- stylesheets -->
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="css/main.css">
 
-  </head>
-  <body>
+  <!-- title -->
+  <title id="title">FAQ (Frequently Asked Questions)</title>
 
-    <!-- screen size detector -->
-    <div id="screen-size-detector">
-      <div id="xs" class="d-block d-sm-none"></div>
-      <div id="sm" class="d-none d-sm-block d-md-none"></div>
-      <div id="md" class="d-none d-md-block d-lg-none"></div>
-      <div id="lg" class="d-none d-lg-block d-xl-none"></div>
-      <div id="xl" class="d-none d-xl-block"></div>
-    </div><!-- / screen size detector -->
+</head>
+
+<body>
+
+  <!-- screen size detector -->
+  <div id="screen-size-detector">
+    <div id="xs" class="d-block d-sm-none"></div>
+    <div id="sm" class="d-none d-sm-block d-md-none"></div>
+    <div id="md" class="d-none d-md-block d-lg-none"></div>
+    <div id="lg" class="d-none d-lg-block d-xl-none"></div>
+    <div id="xl" class="d-none d-xl-block"></div>
+  </div><!-- / screen size detector -->
 
     <!-- content-wrapper -->
     <div class="content-wrapper">
@@ -345,70 +347,256 @@
 
       <main>
 
-        <!-- center -->
         <div class="container">
-          <div class="row align-items-center justify-content-center text-center pt-5">
-            <div class="col-12 mb-2 text-white">
-              <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-2 d-flex align-items-center justify-content-center">
 
-                  <!-- login box -->
-                  <div class="centered-box card w-100">
-                    
-                    <!-- title -->
-                    <h3 class="card-title mt-3 mb-0">
-                      <i class="bi bi-person"></i>
-                      <span>Account</span>
-                    </h3><!-- / title -->
-
-                    <!-- body -->
-                    <div class="card-body">
-
-                      <p><small id="flash-message" class="text-danger fw-bold"></small></p>
-
-                      <p>Please, Sign in with existing account</p>
-
-                      <!-- form inputs -->
-                      <div class="input-group mb-3 px-4">
-                        <span class="input-group-text bg-transparent text-white" id="username-label">
-                          <i class="bi bi-person-check-fill"></i>
-                        </span>
-                        <input id="username" type="text" class="form-control" placeholder="Username" 
-                               aria-label="Username" aria-describedby="username-label">
-                      </div>
-
-                      <div class="input-group mb-3 px-4">
-                        <span class="input-group-text bg-transparent text-white" id="password-label">
-                          <i class="bi bi-key-fill"></i>
-                        </span>
-                        <input id="password" type="password" class="form-control" placeholder="Password" 
-                               aria-label="Username" aria-describedby="password-label">
-                      </div><!-- / form inputs -->
-
-                      <p class="card-text">
-                        <span>Or, you may want to</span>
-                        <a href="register.html" class="fw-bold">create a new account</a>
-                      </p>
-
-                      <button id="login-button" type="button" class="btn btn-sm btn-outline-light w-25">
-                        Login
-                      </button>
-                    </div><!-- / body -->
-
-                  </div><!-- / login box -->
-
+          <!-- page title -->
+          <div class="d-flex justify-content-center text-white text-center">
+            <div class="row">
+              <div class="col-12 px-5">
+                <h3>FAQ</h3>
+                <p class="text-secondary mb-0">
+                  <span class="fst-italic">
+                    "Frequently Asked Questions"
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div><!-- / page title -->
+  
+          <!-- horizontal line -->
+          <div class="container text-light mt-0">
+            <hr />
+          </div><!-- / horizontal line -->
+  
+          <!-- accordion -->
+          <div class="accordion-flush bg-transparent border border-light rounded text-white">
+  
+            <div class="accordion-item border border-secondary">
+  
+              <!-- header -->
+              <h3 class="accordion-header" id="heading-1">
+  
+                <button class="accordion-button text-white bg-transparent" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#collapse-1"
+                        aria-expanded="false" 
+                        aria-controls="collapse-1">
+                  <span class="animated-link">
+                    I forgot to renew my server, is it too late to recover it?
+                  </span>
+                </button>
+  
+              </h3><!-- / header -->
+  
+              <!-- content -->
+              <div id="collapse-1" 
+                  class="accordion-collapse collapse show" 
+                  aria-labelledby="heading-1">
+                <div class="accordion-body">
+                  <span>
+                    Once your server has expired, we keep your data for 7 days 
+                    during which you can renew your order without losing your maps 
+                    and configuration files. After this period, as stated in the 
+                    notification e-mails, all your data is deleted and unrecoverable.
+                  </span>
                 </div>
               </div>
             </div>
-          </div>
-        </div><!-- / center -->
+
+            <div class="accordion-item border border-secondary">
+  
+              <!-- header -->
+              <h3 class="accordion-header" id="heading-2">
+                <button class="accordion-button text-white bg-transparent collapsed" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#collapse-2"
+                        aria-expanded="false" 
+                        aria-controls="collapse-2">
+                  <span class="animated-link">
+                    Are promotions available?
+                  </span>
+                </button>
+              </h3><!-- / header -->
+  
+              <!-- content -->
+              <div id="collapse-2" class="accordion-collapse collapse" aria-labelledby="heading-2">
+                <div class="accordion-body">
+                  <span>
+                    Yes, if you buy a shared server, next time you will have 
+                    XXX% discount for renewal for the same package when an 
+                    event is active.
+                  </span>
+                </div>
+              </div><!-- / content -->
+  
+            </div>
+
+            <div class="accordion-item border border-secondary">
+  
+              <!-- header -->
+              <h3 class="accordion-header" id="heading-3">
+                <button class="accordion-button text-white bg-transparent collapsed" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#collapse-3"
+                        aria-expanded="false" 
+                        aria-controls="collapse-3">
+                  <span class="animated-link">
+                    When can I ask for a service to be cancelled?
+                  </span>
+                </button>
+              </h3><!-- / header -->
+  
+              <!-- content -->
+              <div id="collapse-3" class="accordion-collapse collapse" aria-labelledby="heading-3">
+                <div class="accordion-body">
+                  <span>
+                    You just have to stop renewing the server. The service 
+                    will then be suspended when it expires, and then deleted 
+                    (and all the data it contained erased) within 24 hours.
+                    Please note, once it has been deleted, it cannot be restored.
+                  </span>
+                </div>
+              </div><!-- / content -->
+  
+            </div>
+
+            <div class="accordion-item border border-secondary">
+  
+              <!-- header -->
+              <h3 class="accordion-header" id="heading-4">
+                <button class="accordion-button text-white bg-transparent collapsed" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#collapse-4"
+                        aria-expanded="false" 
+                        aria-controls="collapse-4">
+                  <span class="animated-link">
+                    Can I cancel my order and get a refund?
+                  </span>
+                </button>
+              </h3><!-- / header -->
+  
+              <!-- content -->
+              <div id="collapse-4" class="accordion-collapse collapse" aria-labelledby="heading-4">
+                <div class="accordion-body">
+                  <span>
+                    If the order has completed, and the server has 
+                    been setup, you cannot cancel the order. As the 
+                    service has been activated, for the selected time 
+                    period, no refund can be made.
+                  </span>
+                </div>
+              </div><!-- / content -->
+  
+            </div>
+
+            <div class="accordion-item border border-secondary">
+  
+              <!-- header -->
+              <h3 class="accordion-header" id="heading-5">
+                <button class="accordion-button text-white bg-transparent collapsed" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#collapse-5"
+                        aria-expanded="false" 
+                        aria-controls="collapse-5">
+                  <span class="animated-link">
+                    What's the start date of my contract?
+                  </span>
+                </button>
+              </h3><!-- / header -->
+  
+              <!-- content -->
+              <div id="collapse-5" class="accordion-collapse collapse" aria-labelledby="heading-5">
+                <div class="accordion-body">
+                  <span>
+                    Your contract will begin on the date that your 
+                    service is installed and delivered, and not the 
+                    order date.
+                  </span>
+                </div>
+              </div><!-- / content -->
+  
+            </div>
+
+            <div class="accordion-item border border-secondary">
+  
+              <!-- header -->
+              <h3 class="accordion-header" id="heading-6">
+                <button class="accordion-button text-white bg-transparent collapsed" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#collapse-6"
+                        aria-expanded="false" 
+                        aria-controls="collapse-6">
+                  <span class="animated-link">
+                    How are you protected from DDoS attacks?
+                  </span>
+                </button>
+              </h3><!-- / header -->
+  
+              <!-- content -->
+              <div id="collapse-6" class="accordion-collapse collapse" aria-labelledby="heading-6">
+                <div class="accordion-body">
+                  <span>
+                    The anti-DDoS protection is based on the Peakflow 
+                    SP TMS series from Arbor Networks. Placed at the 
+                    heart of our infrastructure, they automatically 
+                    detect attacks and delete malicious traffic using 
+                    deep packet inspection in order to keep your service 
+                    running in the safest way possible. 
+                  </span>
+                </div>
+              </div><!-- / content -->
+  
+            </div>
+
+            <div class="accordion-item border border-secondary">
+  
+              <!-- header -->
+              <h3 class="accordion-header" id="heading-7">
+                <button class="accordion-button text-white bg-transparent collapsed" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#collapse-7"
+                        aria-expanded="false" 
+                        aria-controls="collapse-7">
+                  <span class="animated-link">
+                    What's the minimum commitment period?
+                  </span>
+                </button>
+              </h3><!-- / header -->
+  
+              <!-- content -->
+              <div id="collapse-7" class="accordion-collapse collapse" aria-labelledby="heading-7">
+                <div class="accordion-body">
+                  <span>
+                    The minimum duration is one month. When renewing 
+                    your service you can choose between 1, 3, 6 or a 12 
+                    month renewal period (prices remain the same).
+                    Automatic renewal by direct debit using a preregistered 
+                    payment method is not yet available. You can renew your 
+                    service from your customer account, by clicking on the 
+                    "Renew" button in your dashboard.
+                  </span>
+                </div>
+              </div><!-- / content -->
+  
+            </div>
+
+          </div><!-- / accordion -->
+        </div>
         
       </main>
 
+      <!-- scripts -->
       <script src="js/bootstrap.bundle.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script src="js/main.js"></script>
-      <script src="js/login.js"></script>
+      <script src="js/faq.js"></script><!-- / scripts -->
 
     </div><!-- / content-wrapper -->
 
