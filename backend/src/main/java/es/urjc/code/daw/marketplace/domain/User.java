@@ -66,4 +66,8 @@ public class User implements Serializable {
     @Builder.Default
     private Set<AccumulativeDiscount> accumulativeDiscountsConsumed = new HashSet<>();
 
+    public boolean isAdmin() {
+        return roles.stream().anyMatch(role -> role.getName().equals("ADMIN"));
+    }
+
 }

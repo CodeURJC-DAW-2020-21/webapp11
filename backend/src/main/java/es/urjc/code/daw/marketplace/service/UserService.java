@@ -7,6 +7,14 @@ import java.util.List;
 
 public interface UserService {
 
+    User registerUser(User user);
+
+    User updateUser(User user);
+
+    User enableUser(Long id);
+
+    User disableUser(Long id);
+
     boolean existsUserById(Long id);
 
     User findUserById(Long id);
@@ -14,10 +22,6 @@ public interface UserService {
     User findUserByEmail(String email);
 
     List<User> findAllUsers(Pageable pageable);
-
-    User registerUser(User user);
-
-    User updateUser(User user, boolean updaterIsOperator);
 
     User deleteUserById(Long id);
 

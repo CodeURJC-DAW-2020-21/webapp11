@@ -2,6 +2,7 @@ package es.urjc.code.daw.marketplace.web.user.mapper;
 
 import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.web.user.dto.RegisterUserRequestDto;
+import es.urjc.code.daw.marketplace.web.user.dto.UpdateUserRequestDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -20,5 +21,12 @@ public interface UserMapper {
     @Mapping(target = "accumulativeDiscountsConsumed", ignore = true)
     @Mapping(target = "oneTimeDiscountsConsumed", ignore = true)
     User asRegisterUser(RegisterUserRequestDto request);
+
+    @Mapping(target = "id", source = "userId")
+    @Mapping(target = "role", ignore = true)
+    @Mapping(target = "roles", ignore = true)
+    @Mapping(target = "accumulativeDiscountsConsumed", ignore = true)
+    @Mapping(target = "oneTimeDiscountsConsumed", ignore = true)
+    User asUpdateUser(UpdateUserRequestDto request);
 
 }
