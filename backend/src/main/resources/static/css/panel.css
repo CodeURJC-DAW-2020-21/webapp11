@@ -1,0 +1,12 @@
+/*
+ * Profile
+ */
+ 
+.profile-picture {
+        object-fit: scale-down;
+        width: 40px;
+        height: 40px;
+        border-radius: 160px;
+        border: 3px solid rgb(190, 190, 190);
+ }
+ 

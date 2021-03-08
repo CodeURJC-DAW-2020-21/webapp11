@@ -1,0 +1,232 @@
+/*
+ * Base structure
+ */
+
+body, html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(ellipse at bottom, #1b2735 15%, #161925 75%) no-repeat center center fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+.content-wrapper {
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex-shrink: 0;
+}
+
+/*
+ * Navigation 
+ */
+
+.products-menu {
+  width: 210px !important;
+  margin-top: -1px !important;
+}
+
+.account-menu {
+  margin-top: -1px !important;
+}
+
+@media (min-width: 768px) {
+  .dropdown:hover>.dropdown-menu {
+    display: block;
+  }
+  .products-menu {
+    width: 300px !important;
+    margin-top: -1px !important;
+  }
+  .account-menu {
+    width: 200px !important;
+    margin-top: -1px !important;
+  }
+}
+
+.animated-link {
+	display: inline-block;
+	color: #fff;
+	text-decoration: none;
+}
+
+.animated-link::after {
+	content: '';
+	display: block;
+	width: 0;
+	height: 2px;
+	background: #fff;
+	transition: width .3s;
+}
+
+.animated-link:hover::after {
+	width: 100%;
+	transition: width .3s;
+}
+
+.animated-link-active {
+	display: inline-block;
+	color: #fff;
+	text-decoration: none;
+}
+
+.animated-link-active::after {
+	content: '';
+	display: block;
+	height: 2px;
+	background: #fff;
+}
+
+/*
+ * Carousel
+ */
+
+ .carousel {
+  width: 100%;
+  min-height: 300px;
+  max-height: 860px;
+}
+
+.carousel-item {
+  transition-duration: 1.25s;
+}
+
+@media (max-width: 1200px) {
+  .carousel {
+    width: 100%;
+    min-height: 570px;
+    max-height: 860px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .carousel {
+    width: 100%;
+    min-height: 500px;
+    max-height: 860px;
+  }
+}
+
+@media (max-width: 768px) {
+    .carousel {
+      width: 100%;
+      min-height: 460px;
+      max-height: 860px;
+    }
+}
+
+/*
+ * Custom background colors
+ */
+
+.bg-dark-blue {
+  background: radial-gradient(ellipse at bottom, #1b2735 15%, #161925 75%);
+}
+
+.bg-grey-transparent {
+  background-color: rgba(245, 245, 245, 0.025);
+}
+
+/*
+ * Highlighting effect on hover
+ */
+
+.highlight {
+  transition: background 0.25s linear;
+  -webkit-transition: background 0.25s linear;
+  -moz-transition: background 0.25s linear;
+}
+
+/*
+ * Link styling
+ */
+
+a:link, a:visited {
+  color: white;
+}
+
+a:hover, a:active {
+  color: white;
+}
+
+/*
+ * Centered box styling
+ */
+
+.centered-box {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border: 1px solid #1b2735;
+  border-radius: 15px;
+  -moz-border-radius: 15px;
+}
+
+/*
+ * Toggle switch
+ */
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.toggle-switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .toggle-switch-slider {
+  background-color: #2196F3;
+}
+
+input:focus + .toggle-switch-slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .toggle-switch-slider:before {
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(13px);
+}
+
+.toggle-switch-slider.round {
+  border-radius: 17px;
+}
+
+.toggle-switch-slider.round:before {
+  border-radius: 50%;
+}
