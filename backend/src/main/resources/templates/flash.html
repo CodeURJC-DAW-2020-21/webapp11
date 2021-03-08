@@ -1,12 +1,13 @@
 <div id="flash" class="mx-5">
-    <div class="alert text-center bg-transparent border border-1 mx-5 rounded {{#success}}alert-success border-success text-success{{/success}} {{#danger}}alert-danger border-danger text-danger{{/danger}} alert-dismissible fade show" role="alert">
-        {{#spinner}}
 
-            <div id="flash-spinner" class="spinner-grow spinner-grow-sm {{#success}}text-success{{/success}} {{#danger}}text-danger{{/danger}}" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        {{/spinner}}
-        <strong>{{message}}</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div class="alert text-center bg-transparent border border-1 mx-5 rounded {{#success}}alert-success border-success text-success{{/success}} {{#danger}}alert-danger border-danger text-danger{{/danger}} alert-dismissible fade show" role="alert">
+    {{#spinner}}
+    <div id="flash-spinner" class="spinner-grow spinner-grow-sm {{#success}}text-success{{/success}} {{#danger}}text-danger{{/danger}}" role="status">
+        <span class="visually-hidden">Loading...</span>
     </div>
+    {{/spinner}}
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close text-white" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
 </div>

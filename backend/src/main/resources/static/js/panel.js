@@ -29,6 +29,7 @@ const loadUsers = () => {
 
     $.get(`/users/${currentPage}/3`, (data) => {
         $(`${data}`).appendTo("#clients");
+        currentPage++;
     });
 
 }
@@ -47,8 +48,11 @@ const toggleAccount = () => {
 
         const updateLoaded = () => {
             $("#clients").html('');
-            for(let i = 1; i <= currentPage; i++) {
-                loadUsers()
+            let size = currentPage;
+            currentPage = 1;
+            while(size > 0) {
+                loadUsers();
+                size--;
             }
             document.getElementById("flash-spinner").outerHTML = "";
         }
@@ -70,7 +74,6 @@ const registerLoadMoreAnimation = () => {
             $("#" + contentId).removeClass("d-none");
 
             loadUsers(currentPage);
-            currentPage++;
 
             const addButtonBack = () => {
                 currentButton.removeClass("d-none");
