@@ -2,9 +2,12 @@ $(document).ready(() => {
 
     registerContentSwitch();
     registerLoadMoreAnimation();
-    loadUsers(1);
+    loadUsers();
+    toggleAccount();
 
 });
+
+var currentPage = 1;
 
 const registerContentSwitch = () => {
 
@@ -22,7 +25,7 @@ const registerContentSwitch = () => {
     
 }
 
-const loadUsers = (currentPage) => {
+const loadUsers = () => {
 
     $.get(`/users/${currentPage}/3`, (data) => {
         $(`${data}`).appendTo("#clients");
@@ -30,13 +33,36 @@ const loadUsers = (currentPage) => {
 
 }
 
-const registerLoadMoreAnimation = () => {
+const toggleAccount = () => {
 
-    let currentPage = 2;
+    $(document).on('click', '.toggle-account', function() {
+
+        const currentButton = $(this);
+        const id = currentButton.data('daw-user-id');
+        const type = currentButton.data('daw-user-action');
+
+        $.post(`/user/${id}/${type}`, (data) => {
+            $("#flash").replaceWith(data);
+        });
+
+        const updateLoaded = () => {
+            $("#clients").html('');
+            for(let i = 1; i <= currentPage; i++) {
+                loadUsers()
+            }
+            document.getElementById("flash-spinner").outerHTML = "";
+        }
+
+        setTimeout(() => updateLoaded(), 1000);
+
+    });
+
+}
+
+const registerLoadMoreAnimation = () => {
 
     $(".load-more-button").each(function(){
         const currentButton = $(this);
-        console.log("hi");
 
         currentButton.click(() => {
             currentButton.addClass("d-none");

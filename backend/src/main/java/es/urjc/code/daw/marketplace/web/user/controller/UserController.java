@@ -104,27 +104,31 @@ public class UserController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RequestMapping(path = "/user/{id}/enable", method = RequestMethod.GET)
+    @RequestMapping(path = "/user/{id}/enable", method = RequestMethod.POST)
     public String enableUser(@PathVariable("id") Long userId, Model model) {
 
-        userService.enableUser(userId);
+        User user = userService.enableUser(userId);
 
-        final String viewIndicator = "isPanel";
-        model.addAttribute(viewIndicator, "yes");
+        final String message = String.format("The user %s %s account has been enabled!", user.getFirstName(), user.getSurname());
+        model.addAttribute("message", message);
+        model.addAttribute("success", "yes");
+        model.addAttribute("spinner", "yes");
 
-        return "panel";
+        return "flash";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RequestMapping(path = "/user/{id}/disable" , method = RequestMethod.GET)
+    @RequestMapping(path = "/user/{id}/disable" , method = RequestMethod.POST)
     public String disableUser(@PathVariable("id") Long userId, Model model) {
 
-        userService.disableUser(userId);
+        User user = userService.disableUser(userId);
 
-        final String viewIndicator = "isPanel";
-        model.addAttribute(viewIndicator, "yes");
+        final String message = String.format("The user %s %s account has been disabled!", user.getFirstName(), user.getSurname());
+        model.addAttribute("message", message);
+        model.addAttribute("danger", "yes");
+        model.addAttribute("spinner", "yes");
 
-        return "panel";
+        return "flash";
     }
 
 }

@@ -25,14 +25,16 @@
                 <div class="col-12 mx-auto">
                     <div class="jumbotron mt-1">
                         <div class="btn-group btn-group-sm" role="group">
-                            <button onclick="location.href='/user/{{id}}/disable';"
+                            <button data-daw-user-id="{{id}}"
+                                    data-daw-user-action="disable"
                                     type="button"
-                                    class="btn btn-outline-danger {{^isEnabled}}disabled{{/isEnabled}}">
+                                    class="toggle-account btn btn-outline-danger {{^isEnabled}}disabled{{/isEnabled}}">
                                 <span>Disable Account</span>
                             </button>
-                            <button onclick="location.href='/user/{{id}}/enable';"
+                            <button data-daw-user-id="{{id}}"
+                                    data-daw-user-action="enable"
                                     type="button"
-                                    class="btn btn-outline-success {{#isEnabled}}disabled{{/isEnabled}}">
+                                    class="toggle-account btn btn-outline-success {{#isEnabled}}disabled{{/isEnabled}}">
                                 <span>Enable Account</span>
                             </button>
                         </div>
