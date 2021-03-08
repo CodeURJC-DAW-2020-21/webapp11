@@ -1,6 +1,8 @@
 $(document).ready(() => {
 
     registerContentSwitch();
+    registerLoadMoreAnimation();
+    loadUsers(1);
 
 });
 
@@ -18,6 +20,43 @@ const registerContentSwitch = () => {
         });
     });
     
+}
+
+const loadUsers = (currentPage) => {
+
+    $.get(`/users/${currentPage}/3`, (data) => {
+        $(`${data}`).appendTo("#clients");
+    });
+
+}
+
+const registerLoadMoreAnimation = () => {
+
+    let currentPage = 2;
+
+    $(".load-more-button").each(function(){
+        const currentButton = $(this);
+        console.log("hi");
+
+        currentButton.click(() => {
+            currentButton.addClass("d-none");
+            const contentId = currentButton.data('daw-loading-element');
+            $("#" + contentId).removeClass("d-none");
+
+            loadUsers(currentPage);
+            currentPage++;
+
+            const addButtonBack = () => {
+                currentButton.removeClass("d-none");
+                $("#" + contentId).addClass("d-none");
+            }
+
+            setTimeout(() => addButtonBack(), 500);
+
+        });
+    });
+
+
 }
 
 const weeklySalesElement = document.getElementById('weekly-sales-chart').getContext('2d');

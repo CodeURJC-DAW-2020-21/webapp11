@@ -28,13 +28,14 @@ public class UserController {
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.GET)
-    public String login(@ModelAttribute(value = "error") String errorMsg, Model model) {
-
-        model.addAttribute("isLogin", true);
+    public String loginUser(@ModelAttribute(value = "error") String errorMsg, Model model) {
 
         final String errorKey = "error";
         boolean hasError = Strings.isNotBlank(errorMsg) && Strings.isNotEmpty(errorMsg);
         model.addAttribute(errorKey, hasError ? errorMsg : Strings.EMPTY);
+
+        final String viewIndicator = "isLogin";
+        model.addAttribute(viewIndicator, "yes");
 
         return "login";
     }
@@ -42,82 +43,88 @@ public class UserController {
     @RequestMapping(path = "/register" , method = RequestMethod.POST)
     public String registerUser(@RequestBody RegisterUserRequestDto request, Model model) {
 
-        User user = userService.registerUser(userMapper.asRegisterUser(request));
-        model.addAttribute("first_name", user.getFirstName());
-        model.addAttribute("surname", user.getSurname());
+        userService.registerUser(userMapper.asRegisterUser(request));
+
+        final String viewIndicator = "isRegister";
+        model.addAttribute(viewIndicator, "yes");
 
         return "register";
     }
 
-    @RequestMapping(path = "/profile/{id}" , method = RequestMethod.POST)
+    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
+    @RequestMapping(path = "/user/{id}", method = RequestMethod.GET)
     public String findUser(@PathVariable("id") Long userId,
                            @AuthenticationPrincipal UserPrincipal userPrincipal,
                            Model model) {
 
-        User loggedInUser = userService.findUserByEmail(userPrincipal.getUsername());
-        if(loggedInUser.getId().longValue() != userId.longValue() && !loggedInUser.isAdmin()) {
-            model.addAttribute("error", "You don't have permission to perform that action");
-        }
+        User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
+        boolean cannotPerform = !currentUser.isAdmin() && currentUser.getId().longValue() != userId.longValue();
+        if(cannotPerform) return "error";
 
         User user = userService.findUserById(userId);
-        user.setPassword(Strings.EMPTY);
         model.addAttribute("user", user);
 
-        return Strings.EMPTY; // TODO: Replace with pertinent view
+        final String viewIndicator = "isProfile";
+        model.addAttribute(viewIndicator, "yes");
+
+        return "profile";
     }
 
-    @RequestMapping(path = "/user/update" , method = RequestMethod.POST)
-    public String updateUser(@RequestBody UpdateUserRequestDto request,
-                             @AuthenticationPrincipal UserPrincipal userPrincipal,
-                             Model model) {
-
-        User loggedInUser = userService.findUserByEmail(userPrincipal.getUsername());
-        if(loggedInUser.getId().longValue() != request.getUserId().longValue() && !loggedInUser.isAdmin()) {
-            model.addAttribute("error", "You don't have permission to perform that action");
-        }
-
-        User user = userService.updateUser(userMapper.asUpdateUser(request));
-        final String message = String.format("Successfully updated %s account", user.getEmail());
-        model.addAttribute("message", message);
-
-        return Strings.EMPTY; // TODO: Replace with pertinent view
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(path = "/user/enable/{id}" , method = RequestMethod.POST)
-    public String enableUser(@PathVariable("id") Long userId, Model model) {
-
-        User user = userService.enableUser(userId);
-        model.addAttribute("successful", true);
-        final String message = String.format("The user account with email %s has been enabled", user.getEmail());
-        model.addAttribute("message", message);
-
-        return Strings.EMPTY; // TODO: Replace with pertinent view
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(path = "/user/disable/{id}" , method = RequestMethod.POST)
-    public String disableUser(@PathVariable("id") Long userId, Model model) {
-
-        User user = userService.disableUser(userId);
-        model.addAttribute("successful", true);
-        final String message = String.format("The user account with email %s has been disabled", user.getEmail());
-        model.addAttribute("message", message);
-
-        return Strings.EMPTY; // TODO: Replace with pertinent view
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(path = "/user/find/{page}/{amount}", method = RequestMethod.POST)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(path = "/users/{page}/{amount}", method = RequestMethod.GET)
     public String findUsers(@PathVariable("page") Integer page,
                             @PathVariable("amount") Integer amount,
                             Model model) {
 
         List<User> users = userService.findAllUsers(PageRequest.of(page - 1, amount));
-        users.forEach(user -> user.setPassword(Strings.EMPTY));
         model.addAttribute("users", users);
 
-        return Strings.EMPTY; // TODO: Replace with pertinent view
+        return "users";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
+    @RequestMapping(path = "/user/{id}/update" , method = RequestMethod.POST)
+    public String updateUser(@PathVariable("id") Long userId,
+                             @AuthenticationPrincipal UserPrincipal userPrincipal,
+                             UpdateUserRequestDto request,
+                             Model model) {
+
+        User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
+        boolean cannotPerform = !currentUser.isAdmin() && currentUser.getId().longValue() != userId.longValue();
+        if(cannotPerform) return "error";
+
+        User updateUser = userMapper.asUpdateUser(request);
+        updateUser.setId(userId);
+        userService.updateUser(userMapper.asUpdateUser(request));
+
+        final String viewIndicator = "isPanel";
+        model.addAttribute(viewIndicator, "yes");
+
+        return "profile";
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(path = "/user/{id}/enable" , method = RequestMethod.POST)
+    public String enableUser(@PathVariable("id") Long userId, Model model) {
+
+        userService.enableUser(userId);
+
+        final String viewIndicator = "isPanel";
+        model.addAttribute(viewIndicator, "yes");
+
+        return "panel";
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(path = "/user/{id}/disable" , method = RequestMethod.POST)
+    public String disableUser(@PathVariable("id") Long userId, Model model) {
+
+        userService.disableUser(userId);
+
+        final String viewIndicator = "isPanel";
+        model.addAttribute(viewIndicator, "yes");
+
+        return "panel";
     }
 
 }
