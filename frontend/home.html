@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <!-- metadata -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- title -->
+    <title id="title">DAWHostServices</title>
+
+  </head>
+  <body>
+
+    <!-- screen size detector -->
+    <div id="screen-size-detector">
+      <div id="xs" class="d-block d-sm-none"></div>
+      <div id="sm" class="d-none d-sm-block d-md-none"></div>
+      <div id="md" class="d-none d-md-block d-lg-none"></div>
+      <div id="lg" class="d-none d-lg-block d-xl-none"></div>
+      <div id="xl" class="d-none d-xl-block"></div>
+    </div><!-- / screen size detector -->
+
+    <!-- content wrapper -->
+    <div class="content-wrapper">
+      <header>
+
+        <!-- navigation -->
+        <nav class="navbar navbar-expand-md navbar-dark mx-2">
+
+          <!-- container -->
+          <div class="container-fluid">
+
+            <!-- logo -->
+            <a id="logo" href="home.html" class="navbar-brand d-flex">
+              <span class="text-light">DAW</span>
+              <span class="text-secondary">Host</span>
+              <span class="text-light">Services</span> 
+            </a><!-- / logo -->
+
+            <!-- hamburger -->
+            <button class="navbar-toggler" 
+                    data-bs-target="#nav-items" 
+                    aria-controls="nav-items" 
+                    data-bs-toggle="collapse"
+                    aria-expanded="false" 
+                    aria-label="Toggle navigation menu" 
+                    type="button">
+              <span class="navbar-toggler-icon"></span>
+            </button><!-- / hamburger -->
+
+            <!-- navigation items -->
+            <div id="nav-items" class="collapse navbar-collapse">
+
+              <!-- left side items -->
+              <ul class="navbar-nav me-auto mb-2 mb-md-0 mt-1">
+
+                <!-- links -->
+                <li class="nav-item nav-link dropdown mx-auto">
+                  <div class="d-flex justify-content-center" 
+                       data-bs-toggle="dropdown">
+                    <span>Products</span>
+                  </div>
+
+                  <!-- mobile products -->
+                  <ul id="menu-products-mobile" 
+                      class="dropdown-menu products-menu bg-dark-blue"
+                      aria-labelledby="products-dropdown">
+
+                    <!-- shared server product -->
+                    <li class="nav-item mx-auto">
+                      <div class="d-flex justify-content-center">
+                        <a href="pricing.html" class="nav-link card-title">
+                          <i class="bi bi-share text-light"></i>
+                          <span class="animated-link">
+                            Shared Server
+                          </span>
+                        </a>
+                      </div>
+                    </li><!-- / shared server product -->
+
+                    <!-- vps product -->
+                    <li class="nav-item mx-auto">
+                      <div class="d-flex justify-content-center">
+                        <a href="pricing.html" class="nav-link card-title">
+                          <i class="bi bi-hdd text-light"></i>
+                          <span class="animated-link">
+                            Virtual Private Server
+                          </span>
+                        </a>
+                      </div>
+                    </li><!-- / vps product -->
+
+                    <!-- dedicated server product -->
+                    <li class="nav-item mx-auto">
+                      <div class="d-flex justify-content-center">
+                        <a href="pricing.html" class="nav-link card-title">
+                          <i class="bi bi-hdd-rack text-light"></i>
+                          <span class="animated-link">
+                            Dedicated Server
+                          </span>
+                        </a>
+                      </div>
+                    </li><!-- / dedicated server product -->
+
+                  </ul><!-- / mobile products -->
+
+                  <!-- desktop products -->
+                  <ul id="menu-products-desktop" 
+                      class="products-menu dropdown-menu bg-dark-blue"
+                      aria-labelledby="products-dropdown">
+
+                    <!-- dropdown header  -->
+                    <li class="nav-item mx-auto">
+                      <h6 class="dropdown-header text-center">
+                        <span>
+                          Choose what suits you best!
+                        </span>
+                      </h6>
+                    </li><!-- / dropdown header -->
+
+                    <!-- shared server product -->
+                    <li>
+                      <div class="card bg-grey-transparent m-2">
+                        <div class="card-body highlight p-1">
+                          <div class="row">
+
+                            <!-- icon -->
+                            <div class="col-2 d-flex justify-content-center align-items-center">
+                              <i class="bi bi-share text-light"></i>
+                            </div><!-- / icon -->
+
+                            <!-- content -->
+                            <div class="col-10">
+
+                              <!-- link -->
+                              <a href="pricing.html" class="card-title animated-link text-white">
+                                <span>Shared Server</span>
+                              </a><!-- / link -->
+
+                              <!-- description-->
+                              <h6 class="card-subtitle text-muted text-truncate mb-2"  
+                                  title="A Burstable Portion of vCPU."
+                                  data-toggle="tooltip"
+                                  data-placement="bottom">
+                                <span>A Burstable Portion of vCPU.</span>
+                              </h6><!-- / description-->
+
+                            </div><!-- / content -->
+
+                          </div>
+                        </div>
+                      </div>
+                    </li><!-- / shared server product -->
+
+                    <!-- vps product -->
+                    <li>
+                      <div class="card bg-grey-transparent m-2">
+                        <div class="card-body highlight p-1">
+                          <div class="row">
+
+                            <!-- icon -->
+                            <div class="col-2 d-flex justify-content-center align-items-center">
+                              <i class="bi bi-hdd text-light"></i>
+                            </div><!-- / icon -->
+
+                            <!-- content -->
+                            <div class="col-10">
+
+                              <!-- link -->
+                              <a href="pricing.html" class="card-title animated-link text-white">
+                                <span>Virtual Private Server</span>
+                              </a><!-- / link -->
+
+                              <!-- description-->
+                              <h6 class="card-subtitle text-muted text-truncate mb-2" 
+                                  title="General Purpose Usage."
+                                  data-toggle="tooltip"
+                                  data-placement="bottom">
+                                <span>General Purpose Usage.</span>
+                              </h6><!-- / description-->
+
+                            </div><!-- / content -->
+
+                          </div>
+                        </div>
+                      </div>
+                    </li><!-- / vps product -->
+
+                    <!-- dedicated server product -->
+                    <li>
+                      <div class="card bg-grey-transparent m-2">
+                        <div class="card-body highlight p-1">
+                          <div class="row">
+
+                            <!-- icon -->
+                            <div class="col-2 d-flex justify-content-center align-items-center">
+                              <i class="bi bi-hdd-rack text-light"></i>
+                            </div><!-- / icon -->
+
+                            <!-- content -->
+                            <div class="col-10">
+
+                              <!-- link -->
+                              <a href="pricing.html" class="card-title animated-link text-white">
+                                <span>Dedicated Server</span>
+                              </a><!-- / link -->
+
+                              <!-- description-->
+                              <h6 class="card-subtitle text-muted text-truncate mb-2" 
+                                  title="CPU & Memory Optimized."
+                                  data-toggle="tooltip"
+                                  data-placement="bottom">
+                                <span>CPU & Memory Optimized.</span>
+                              </h6><!-- / description-->
+
+                            </div><!-- / content -->
+
+                          </div>
+                        </div>
+                      </div>
+                    </li><!-- / dedicated server product -->
+
+                  </ul><!-- / desktop products -->
+
+                </li><!-- / links -->
+
+                <!-- pricing -->
+                <li class="nav-item mx-auto">
+                  <a class="nav-link" href="pricing.html">
+                    <span>Pricing</span>
+                  </a>
+                </li><!-- / pricing -->
+
+                <!-- about -->
+                <li class="nav-item mx-auto">
+                  <a class="nav-link" href="about.html">
+                    <span>About us</span>
+                  </a>
+                </li><!-- / about -->
+
+              </ul><!-- / left side items -->
+
+              <!-- right side items -->
+              <ul class="navbar-nav mt-2 mt-lg-0 mr-4">
+
+                <!-- non-logged-in account -->
+                <li id="not-logged-in" class="nav-item mx-auto">
+                  <a class="nav-link" href="login.html">
+                    <i class="bi bi-person-circle"></i>
+                    <span>Account</span>
+                  </a>
+                </li><!-- / non-logged-in account -->
+
+                <!-- logged-in account -->
+                <li id="logged-in" class="nav-item mx-auto d-none">
+                  <div class="dropdown">
+
+                    <!-- displayed name -->
+                    <a href="#" 
+                       class="nav-link dropdown-toggle text-center"  
+                       role="button"
+                       data-bs-toggle="dropdown" 
+                       aria-expanded="false">
+                      <i id="account-image" class="bi bi-person-circle"></i>
+                      
+                      <small>
+                        <span id="account-rank" class="badge bg-danger">ADMIN</span>
+                        <!-- <span id="account-rank" class="badge bg-secondary">CLIENT</span> -->
+                      </small>
+                      
+                      <span id="account-name">Jack Sparrow</span> 
+                    </a><!-- / displayed name -->
+
+                    <!-- account menu -->
+                    <ul class="account-menu dropdown-menu text-center bg-dark-blue">
+                      
+                      <!-- my services-->
+                      <li>
+                        <a href="services.html" class="nav-link">
+                          <i class="bi bi-bag"></i>
+                          <span class="animated-link">My Services</span>
+                        </a>
+                      </li><!-- / my services-->
+
+                      <!-- control panel-->
+                      <li>
+                        <a href="panel.html" class="nav-link">
+                          <i class="bi bi-toggles2"></i>
+                          <span class="animated-link">Control Panel</span>
+                        </a>
+                      </li><!-- / control panel-->
+
+                      <!-- profile -->
+                      <li>
+                        <a href="profile.html" class="nav-link">
+                          <i class="bi bi-person-fill"></i>
+                          <span class="animated-link">Profile</span>
+                        </a>
+                      </li><!-- / profile -->
+
+                      <!-- logout -->
+                      <li>
+                        <a href="logout.html" class="nav-link">
+                          <i class="bi bi-box-arrow-right"></i>
+                          <span class="animated-link">Logout</span>
+                        </a>
+                      </li><!-- / logout -->
+
+                    </ul><!-- / account menu -->
+
+                  </div>
+                </li><!-- / logged-in account -->
+
+                <!-- account state toggler -->
+                <li class="nav-item mx-auto">
+                  <div class="container" style="padding-top: 12px;" >
+                    <div class="row align-items-center h-100">
+                      <div class="col-12 mx-auto">
+                        <div class="jumbotron">
+                          <label class="toggle-switch">
+                            <input id="login-toggler" type="checkbox">
+                            <span class="toggle-switch-slider round"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li><!-- / account state toggler -->
+
+              </ul><!-- / right side items -->
+
+            </div><!-- / navigation items -->
+
+          </div><!-- / container -->
+
+        </nav><!-- / navigation -->
+
+      </header>
+
+      <main>
+
+        <!-- announcements -->
+        <div id="announcement-carousel" class="carousel slide" data-bs-ride="carousel">
+
+          <!-- slide indicators -->
+          <ol class="carousel-indicators">
+            <li class="active" data-bs-target="#announcement-carousel" data-bs-slide-to="0"></li>
+            <li data-bs-target="#announcement-carousel" data-bs-slide-to="1"></li>
+            <li data-bs-target="#announcement-carousel" data-bs-slide-to="2"></li>
+          </ol><!-- /slide indicators -->
+
+          <!-- announcement items -->
+          <div class="carousel-inner">
+
+            <!-- developer cloud announcement -->
+            <div class="carousel-item active">
+              <div class="container p-5">
+                <div class="row">
+
+                  <!-- image -->
+                  <div class="col-sm-12 col-xl-6">
+                    <div class="slide-image text-center">
+                      <img class="img-responsive w-75" src="./img/carousel-1.svg"/>
+                    </div>
+                  </div><!-- / image -->
+
+                  <!-- content -->
+                  <div class="col-sm-12 col-xl-6 mt-2 text-white text-center">
+                    <div class="slide-content">
+                      <h2>
+                        <span>Welcome to the developer cloud!</span>
+                      </h2>
+                      <p class="px-1">
+                        <span>
+                          We make it simple for you to launch in the cloud and
+                          scale up - with an amazing support, intuitive control
+                          panel, and more.
+                        </span>
+                      </p>
+                      <a href="screenshots.html" class="btn btn-sm btn-outline-light" role="button">
+                        <span>See screenshots</span>
+                      </a>
+                    </div>
+                  </div><!-- / content -->
+
+                </div>
+              </div>
+            </div><!-- / developer cloud announcement -->
+
+            <!-- deploy and scale announcement -->
+            <div class="carousel-item">
+              <div class="container p-5">
+                <div class="row">
+
+                  <!-- image -->
+                  <div class="col-sm-12 col-xl-6">
+                    <div class="slide-image text-center">
+                      <img class="img-responsive w-75" src="./img/carousel-2.svg"/>
+                    </div>
+                  </div><!-- / image -->
+
+                  <!-- content -->
+                  <div class="col-sm-12 col-xl-6 mt-2 text-white text-center">
+                    <div class="slide-content">
+                      <h2>
+                        <span>Deploy and scale seemlessly</span>
+                      </h2>
+                      <p class="px-1">
+                        <span>
+                          Our optimized configuration process saves your team time
+                          and effort when running and scaling distributed server
+                          instances, the scaling takes up seconds.
+                        </span>
+                      </p>
+                      <a href="pricing.html" class="btn btn-sm btn-outline-light" role="button">
+                        <span>Check Pricing</span>
+                      </a>
+                    </div>
+                  </div><!-- / content -->
+
+                </div>
+              </div>
+            </div><!-- / deploy and scale announcement -->
+
+            <!-- business announcement -->
+            <div class="carousel-item">
+              <div class="container p-5">
+                <div class="row">
+
+                  <!-- image -->
+                  <div class="col-sm-12 col-xl-6">
+                    <div class="slide-image text-center">
+                      <img
+                        class="img-responsive w-75"
+                        src="./img/carousel-3.svg"
+                      />
+                    </div>
+                  </div><!-- / image -->
+
+                  <!-- content -->
+                  <div class="col-sm-12 col-xl-6 mt-2 text-white text-center">
+                    <div class="slide-content">
+                      <h2>
+                        <span>Built for business</span>
+                      </h2>
+                      <p class="px-1">
+                        <span>
+                          We have a reliable platform with more than 100,000
+                          developer teams worldwide trust, predicable pricing,
+                          world-class service (free around-the-clock technical
+                          support) and security and compliance (we keep your data
+                          protected).
+                        </span>
+                      </p>
+                      <a href="about.html" class="btn btn-sm btn-outline-light" role="button">
+                        <span>More about us</span>
+                      </a>
+                    </div>
+                  </div><!-- / content -->
+
+                </div>
+              </div>
+            </div><!-- / business announcement -->
+
+          </div><!-- / announcement items -->
+
+          <!-- previous slide -->
+          <a href="#announcement-carousel" class="carousel-control-prev" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </a><!-- / previous slide -->
+
+          <!-- next slide -->
+          <a href="#announcement-carousel" class="carousel-control-next" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </a><!-- / next slide -->
+
+        </div><!-- / announcements -->
+
+        <!-- horizontal line -->
+        <div class="container text-light mt-0">
+          <hr />
+        </div><!-- / horizontal line -->
+
+        <!-- infrastructure features -->
+        <div class="container text-light">
+
+          <!-- brief description-->
+          <div class="row">
+            <div class="col-12 text-center text-white">
+              <h3>
+                <span>SIMPLE, RELIABLE, POWERFUL!</span>
+              </h3>
+              <p class="text-secondary">
+                <span class="fst-italic">
+                  "Our my services page has been thought to make your  
+                  life easier. It groups all the tools you need to 
+                  manager, secure and monitor your server."
+                </span>
+              </p>
+            </div>
+          </div><!-- / brief description-->
+
+          <!-- infrastructure features -->
+          <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
+
+            <!-- anti ddos -->
+            <div class="col">
+              <div class="card h-100 highlight bg-grey-transparent">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i class="bi bi-shield-check"></i>
+                    <span>ANTI-DDOS ARBOR &trade;</span>
+                  </h5>
+                  <p class="card-text px-3">
+                    <span>
+                      To gurantee maximum security for your servers, an anti-DDoS
+                      system is included with all dedicated servers. It ensures
+                      service continuity for your web servers or other
+                      applications.
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div><!-- / anti ddos -->
+
+            <!-- nvme -->
+            <div class="col">
+              <div class="card h-100 highlight bg-grey-transparent">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i class="bi bi-speedometer"></i>
+                    <span>NVME DRIVES</span>
+                  </h5>
+                  <p class="card-text px-3">
+                    <span>
+                      The new technology that benefits server hosting and is
+                      currently superseding SATA and M.2 SSD performance, and 
+                      part of recent upgrades to our infrastructure NVMe drives.
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div><!-- / nvme -->
+
+            <!-- network -->
+            <div class="col">
+              <div class="card h-100 highlight bg-grey-transparent">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i class="bi bi-clock-history"></i>
+                    <span>UNMETERED TRAFFIC</span>
+                  </h5>
+                  <p class="card-text px-3">
+                    <span>
+                      Apart from having 5GB/S GURANTEE + 1GB/S BURST default. You
+                      can scale up to 40GbE which is the best-in-class network
+                      connectivity for speed and throughput.
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div><!-- / network -->
+
+          </div><!-- / features container -->
+
+        </div><!-- / infrastructure features -->
+
+        <!-- horizontal line -->
+        <div class="container text-light mt-0">
+          <hr />
+        </div><!-- / horizontal line -->
+
+        <!-- media links -->
+        <div class="row mx-0">
+          <div class="col-12 text-center text-white">
+            <h3>
+              <span>Follow us</span>
+            </h3>
+            <p class="text-secondary">
+              <a href="https://twitter.com/dawhostservices"><i class="bi bi-twitter"></i></a>&nbsp;
+              <a href="https://facebook.com/dawhostservices"><i class="bi bi-facebook"></i></a>&nbsp;
+              <a href="https://linkedin.com/dawhostservices"><i class="bi bi-linkedin"></i></a>&nbsp;
+              <a href="https://youtube.com/dawhostservices"><i class="bi bi-youtube"></i></a>&nbsp;
+            </p>
+          </div>
+        </div><!-- / media links -->
+
+      </main>
+
+      <!-- scripts -->
+      <script src="js/bootstrap.bundle.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="js/main.js"></script>
+      <script src="js/home.js"></script><!-- / scripts -->
+
+    </div><!-- / content wrapper -->
+
+    <!-- footer -->
+    <footer class="footer">
+
+      <!-- footer container -->
+      <div class="text-center text-secondary font-small pt-2">
+
+        <!-- copyright notice -->
+        <div>
+
+          <!-- year -->
+          <span>
+            <span>Copyright &copy;</span> 
+            <script>document.write(new Date().getFullYear());</script>
+          </span><!-- / year -->
+
+          <!-- enterprise-->
+          <span class="text-light">
+            DAWHostServices
+          </span><!-- / enterprise-->
+
+          <span>. All rights reserved.</span>
+
+        </div><!-- / copyright notice -->
+
+        <!-- extra links -->
+        <div class="p-0 m-0">
+          <div class="d-inline-flex justify-content-center w-100">
+            <ul class="nav navbar-nav d-inline-flex">
+              <li class="nav-item">
+                <ul class="list-inline">
+
+                  <!-- privacy and security -->
+                  <li class="list-inline-item">
+                    <a class="nav-link" href="legal.html">
+                      <span>Privacy & Security</span>
+                    </a>
+                  </li><!-- / privacy and security -->
+
+                  <!-- terms of use -->
+                  <li class="list-inline-item">
+                    <a class="nav-link" href="legal.html">
+                      <span>Terms of Use</span>
+                    </a>
+                  </li><!-- / terms of use -->
+
+                  <!-- trademarks -->
+                  <li class="list-inline-item">
+                    <a class="nav-link" href="legal.html">
+                      <span>Trademarks</span>
+                    </a>
+                  </li><!-- / trademarks -->
+
+                  <!-- legal -->
+                  <li class="list-inline-item">
+                    <a class="nav-link" href="legal.html">
+                      <span>Legal</span>
+                    </a>
+                  </li><!-- / legal -->
+
+                  <!-- faq -->
+                  <li class="list-inline-item">
+                    <a class="nav-link" href="faq.html">
+                      <span>FAQ</span>
+                    </a>
+                  </li><!-- / faq -->
+
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div><!-- / extra links -->
+
+      </div><!-- / footer container -->
+
+    </footer><!-- / footer -->
+
+  </body>
+
+</html>
