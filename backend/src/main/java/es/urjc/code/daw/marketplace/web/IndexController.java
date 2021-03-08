@@ -13,12 +13,6 @@ public class IndexController {
         return "home";
     }
 
-    @GetMapping(path = "/pricing")
-    public String pricing(Model model) {
-        model.addAttribute("isPricing", true);
-        return "pricing";
-    }
-
     @GetMapping(path = "/about")
     public String about(Model model) {
         model.addAttribute("isAbout", true);
