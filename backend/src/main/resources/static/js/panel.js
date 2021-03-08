@@ -1,8 +1,13 @@
 $(document).ready(() => {
 
     registerContentSwitch();
+    registerLoadMoreAnimation();
+    loadUsers();
+    toggleAccount();
 
 });
+
+var currentPage = 1;
 
 const registerContentSwitch = () => {
 
@@ -18,6 +23,69 @@ const registerContentSwitch = () => {
         });
     });
     
+}
+
+const loadUsers = () => {
+
+    $.get(`/users/${currentPage}/3`, (data) => {
+        $(`${data}`).appendTo("#clients");
+        currentPage++;
+    });
+
+}
+
+const toggleAccount = () => {
+
+    $(document).on('click', '.toggle-account', function() {
+
+        const currentButton = $(this);
+        const id = currentButton.data('daw-user-id');
+        const type = currentButton.data('daw-user-action');
+
+        $.post(`/user/${id}/${type}`, (data) => {
+            $("#flash").replaceWith(data);
+        });
+
+        const updateLoaded = () => {
+            $("#clients").html('');
+            let size = currentPage;
+            currentPage = 1;
+            while(size > 0) {
+                loadUsers();
+                size--;
+            }
+            document.getElementById("flash-spinner").outerHTML = "";
+        }
+
+        setTimeout(() => updateLoaded(), 1000);
+
+    });
+
+}
+
+const registerLoadMoreAnimation = () => {
+
+    $(".load-more-button").each(function(){
+        const currentButton = $(this);
+
+        currentButton.click(() => {
+            currentButton.addClass("d-none");
+            const contentId = currentButton.data('daw-loading-element');
+            $("#" + contentId).removeClass("d-none");
+
+            loadUsers(currentPage);
+
+            const addButtonBack = () => {
+                currentButton.removeClass("d-none");
+                $("#" + contentId).addClass("d-none");
+            }
+
+            setTimeout(() => addButtonBack(), 500);
+
+        });
+    });
+
+
 }
 
 const weeklySalesElement = document.getElementById('weekly-sales-chart').getContext('2d');
