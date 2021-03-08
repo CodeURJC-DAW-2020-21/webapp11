@@ -16,8 +16,12 @@
     {{/isLegal}}
 
     {{#isPanel}}
-        <link rel="stylesheet" href="css/about.css">
+        <link rel="stylesheet" href="css/panel.css">
     {{/isPanel}}
+
+    {{#isAbout}}
+        <link rel="stylesheet" href="css/about.css">
+    {{/isAbout}}
 
     {{#isPricing}}
         <link rel="stylesheet" href="css/pricing.css">
@@ -57,7 +61,7 @@
             <div class="container-fluid">
 
                 <!-- logo -->
-                <a id="logo" href="home.html" class="navbar-brand d-flex">
+                <a id="logo" onclick="location.href='/';" class="navbar-brand d-flex" href="#">
                     <span class="text-light">DAW</span>
                     <span class="text-secondary">Host</span>
                     <span class="text-light">Services</span>
@@ -98,8 +102,8 @@
                                         <a href="pricing.html" class="nav-link card-title">
                                             <i class="bi bi-share text-light"></i>
                                             <span class="animated-link">
-                            Shared Server
-                          </span>
+                                                Shared Server
+                                            </span>
                                         </a>
                                     </div>
                                 </li><!-- / shared server product -->
@@ -110,8 +114,8 @@
                                         <a href="pricing.html" class="nav-link card-title">
                                             <i class="bi bi-hdd text-light"></i>
                                             <span class="animated-link">
-                            Virtual Private Server
-                          </span>
+                                                Virtual Private Server
+                                            </span>
                                         </a>
                                     </div>
                                 </li><!-- / vps product -->
@@ -122,8 +126,8 @@
                                         <a href="pricing.html" class="nav-link card-title">
                                             <i class="bi bi-hdd-rack text-light"></i>
                                             <span class="animated-link">
-                            Dedicated Server
-                          </span>
+                                                Dedicated Server
+                                            </span>
                                         </a>
                                     </div>
                                 </li><!-- / dedicated server product -->
@@ -138,9 +142,9 @@
                                 <!-- dropdown header  -->
                                 <li class="nav-item mx-auto">
                                     <h6 class="dropdown-header text-center">
-                        <span>
-                          Choose what suits you best!
-                        </span>
+                                    <span>
+                                      Choose what suits you best!
+                                    </span>
                                     </h6>
                                 </li><!-- / dropdown header -->
 
@@ -159,7 +163,7 @@
                                                 <div class="col-10">
 
                                                     <!-- link -->
-                                                    <a href="pricing.html" class="card-title animated-link text-white">
+                                                    <a onclick="location.href='/pricing';" href="#" class="card-title animated-link text-white">
                                                         <span>Shared Server</span>
                                                     </a><!-- / link -->
 
@@ -193,7 +197,7 @@
                                                 <div class="col-10">
 
                                                     <!-- link -->
-                                                    <a href="pricing.html" class="card-title animated-link text-white">
+                                                    <a onclick="location.href='/pricing';" href="#" class="card-title animated-link text-white">
                                                         <span>Virtual Private Server</span>
                                                     </a><!-- / link -->
 
@@ -227,7 +231,7 @@
                                                 <div class="col-10">
 
                                                     <!-- link -->
-                                                    <a href="pricing.html" class="card-title animated-link text-white">
+                                                    <a onclick="location.href='/pricing';" href="#" class="card-title animated-link text-white">
                                                         <span>Dedicated Server</span>
                                                     </a><!-- / link -->
 
@@ -252,14 +256,14 @@
 
                         <!-- pricing -->
                         <li class="nav-item mx-auto">
-                            <a class="nav-link" href="pricing.html">
+                            <a onclick="location.href='/pricing';" class="nav-link" href="#">
                                 <span>Pricing</span>
                             </a>
                         </li><!-- / pricing -->
 
                         <!-- about -->
                         <li class="nav-item mx-auto">
-                            <a class="nav-link" href="about.html">
+                            <a onclick="location.href='/about';" class="nav-link" href="#">
                                 <span>About us</span>
                             </a>
                         </li><!-- / about -->
@@ -271,7 +275,7 @@
 
                         <!-- non-logged-in account -->
                         <li id="not-logged-in" class="nav-item mx-auto">
-                            <a class="nav-link" href="login.html">
+                            <a onclick="location.href='/login';" class="nav-link" href="#">
                                 <i class="bi bi-person-circle"></i>
                                 <span>Account</span>
                             </a>
@@ -302,7 +306,7 @@
 
                                     <!-- my services-->
                                     <li>
-                                        <a href="services.html" class="nav-link">
+                                        <a onclick="location.href='/services';" class="nav-link" href="#">
                                             <i class="bi bi-bag"></i>
                                             <span class="animated-link">My Services</span>
                                         </a>
@@ -310,7 +314,7 @@
 
                                     <!-- control panel-->
                                     <li>
-                                        <a href="panel.html" class="nav-link">
+                                        <a onclick="location.href='/panel';" class="nav-link" href="#">
                                             <i class="bi bi-toggles2"></i>
                                             <span class="animated-link">Control Panel</span>
                                         </a>
@@ -318,7 +322,7 @@
 
                                     <!-- profile -->
                                     <li>
-                                        <a href="profile.html" class="nav-link">
+                                        <a onclick="location.href='/profile';" class="nav-link" href="#">
                                             <i class="bi bi-person-fill"></i>
                                             <span class="animated-link">Profile</span>
                                         </a>
@@ -326,7 +330,7 @@
 
                                     <!-- logout -->
                                     <li>
-                                        <a href="logout.html" class="nav-link">
+                                        <a onclick="location.href='/logout';" class="nav-link" href="#">
                                             <i class="bi bi-box-arrow-right"></i>
                                             <span class="animated-link">Logout</span>
                                         </a>
