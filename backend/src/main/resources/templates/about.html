@@ -1,601 +1,172 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
+{{> header}}
 
-    <!-- metadata -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<main>
+  <!-- page title -->
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center text-white">
+        <h3>
+          <span>About Us</span>
+        </h3>
+        <p class="text-secondary mb-0">
+          <span class="fst-italic">
+            "We learn from our mistakes to improve,
+            so you don't have to worry"
+          </span>
+        </p>
+      </div>
+    </div>
+  </div><!-- / page title -->
 
-    <!-- stylesheets -->
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/main.css">
-    
-    <!-- title -->
-    <title id="title">DAWHostServices</title>
+  <!-- horizontal line -->
+  <div class="container text-light mt-0">
+    <hr />
+  </div><!-- / horizontal line -->
 
-  </head>
-  <body>
+  <!-- about us -->
+  <div class="container border border-secondary rounded p-2">
+    <div class="row justify-content-center me-auto">
 
-    <!-- screen size detector -->
-    <div id="screen-size-detector">
-      <div id="xs" class="d-block d-sm-none"></div>
-      <div id="sm" class="d-none d-sm-block d-md-none"></div>
-      <div id="md" class="d-none d-md-block d-lg-none"></div>
-      <div id="lg" class="d-none d-lg-block d-xl-none"></div>
-      <div id="xl" class="d-none d-xl-block"></div>
-    </div><!-- / screen size detector -->
+      <!-- origins  -->
+      <div class="col-lg-3 col-md-10 col-sm-10 col-10 about-box rounded-pill text-white highlight bg-grey-transparent p-1 pt-4 m-4">
 
-    <!-- content wrapper -->
-    <div class="content-wrapper">
-      <header>
+        <!-- title -->
+        <h5 class="text-center px-3">
+          <i class="bi bi-bar-chart-steps"></i>
+          <span class="animated-link">Origins</span>
+        </h5><!-- title -->
 
-        <!-- navigation -->
-        <nav class="navbar navbar-expand-md navbar-dark mx-2">
+        <!-- image -->
+        <div class="row my-3">
+          <div class="col-12 justify-content-center mx-auto text-center">
+            <img class="img-responsive w-75" src="./img/about/origins.svg" style="max-height: 170px"/>
+          </div>
+        </div><!-- / image -->
 
-          <!-- container -->
-          <div class="container-fluid">
-
-            <!-- logo -->
-            <a id="logo" href="home.html" class="navbar-brand d-flex">
-              <span class="text-light">DAW</span>
-              <span class="text-secondary">Host</span>
-              <span class="text-light">Services</span> 
-            </a><!-- / logo -->
-
-            <!-- hamburger -->
-            <button class="navbar-toggler" 
-                    data-bs-target="#nav-items" 
-                    aria-controls="nav-items" 
-                    data-bs-toggle="collapse"
-                    aria-expanded="false" 
-                    aria-label="Toggle navigation menu" 
-                    type="button">
-              <span class="navbar-toggler-icon"></span>
-            </button><!-- / hamburger -->
-
-            <!-- navigation items -->
-            <div id="nav-items" class="collapse navbar-collapse">
-
-              <!-- left side items -->
-              <ul class="navbar-nav me-auto mb-2 mb-md-0 mt-1">
-
-                <!-- links -->
-                <li class="nav-item nav-link dropdown mx-auto">
-                  <div class="d-flex justify-content-center" 
-                       data-bs-toggle="dropdown">
-                    <span>Products</span>
-                  </div>
-
-                  <!-- mobile products -->
-                  <ul id="menu-products-mobile" 
-                      class="dropdown-menu products-menu bg-dark-blue"
-                      aria-labelledby="products-dropdown">
-
-                    <!-- shared server product -->
-                    <li class="nav-item mx-auto">
-                      <div class="d-flex justify-content-center">
-                        <a href="pricing.html" class="nav-link card-title">
-                          <i class="bi bi-share text-light"></i>
-                          <span class="animated-link">
-                            Shared Server
-                          </span>
-                        </a>
-                      </div>
-                    </li><!-- / shared server product -->
-
-                    <!-- vps product -->
-                    <li class="nav-item mx-auto">
-                      <div class="d-flex justify-content-center">
-                        <a href="pricing.html" class="nav-link card-title">
-                          <i class="bi bi-hdd text-light"></i>
-                          <span class="animated-link">
-                            Virtual Private Server
-                          </span>
-                        </a>
-                      </div>
-                    </li><!-- / vps product -->
-
-                    <!-- dedicated server product -->
-                    <li class="nav-item mx-auto">
-                      <div class="d-flex justify-content-center">
-                        <a href="pricing.html" class="nav-link card-title">
-                          <i class="bi bi-hdd-rack text-light"></i>
-                          <span class="animated-link">
-                            Dedicated Server
-                          </span>
-                        </a>
-                      </div>
-                    </li><!-- / dedicated server product -->
-
-                  </ul><!-- / mobile products -->
-
-                  <!-- desktop products -->
-                  <ul id="menu-products-desktop" 
-                      class="products-menu dropdown-menu bg-dark-blue"
-                      aria-labelledby="products-dropdown">
-
-                    <!-- dropdown header  -->
-                    <li class="nav-item mx-auto">
-                      <h6 class="dropdown-header text-center">
-                        <span>
-                          Choose what suits you best!
-                        </span>
-                      </h6>
-                    </li><!-- / dropdown header -->
-
-                    <!-- shared server product -->
-                    <li>
-                      <div class="card bg-grey-transparent m-2">
-                        <div class="card-body highlight p-1">
-                          <div class="row">
-
-                            <!-- icon -->
-                            <div class="col-2 d-flex justify-content-center align-items-center">
-                              <i class="bi bi-share text-light"></i>
-                            </div><!-- / icon -->
-
-                            <!-- content -->
-                            <div class="col-10">
-
-                              <!-- link -->
-                              <a href="pricing.html" class="card-title animated-link text-white">
-                                <span>Shared Server</span>
-                              </a><!-- / link -->
-
-                              <!-- description-->
-                              <h6 class="card-subtitle text-muted text-truncate mb-2"  
-                                  title="A Burstable Portion of vCPU."
-                                  data-toggle="tooltip"
-                                  data-placement="bottom">
-                                <span>A Burstable Portion of vCPU.</span>
-                              </h6><!-- / description-->
-
-                            </div><!-- / content -->
-
-                          </div>
-                        </div>
-                      </div>
-                    </li><!-- / shared server product -->
-
-                    <!-- vps product -->
-                    <li>
-                      <div class="card bg-grey-transparent m-2">
-                        <div class="card-body highlight p-1">
-                          <div class="row">
-
-                            <!-- icon -->
-                            <div class="col-2 d-flex justify-content-center align-items-center">
-                              <i class="bi bi-hdd text-light"></i>
-                            </div><!-- / icon -->
-
-                            <!-- content -->
-                            <div class="col-10">
-
-                              <!-- link -->
-                              <a href="pricing.html" class="card-title animated-link text-white">
-                                <span>Virtual Private Server</span>
-                              </a><!-- / link -->
-
-                              <!-- description-->
-                              <h6 class="card-subtitle text-muted text-truncate mb-2" 
-                                  title="General Purpose Usage."
-                                  data-toggle="tooltip"
-                                  data-placement="bottom">
-                                <span>General Purpose Usage.</span>
-                              </h6><!-- / description-->
-
-                            </div><!-- / content -->
-
-                          </div>
-                        </div>
-                      </div>
-                    </li><!-- / vps product -->
-
-                    <!-- dedicated server product -->
-                    <li>
-                      <div class="card bg-grey-transparent m-2">
-                        <div class="card-body highlight p-1">
-                          <div class="row">
-
-                            <!-- icon -->
-                            <div class="col-2 d-flex justify-content-center align-items-center">
-                              <i class="bi bi-hdd-rack text-light"></i>
-                            </div><!-- / icon -->
-
-                            <!-- content -->
-                            <div class="col-10">
-
-                              <!-- link -->
-                              <a href="pricing.html" class="card-title animated-link text-white">
-                                <span>Dedicated Server</span>
-                              </a><!-- / link -->
-
-                              <!-- description-->
-                              <h6 class="card-subtitle text-muted text-truncate mb-2" 
-                                  title="CPU & Memory Optimized."
-                                  data-toggle="tooltip"
-                                  data-placement="bottom">
-                                <span>CPU & Memory Optimized.</span>
-                              </h6><!-- / description-->
-
-                            </div><!-- / content -->
-
-                          </div>
-                        </div>
-                      </div>
-                    </li><!-- / dedicated server product -->
-
-                  </ul><!-- / desktop products -->
-
-                </li><!-- / links -->
-
-                <!-- pricing -->
-                <li class="nav-item mx-auto">
-                  <a class="nav-link" href="pricing.html">
-                    <span>Pricing</span>
-                  </a>
-                </li><!-- / pricing -->
-
-                <!-- about -->
-                <li class="nav-item mx-auto">
-                  <a class="nav-link" href="about.html">
-                    <span>About us</span>
-                  </a>
-                </li><!-- / about -->
-
-              </ul><!-- / left side items -->
-
-              <!-- right side items -->
-              <ul class="navbar-nav mt-2 mt-lg-0 mr-4">
-
-                <!-- non-logged-in account -->
-                <li id="not-logged-in" class="nav-item mx-auto">
-                  <a class="nav-link" href="login.html">
-                    <i class="bi bi-person-circle"></i>
-                    <span>Account</span>
-                  </a>
-                </li><!-- / non-logged-in account -->
-
-                <!-- logged-in account -->
-                <li id="logged-in" class="nav-item mx-auto d-none">
-                  <div class="dropdown">
-
-                    <!-- displayed name -->
-                    <a href="#" 
-                       class="nav-link dropdown-toggle text-center"  
-                       role="button"
-                       data-bs-toggle="dropdown" 
-                       aria-expanded="false">
-                      <i id="account-image" class="bi bi-person-circle"></i>
-                      
-                      <small>
-                        <span id="account-rank" class="badge bg-danger">ADMIN</span>
-                        <!-- <span id="account-rank" class="badge bg-secondary">CLIENT</span> -->
-                      </small>
-                      
-                      <span id="account-name">Jack Sparrow</span> 
-                    </a><!-- / displayed name -->
-
-                    <!-- account menu -->
-                    <ul class="account-menu dropdown-menu text-center bg-dark-blue">
-                      
-                      <!-- my services-->
-                      <li>
-                        <a href="services.html" class="nav-link">
-                          <i class="bi bi-bag"></i>
-                          <span class="animated-link">My Services</span>
-                        </a>
-                      </li><!-- / my services-->
-
-                      <!-- control panel-->
-                      <li>
-                        <a href="panel.html" class="nav-link">
-                          <i class="bi bi-toggles2"></i>
-                          <span class="animated-link">Control Panel</span>
-                        </a>
-                      </li><!-- / control panel-->
-
-                      <!-- profile -->
-                      <li>
-                        <a href="profile.html" class="nav-link">
-                          <i class="bi bi-person-fill"></i>
-                          <span class="animated-link">Profile</span>
-                        </a>
-                      </li><!-- / profile -->
-
-                      <!-- logout -->
-                      <li>
-                        <a href="logout.html" class="nav-link">
-                          <i class="bi bi-box-arrow-right"></i>
-                          <span class="animated-link">Logout</span>
-                        </a>
-                      </li><!-- / logout -->
-
-                    </ul><!-- / account menu -->
-
-                  </div>
-                </li><!-- / logged-in account -->
-
-                <!-- account state toggler -->
-                <li class="nav-item mx-auto">
-                  <div class="container" style="padding-top: 12px;" >
-                    <div class="row align-items-center h-100">
-                      <div class="col-12 mx-auto">
-                        <div class="jumbotron">
-                          <label class="toggle-switch">
-                            <input id="login-toggler" type="checkbox">
-                            <span class="toggle-switch-slider round"></span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li><!-- / account state toggler -->
-
-              </ul><!-- / right side items -->
-
-            </div><!-- / navigation items -->
-
-          </div><!-- / container -->
-
-        </nav><!-- / navigation -->
-
-      </header>
-      
-      <main>
-        <!-- page title -->
         <div class="container">
-          <div class="row">
-            <div class="col-12 text-center text-white">
-              <h3>
-                <span>About Us</span>
-              </h3> 
-              <p class="text-secondary mb-0">
-                <span class="fst-italic">
-                  "We learn from our mistakes to improve, 
-                  so you don't have to worry"
+          <div class="row align-items-center h-100">
+            <div class="col-12 mx-auto">
+              <div class="jumbotron text-center mb-3 pb-5">
+                <span>
+                  One day, we wanted server space for our own
+                  project we were doing, so we set out to do
+                  so. We couldn't find any website which was
+                  reliable to rent the type of server that we
+                  wanted. So after that experience, we wanted
+                  to ensure that nobody else would go through
+                  the same pain as us. We started with some
+                  few ideas, some failed, some worked out, but
+                  this is our final product. This is how our
+                  company <span class="fw-bold">DAWHostServices
+                  was born.</span>
                 </span>
-              </p>
-            </div>  
-          </div>
-        </div><!-- / page title -->
-
-        <!-- horizontal line -->
-        <div class="container text-light mt-0">
-          <hr />
-        </div><!-- / horizontal line -->
-
-        <!-- about us -->
-        <div class="container border border-secondary rounded p-2">
-          <div class="row justify-content-center me-auto">
-
-            <!-- origins  -->
-            <div class="col-lg-3 col-md-10 col-sm-10 col-10 about-box rounded-pill text-white highlight bg-grey-transparent p-1 pt-4 m-4">
-
-              <!-- title -->
-              <h5 class="text-center px-3">
-                <i class="bi bi-bar-chart-steps"></i>
-                <span class="animated-link">Origins</span>
-              </h5><!-- title -->
-
-              <!-- image -->
-              <div class="row my-3">
-                <div class="col-12 justify-content-center mx-auto text-center">
-                  <img class="img-responsive w-75" src="./img/about/origins.svg" style="max-height: 170px"/>
-                </div>
-              </div><!-- / image -->
-
-              <div class="container">
-                <div class="row align-items-center h-100">
-                  <div class="col-12 mx-auto">
-                    <div class="jumbotron text-center mb-3 pb-5">
-                      <span>
-                        One day, we wanted server space for our own 
-                        project we were doing, so we set out to do 
-                        so. We couldn't find any website which was 
-                        reliable to rent the type of server that we 
-                        wanted. So after that experience, we wanted 
-                        to ensure that nobody else would go through 
-                        the same pain as us. We started with some 
-                        few ideas, some failed, some worked out, but 
-                        this is our final product. This is how our  
-                        company <span class="fw-bold">DAWHostServices 
-                        was born.</span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
               </div>
-
-            </div><!-- / origins -->
-          
-            <!-- present -->
-            <div class="col-lg-3 col-md-10 col-sm-10 col-10 about-box rounded-pill text-white highlight bg-grey-transparent p-1 pt-4 m-4">
-              
-              <!-- title -->
-              <h5 class="text-center px-3">
-                <i class="bi bi-clock"></i>
-                <span class="animated-link">Present</span>
-              </h5><!-- title -->
-
-              <!-- image -->
-              <div class="row my-3">
-                <div class="col-12 justify-content-center mx-auto text-center">
-                  <img class="img-responsive w-75" src="./img/about/present.svg" style="max-height: 170px"/>
-                </div>
-              </div><!-- / image -->
-
-              <div class="container">
-                <div class="row align-items-center h-100">
-                  <div class="col-12 mx-auto">
-                    <div class="jumbotron text-center mb-3 pb-5">
-                      <span>
-                        This website has our hearts put into it. We 
-                        want to sell the best experience possible 
-                        when renting server space, in other words, 
-                        <span class="fw-bold">fast, reliable and great
-                        </span>. It is so that our servers are at a great 
-                        price. So if you are thinking about renting some 
-                        server space, look no further, because you will 
-                        not find a better place! We have hundreds of 
-                        companies giving the same services, so what does 
-                        make us stand out from the competition? Our range 
-                        of configurations.
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div><!-- / present -->
-          
-            <!-- future -->
-            <div class="col-lg-3 col-md-10 col-sm-10 col-10 about-box rounded-pill text-white highlight bg-grey-transparent p-1 pt-4 m-4">
-              
-              <!-- title -->
-              <h5 class="text-center px-3">
-                <i class="bi bi-hand-index"></i>
-                <span class="animated-link">Future</span>
-              </h5><!-- title -->
-
-              <!-- image -->
-              <div class="row my-3">
-                <div class="col-12 justify-content-center mx-auto text-center">
-                  <img class="img-responsive w-75" src="./img/about/future.svg" style="max-height: 170px"/>
-                </div>
-              </div><!-- / image -->
-
-              <div class="container">
-                <div class="row align-items-center h-100">
-                  <div class="col-12 mx-auto">
-                    <div class="jumbotron text-center mb-3 pb-5">
-                      <span>
-                        We have plans to offer a wider range of 
-                        servers. Because in this age of ever-changing 
-                        technology, everyone has to adapt, and we 
-                        are no exception. Our motto is 
-                        <span class="fw-bold">Fail, Learn, Adapt and 
-                        Success</span>. Firstly, we will encounter 
-                        problems from which we need to learn. After 
-                        the fact, with our new founded knowledge we 
-                        can adapt ourselves to provide a better service 
-                        and succeed in our company goals, which is 
-                        the satisfaction of our clients by renting 
-                        ever-improving servers.
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div><!-- / future -->
-            
-          </div>
-
-          <!-- reach us -->
-          <div class="row px-5 mt-2 py-0 m-0">
-            <div class="col-12 px-5 py-0 text-center text-white">
-    
-              <!-- title -->
-              <h5>
-                <i class="bi bi-question-circle"></i>
-                <span class="animated-link">Reach us at</span>
-              </h5><!-- / title -->
-              <p>
-                <span class="fw-light">contact@dawhostservices.com</span>
-              </p>
             </div>
-          </div><!-- / reach us -->
-
-        </div><!-- / about us -->
-
-      </main>
-
-      <!-- scripts -->
-      <script src="js/bootstrap.bundle.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <script src="js/main.js"></script>
-      <script src="js/about.js"></script><!-- / scripts -->
-
-    </div><!-- / content wrapper -->
-
-    <!-- footer -->
-    <footer class="footer">
-
-      <!-- footer container -->
-      <div class="text-center text-secondary font-small pt-2">
-
-        <!-- copyright notice -->
-        <div>
-
-          <!-- year -->
-          <span>
-            <span>Copyright &copy;</span> 
-            <script>document.write(new Date().getFullYear());</script>
-          </span><!-- / year -->
-
-          <!-- enterprise-->
-          <span class="text-light">
-            DAWHostServices
-          </span><!-- / enterprise-->
-
-          <span>. All rights reserved.</span>
-
-        </div><!-- / copyright notice -->
-
-        <!-- extra links -->
-        <div class="p-0 m-0">
-          <div class="d-inline-flex justify-content-center w-100">
-            <ul class="nav navbar-nav d-inline-flex">
-              <li class="nav-item">
-                <ul class="list-inline">
-
-                  <!-- privacy and security -->
-                  <li class="list-inline-item">
-                    <a class="nav-link" href="legal.html">
-                      <span>Privacy & Security</span>
-                    </a>
-                  </li><!-- / privacy and security -->
-
-                  <!-- terms of use -->
-                  <li class="list-inline-item">
-                    <a class="nav-link" href="legal.html">
-                      <span>Terms of Use</span>
-                    </a>
-                  </li><!-- / terms of use -->
-
-                  <!-- trademarks -->
-                  <li class="list-inline-item">
-                    <a class="nav-link" href="legal.html">
-                      <span>Trademarks</span>
-                    </a>
-                  </li><!-- / trademarks -->
-
-                  <!-- legal -->
-                  <li class="list-inline-item">
-                    <a class="nav-link" href="legal.html">
-                      <span>Legal</span>
-                    </a>
-                  </li><!-- / legal -->
-
-                  <!-- faq -->
-                  <li class="list-inline-item">
-                    <a class="nav-link" href="faq.html">
-                      <span>FAQ</span>
-                    </a>
-                  </li><!-- / faq -->
-
-                </ul>
-              </li>
-            </ul>
           </div>
-        </div><!-- / extra links -->
+        </div>
 
-      </div><!-- / footer container -->
+      </div><!-- / origins -->
 
-    </footer><!-- / footer -->
+      <!-- present -->
+      <div class="col-lg-3 col-md-10 col-sm-10 col-10 about-box rounded-pill text-white highlight bg-grey-transparent p-1 pt-4 m-4">
 
-  </body>
+        <!-- title -->
+        <h5 class="text-center px-3">
+          <i class="bi bi-clock"></i>
+          <span class="animated-link">Present</span>
+        </h5><!-- title -->
 
-</html>
+        <!-- image -->
+        <div class="row my-3">
+          <div class="col-12 justify-content-center mx-auto text-center">
+            <img class="img-responsive w-75" src="./img/about/present.svg" style="max-height: 170px"/>
+          </div>
+        </div><!-- / image -->
+
+        <div class="container">
+          <div class="row align-items-center h-100">
+            <div class="col-12 mx-auto">
+              <div class="jumbotron text-center mb-3 pb-5">
+                <span>
+                  This website has our hearts put into it. We
+                  want to sell the best experience possible
+                  when renting server space, in other words,
+                  <span class="fw-bold">fast, reliable and great
+                  </span>. It is so that our servers are at a great
+                  price. So if you are thinking about renting some
+                  server space, look no further, because you will
+                  not find a better place! We have hundreds of
+                  companies giving the same services, so what does
+                  make us stand out from the competition? Our range
+                  of configurations.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- / present -->
+
+      <!-- future -->
+      <div class="col-lg-3 col-md-10 col-sm-10 col-10 about-box rounded-pill text-white highlight bg-grey-transparent p-1 pt-4 m-4">
+
+        <!-- title -->
+        <h5 class="text-center px-3">
+          <i class="bi bi-hand-index"></i>
+          <span class="animated-link">Future</span>
+        </h5><!-- title -->
+
+        <!-- image -->
+        <div class="row my-3">
+          <div class="col-12 justify-content-center mx-auto text-center">
+            <img class="img-responsive w-75" src="./img/about/future.svg" style="max-height: 170px"/>
+          </div>
+        </div><!-- / image -->
+
+        <div class="container">
+          <div class="row align-items-center h-100">
+            <div class="col-12 mx-auto">
+              <div class="jumbotron text-center mb-3 pb-5">
+                <span>
+                  We have plans to offer a wider range of
+                  servers. Because in this age of ever-changing
+                  technology, everyone has to adapt, and we
+                  are no exception. Our motto is
+                  <span class="fw-bold">Fail, Learn, Adapt and
+                  Success</span>. Firstly, we will encounter
+                  problems from which we need to learn. After
+                  the fact, with our new founded knowledge we
+                  can adapt ourselves to provide a better service
+                  and succeed in our company goals, which is
+                  the satisfaction of our clients by renting
+                  ever-improving servers.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- / future -->
+
+    </div>
+
+    <!-- reach us -->
+    <div class="row px-5 mt-2 py-0 m-0">
+      <div class="col-12 px-5 py-0 text-center text-white">
+
+        <!-- title -->
+        <h5>
+          <i class="bi bi-question-circle"></i>
+          <span class="animated-link">Reach us at</span>
+        </h5><!-- / title -->
+        <p>
+          <span class="fw-light">contact@dawhostservices.com</span>
+        </p>
+      </div>
+    </div><!-- / reach us -->
+
+  </div><!-- / about us -->
+
+</main>
+
+{{> footer}}

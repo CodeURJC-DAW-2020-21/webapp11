@@ -30,6 +30,8 @@ public class UserController {
     @RequestMapping(path = "/login", method = RequestMethod.GET)
     public String login(@ModelAttribute(value = "error") String errorMsg, Model model) {
 
+        model.addAttribute("isLogin", true);
+
         final String errorKey = "error";
         boolean hasError = Strings.isNotBlank(errorMsg) && Strings.isNotEmpty(errorMsg);
         model.addAttribute(errorKey, hasError ? errorMsg : Strings.EMPTY);
