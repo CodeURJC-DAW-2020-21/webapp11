@@ -104,7 +104,7 @@ public class UserController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RequestMapping(path = "/user/{id}/enable" , method = RequestMethod.POST)
+    @RequestMapping(path = "/user/{id}/enable", method = RequestMethod.GET)
     public String enableUser(@PathVariable("id") Long userId, Model model) {
 
         userService.enableUser(userId);
@@ -116,7 +116,7 @@ public class UserController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RequestMapping(path = "/user/{id}/disable" , method = RequestMethod.POST)
+    @RequestMapping(path = "/user/{id}/disable" , method = RequestMethod.GET)
     public String disableUser(@PathVariable("id") Long userId, Model model) {
 
         userService.disableUser(userId);
