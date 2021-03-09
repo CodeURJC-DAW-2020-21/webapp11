@@ -1,3 +1,5 @@
+let currentPage = 1;
+
 $(document).ready(() => {
 
     registerContentSwitch();
@@ -7,7 +9,7 @@ $(document).ready(() => {
 
 });
 
-var currentPage = 1;
+
 
 const registerContentSwitch = () => {
 
@@ -20,6 +22,7 @@ const registerContentSwitch = () => {
             currentButton.addClass("active");
             const contentId = currentButton.data('daw-content');
             $("#" + contentId).removeClass("d-none");
+            $("#flash").replaceWith(`<div id="flash"></div>`);
         });
     });
     
@@ -42,21 +45,26 @@ const toggleAccount = () => {
         const id = currentButton.data('daw-user-id');
         const type = currentButton.data('daw-user-action');
 
+        console.log(type + " " + id);
+
+        const lastPage = currentPage;
+        currentPage = 1;
+
         $.post(`/user/${id}/${type}`, (data) => {
             $("#flash").replaceWith(data);
         });
 
         const updateLoaded = () => {
             $("#clients").html('');
-            let size = currentPage;
-            currentPage = 1;
-            while(size > 0) {
-                loadUsers();
-                size--;
-            }
+
+            let elementsAmount = (lastPage - 1) * 3;
+            $.get(`/users/1/${elementsAmount}`, (data) => {
+                $(`${data}`).appendTo("#clients");
+                currentPage = lastPage;
+            });
+
             document.getElementById("flash-spinner").outerHTML = "";
         }
-
         setTimeout(() => updateLoaded(), 1000);
 
     });
@@ -73,13 +81,12 @@ const registerLoadMoreAnimation = () => {
             const contentId = currentButton.data('daw-loading-element');
             $("#" + contentId).removeClass("d-none");
 
-            loadUsers(currentPage);
+            loadUsers();
 
             const addButtonBack = () => {
                 currentButton.removeClass("d-none");
                 $("#" + contentId).addClass("d-none");
             }
-
             setTimeout(() => addButtonBack(), 500);
 
         });
