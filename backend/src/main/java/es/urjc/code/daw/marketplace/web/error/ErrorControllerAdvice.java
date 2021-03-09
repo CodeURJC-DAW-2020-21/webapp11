@@ -8,10 +8,12 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice
 public class ErrorControllerAdvice {
 
+    private final static String errorPath = "redirect:/error";
+
     @ExceptionHandler(value = Exception.class)
     public ModelAndView handleError(Model model, Exception exception) {
-        System.out.println(exception.getMessage());
-        return new ModelAndView("redirect:/error");
+        model.addAttribute("exception", exception.getMessage());
+        return new ModelAndView(errorPath);
     }
 
 }
