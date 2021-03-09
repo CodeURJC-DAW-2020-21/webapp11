@@ -22,7 +22,8 @@ public interface UserMapper {
     @Mapping(target = "oneTimeDiscountsConsumed", ignore = true)
     User asRegisterUser(RegisterUserRequestDto request);
 
-    @Mapping(target = "id", source = "userId")
+
+    @Mapping(target = "id", ignore=true)
     @Mapping(target = "roles", ignore = true)
     @Mapping(target = "accumulativeDiscountsConsumed", ignore = true)
     @Mapping(target = "oneTimeDiscountsConsumed", ignore = true)

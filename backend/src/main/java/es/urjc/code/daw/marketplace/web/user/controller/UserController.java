@@ -96,6 +96,8 @@ public class UserController {
         User updateUser = userMapper.asUpdateUser(request);
         updateUser.setId(userId);
 
+        System.out.println(updateUser.getFirstName());
+
         User user = userService.updateUser(updateUser);
         model.addAttribute("user", user);
 

@@ -13,7 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class UpdateUserRequestDto {
 
-    private Long userId;
+
     private String firstName;
     private String surname;
     private String address;
