@@ -96,7 +96,7 @@ public class UserController {
         User updateUser = userMapper.asUpdateUser(request);
         updateUser.setId(userId);
 
-        User user = userService.updateUser(userMapper.asUpdateUser(request));
+        User user = userService.updateUser(updateUser);
         model.addAttribute("user", user);
 
         final String viewIndicator = "isProfile";
