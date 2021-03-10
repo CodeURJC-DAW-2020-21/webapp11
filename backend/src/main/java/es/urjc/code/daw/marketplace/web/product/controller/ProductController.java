@@ -28,7 +28,6 @@ public class ProductController {
 
         List<Product> products = productService.findAllProducts();
         model.addAttribute("products", products);
-        System.out.println(products);
 
         final String viewIndicator = "isPricing";
         model.addAttribute(viewIndicator, "yes");
