@@ -45,18 +45,26 @@ $(document).ready(() => {
     let counter = 0;
     for(let category in products) {
         const capitalize = (s) => { return s && s[0].toUpperCase() + s.slice(1); };
-        const findIcon = (i) => { if(i > icons.length - 1) i = icons.length - 1; return icons[i]; }
+        const findIcon = (i) => { if(i > icons.length - 1) i = icons.length - 1; return icons[i]; };
+        const shouldActive = () => {
+            const categoryToLoad = $("#load-category");
+            if(categoryToLoad.val() !== "") {
+                return category === categoryToLoad.val();
+            }
+            return counter === 0;
+        };
         const concreteButton = buttonTemplate
             .replaceAll("{category}", category)
             .replaceAll("{display_category}", capitalize(category))
             .replaceAll("{icon}", findIcon(counter))
-            .replaceAll("{active}", counter === 0 ? "active" : "");
+            .replaceAll("{active}", shouldActive() ? "active" : "");
         $("#tabs-container").append(concreteButton);
         counter++;
     }
 
-    const defaultCategory = Object.keys(products)[0];
-    const defaultProductsAmount = products[defaultCategory].length
+    const categoryToLoad = $("#load-category");
+    const defaultCategory = categoryToLoad.val() === "" ? Object.keys(products)[0] : categoryToLoad.val();
+    const defaultProductsAmount = products[defaultCategory].length;
 
     // Set the default slider side depending on category products amount
     const packageSwitcher = $("#package-switcher");
