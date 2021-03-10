@@ -29,4 +29,12 @@ public class Product {
 
     private String transfer;
 
+    public int getMonthlyPrice() {
+        return getPrice();
+    }
+
+    public double getHourlyPrice() {
+        return ((double) getMonthlyPrice() / 24d) / (5d / 0.18d);
+    }
+
 }

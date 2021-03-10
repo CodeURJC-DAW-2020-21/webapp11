@@ -72,36 +72,6 @@ public class DataLoader implements CommandLineRunner {
 
         userRepository.save(user);
 
-        Product productOne = Product.builder()
-                .category("shared")
-                .price(5)
-                .ram("1 GB")
-                .cores("1 vCPU")
-                .storage("32 GB")
-                .transfer("1 TB")
-                .build();
-
-        Product productTwo = Product.builder()
-                .category("shared")
-                .price(10)
-                .ram("2 GB")
-                .cores("1 vCPU")
-                .storage("64 GB")
-                .transfer("1 TB")
-                .build();
-
-        Product productThree = Product.builder()
-                .category("shared")
-                .price(20)
-                .ram("4 GB")
-                .cores("2 vCPU")
-                .storage("128 GB")
-                .transfer("2 TB")
-                .build();
-
-        productRepository.save(productOne);
-        productRepository.save(productTwo);
-        productRepository.save(productThree);
 
     }
 
