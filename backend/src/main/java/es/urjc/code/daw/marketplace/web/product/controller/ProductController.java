@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class ProductController {
@@ -39,6 +41,21 @@ public class ProductController {
         }
 
         return "pricing";
+    }
+
+    @RequestMapping(path = "/statistics", method = RequestMethod.GET)
+    public String fetchStatistics(Model model) {
+
+        Set<Map.Entry<String,Integer>> weeklyCategoryPurchases = productService.findCategoryToWeeklyPurchases().entrySet();
+        model.addAttribute("weeklyCategoryPurchases", weeklyCategoryPurchases);
+
+        List<Integer> salesPerDayInWeek = productService.findSalesPerDayInWeek();
+        model.addAttribute("salesPerDayInWeek", salesPerDayInWeek);
+
+        Long accumulatedCapital = productService.findAccumulatedCapital();
+        model.addAttribute("accumulatedCapital", accumulatedCapital);
+
+        return "";
     }
 
 }

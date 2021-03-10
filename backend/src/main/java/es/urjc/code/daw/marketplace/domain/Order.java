@@ -27,7 +27,7 @@ public class Order {
     @JoinColumn(name = "user_order")
     private User user;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date creationDate;
 
 }
