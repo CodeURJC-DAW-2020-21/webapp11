@@ -8,8 +8,9 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "accumulative_discount")
-@Data
+@Table(name = "accumulative_discounts")
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

@@ -6,10 +6,12 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "user", indexes = @Index(name = "uniqueUserEmail", columnList = "email", unique = true))
+@Table(name = "users", indexes = @Index(name = "uniqueUserEmail", columnList = "email", unique = true))
 @Getter
 @Setter
 @AllArgsConstructor
@@ -57,6 +59,10 @@ public class User implements Serializable {
     @Column(name = "is_locked", nullable = false)
     @Builder.Default
     private boolean isLocked = false;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @Builder.Default
+    private List<Order> orders = new LinkedList<>();
 
     @ManyToMany(mappedBy = "consumers")
     @Builder.Default
