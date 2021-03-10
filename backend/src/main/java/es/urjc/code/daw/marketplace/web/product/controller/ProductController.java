@@ -55,7 +55,7 @@ public class ProductController {
         Long accumulatedCapital = productService.findAccumulatedCapital();
         model.addAttribute("accumulatedCapital", accumulatedCapital);
 
-        return "";
+        return "statistics";
     }
 
 }

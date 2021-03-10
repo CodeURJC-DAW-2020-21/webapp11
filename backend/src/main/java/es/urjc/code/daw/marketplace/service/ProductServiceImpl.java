@@ -62,7 +62,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Long findAccumulatedCapital() {
-        return orderRepository.computeTotalAccumulatedCapital();
+        Long capital = orderRepository.computeTotalAccumulatedCapital();
+        return capital != null ? capital : 0;
     }
 
 }
