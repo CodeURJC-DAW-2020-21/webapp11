@@ -5,6 +5,8 @@ import es.urjc.code.daw.marketplace.domain.Product;
 import es.urjc.code.daw.marketplace.repository.OrderRepository;
 import es.urjc.code.daw.marketplace.repository.ProductRepository;
 import es.urjc.code.daw.marketplace.util.TimeUtils;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -29,17 +31,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Map<String, Integer> findCategoryToWeeklyPurchases() {
+    public List<Pair<String, Integer>> findCategoryToWeeklyPurchases() {
 
         Date firstDayOfWeek = TimeUtils.firstDayOfCurrentWeek();
         Date lastDayOfWeek = TimeUtils.sumDaysToDate(firstDayOfWeek, 7);
 
         List<String> categories = productRepository.findAllCategories();
-        Map<String, Integer> categoryToPurchases = new HashMap<>();
+        List<Pair<String, Integer>> categoryToPurchases = new LinkedList<>();
 
         for(String category : categories) {
             int categoryPurchasesThisWeek = orderRepository.countAllBetweenDatesByCategory(category, firstDayOfWeek, lastDayOfWeek);
-            categoryToPurchases.put(category, categoryPurchasesThisWeek);
+            categoryToPurchases.add(new ImmutablePair<>(category, categoryPurchasesThisWeek));
         }
 
         return categoryToPurchases;

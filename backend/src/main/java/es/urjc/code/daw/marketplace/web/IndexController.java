@@ -49,13 +49,6 @@ public class IndexController {
         return "profile";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping(path = "/panel")
-    public String panel(Model model) {
-        model.addAttribute("isPanel", true);
-        return "panel";
-    }
-
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @GetMapping(path = "/service")
     public String service(Model model) {

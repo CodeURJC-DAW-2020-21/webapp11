@@ -5,14 +5,12 @@ import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.repository.ProductRepository;
 import es.urjc.code.daw.marketplace.service.ProductService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -43,10 +41,11 @@ public class ProductController {
         return "pricing";
     }
 
-    @RequestMapping(path = "/statistics", method = RequestMethod.GET)
-    public String fetchStatistics(Model model) {
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping(path = "/panel")
+    public String panel(Model model) {
 
-        Set<Map.Entry<String,Integer>> weeklyCategoryPurchases = productService.findCategoryToWeeklyPurchases().entrySet();
+        List<Pair<String, Integer>> weeklyCategoryPurchases = productService.findCategoryToWeeklyPurchases();
         model.addAttribute("weeklyCategoryPurchases", weeklyCategoryPurchases);
 
         List<Integer> salesPerDayInWeek = productService.findSalesPerDayInWeek();
@@ -55,7 +54,10 @@ public class ProductController {
         Long accumulatedCapital = productService.findAccumulatedCapital();
         model.addAttribute("accumulatedCapital", accumulatedCapital);
 
-        return "statistics";
+        model.addAttribute("isPanel", true);
+
+        return "panel";
+
     }
 
 }
