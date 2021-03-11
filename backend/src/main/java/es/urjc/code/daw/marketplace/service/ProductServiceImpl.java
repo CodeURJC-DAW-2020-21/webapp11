@@ -35,6 +35,7 @@ public class ProductServiceImpl implements ProductService {
 
         Date firstDayOfWeek = TimeUtils.firstDayOfCurrentWeek();
         Date lastDayOfWeek = TimeUtils.sumDaysToDate(firstDayOfWeek, 7);
+        lastDayOfWeek = TimeUtils.removeSecondsFromDate(lastDayOfWeek, 1);
 
         List<String> categories = productRepository.findAllCategories();
         List<Pair<String, Integer>> categoryToPurchases = new LinkedList<>();
@@ -55,7 +56,9 @@ public class ProductServiceImpl implements ProductService {
 
         for(int dayIncrement = 0; dayIncrement < 7; dayIncrement++) {
             Date endDate = TimeUtils.sumDaysToDate(startDate, 1);
-            salesPerDayInWeek.add(orderRepository.countAllBetweenDates(startDate, endDate));
+            Date exclusiveEndDate = TimeUtils.removeSecondsFromDate(endDate, 1);
+            Integer count = orderRepository.countAllBetweenDates(startDate, exclusiveEndDate);
+            salesPerDayInWeek.add(count);
             startDate = endDate;
         }
 

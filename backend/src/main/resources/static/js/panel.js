@@ -6,8 +6,8 @@ $(document).ready(() => {
     registerLoadMoreAnimation();
     loadUsers();
     toggleAccount();
-    loadDefaultWeeklySalesChart();
-    loadDefaultWeeklyServicesChart();
+    loadWithDataWeeklySalesChart();
+    loadWithDataWeeklyServicesChart();
 
     $("#current-date").text(moment().format('ddd DD MMM, YYYY'));
 
@@ -74,7 +74,12 @@ const registerLoadMoreAnimation = () => {
     });
 }
 
-const loadDefaultWeeklySalesChart = () => {
+const loadWithDataWeeklySalesChart = () => {
+    const sales = [];
+    $("#sales-per-day-in-week > span").each(function() {
+        const input = $(this);
+        sales.push(input.text());
+    })
     const options = {
         type: 'line',
         data: {
@@ -83,7 +88,7 @@ const loadDefaultWeeklySalesChart = () => {
                 label: 'Sales in a day',
                 backgroundColor: 'rgb(21,76,121)',
                 borderColor: 'rgb(6,57,112)',
-                data: [0, 0, 0, 0, 0, 0, 0]
+                data: sales
             }]
         },
         options: {
@@ -98,36 +103,36 @@ const loadDefaultWeeklySalesChart = () => {
     new Chart(element, options);
 }
 
-const loadDefaultWeeklyServicesChart = () => {
+const loadWithDataWeeklyServicesChart = () => {
+    const capitalize = (s) => { return s && s[0].toUpperCase() + s.slice(1); };
+    const categories = [];
+    const sales = [];
+    const predefinedColors = [ "#002B4B", "#0067B5", "#32556E" ];
+    const colors = [];
+    let currentColor = 1;
+    const getColor = () => { let v = currentColor%3; if(v > 2) v = 0; currentColor++; return predefinedColors[v]; };
+    const hover = [];
+    $("#weekly-category-purchases > span").each(function() {
+        const input = $(this);
+        const content = input.text();
+        const category = capitalize(content.split(":")[0]);
+        const sale = Number(content.split(":")[1]);
+        categories.push(category);
+        sales.push(sale);
+        colors.push(getColor());
+        hover.push("#3285C3");
+    })
     const options = {
         type: 'pie',
         data: {
-            labels: ['No sales to display'],
+            labels: categories,
             datasets: [{
-                data: [1],
-                backgroundColor: ['#003965'],
-                hoverBackgroundColor: ['#003965']
+                data: sales,
+                backgroundColor: colors,
+                hoverBackgroundColor: hover
             }]
         }
     };
     const element = document.getElementById('weekly-services-chart').getContext('2d');
     new Chart(element, options);
 }
-
-/*
-const loadDefaultWeeklyServicesChart = () => {
-    const options = {
-        type: 'pie',
-        data: {
-            labels: ['Shared', 'VPS', 'Dedicated'],
-            datasets: [{
-                data: [0, 0, 0],
-                backgroundColor: ["	#ADD8E6", "#1E90FF", "	#0000FF"],
-                hoverBackgroundColor: ['#5cb85c', '#5cb85c', '#5cb85c']
-            }]
-        }
-    };
-    const element = document.getElementById('weekly-services-chart').getContext('2d');
-    new Chart(element, options);
-}
-*/

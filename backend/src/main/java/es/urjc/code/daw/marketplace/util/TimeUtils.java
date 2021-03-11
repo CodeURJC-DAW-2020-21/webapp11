@@ -22,4 +22,11 @@ public class TimeUtils {
         return calendar.getTime();
     }
 
+    public static Date removeSecondsFromDate(Date date, int seconds) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.SECOND, -seconds);
+        return calendar.getTime();
+    }
+
 }

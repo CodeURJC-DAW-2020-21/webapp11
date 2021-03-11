@@ -2,6 +2,19 @@
       
 <main>
 
+<div class="d-none">
+    <div id="weekly-category-purchases">
+        {{#weeklyCategoryPurchases}}
+            <span>{{getLeft}}:{{getRight}}</span>
+        {{/weeklyCategoryPurchases}}
+    </div>
+    <div id="sales-per-day-in-week">
+        {{#salesPerDayInWeek}}
+            <span>{{intValue}}</span>
+        {{/salesPerDayInWeek}}
+    </div>
+</div>
+
 <!-- page title -->
 <div class="d-flex justify-content-center text-white text-center">
   <div class="row">
