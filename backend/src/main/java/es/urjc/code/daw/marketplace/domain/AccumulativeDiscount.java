@@ -20,6 +20,9 @@ public class AccumulativeDiscount {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Builder.Default
+    private boolean enabled = true;
+
     @Column(name = "product_id")
     private Long productId;
 

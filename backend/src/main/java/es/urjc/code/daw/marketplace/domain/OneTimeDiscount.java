@@ -20,6 +20,9 @@ public class OneTimeDiscount {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Builder.Default
+    private boolean enabled = true;
+
     private Long productId;
 
     @Size(min = 1, max = 100)
