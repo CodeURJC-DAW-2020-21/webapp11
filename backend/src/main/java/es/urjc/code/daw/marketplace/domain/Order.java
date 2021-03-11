@@ -30,4 +30,9 @@ public class Order {
     @Temporal(TemporalType.DATE)
     private Date creationDate;
 
+    @PrePersist
+    private void onCreate() {
+        creationDate = new Date();
+    }
+
 }
