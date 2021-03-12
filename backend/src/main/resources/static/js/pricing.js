@@ -115,6 +115,103 @@ $(document).ready(() => {
         setProductVisible(currentElementId, true);
     });
 
+    let otd = { defined: false };
+    let ad = { defined: false };
+
+    // Sales and discounts message
+    $("#discounts > span").each(function() {
+        const input = $(this);
+        const content = input.text();
+        const pieces = content.split(":");
+        const type = pieces[7];
+
+        const price = Number(pieces[5]);
+        const discount = Number(pieces[6]);
+        const discountedPrice = Math.floor(((100 - discount) * price) / 100);
+
+        if(type === "otd") {
+            otd = {
+                defined: true,
+                category: pieces[0],
+                ram: pieces[1] + " RAM",
+                cores: pieces[2] + " CORES",
+                storage: pieces[3] + " STORAGE",
+                transfer: pieces[4] + " TRANSFER",
+                price: "$" + pieces[5],
+                discountedPrice: "$" + discountedPrice,
+                discount: pieces[6]
+            };
+        }
+        if(type === "ad") {
+            ad = {
+                defined: true,
+                category: pieces[0],
+                ram: pieces[1] + " RAM",
+                cores: pieces[2] + " CORES",
+                storage: pieces[3] + " STORAGE",
+                transfer: pieces[4] + " TRANSFER",
+                price: "$" + pieces[5],
+                discountedPrice: "$" + discountedPrice,
+                discount: pieces[6],
+                amountToPurchase: pieces[8]
+            };
+        }
+    });
+
+    let otdMessage = "";
+
+    if(otd.defined) {
+        otdMessage += `
+            <p class="m-1 px-3">
+                <span class="badge badge-pill bg-success">SALE ACTIVE!</span>
+                We offer a <b>one time <span class="text-success">${otd.discount}%
+                </span> discount</b> on the <b>${otd.category}</b>
+                servers category with the configuration: <b>${otd.ram}</b>, 
+                <b>${otd.cores}</b>, <b>${otd.storage}</b>, <b>${otd.transfer}</b>
+                before it was <b class="text-danger"><s>${otd.price}</s></b> priced,
+                but for your first purchase it will be 
+                <b class="text-success">${otd.discountedPrice}</b>
+            </p>
+        `;
+    }
+
+    let adMessage = "";
+
+    if(ad.defined) {
+        adMessage += `
+            <p class="m-1 px-3">
+                <span class="badge badge-pill bg-success">SALE ACTIVE!</span>
+                We offer a <b class="text-success">${otd.discount}%</b> <b>accumulative 
+                discount</b> on the <b>${ad.category}</b> servers category with 
+                the configuration: <b>${ad.ram}</b>, <b>${ad.cores}</b>, <b>${ad.storage}</b>, 
+                <b>${ad.transfer}</b> if you buy <b>${ad.amountToPurchase}</b> servers 
+                all the next purchases on the same package will cost now 
+                <b class="text-success">${otd.discountedPrice}</b> (previous cost
+                <b class="text-danger"><s>${otd.price}</s></b>)
+            </p>
+        `;
+    }
+
+    let currentMessage = 2;
+    const displayToggle = () => {
+        currentMessage = currentMessage === 1 ? 2 : 1;
+        let message = currentMessage === 1 ? otdMessage : adMessage;
+        if(message === "") return;
+        const messageTemplate =
+            `
+        <div id="flash" class="mx-5 my-3">
+            <div class="alert text-center bg-transparent border border-1 mx-5 rounded alert-light border-light text-light fade show" role="alert">
+                <div id="discount-message">${message}</div>
+            </div>
+        </div>
+        `;
+        $("#flash").replaceWith(messageTemplate);
+    };
+
+    const interval = setInterval(function() {
+        displayToggle();
+    }, 10000);
+
 });
 
 

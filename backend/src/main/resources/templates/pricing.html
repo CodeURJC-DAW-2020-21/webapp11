@@ -4,8 +4,16 @@
 
     <input id="load-category" type="hidden" value="{{#loadCategory}}{{loadCategory}}{{/loadCategory}}">
 
+    <div id="discounts" class="d-none">
+        {{#otd}}<span>{{#otdProduct}}{{category}}:{{ram}}:{{cores}}:{{storage}}:{{transfer}}:{{price}}{{/otdProduct}}:{{discountPercentage}}:otd</span>{{/otd}}
+        {{#ad}}<span>{{#adProduct}}{{category}}:{{ram}}:{{cores}}:{{storage}}:{{transfer}}:{{price}}{{/adProduct}}:{{discountPercentage}}:ad:{{bulkAmount}}</span>{{/ad}}
+    </div>
+
+    <div id="flash"></div>
+
     <!-- infrastructure-features -->
     <div data-name="infrastructure-features" class="container mt-5 text-light">
+
 
         <!-- brief-description-->
         <div class="row">

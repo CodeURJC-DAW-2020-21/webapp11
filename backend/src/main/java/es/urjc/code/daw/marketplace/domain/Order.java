@@ -12,12 +12,17 @@ import static javax.persistence.FetchType.EAGER;
 @Table(name = "orders")
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Builder
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "final_cost")
+    private Integer finalCost;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_order")

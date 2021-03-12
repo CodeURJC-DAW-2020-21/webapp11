@@ -71,4 +71,10 @@ public class ProductServiceImpl implements ProductService {
         return capital != null ? capital : 0;
     }
 
+    @Override
+    public Product findProductById(Long id) {
+        Optional<Product> product = productRepository.findById(id);
+        return product.orElseThrow();
+    }
+
 }

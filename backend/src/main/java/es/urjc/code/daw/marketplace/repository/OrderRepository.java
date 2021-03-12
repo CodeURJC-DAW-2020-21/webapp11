@@ -11,13 +11,16 @@ import java.util.List;
 
 public interface OrderRepository extends PagingAndSortingRepository<Order, Long> {
 
-    @Query("select count(distinct o) from Order o where o.creationDate between :startDate and :endDate")
+    @Query("select count(o) from Order o where o.creationDate between :startDate and :endDate")
     Integer countAllBetweenDates(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
-    @Query("select count(distinct o) from Order o where o.product.category = :category and o.creationDate between :startDate and :endDate")
+    @Query("select count(o) from Order o where o.product.category = :category and o.creationDate between :startDate and :endDate")
     Integer countAllBetweenDatesByCategory(@Param("category") String category, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
-    @Query("select sum(o.product.price) from Order o")
+    @Query("select sum(o.finalCost) from Order o")
     Long computeTotalAccumulatedCapital();
+
+    @Query("select count(o) from Order o where o.product.id = :productId and o.user.id = :userId")
+    Integer countConcreteProductPurchasesGivenUser(@Param("productId") Long productId, @Param("userId") Long userId);
 
 }

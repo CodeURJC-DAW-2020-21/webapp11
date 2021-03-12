@@ -18,4 +18,6 @@ public interface ProductService {
 
     Long findAccumulatedCapital();
 
+    Product findProductById(Long id);
+
 }

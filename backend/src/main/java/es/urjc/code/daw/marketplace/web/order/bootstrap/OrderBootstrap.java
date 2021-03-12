@@ -24,15 +24,31 @@ public class OrderBootstrap implements CommandLineRunner {
         this.orderRepository = orderRepository;
     }
 
+    @SuppressWarnings("all")
     @Override
     public void run(String... args) {
 
         List<Order> orders = Lists.newArrayList(
-
-            Order.builder()
-                    .product(productRepository.findAll().iterator().next())
-                .build()
-
+                Order.builder()
+                        .product(productRepository.findById(1L).get())
+                        .finalCost(productRepository.findById(1L).get().getPrice())
+                    .build(),
+                Order.builder()
+                        .product(productRepository.findById(2L).get())
+                        .finalCost(productRepository.findById(2L).get().getPrice())
+                    .build(),
+                Order.builder()
+                        .product(productRepository.findById(3L).get())
+                        .finalCost(productRepository.findById(3L).get().getPrice())
+                    .build(),
+                Order.builder()
+                        .product(productRepository.findById(4L).get())
+                        .finalCost(productRepository.findById(4L).get().getPrice())
+                    .build(),
+                Order.builder()
+                        .product(productRepository.findById(5L).get())
+                        .finalCost(productRepository.findById(5L).get().getPrice())
+                    .build()
         );
 
         orderRepository.saveAll(orders);
