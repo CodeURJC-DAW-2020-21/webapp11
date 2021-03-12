@@ -211,6 +211,9 @@ $(document).ready(() => {
     const interval = setInterval(function() {
         displayToggle();
     }, 10000);
+    for(let i = 0; i < 2; i++) {
+        displayToggle();
+    }
 
 });
 
