@@ -57,7 +57,7 @@ public class DataLoader implements CommandLineRunner {
                     .password(passwordEncoder.encode("FUCK"))
                     .isEnabled(RandomUtils.nextInt(0, 2) == 0)
                     .role(RandomUtils.nextInt(0, 2) == 0 ? defaultRole : adminRole)
-                    .address("CalleDefault")
+                    .address("Main St. 123, New York")
                 .build();
             userRepository.save(random);
         }
@@ -69,7 +69,7 @@ public class DataLoader implements CommandLineRunner {
                 .email(adminEmail)
                 .password(passwordEncoder.encode(adminPassword))
                 .role(adminRole)
-                .address("CalleDefault")
+                .address("Main St. 123, New York")
             .build();
 
         userRepository.save(user);

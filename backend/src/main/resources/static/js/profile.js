@@ -5,14 +5,53 @@ $(document).ready(() => {
 
 });
 
+const displayProfileChangeError = (errorMessage, error = true) => {
+
+    if(error) {
+        $("#flash-message:is([class*='text-success'])").removeClass("text-success");
+        $("#flash-message:not([class*='text-danger'])").addClass("text-danger");
+    } else {
+        $("#flash-message:is([class*='text-danger'])").removeClass("text-danger");
+        $("#flash-message:not([class*='text-success'])").addClass("text-success");
+    }
+
+    $("#flash-message").text(errorMessage);
+
+}
+
 const submitProfileChanges = () => {
 
     const id = $("#idUser").val();
-    const firstName = $("#firstName").val();
+
+    let failMessage = "The first name must be alphabetic";
+    const firstName = $("#first-name").val();
+    let isValid = /^[a-zA-Z -]+$/.test(firstName);
+    if(!isValid) { displayProfileChangeError(failMessage); return; }
+
+    failMessage = "The surname must be alphabetic";
     const surname = $("#surname").val();
+    isValid = /^[a-zA-Z -]+$/.test(surname);
+    if(!isValid) { displayProfileChangeError(failMessage); return; }
+
+    failMessage = "Please introduce a valid email address"
     const email = $("#email").val();
+    isValid = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email);
+    if(!isValid) { displayProfileChangeError(failMessage); return; }
+
+    failMessage = "Invalid address (use this format 'Main St. 123, New York')";
     const address = $("#address").val();
+    isValid = /^[\w\s.-]+\d+,\s*[\w\s.-]+$/.test(address);
+    if(!isValid) { displayProfileChangeError(failMessage); return; }
+
+    failMessage = "Password must contain at least one digit, one uppercase and must be 8 characters long minimum";
     const password = $("#password").val();
+    isValid = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(password);
+    if(!isValid) { displayProfileChangeError(failMessage); return; }
+
+    failMessage = "The two password do not match";
+    const confirmPassword = $("#confirm-password").val();
+    isValid = password === confirmPassword;
+    if(!isValid) { displayProfileChangeError(failMessage); return; }
 
     const form = $("<form></form>");
     form.attr("method", "post");
@@ -54,11 +93,11 @@ const submitProfileChanges = () => {
     passwordField.attr("value", password);
     form.append(passwordField);
 
-
     $(document.body).append(form);
     form.submit();
 
 }
+
 
 const confirmChanges = () => {
 
