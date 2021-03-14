@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    private static final String DEFAULT_ROLE = "CLIENT";
+    private static final String DEFAULT_ROLE = "ROLE_CLIENT";
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;

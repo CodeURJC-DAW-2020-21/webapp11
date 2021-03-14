@@ -3,11 +3,14 @@ package es.urjc.code.daw.marketplace.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @ToString
 @Entity
-@Table(name = "product")
-@Data
+@Table(name = "products")
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -28,5 +31,17 @@ public class Product {
     private String storage;
 
     private String transfer;
+
+    @OneToMany(mappedBy = "product")
+    @Builder.Default
+    private Set<Order> orders = new HashSet<>();
+
+    public int getMonthlyPrice() {
+        return getPrice();
+    }
+
+    public double getHourlyPrice() {
+        return ((double) getMonthlyPrice() / 24d) / (5d / 0.18d);
+    }
 
 }
