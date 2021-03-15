@@ -53,12 +53,17 @@
                     must be saved before leaving the page.
                   </p>
 
+                  <p><small id="flash-message" class="text-danger fw-bold"></small></p>
+
+                {{#user}}
                   <!-- form inputs -->
+
+                  <input id="idUser" name="idUser" type="hidden" value="{{id}}">
                   <div class="input-group mb-3 px-2">
                     <span class="input-group-text bg-transparent text-white" id="first-name-label">
                       <i class="bi bi-person-plus"></i>
                     </span>
-                    <input id="first-name" type="text" class="form-control" placeholder="First Name"
+                    <input id="first-name" value="{{firstName}}" type="text" class="form-control" placeholder="First Name"
                           aria-label="First Name" aria-describedby="first-name-label">
                   </div>
 
@@ -66,7 +71,7 @@
                     <span class="input-group-text bg-transparent text-white" id="surname-label">
                       <i class="bi bi-person-dash"></i>
                     </span>
-                    <input id="surname" type="text" class="form-control" placeholder="Surname"
+                    <input id="surname" value="{{surname}}" type="text" class="form-control" placeholder="Surname"
                           aria-label="Surname" aria-describedby="surname-label">
                   </div>
 
@@ -74,7 +79,7 @@
                     <span class="input-group-text bg-transparent text-white" id="email-label">
                       <i class="bi bi-envelope-fill"></i>
                     </span>
-                    <input id="email" type="text" class="form-control" placeholder="Email"
+                    <input id="email" value="{{email}}" type="text" class="form-control" placeholder="Email"
                           aria-label="Email" aria-describedby="email-label">
                   </div>
 
@@ -82,7 +87,7 @@
                     <span class="input-group-text bg-transparent text-white" id="address-label">
                       <i class="bi bi-house-door-fill"></i>
                     </span>
-                    <input id="address" type="text" class="form-control" placeholder="Address"
+                    <input id="address" value="{{address}}" type="text" class="form-control" placeholder="Address"
                           aria-label="Address" aria-describedby="address-label">
                   </div>
 
@@ -101,11 +106,11 @@
                     <input id="confirm-password" type="password" class="form-control" placeholder="Confirm New Password"
                           aria-label="Confirm Password" aria-describedby="confirm-password-label">
                   </div><!-- / form inputs -->
-
+                {{/user}}
                   <p class="card-text">
                     <small class="text-danger fw-light">Multiple modifications may result in a ban.</small>
                   </p>
-                  <button id="register-button" type="button" class="btn btn-sm btn-outline-light">
+                  <button id="confirm-changes-button" type="button" class="btn btn-sm btn-outline-light">
                     Confirm changes
                   </button>
                 </div>

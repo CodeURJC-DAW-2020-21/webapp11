@@ -103,9 +103,11 @@ public class UserController {
 
         User updateUser = userMapper.asUpdateUser(request);
         updateUser.setId(userId);
-        userService.updateUser(userMapper.asUpdateUser(request));
 
-        final String viewIndicator = "isPanel";
+        User user = userService.updateUser(updateUser);
+        model.addAttribute("user", user);
+
+        final String viewIndicator = "isProfile";
         model.addAttribute(viewIndicator, "yes");
 
         return "profile";
