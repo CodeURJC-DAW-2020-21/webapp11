@@ -107,7 +107,7 @@ public class OrderController {
                 .product(product)
                 .finalCost(product.getPrice())
                 .user(currentUser)
-            .build();
+                .build();
 
         if(saleService.isEligibleForCurrentOtd(currentUser.getId(), productId)) {
             saleService.applyOtdDiscount(order);
@@ -120,6 +120,47 @@ public class OrderController {
         orderService.saveOrder(order);
 
         return "redirect:/services";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
+    @RequestMapping(path = "/order/{orderId}/renew", method = RequestMethod.GET)
+    public String renewOrder(@PathVariable("orderId") Long orderId,
+                             @AuthenticationPrincipal UserPrincipal userPrincipal) {
+
+        Order order = orderService.findOrderById(orderId);
+        User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
+        if(!currentUser.isAdmin() && !order.getUser().equals(currentUser)) {
+            throw new RuntimeException("Access denied");
+        }
+
+        order.setFinalCost(order.getFinalCost() + order.getProduct().getPrice());
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date().after(order.getExpiryDate()) ? new Date() : order.getExpiryDate());
+        calendar.add(Calendar.MONTH, 1);
+        order.setExpiryDate(calendar.getTime());
+
+        orderService.saveOrder(order);
+
+        return "redirect:/service/" + orderId;
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
+    @RequestMapping(path = "/order/{orderId}/cancel", method = RequestMethod.GET)
+    public String cancelOrder(@PathVariable("orderId") Long orderId,
+                             @AuthenticationPrincipal UserPrincipal userPrincipal) {
+
+        Order order = orderService.findOrderById(orderId);
+        User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
+        if(!currentUser.isAdmin() && !order.getUser().equals(currentUser)) {
+            throw new RuntimeException("Access denied");
+        }
+
+        order.setExpiryDate(new Date());
+
+        orderService.saveOrder(order);
+
+        return "redirect:/service/" + orderId;
     }
 
 }

@@ -98,14 +98,14 @@
 
                 <!-- renew service button -->
                 <div class="d-block">
-                  <button id="renew-button" type="button" class="btn btn-outline-success btn-sm mb-2">
+                  <button onclick="location.href='/order/{{orderId}}/renew';" id="renew-button" type="button" class="btn btn-outline-success btn-sm mb-2">
                     Renew Service
                   </button>
                 </div><!-- / renew service button -->
 
                 <!-- cancel service button -->
                 <div class="d-block">
-                  <button id="cancel-button" type="button" class="btn btn-outline-danger btn-sm mb-2">
+                  <button onclick="location.href='/order/{{orderId}}/cancel';" id="cancel-button" type="button" class="btn btn-outline-danger btn-sm mb-2">
                     Cancel Service
                   </button>
                 </div><!-- / cancel service button -->
