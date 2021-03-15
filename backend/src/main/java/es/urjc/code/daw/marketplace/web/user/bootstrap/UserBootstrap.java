@@ -1,4 +1,4 @@
-package es.urjc.code.daw.marketplace.bootstrap;
+package es.urjc.code.daw.marketplace.web.user.bootstrap;
 
 import es.urjc.code.daw.marketplace.domain.Product;
 import es.urjc.code.daw.marketplace.domain.Role;
@@ -18,7 +18,7 @@ import java.util.Arrays;
 
 @Component
 @org.springframework.core.annotation.Order(1)
-public class DataLoader implements CommandLineRunner {
+public class UserBootstrap implements CommandLineRunner {
 
     private static final String[] roles = { "ROLE_CLIENT", "ROLE_ADMIN" };
 
@@ -28,11 +28,11 @@ public class DataLoader implements CommandLineRunner {
     private final ProductRepository productRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public DataLoader(SecurityProperties securityProperties,
-                      RoleRepository authorityRepository,
-                      UserRepository userRepository,
-                      ProductRepository productRepository,
-                      PasswordEncoder passwordEncoder) {
+    public UserBootstrap(SecurityProperties securityProperties,
+                         RoleRepository authorityRepository,
+                         UserRepository userRepository,
+                         ProductRepository productRepository,
+                         PasswordEncoder passwordEncoder) {
         this.securityProperties = securityProperties;
         this.authorityRepository = authorityRepository;
         this.userRepository = userRepository;
