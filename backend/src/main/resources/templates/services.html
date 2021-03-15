@@ -55,51 +55,9 @@
         </tr>
       </thead><!-- / table header -->
 
-      <tbody>
+      <tbody id="services-list">
 
-        {{#orders}}
-        <!-- concrete service -->
-        <tr>
-          <th scope="row">
-            <span class="fw-normal align-middle">
-                <span>#{{id}} -</span>
-                <span class="fw-bold">{{product.category}}</span>
-            </span>
-          </th>
-          <td>
-            <ul class="list-inline my-0">
-              <li class="list-inline-item align-middle">
-                <span class="fw-bold">{{product.ram}}</span>
-                <span class="fw-normal">RAM</span>
-              </li>
-              <li class="list-inline-item align-middle">
-                <span class="fw-bold">{{product.cores}}</span>
-                <span class="fw-normal">CORE</span>
-              </li>
-              <li class="list-inline-item align-middle">
-                <span class="fw-bold">{{product.storage}}</span>
-                <span class="fw-normal">STORAGE</span>
-              </li>
-              <li class="list-inline-item align-middle text-purple">
-                <span class="fw-bold">{{product.transfer}}</span>
-                <span class="fw-normal">TRANSFER</span>
-              </li>
-            </ul>
-          </td>
-          <td>
-            <div class="btn-group btn-group-sm" role="group">
-              <button onclick="location.href='/service/{{id}}'"
-                 type="button"
-                 class="btn btn-outline-light">View</button>
-            </div>
-          </td>
-          <td>
-            <div>
-              <p5>{{expiryDate}}</p5>
-            </div>
-          </td>
-        </tr><!-- / concrete service -->
-        {{/orders}}
+
 
       </tbody>
 

@@ -5,6 +5,7 @@ import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.security.user.UserPrincipal;
 import es.urjc.code.daw.marketplace.service.OrderService;
 import es.urjc.code.daw.marketplace.service.UserService;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -35,10 +36,6 @@ public class OrderController {
         if(userPrincipal.getUser().isAdmin()) {
             model.addAttribute("isAdmin", "yes");
         }
-
-        User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
-        List<Order> orders = orderService.findAllOrdersByUserId(currentUser.getId());
-        model.addAttribute("orders", orders);
 
         return "services";
     }
@@ -71,6 +68,21 @@ public class OrderController {
         }
 
         return "service";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
+    @RequestMapping(path = "/services/{page}/{amount}", method = RequestMethod.GET)
+    public String findOrders(@PathVariable("page") Integer page,
+                            @PathVariable("amount") Integer amount,
+                            @AuthenticationPrincipal UserPrincipal userPrincipal,
+                            Model model) {
+
+        User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
+        List<Order> orders = orderService.findAllOrdersByUserId(currentUser.getId(), PageRequest.of(page - 1, amount));
+
+        model.addAttribute("orders", orders);
+
+        return "orders";
     }
 
 }
