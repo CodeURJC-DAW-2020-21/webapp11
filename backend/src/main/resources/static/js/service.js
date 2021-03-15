@@ -35,6 +35,8 @@ $(document).ready(() => {
         const disableButton = (identifier) => {
             $(identifier).addClass("disabled");
             $(identifier).removeClass("btn-outline-success");
+            $(identifier).removeClass("btn-outline-danger");
+            $(identifier).removeClass("btn-outline-light");
             $(identifier).addClass("btn-outline-secondary");
         }
 
