@@ -32,4 +32,9 @@ public class OrderServiceImpl implements OrderService {
         return optionalOrder.orElseThrow();
     }
 
+    @Override
+    public List<Order> findAllOrdersByUserId(Long userId) {
+        return orderRepository.findAllOrdersByUserId(userId);
+    }
+
 }

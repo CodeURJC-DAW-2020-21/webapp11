@@ -23,4 +23,7 @@ public interface OrderRepository extends PagingAndSortingRepository<Order, Long>
     @Query("select count(o) from Order o where o.product.id = :productId and o.user.id = :userId")
     Integer countConcreteProductPurchasesGivenUser(@Param("productId") Long productId, @Param("userId") Long userId);
 
+    @Query("select o from Order o where o.user.id = :userId")
+    List<Order> findAllOrdersByUserId(@Param("userId") Long userId);
+
 }

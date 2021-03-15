@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class OrderController {
 
@@ -24,8 +26,21 @@ public class OrderController {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
+    @RequestMapping(path = "/services", method = RequestMethod.GET)
+    public String listServices(@AuthenticationPrincipal UserPrincipal principal, Model model) {
+
+        model.addAttribute("isServices", true);
+
+        User currentUser = userService.findUserByEmail(principal.getUsername());
+        List<Order> orders = orderService.findAllOrdersByUserId(currentUser.getId());
+        model.addAttribute("orders", orders);
+
+        return "services";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @GetMapping(path = "/service/{id}")
-    public String service(@PathVariable("id") Long id,
+    public String displayService(@PathVariable("id") Long id,
                           @AuthenticationPrincipal UserPrincipal principal,
                           Model model) {
 
