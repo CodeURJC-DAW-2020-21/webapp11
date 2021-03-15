@@ -11,11 +11,12 @@ import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Optional;
 
 @Component
 @Transactional
-@org.springframework.core.annotation.Order(3)
+@org.springframework.core.annotation.Order(4)
 public class SaleBootstrap implements CommandLineRunner {
 
     private final OtdRepository otdRepository;
@@ -33,8 +34,9 @@ public class SaleBootstrap implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
-        Optional<Product> optionalProduct = productRepository.findById(1L);
-        Product product = optionalProduct.orElseThrow();
+        Iterable<Product> products = productRepository.findAll();
+        Iterator<Product> productIterator = products.iterator();
+        Product product = productIterator.next();
 
         OneTimeDiscount otd = OneTimeDiscount.builder()
                 .productId(product.getId())

@@ -49,12 +49,6 @@ public class IndexController {
         return "profile";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
-    @GetMapping(path = "/service")
-    public String service(Model model) {
-        model.addAttribute("isService", true);
-        return "service";
-    }
 
     @GetMapping(path = "/services")
     public String services(Model model) {

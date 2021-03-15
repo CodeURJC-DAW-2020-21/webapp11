@@ -3,6 +3,7 @@ package es.urjc.code.daw.marketplace.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
 
 import static javax.persistence.FetchType.EAGER;
@@ -35,9 +36,21 @@ public class Order {
     @Temporal(TemporalType.DATE)
     private Date creationDate;
 
+    @Temporal(TemporalType.DATE)
+    private Date expiryDate;
+
     @PrePersist
     private void onCreate() {
         creationDate = new Date();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, 1);
+        expiryDate = calendar.getTime();
+    }
+
+    public boolean isExpired() {
+        Date today = new Date();
+        return today.after(expiryDate);
     }
 
 }

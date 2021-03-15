@@ -20,7 +20,7 @@ import java.util.List;
 
 @Component
 @Transactional
-@org.springframework.core.annotation.Order(1)
+@org.springframework.core.annotation.Order(2)
 public class ProductBootstrap implements CommandLineRunner {
 
     private final ProductRepository productRepository;
