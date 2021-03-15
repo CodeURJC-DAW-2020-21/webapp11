@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Table(name = "authority")
+@Table(name = "roles")
 @Getter
 @Setter
 @AllArgsConstructor

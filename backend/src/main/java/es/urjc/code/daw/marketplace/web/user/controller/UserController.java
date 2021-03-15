@@ -8,6 +8,7 @@ import es.urjc.code.daw.marketplace.web.user.dto.UpdateUserRequestDto;
 import es.urjc.code.daw.marketplace.web.user.mapper.UserMapper;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -40,13 +41,20 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(path = "/register" , method = RequestMethod.POST)
-    public String registerUser(@RequestBody RegisterUserRequestDto request, Model model) {
+    @RequestMapping(
+            path = "/register" ,
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
+    )
+    public String registerUser(@ModelAttribute("registerUser") RegisterUserRequestDto request, Model model) {
 
         userService.registerUser(userMapper.asRegisterUser(request));
 
         final String viewIndicator = "isRegister";
         model.addAttribute(viewIndicator, "yes");
+
+        model.addAttribute("message", "You have been registered successfully!");
+        model.addAttribute("success", "yes");
 
         return "register";
     }

@@ -3,7 +3,8 @@
 <main>
 
 <!-- service expired alert -->
-<div id="flash-message" class="row m-0 d-none">
+{{#orderIsExpired}}
+<div id="flash-message" class="row m-0">
   <div class="col m-2">
     <div class="alert alert-transparent text-danger border border-danger fade show text-center" role="alert">
       <strong>Your service seems to be expired</strong>
@@ -12,6 +13,7 @@
     </div>
   </div>
 </div><!-- / service expired alert -->
+{{/orderIsExpired}}
 
 <!-- page title -->
 <div class="d-flex justify-content-center text-white text-center">
@@ -52,25 +54,25 @@
                 <!-- service id -->
                 <div class="d-block">
                   <span class="fw-bold">Service Id:</span>
-                  <span id="service-id">1234</span>
+                  <span id="service-id">{{orderId}}</span>
                 </div><!-- / service id -->
 
                 <!-- service category -->
                 <div class="d-block">
                   <span class="fw-bold">Category:</span>
-                  <span id="service-category">Shared</span>
+                  <span id="service-category">{{orderCategory}}</span>
                 </div><!-- / service category -->
 
                 <!-- service purchase date -->
                 <div class="d-block">
                   <span class="fw-bold">Purchase Date:</span>
-                  <span id="service-purchase">Mon, 22 Feb 2021 16:09:32</span>
+                  <span id="service-purchase">{{orderPurchaseDate}}</span>
                 </div><!-- / service purchase date -->
 
                 <!-- service expiry date -->
                 <div class="d-block">
                   <span class="fw-bold">Expiry Date:</span>
-                  <span id="service-expiry">Mon, 21 Mar 2021 16:09:32</span>
+                  <span id="service-expiry">{{orderExpiryDate}}</span>
                 </div><!-- / service expiry date -->
 
               </div>
