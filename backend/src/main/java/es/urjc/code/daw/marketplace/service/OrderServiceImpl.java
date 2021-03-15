@@ -42,4 +42,9 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findAllOrdersByUserId(userId, pageable);
     }
 
+    @Override
+    public Order saveOrder(Order order) {
+        return orderRepository.save(order);
+    }
+
 }

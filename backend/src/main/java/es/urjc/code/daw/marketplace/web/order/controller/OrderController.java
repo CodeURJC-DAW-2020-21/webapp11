@@ -1,9 +1,12 @@
 package es.urjc.code.daw.marketplace.web.order.controller;
 
 import es.urjc.code.daw.marketplace.domain.Order;
+import es.urjc.code.daw.marketplace.domain.Product;
 import es.urjc.code.daw.marketplace.domain.User;
+import es.urjc.code.daw.marketplace.repository.ProductRepository;
 import es.urjc.code.daw.marketplace.security.user.UserPrincipal;
 import es.urjc.code.daw.marketplace.service.OrderService;
+import es.urjc.code.daw.marketplace.service.SaleService;
 import es.urjc.code.daw.marketplace.service.UserService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,19 +15,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 public class OrderController {
 
     private final OrderService orderService;
     private final UserService userService;
+    private final SaleService saleService;
+    private final ProductRepository productRepository;
 
     public OrderController(OrderService orderService,
-                           UserService userService) {
+                           UserService userService,
+                           SaleService saleService,
+                           ProductRepository productRepository) {
         this.orderService = orderService;
         this.userService = userService;
+        this.saleService = saleService;
+        this.productRepository = productRepository;
     }
 
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
@@ -83,6 +93,33 @@ public class OrderController {
         model.addAttribute("orders", orders);
 
         return "orders";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
+    @RequestMapping(path = "/order/{productId}/place", method = RequestMethod.GET)
+    public String placeOrder(@PathVariable("productId") Long productId,
+                             @AuthenticationPrincipal UserPrincipal userPrincipal) {
+
+        User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
+        Product product = productRepository.findById(productId).orElseThrow();
+
+        Order order = Order.builder()
+                .product(product)
+                .finalCost(product.getPrice())
+                .user(currentUser)
+            .build();
+
+        if(saleService.isEligibleForCurrentOtd(currentUser.getId(), productId)) {
+            saleService.applyOtdDiscount(order);
+        }
+
+        if(saleService.isEligibleForCurrentAd(currentUser.getId(), productId)) {
+            saleService.applyAdDiscount(order);
+        }
+
+        orderService.saveOrder(order);
+
+        return "redirect:/services";
     }
 
 }
