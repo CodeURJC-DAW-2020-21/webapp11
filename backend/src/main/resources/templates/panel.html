@@ -2,6 +2,19 @@
       
 <main>
 
+<div class="d-none">
+    <div id="weekly-category-purchases">
+        {{#weeklyCategoryPurchases}}
+            <span>{{getLeft}}:{{getRight}}</span>
+        {{/weeklyCategoryPurchases}}
+    </div>
+    <div id="sales-per-day-in-week">
+        {{#salesPerDayInWeek}}
+            <span>{{intValue}}</span>
+        {{/salesPerDayInWeek}}
+    </div>
+</div>
+
 <!-- page title -->
 <div class="d-flex justify-content-center text-white text-center">
   <div class="row">
@@ -23,6 +36,8 @@
 <div class="container text-light mt-0">
   <hr />
 </div><!-- / horizontal line -->
+
+<div id="flash"></div>
 
 <div class="container mt-3 text-white">
   <nav>
@@ -94,7 +109,7 @@
         <!-- current date -->
         <p class="text-center">
           <span class="text-light">Today is</span>
-          <span class="text-secondary">Wed 24 February 2021</span>
+          <span id="current-date" class="text-secondary">Wed 24 February 2021</span>
         </p><!-- / current date -->
 
         <!-- centered content -->
@@ -115,7 +130,7 @@
     <div class="row text-center">
       <h4>
         <span>Accumulated Capital:</span>
-        <span class="text-success">$10000</span>
+        <span class="text-success">${{accumulatedCapital}}</span>
       </h4>
     </div><!-- / accumulated capital -->
 
@@ -129,56 +144,18 @@
         <!-- registered clients-->
         <div class="row py-0 m-0">
           <div class="col-12">
-            <table class="table table-bordered border-secondary text-white text-center">
+            <table class="table table-bordered border-secondary text-white">
 
               <!-- table header -->
               <thead>
-                <tr>
+                <tr class="text-center">
                   <th scope="col">Client Information</th>
                   <th scope="col">Actions</th>
                   <th scope="col">More details</th>
                 </tr>
               </thead><!-- / table header -->
 
-              <tbody>
-
-                <!-- concrete client -->
-                <tr>
-                  <th scope="row">
-                    <div class="container">
-                      <div class="row align-items-center h-100">
-                        <div class="col-12 mx-auto">
-                          <div class="jumbotron mx-0">
-                            <img class="profile-picture" src="./img/profile.png"/>
-                            <small><span class="badge bg-danger">ADMIN</span></small>
-                            <span class="fw-normal align-middle">Jack Sparrow</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </th>
-                  <td>
-                    <div class="container">
-                      <div class="row align-items-center h-100">
-                        <div class="col-12 mx-auto">
-                          <div class="jumbotron mt-1">
-                            <div class="btn-group btn-group-sm" role="group">
-                              <button type="button" class="btn btn-outline-danger">Disable Account</button>
-                              <button type="button" class="btn btn-outline-success disabled">Enable Account</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="btn-group btn-group-sm mt-1" role="group">
-                      <a href="profile.html" type="button" class="btn btn-outline-light">View</a>
-                    </div>
-                  </td>
-                </tr><!-- / concrete client -->
-
-              </tbody>
+              <tbody id="clients"></tbody>
 
             </table>
 

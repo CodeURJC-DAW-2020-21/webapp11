@@ -21,8 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers(properties.getPublicRoutes()).permitAll();
-        http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests().antMatchers(properties.getLoggedRoutes()).authenticated();
 
         http.formLogin().loginPage(properties.getLoginRoute());
         http.formLogin().usernameParameter(properties.getLoginUsernameParameter());

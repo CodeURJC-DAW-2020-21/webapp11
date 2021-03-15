@@ -1,0 +1,56 @@
+{{#users}}
+<!-- concrete client -->
+<tr>
+    <th scope="row">
+        <div class="row d-flex justify-content-start" >
+            <div class="col-md-12">
+                <img class="profile-picture" src="/img/profile.png"/>
+                <small>
+                    {{#isAdmin}}
+                        <span class="badge bg-danger">ADMIN</span>
+                    {{/isAdmin}}
+                    {{^isAdmin}}
+                        <span class="badge bg-info">CLIENT</span>
+                    {{/isAdmin}}
+                </small>
+                <span class="fw-normal align-middle">
+                    {{firstName}} {{surname}}
+                </span>
+            </div>
+        </div>
+    </th>
+    <td>
+        <div class="container text-center">
+            <div class="row align-items-center h-100">
+                <div class="col-12 mx-auto">
+                    <div class="jumbotron mt-1">
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button data-daw-user-id="{{id}}"
+                                    data-daw-user-action="disable"
+                                    type="button"
+                                    class="toggle-account btn btn-outline-danger {{^isEnabled}}disabled{{/isEnabled}}">
+                                <span>Disable Account</span>
+                            </button>
+                            <button data-daw-user-id="{{id}}"
+                                    data-daw-user-action="enable"
+                                    type="button"
+                                    class="toggle-account btn btn-outline-success {{#isEnabled}}disabled{{/isEnabled}}">
+                                <span>Enable Account</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </td>
+    <td class="text-center">
+        <div class="btn-group btn-group-sm mt-1" role="group">
+            <a onclick="location.href='/user/{{id}}';"
+               type="button"
+               class="btn btn-outline-light">
+                <span>View</span>
+            </a>
+        </div>
+    </td>
+</tr><!-- / concrete client -->
+{{/users}}
