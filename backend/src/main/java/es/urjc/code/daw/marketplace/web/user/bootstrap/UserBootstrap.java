@@ -68,7 +68,7 @@ public class UserBootstrap implements CommandLineRunner {
                 .firstName("Default")
                 .surname("Administrator")
                 .email(adminEmail)
-                .password(passwordEncoder.encode(adminPassword))
+                .password(adminPassword)
                 .role(adminRole)
                 .address("Main St. 123, New York")
             .build();
