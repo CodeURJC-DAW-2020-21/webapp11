@@ -49,11 +49,4 @@ public class IndexController {
         return "profile";
     }
 
-
-    @GetMapping(path = "/services")
-    public String services(Model model) {
-        model.addAttribute("isServices", true);
-        return "services";
-    }
-
 }
