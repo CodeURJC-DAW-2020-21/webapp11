@@ -40,7 +40,17 @@ public class UserController {
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.GET)
-    public String loginUser(@ModelAttribute(value = "error") String errorMsg, Model model) {
+    public String loginUser(@ModelAttribute(value = "error") String errorMsg,
+                            @AuthenticationPrincipal UserPrincipal userPrincipal,
+                            Model model) {
+
+        if(!Objects.isNull(userPrincipal)) {
+            model.addAttribute("isLoggedIn", "yes");
+            if(userPrincipal.getUser().isAdmin()) {
+                model.addAttribute("isAdmin", "yes");
+            }
+            return "redirect:/";
+        }
 
         final String errorKey = "error";
         boolean hasError = Strings.isNotBlank(errorMsg) && Strings.isNotEmpty(errorMsg);
@@ -57,7 +67,9 @@ public class UserController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
     )
-    public String registerUser(@ModelAttribute("registerUser") RegisterUserRequestDto request, Model model) {
+    public String registerUser(@ModelAttribute("registerUser") RegisterUserRequestDto request,
+                               @AuthenticationPrincipal UserPrincipal userPrincipal,
+                               Model model) {
 
         userService.registerUser(userMapper.asRegisterUser(request));
 
@@ -66,6 +78,13 @@ public class UserController {
 
         model.addAttribute("message", "You have been registered successfully!");
         model.addAttribute("success", "yes");
+
+        if(!Objects.isNull(userPrincipal)) {
+            model.addAttribute("isLoggedIn", "yes");
+            if(userPrincipal.getUser().isAdmin()) {
+                model.addAttribute("isAdmin", "yes");
+            }
+        }
 
         return "register";
     }
@@ -82,6 +101,10 @@ public class UserController {
 
         User user = userService.findUserById(userId);
         model.addAttribute("user", user);
+        model.addAttribute("isLoggedIn", "yes");
+        if(userPrincipal.getUser().isAdmin()) {
+            model.addAttribute("isAdmin", "yes");
+        }
 
         final String viewIndicator = "isProfile";
         model.addAttribute(viewIndicator, "yes");
@@ -123,10 +146,16 @@ public class UserController {
 
         User user = userService.updateUser(updateUser);
 
+        model.addAttribute("isLoggedIn", "yes");
+        if(userPrincipal.getUser().isAdmin()) {
+            model.addAttribute("isAdmin", "yes");
+        }
+
         model.addAttribute("user", user);
 
         final String viewIndicator = "isProfile";
         model.addAttribute(viewIndicator, "yes");
+
 
         return "profile";
     }

@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class OrderController {
@@ -27,11 +28,15 @@ public class OrderController {
 
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @RequestMapping(path = "/services", method = RequestMethod.GET)
-    public String listServices(@AuthenticationPrincipal UserPrincipal principal, Model model) {
+    public String listServices(@AuthenticationPrincipal UserPrincipal userPrincipal, Model model) {
 
         model.addAttribute("isServices", true);
+        model.addAttribute("isLoggedIn", "yes");
+        if(userPrincipal.getUser().isAdmin()) {
+            model.addAttribute("isAdmin", "yes");
+        }
 
-        User currentUser = userService.findUserByEmail(principal.getUsername());
+        User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
         List<Order> orders = orderService.findAllOrdersByUserId(currentUser.getId());
         model.addAttribute("orders", orders);
 
@@ -41,15 +46,20 @@ public class OrderController {
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @GetMapping(path = "/service/{id}")
     public String displayService(@PathVariable("id") Long id,
-                          @AuthenticationPrincipal UserPrincipal principal,
+                          @AuthenticationPrincipal UserPrincipal userPrincipal,
                           Model model) {
 
         model.addAttribute("isService", true);
 
-        User currentUser = userService.findUserByEmail(principal.getUsername());
+        User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
         Order order = orderService.findOrderById(id);
         if(!currentUser.isAdmin() && !order.getUser().equals(currentUser)) {
             throw new RuntimeException("You don't have access to this order");
+        }
+
+        model.addAttribute("isLoggedIn", "yes");
+        if(userPrincipal.getUser().isAdmin()) {
+            model.addAttribute("isAdmin", "yes");
         }
 
         model.addAttribute("orderId", order.getId());

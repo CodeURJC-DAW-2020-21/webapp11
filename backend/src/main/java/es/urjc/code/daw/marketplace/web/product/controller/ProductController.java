@@ -59,6 +59,13 @@ public class ProductController {
             model.addAttribute("hasDiscount", "yes");
         }
 
+        if(!Objects.isNull(userPrincipal)) {
+            model.addAttribute("isLoggedIn", "yes");
+            if(userPrincipal.getUser().isAdmin()) {
+                model.addAttribute("isAdmin", "yes");
+            }
+        }
+
         final String viewIndicator = "isPricing";
         model.addAttribute(viewIndicator, "yes");
 
@@ -71,7 +78,7 @@ public class ProductController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/panel")
-    public String panel(Model model) {
+    public String panel(@AuthenticationPrincipal UserPrincipal userPrincipal, Model model) {
 
         List<Pair<String, Integer>> weeklyCategoryPurchases = productService.findCategoryToWeeklyPurchases();
         model.addAttribute("weeklyCategoryPurchases", weeklyCategoryPurchases);
@@ -81,6 +88,14 @@ public class ProductController {
 
         Long accumulatedCapital = productService.findAccumulatedCapital();
         model.addAttribute("accumulatedCapital", accumulatedCapital);
+
+        if(!Objects.isNull(userPrincipal)) {
+            model.addAttribute("isLoggedIn", "yes");
+            if(userPrincipal.getUser().isAdmin()) {
+                model.addAttribute("isAdmin", "yes");
+            }
+        }
+
 
         model.addAttribute("isPanel", true);
 
