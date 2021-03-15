@@ -1,5 +1,6 @@
 package es.urjc.code.daw.marketplace.web;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,12 +49,7 @@ public class IndexController {
         return "profile";
     }
 
-    @GetMapping(path = "/panel")
-    public String panel(Model model) {
-        model.addAttribute("isPanel", true);
-        return "panel";
-    }
-
+    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @GetMapping(path = "/service")
     public String service(Model model) {
         model.addAttribute("isService", true);

@@ -3,13 +3,16 @@ package es.urjc.code.daw.marketplace.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "accumulative_discount")
-@Data
+@Table(name = "accumulative_discounts")
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -19,13 +22,17 @@ public class AccumulativeDiscount {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Builder.Default
+    private boolean enabled = true;
+
     @Column(name = "product_id")
     private Long productId;
 
     @Column(name = "bulk_amount")
     private Integer bulkAmount;
 
-    @Size(min = 1, max = 100)
+    @Min(value = 1)
+    @Max(value = 100)
     @Column(name = "discount_percentage")
     private Integer discountPercentage;
 

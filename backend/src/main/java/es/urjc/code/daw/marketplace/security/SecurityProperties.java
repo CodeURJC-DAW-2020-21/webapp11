@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 @PropertySource("classpath:security.properties")
 public class SecurityProperties {
 
-    @Value("${routes.public}")
-    private String[] publicRoutes;
+    @Value("${routes.logged}")
+    private String[] loggedRoutes;
 
     @Value("${auth.route.login}")
     private String loginRoute;

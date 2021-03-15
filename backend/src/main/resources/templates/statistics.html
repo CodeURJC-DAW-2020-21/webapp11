@@ -1,0 +1,13 @@
+<div>
+    {{#weeklyCategoryPurchases}}
+        <input class="category-sales" value="{{key}}:{{value}}" type="text" >
+    {{/weeklyCategoryPurchases}}
+</div>
+<div>
+    {{#salesPerDayInWeek.length}}
+        <input id="day-of-week" value="{{.}}" type="text" >
+    {{/salesPerDayInWeek.length}}
+</div>
+<div>
+    <input id="accumulated-capital" value="{{accumulatedCapital}}" type="text" >
+</div>
