@@ -17,6 +17,7 @@ import javax.transaction.Transactional;
 import java.util.Arrays;
 
 @Component
+@org.springframework.core.annotation.Order(1)
 public class DataLoader implements CommandLineRunner {
 
     private static final String[] roles = { "ROLE_CLIENT", "ROLE_ADMIN" };
