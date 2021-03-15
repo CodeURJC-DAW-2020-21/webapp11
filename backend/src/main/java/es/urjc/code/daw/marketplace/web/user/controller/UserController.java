@@ -169,7 +169,6 @@ public class UserController {
         final String message = String.format("The user %s %s account has been enabled!", user.getFirstName(), user.getSurname());
         model.addAttribute("message", message);
         model.addAttribute("success", "yes");
-        model.addAttribute("spinner", "yes");
 
         return "flash";
     }
@@ -183,7 +182,6 @@ public class UserController {
         final String message = String.format("The user %s %s account has been disabled!", user.getFirstName(), user.getSurname());
         model.addAttribute("message", message);
         model.addAttribute("danger", "yes");
-        model.addAttribute("spinner", "yes");
 
         return "flash";
     }
