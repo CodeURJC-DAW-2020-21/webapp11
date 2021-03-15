@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice
 public class ErrorControllerAdvice {
 
-    private final static String errorPath = "redirect:/error404";
+    private final static String errorPath = "redirect:/error";
 
     @ExceptionHandler(value = Exception.class)
     public String handleError() {
