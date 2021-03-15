@@ -144,7 +144,12 @@
                   <div class="row">
                     <div class="col-12">
                       <div class="text-center" >
-                        <img id="profile-picture" src="./img/profile.png"/>
+                          {{#user.profilePictureFilename}}
+                              <img id="profile-picture" src="/user-profile-pictures/{{user.id}}"/>
+                          {{/user.profilePictureFilename}}
+                          {{^user.profilePictureFilename}}
+                              <img id="profile-picture" src="/img/profile.png"/>
+                          {{/user.profilePictureFilename}}
                       </div>
                     </div>
                   </div>
@@ -157,7 +162,13 @@
                         it <span class="fw-bold">won't be public</span>.
                       </div>
                       <div class="input-group">
-                        <input type="file" class="form-control bg-transparent text-white" aria-label="Upload">
+                        <input name="image"
+                               form="update-profile-form"
+                               type="file"
+                               class="form-control bg-transparent text-white"
+                               aria-label="Upload"
+                               accept="image/png, image/jpeg"
+                        >
                       </div>
                     </div>
                   </div>

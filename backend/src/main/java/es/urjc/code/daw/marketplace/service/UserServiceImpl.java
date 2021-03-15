@@ -4,13 +4,17 @@ import es.urjc.code.daw.marketplace.domain.Role;
 import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.repository.RoleRepository;
 import es.urjc.code.daw.marketplace.repository.UserRepository;
-import org.mapstruct.ap.internal.util.Strings;
+import es.urjc.code.daw.marketplace.security.user.UserPrincipal;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,13 +49,25 @@ public class UserServiceImpl implements UserService {
         storedUser.setFirstName(user.getFirstName());
         storedUser.setSurname(user.getSurname());
         storedUser.setAddress(user.getAddress());
-        storedUser.setProfilePictureUrl(user.getProfilePictureUrl());
         storedUser.setEmail(user.getEmail());
-        if(Strings.isNotEmpty(user.getPassword())) {
+
+        if(!Objects.isNull(user.getProfilePictureFilename())) {
+            storedUser.setProfilePictureFilename(user.getProfilePictureFilename());
+        }
+
+        String newPassword = StringUtils.trim(user.getPassword());
+        if(StringUtils.isNotEmpty(newPassword) && StringUtils.isNotBlank(newPassword)) {
             String newEncodedPassword = passwordEncoder.encode(user.getPassword());
             storedUser.setPassword(newEncodedPassword);
         }
-        return userRepository.save(storedUser);
+
+        userRepository.save(storedUser);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
+        principal.setUser(storedUser);
+
+        return storedUser;
     }
 
     @Override
@@ -76,6 +92,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserById(Long id) {
         return userRepository.findUserById(id);
+    }
+
+    @Override
+    public User saveUser(User user) {
+        return userRepository.save(user);
     }
 
     @Override

@@ -43,10 +43,5 @@ public class IndexController {
         return "screenshots";
     }
 
-    @GetMapping(path = "/profile")
-    public String profile(Model model) {
-        model.addAttribute("isProfile", true);
-        return "profile";
-    }
 
 }

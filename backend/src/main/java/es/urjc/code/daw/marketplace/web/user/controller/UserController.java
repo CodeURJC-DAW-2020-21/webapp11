@@ -2,10 +2,12 @@ package es.urjc.code.daw.marketplace.web.user.controller;
 
 import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.security.user.UserPrincipal;
+import es.urjc.code.daw.marketplace.service.PictureService;
 import es.urjc.code.daw.marketplace.service.UserService;
 import es.urjc.code.daw.marketplace.web.user.dto.RegisterUserRequestDto;
 import es.urjc.code.daw.marketplace.web.user.dto.UpdateUserRequestDto;
 import es.urjc.code.daw.marketplace.web.user.mapper.UserMapper;
+import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
@@ -14,17 +16,26 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class UserController {
 
     private final UserService userService;
+    private final PictureService pictureService;
     private final UserMapper userMapper;
 
-    public UserController(UserService userService, UserMapper userMapper) {
+    public UserController(UserService userService,
+                          PictureService pictureService,
+                          UserMapper userMapper) {
         this.userService = userService;
+        this.pictureService = pictureService;
         this.userMapper = userMapper;
     }
 
@@ -93,6 +104,7 @@ public class UserController {
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @RequestMapping(path = "/user/{id}/update" , method = RequestMethod.POST)
     public String updateUser(@PathVariable("id") Long userId,
+                             @RequestParam("image") MultipartFile profilePicture,
                              @AuthenticationPrincipal UserPrincipal userPrincipal,
                              UpdateUserRequestDto request,
                              Model model) {
@@ -104,7 +116,13 @@ public class UserController {
         User updateUser = userMapper.asUpdateUser(request);
         updateUser.setId(userId);
 
+        if(!Objects.isNull(profilePicture) && !profilePicture.isEmpty()) {
+            String filename = pictureService.savePicture(updateUser.getId(), profilePicture);
+            updateUser.setProfilePictureFilename(filename);
+        }
+
         User user = userService.updateUser(updateUser);
+
         model.addAttribute("user", user);
 
         final String viewIndicator = "isProfile";
@@ -140,5 +158,34 @@ public class UserController {
 
         return "flash";
     }
+
+    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
+    @GetMapping(path = "/profile")
+    public String profile(@AuthenticationPrincipal UserPrincipal userPrincipal, Model model) {
+
+        model.addAttribute("isProfile", true);
+
+        User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
+
+        return String.format("redirect:/user/%d", currentUser.getId());
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
+    @ResponseBody
+    @GetMapping(path = "/user-profile-pictures/{id}",
+                produces = { MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE })
+    public byte[] getImage(@PathVariable("id") Long userId,
+                           @AuthenticationPrincipal UserPrincipal userPrincipal) throws Exception {
+        User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
+        boolean cannotPerform = !currentUser.isAdmin() && currentUser.getId().longValue() != userId.longValue();
+        if(cannotPerform) throw new RuntimeException("Access denied");
+
+        User toLoad = userService.findUserById(userId);
+        File file = new File("user-profile-pictures/" + toLoad.getProfilePictureFilename());
+        InputStream targetStream = new FileInputStream(file);
+        return IOUtils.toByteArray(targetStream);
+    }
+
+
 
 }
