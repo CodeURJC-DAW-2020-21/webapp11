@@ -4,6 +4,7 @@ import es.urjc.code.daw.marketplace.domain.AccumulativeDiscount;
 import es.urjc.code.daw.marketplace.domain.OneTimeDiscount;
 import es.urjc.code.daw.marketplace.domain.Order;
 
+import java.util.Date;
 import java.util.Optional;
 
 public interface SaleService {
@@ -19,5 +20,9 @@ public interface SaleService {
     void applyAdDiscount(Order order);
 
     Optional<AccumulativeDiscount> getCurrentAd();
+
+    void updateCurrentOtd(Date start, Date stop, int discount, long productId);
+
+    void disableCurrentOtd();
 
 }

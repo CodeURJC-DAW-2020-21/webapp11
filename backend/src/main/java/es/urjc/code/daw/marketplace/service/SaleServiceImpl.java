@@ -9,6 +9,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -85,6 +86,25 @@ public class SaleServiceImpl implements SaleService {
     @Override
     public Optional<AccumulativeDiscount> getCurrentAd() {
         return adRepository.findCurrentlyActiveAd();
+    }
+
+    @Override
+    public void updateCurrentOtd(Date start, Date stop, int discount, long productId) {
+        disableCurrentOtd();
+
+        OneTimeDiscount otd = OneTimeDiscount.builder()
+                .productId(productId)
+                .start(start)
+                .stop(stop)
+                .discountPercentage(discount)
+            .build();
+
+        otdRepository.save(otd);
+    }
+
+    @Override
+    public void disableCurrentOtd() {
+        otdRepository.disableActiveOtd();
     }
 
 }

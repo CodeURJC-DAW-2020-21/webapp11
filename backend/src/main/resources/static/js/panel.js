@@ -8,10 +8,51 @@ $(document).ready(() => {
     toggleAccount();
     loadWithDataWeeklySalesChart();
     loadWithDataWeeklyServicesChart();
+    registerSaveOtd();
 
     $("#current-date").text(moment().format('ddd DD MMM, YYYY'));
 
+    const id = $("#otd-pid").text();
+    if(id !== "") {
+        $(`#otd-packages option[value=${id}]`).attr('selected','selected');
+    }
+
 });
+
+const dateToString = (identifier) => {
+    const date = new Date($(identifier).val());
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return [day, month, year].join('/');
+}
+
+const registerSaveOtd = () => {
+    $("#otd-update").click(() => {
+        const start = dateToString("#otd-start");
+        const stop = dateToString("#otd-stop");
+        const discount = $("#otd-discount").val();
+        const pack = $('#otd-packages option:selected').val();
+        const sentInfo = {
+            startDate: start,
+            stopDate: stop,
+            discountPercentage: discount,
+            productId: pack
+        };
+        $.post( "/sale/otd/update", sentInfo)
+            .done(function( data ) {
+                if($("#otd-message").length) {
+                    $("#otd-message").empty();
+                }
+                $(`${data}`).appendTo("#otd-message");
+                setTimeout(function() {
+                    if($("#otd-message").length) {
+                        $("#otd-message").empty();
+                    }
+                }, 3000);
+        });
+    });
+}
 
 const registerContentSwitch = () => {
     $(".content-button").each(function(){

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -90,6 +91,16 @@ public class ProductController {
         Long accumulatedCapital = productService.findAccumulatedCapital();
         model.addAttribute("accumulatedCapital", accumulatedCapital);
 
+        Optional<OneTimeDiscount> optionalOtd = saleService.getCurrentOtd();
+        optionalOtd.ifPresent(oneTimeDiscount -> {
+            model.addAttribute("otdActive", "yes");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            model.addAttribute("otdStart" , formatter.format(oneTimeDiscount.getStart()));
+            model.addAttribute("otdStop" , formatter.format(oneTimeDiscount.getStop()));
+            model.addAttribute("otdDiscount" , oneTimeDiscount.getDiscountPercentage());
+            model.addAttribute("otdProductId" , oneTimeDiscount.getProductId());
+        });
+
         if(!Objects.isNull(userPrincipal)) {
             model.addAttribute("isLoggedIn", "yes");
             model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));
@@ -98,6 +109,7 @@ public class ProductController {
             }
         }
 
+        model.addAttribute("products", productService.findAllProducts());
         model.addAttribute("isPanel", true);
 
         return "panel";
