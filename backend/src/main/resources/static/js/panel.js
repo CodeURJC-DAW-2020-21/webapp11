@@ -23,6 +23,32 @@ $(document).ready(() => {
         $(`#ad-packages option[value=${adId}]`).attr('selected','selected');
     }
 
+    $("#otd-disable").click(() => {
+        $.post(`/sale/otd/disable`, (data) => {
+            if($("#otd-message").length) {
+                $("#otd-message").empty();
+            }
+            $(`${data}`).appendTo("#otd-message");
+            $("#otd-status").text("Currently Inactive");
+            $("#otd-status").addClass("bg-danger");
+            $("#otd-status").removeClass("bg-success");
+            $("#otd-disable").addClass("disabled");
+        });
+    });
+
+    $("#ad-disable").click(() => {
+        $.post(`/sale/ad/disable`, (data) => {
+            if($("#ad-message").length) {
+                $("#ad-message").empty();
+            }
+            $(`${data}`).appendTo("#ad-message");
+            $("#ad-status").text("Currently Inactive");
+            $("#ad-status").addClass("bg-danger");
+            $("#ad-status").removeClass("bg-success");
+            $("#ad-disable").addClass("disabled");
+        });
+    });
+
 });
 
 const dateToString = (identifier) => {
@@ -51,6 +77,12 @@ const registerSaveOtd = () => {
                    $("#otd-message").empty();
                }
                $(`${data}`).appendTo("#otd-message");
+               if($("#otd-message").html().includes("successfully")) {
+                   $("#otd-status").text("Currently Active");
+                   $("#otd-status").removeClass("bg-danger");
+                   $("#otd-status").addClass("bg-success");
+                   $("#otd-disable").removeClass("disabled");
+               }
            });
    }
 
@@ -81,9 +113,14 @@ const registerSaveAd = () => {
                     $("#ad-message").empty();
                 }
                 $(`${data}`).appendTo("#ad-message");
+                if($("#ad-message").html().includes("successfully")) {
+                    $("#ad-status").text("Currently Active");
+                    $("#ad-status").removeClass("bg-danger");
+                    $("#ad-status").addClass("bg-success");
+                    $("#ad-disable").removeClass("disabled");
+                }
             });
     }
-
 
     $("#ad-update").click(() => {
         performAdUpdate();
@@ -135,7 +172,10 @@ const toggleAccount = () => {
                 $(`${data}`).appendTo("#clients");
                 currentPage = lastPage;
             });
-            document.getElementById("flash-spinner").outerHTML = "";
+            if(document.getElementById("flash-spinner") !== null) {
+                document.getElementById("flash-spinner").outerHTML = "";
+            }
+
         }
         setTimeout(() => updateLoaded(), 10);
     });
