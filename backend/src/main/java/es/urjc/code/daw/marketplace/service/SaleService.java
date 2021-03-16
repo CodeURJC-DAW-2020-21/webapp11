@@ -25,4 +25,8 @@ public interface SaleService {
 
     void disableCurrentOtd();
 
+    void updateCurrentAd(Date start, Date stop, int discount, long productId, int bulkAmount);
+
+    void disableCurrentAd();
+
 }

@@ -101,6 +101,17 @@ public class ProductController {
             model.addAttribute("otdProductId" , oneTimeDiscount.getProductId());
         });
 
+        Optional<AccumulativeDiscount> optionalAd = saleService.getCurrentAd();
+        optionalAd.ifPresent(accumulativeDiscount -> {
+            model.addAttribute("adActive", "yes");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            model.addAttribute("adStart" , formatter.format(accumulativeDiscount.getStart()));
+            model.addAttribute("adStop" , formatter.format(accumulativeDiscount.getStop()));
+            model.addAttribute("adDiscount" , accumulativeDiscount.getDiscountPercentage());
+            model.addAttribute("adAmount" , accumulativeDiscount.getBulkAmount());
+            model.addAttribute("adProductId" , accumulativeDiscount.getProductId());
+        });
+
         if(!Objects.isNull(userPrincipal)) {
             model.addAttribute("isLoggedIn", "yes");
             model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));

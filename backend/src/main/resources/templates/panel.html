@@ -323,7 +323,12 @@
               </h3>
 
               <div class="mt-2">
-                <span class="badge bg-danger">Currently Inactive</span>
+                  {{#adActive}}
+                      <span class="badge bg-success">Currently Active</span>
+                  {{/adActive}}
+                  {{^adActive}}
+                      <span class="badge bg-danger">Currently Inactive</span>
+                  {{/adActive}}
               </div>
 
               <div class="card-body">
@@ -345,7 +350,8 @@
                              id="ad-start"
                              style="min-width: 100%; width: 50px; min-height: 38px;"
                              class="border border-3 border-light"
-                             aria-describedby="sale-start">
+                             aria-describedby="sale-start"
+                             {{#adActive}}value="{{adStart}}"{{/adActive}}>
                     </div>
                   </div>
                 </div><!-- / start date -->
@@ -360,7 +366,8 @@
                       id="ad-stop"
                              style="min-width: 100%; width: 50px; min-height: 38px;"
                              class="border border-3 border-light"
-                             aria-describedby="sale-stop">
+                             aria-describedby="sale-stop"
+                             {{#adActive}}value="{{adStop}}"{{/adActive}}>
                     </div>
                   </div>
                 </div><!-- / stop date -->
@@ -377,7 +384,8 @@
                              class="border border-3 border-light"
                              aria-describedby="sale-stop"
                              placeholder="50%"
-                             aria-label="discount-percentage">
+                             aria-label="discount-percentage"
+                             {{#adActive}}value="{{adDiscount}}"{{/adActive}}>
                     </div>
                   </div>
                 </div><!-- / discount percentage -->
@@ -394,7 +402,8 @@
                              class="border border-3 border-light"
                              aria-describedby="sale-stop"
                              placeholder="5"
-                             aria-label="discount-percentage">
+                             aria-label="discount-percentage"
+                             {{#adActive}}value="{{adAmount}}"{{/adActive}}>
                     </div>
                   </div>
                 </div><!-- / packages amount -->
@@ -405,7 +414,7 @@
                     <i class="bi bi-box-seam"></i>
                     <span>Discounted Package</span>
                     <div class="input-group mb-3 px-4 mt-2">
-
+                        <span id="ad-pid" class="d-none">{{#adActive}}{{adProductId}}{{/adActive}}</span>
                         <select id="ad-packages" class="form-select" aria-label="Default select example">
                             <option selected>Package where discount is applied</option>
                             {{#products}}

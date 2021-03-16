@@ -9,12 +9,18 @@ $(document).ready(() => {
     loadWithDataWeeklySalesChart();
     loadWithDataWeeklyServicesChart();
     registerSaveOtd();
+    registerSaveAd();
 
     $("#current-date").text(moment().format('ddd DD MMM, YYYY'));
 
-    const id = $("#otd-pid").text();
-    if(id !== "") {
-        $(`#otd-packages option[value=${id}]`).attr('selected','selected');
+    const otdId = $("#otd-pid").text();
+    if(otdId !== "") {
+        $(`#otd-packages option[value=${otdId}]`).attr('selected','selected');
+    }
+
+    const adId = $("#ad-pid").text();
+    if(adId !== "") {
+        $(`#ad-packages option[value=${adId}]`).attr('selected','selected');
     }
 
 });
@@ -53,10 +59,34 @@ const registerSaveOtd = () => {
         performOtdUpdate();
     });
 
-    $('[id^="otd-"]').keypress(function(event) {
-        if (event.which === 13) {
-            performOtdUpdate();
-        }
+}
+
+const registerSaveAd = () => {
+    const performAdUpdate = () => {
+        const start = dateToString("#ad-start");
+        const stop = dateToString("#ad-stop");
+        const discount = $("#ad-discount").val();
+        const amount = $("#ad-amount").val();
+        const pack = $('#ad-packages option:selected').val();
+        const sentInfo = {
+            startDate: start,
+            stopDate: stop,
+            discountPercentage: discount,
+            bulkAmount: amount,
+            productId: pack
+        };
+        $.post( "/sale/ad/update", sentInfo)
+            .done(function( data ) {
+                if($("#ad-message").length) {
+                    $("#ad-message").empty();
+                }
+                $(`${data}`).appendTo("#ad-message");
+            });
+    }
+
+
+    $("#ad-update").click(() => {
+        performAdUpdate();
     });
 
 }
@@ -73,6 +103,9 @@ const registerContentSwitch = () => {
             $("#flash").replaceWith(`<div id="flash"></div>`);
             if($("#otd-message").length) {
                 $("#otd-message").empty();
+            }
+            if($("#ad-message").length) {
+                $("#ad-message").empty();
             }
         });
     });

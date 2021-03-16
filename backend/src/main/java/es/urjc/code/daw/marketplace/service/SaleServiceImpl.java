@@ -107,4 +107,25 @@ public class SaleServiceImpl implements SaleService {
         otdRepository.disableActiveOtd();
     }
 
+    @Override
+    public void updateCurrentAd(Date start, Date stop, int discount, long productId, int bulkAmount) {
+        disableCurrentAd();
+
+        AccumulativeDiscount ad = AccumulativeDiscount.builder()
+                .productId(productId)
+                .start(start)
+                .stop(stop)
+                .discountPercentage(discount)
+                .bulkAmount(bulkAmount)
+            .build();
+
+        adRepository.save(ad);
+
+    }
+
+    @Override
+    public void disableCurrentAd() {
+        adRepository.disableActiveAd();
+    }
+
 }

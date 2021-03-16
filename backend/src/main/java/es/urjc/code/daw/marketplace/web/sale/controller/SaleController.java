@@ -2,6 +2,7 @@ package es.urjc.code.daw.marketplace.web.sale.controller;
 
 import es.urjc.code.daw.marketplace.service.ProductService;
 import es.urjc.code.daw.marketplace.service.SaleService;
+import es.urjc.code.daw.marketplace.web.sale.dto.UpdateAdDto;
 import es.urjc.code.daw.marketplace.web.sale.dto.UpdateOtdDto;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -79,6 +80,74 @@ public class SaleController {
         }
 
         saleService.updateCurrentOtd(startDate, stopDate, discount, productId);
+
+        model.addAttribute("message", "The sale has been successfully saved");
+        model.addAttribute("success", "yes");
+
+        return "flash";
+    }
+
+    @RequestMapping(
+            path = "/sale/ad/update",
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String updateAdSale(@ModelAttribute UpdateAdDto request, Model model) {
+
+        Date startDate;
+        try {
+            Integer.parseInt(request.getStartDate().split("/")[0]);
+            Integer.parseInt(request.getStartDate().split("/")[1]);
+            Integer.parseInt(request.getStartDate().split("/")[2]);
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            startDate = formatter.parse(request.getStartDate());
+        } catch (Exception e) {
+            model.addAttribute("message", "You provided an invalid start date");
+            model.addAttribute("danger", "yes");
+            return "flash";
+        }
+
+        Date stopDate;
+        try {
+            Integer.parseInt(request.getStartDate().split("/")[0]);
+            Integer.parseInt(request.getStartDate().split("/")[1]);
+            Integer.parseInt(request.getStartDate().split("/")[2]);
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            stopDate = formatter.parse(request.getStopDate());
+        } catch (Exception e) {
+            model.addAttribute("message", "You provided an invalid stop date");
+            model.addAttribute("danger", "yes");
+            return "flash";
+        }
+
+        int discount;
+        try {
+            discount = Integer.parseInt(request.getDiscountPercentage());
+        } catch (Exception e) {
+            model.addAttribute("message", "You provided an invalid discount percentage");
+            model.addAttribute("danger", "yes");
+            return "flash";
+        }
+
+        int bulkAmount;
+        try {
+            bulkAmount = Integer.parseInt(request.getBulkAmount());
+        } catch (Exception e) {
+            model.addAttribute("message", "You provided an invalid bulk amount");
+            model.addAttribute("danger", "yes");
+            return "flash";
+        }
+
+        long productId;
+        try {
+            productId = Long.parseLong(request.getProductId());
+            Optional.ofNullable(productService.findProductById(productId)).orElseThrow();
+        } catch (Exception e) {
+            model.addAttribute("message", "You provided an invalid product");
+            model.addAttribute("danger", "yes");
+            return "flash";
+        }
+
+        saleService.updateCurrentAd(startDate, stopDate, discount, productId, bulkAmount);
 
         model.addAttribute("message", "The sale has been successfully saved");
         model.addAttribute("success", "yes");
