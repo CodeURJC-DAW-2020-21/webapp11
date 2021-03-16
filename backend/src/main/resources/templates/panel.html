@@ -2,6 +2,19 @@
       
 <main>
 
+<div class="d-none">
+    <div id="weekly-category-purchases">
+        {{#weeklyCategoryPurchases}}
+            <span>{{getLeft}}:{{getRight}}</span>
+        {{/weeklyCategoryPurchases}}
+    </div>
+    <div id="sales-per-day-in-week">
+        {{#salesPerDayInWeek}}
+            <span>{{intValue}}</span>
+        {{/salesPerDayInWeek}}
+    </div>
+</div>
+
 <!-- page title -->
 <div class="d-flex justify-content-center text-white text-center">
   <div class="row">
@@ -96,7 +109,7 @@
         <!-- current date -->
         <p class="text-center">
           <span class="text-light">Today is</span>
-          <span class="text-secondary">Wed 24 February 2021</span>
+          <span id="current-date" class="text-secondary">Wed 24 February 2021</span>
         </p><!-- / current date -->
 
         <!-- centered content -->
@@ -117,7 +130,7 @@
     <div class="row text-center">
       <h4>
         <span>Accumulated Capital:</span>
-        <span class="text-success">$10000</span>
+        <span class="text-success">${{accumulatedCapital}}</span>
       </h4>
     </div><!-- / accumulated capital -->
 

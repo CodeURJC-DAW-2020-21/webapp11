@@ -1,4 +1,4 @@
-package es.urjc.code.daw.marketplace.bootstrap;
+package es.urjc.code.daw.marketplace.web.user.bootstrap;
 
 import es.urjc.code.daw.marketplace.domain.Product;
 import es.urjc.code.daw.marketplace.domain.Role;
@@ -17,7 +17,8 @@ import javax.transaction.Transactional;
 import java.util.Arrays;
 
 @Component
-public class DataLoader implements CommandLineRunner {
+@org.springframework.core.annotation.Order(1)
+public class UserBootstrap implements CommandLineRunner {
 
     private static final String[] roles = { "ROLE_CLIENT", "ROLE_ADMIN" };
 
@@ -27,11 +28,11 @@ public class DataLoader implements CommandLineRunner {
     private final ProductRepository productRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public DataLoader(SecurityProperties securityProperties,
-                      RoleRepository authorityRepository,
-                      UserRepository userRepository,
-                      ProductRepository productRepository,
-                      PasswordEncoder passwordEncoder) {
+    public UserBootstrap(SecurityProperties securityProperties,
+                         RoleRepository authorityRepository,
+                         UserRepository userRepository,
+                         ProductRepository productRepository,
+                         PasswordEncoder passwordEncoder) {
         this.securityProperties = securityProperties;
         this.authorityRepository = authorityRepository;
         this.userRepository = userRepository;
@@ -74,36 +75,6 @@ public class DataLoader implements CommandLineRunner {
 
         userRepository.save(user);
 
-        Product productOne = Product.builder()
-                .category("shared")
-                .price(5)
-                .ram("1 GB")
-                .cores("1 vCPU")
-                .storage("32 GB")
-                .transfer("1 TB")
-                .build();
-
-        Product productTwo = Product.builder()
-                .category("shared")
-                .price(10)
-                .ram("2 GB")
-                .cores("1 vCPU")
-                .storage("64 GB")
-                .transfer("1 TB")
-                .build();
-
-        Product productThree = Product.builder()
-                .category("shared")
-                .price(20)
-                .ram("4 GB")
-                .cores("2 vCPU")
-                .storage("128 GB")
-                .transfer("2 TB")
-                .build();
-
-        productRepository.save(productOne);
-        productRepository.save(productTwo);
-        productRepository.save(productThree);
 
     }
 
