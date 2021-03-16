@@ -181,13 +181,13 @@ $(document).ready(() => {
         adMessage += `
             <p class="m-1 px-3">
                 <span class="badge badge-pill bg-success">SALE ACTIVE!</span>
-                We offer a <b class="text-success">${otd.discount}%</b> <b>accumulative 
+                We offer a <b class="text-success">${ad.discount}%</b> <b>accumulative 
                 discount</b> on the <b>${ad.category}</b> servers category with 
                 the configuration: <b>${ad.ram}</b>, <b>${ad.cores}</b>, <b>${ad.storage}</b>, 
                 <b>${ad.transfer}</b> if you buy <b>${ad.amountToPurchase}</b> servers 
                 all the next purchases on the same package will cost now 
-                <b class="text-success">${otd.discountedPrice}</b> (previous cost
-                <b class="text-danger"><s>${otd.price}</s></b>)
+                <b class="text-success">${ad.discountedPrice}</b> (previous cost
+                <b class="text-danger"><s>${ad.price}</s></b>)
             </p>
         `;
     }

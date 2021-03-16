@@ -34,8 +34,7 @@ public class User implements Serializable {
     private String address;
 
     @Column(name = "avatar_url")
-    @Pattern(regexp = "^(http|https)\\:\\/\\/[a-zA-Z0-9\\-\\.]+\\.[a-zA-Z]{2,3}(\\/\\S*)?$")
-    private String profilePictureUrl;
+    private String profilePictureFilename;
 
     @Singular
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)

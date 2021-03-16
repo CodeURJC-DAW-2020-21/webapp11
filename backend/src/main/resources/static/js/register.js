@@ -18,12 +18,34 @@ const displayLoginError = (errorMessage, error = true) => {
 
 }
 
+const submitRegister = () => {
+
+    const form = $("<form></form>");
+    form.attr("name", "registerUser");
+    form.attr("method", "post");
+    form.attr("action", "/register");
+
+    const elementIds = [ "first-name", "surname", "email", "address", "password" ];
+    elementIds.forEach((item) => {
+
+        const field = $("<input></input>");
+        field.attr("type", "hidden");
+        field.attr("name", item === "first-name" ? "firstName" : item);
+
+        const element = $(`#${item}`);
+        field.attr("value", element.val());
+        form.append(field);
+    });
+
+    $(document.body).append(form);
+    form.submit();
+
+}
+
 const registerRegistrationAction = () => {
 
     $("#register-button").click(() => {
 
-        const successMessage = "Registration successful, redirecting...";
-        
         let failMessage = "The first name must be alphabetic";
         const firstName = $("#first-name").val();
         let isValid = /^[a-zA-Z -]+$/.test(firstName);
@@ -54,21 +76,14 @@ const registerRegistrationAction = () => {
         isValid = password === confirmPassword;
         if(!isValid) { displayLoginError(failMessage); return; }
 
-        const requestData = {
-            first_name: firstName,
-            surname: surname,
-            email: email,
-            address: address,
-            password: password
-        };
+        submitRegister();
 
-        alert(JSON.stringify(requestData));
-        
-        /*
-        In the future just use POST AJAX request registration
-        */
-        displayLoginError(successMessage, false);
-        
+    });
+
+    $('.form-control').keypress(function(event) {
+        if (event.which === 13) {
+            submitRegister();
+        }
     });
 
 }

@@ -33,3 +33,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Exclude profile pictures upload folder
+user-profile-pictures/

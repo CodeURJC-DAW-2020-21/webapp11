@@ -63,12 +63,11 @@ public class UserBootstrap implements CommandLineRunner {
             userRepository.save(random);
         }
 
-
         User user = User.builder()
                 .firstName("Default")
                 .surname("Administrator")
                 .email(adminEmail)
-                .password(passwordEncoder.encode(adminPassword))
+                .password(adminPassword)
                 .role(adminRole)
                 .address("Main St. 123, New York")
             .build();

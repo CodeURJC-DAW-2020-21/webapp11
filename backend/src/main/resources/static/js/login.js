@@ -36,7 +36,7 @@ const registerLoginInteractions = () => {
         submitLogin();
     });
 
-    $('.input').keypress(function(event) {
+    $('.form-control').keypress(function(event) {
         if (event.which === 13) {
             submitLogin();
         }
