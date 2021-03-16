@@ -2,276 +2,142 @@
 
 <main>
 
-<!-- infrastructure-features -->
-<div data-name="infrastructure-features" class="container mt-5 text-light">
+    <input id="load-category" type="hidden" value="{{#loadCategory}}{{loadCategory}}{{/loadCategory}}">
 
-
-  <!-- brief-description-->
-  <div class="row">
-    <div class="col-12 text-center text-white">
-      <h3>Select the plan for your application needs</h3>
-      <p class="text-secondary">
-        <i>No other plan offers more choice. With multiple configurations, you’re sure to find the right performance at the right price.</i>
-      </p>
-      <nav>
-        <div class="nav nav-tabs d-flex justify-content-center align-items-center " id="nav-tab" role="tablist">
-          <button class="nav-link mx-1 bg-transparent text-white active" id="nav-home-tab" data-bs-toggle="tab"
-          data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"
-          style="width: 220px;">
-            <i class="bi bi-share text-light"></i>
-            <span>Shared Server</span>
-          </button>
-          <button class="nav-link mx-1 bg-transparent text-white" id="nav-profile-tab" data-bs-toggle="tab"
-          data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"
-          style="width: 220px;">
-            <i class="bi bi-hdd text-light"></i>
-            <span>Virtual Private Server</span>
-          </button>
-          <button class="nav-link mx-1 bg-transparent text-white" id="nav-contact-tab" data-bs-toggle="tab"
-          data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"
-          style="width: 220px;">
-            <i class="bi bi-hdd-rack text-light"></i>
-            <span>Dedicated Server</span>
-          </button>
-        </div>
-      </nav>
-      <div class="tab-content mt-5" id="nav-tabContent">
-        <div class="tab-pane fade show active text-center" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-
-          <!-- shared pricing -->
-          <div id="pricing-wrapper-shared">
-
-            <input id="pricing-id-shared" name="product_id" type="hidden">
-
-            <!-- monthly price  -->
-            <div class="row">
-              <div class="col-12">
-                <span id="pricing-cost-shared" style="font-size: 50px;">$10</span>
-                <span style="font-size: 16px;">/MO</span>
-              </div>
-            </div><!-- / monthly price  -->
-
-            <!-- hourly price  -->
-            <div class="row">
-              <div class="col-12">
-                <small class="d-flex justify-content-center text-secondary">
-                  <span id="pricing-cost-hourly-shared">$.0075</span>
-                  <span>/hr</span>
-                </small>
-              </div>
-            </div><!-- / hourly price  -->
-
-            <!-- configuration selector  -->
-            <div class="row">
-              <div class="d-flex justify-content-center col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-2">
-                <div class="input-group mb-3 px-4">
-                  <label for="pricing-range-shared" class="form-label">&nbsp;</label>
-                  <input id="pricing-range-shared" type="range" class="form-range custom-range" min="1" max="5" step="1.0">
-                </div>
-              </div>
-            </div><!-- / configuration selector  -->
-
-            <!-- specs -->
-            <div class="row">
-              <div class="d-flex justify-content-center col mx-auto mb-4">
-                <div class="mx-2">
-                  <span id="pricing-spec-ram-shared" class="fw-bold">1 GB</span>
-                  <span>RAM</span>
-                </div>
-                <div class="mx-2">
-                  <span id="pricing-spec-cores-shared" class="fw-bold">1 vCPU</span>
-                  <span>CORE</span>
-                </div>
-                <div class="mx-2">
-                  <span id="pricing-spec-storage-shared" class="fw-bold">25 GB</span>
-                  <span id="pricing-spec-storage-type-shared">SSD</span>
-                </div>
-                <div class="mx-2">
-                  <span id="pricing-spec-bandwidth-shared" class="fw-bold">1 TB</span>
-                  <span>Transfer</span>
-                </div>
-              </div>
-            </div><!-- / specs -->
-
-            <!-- info  -->
-            <div class="row">
-              <div class="col-12 mb-3 px-5">
-                <span id="pricing-info-shared">...</span>
-              </div>
-            </div><!-- / info  -->
-
-            <!-- purchase  -->
-            <div class="row">
-              <div class="col mx-auto mb-2 d-flex align-items-center justify-content-center">
-                <button id="pricing-spec-purchase-shared" type="button" class="btn btn-outline-light">
-                  <i class="bi bi-cart-plus"></i>
-                  <span>Buy now</span>
-                </button>
-              </div>
-            </div><!-- / purchase  -->
-
-          </div><!-- / shared pricing -->
-
-        </div>
-
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-
-          <!-- vps pricing -->
-          <div id="pricing-wrapper-vps">
-
-            <input id="pricing-id-vps" name="product_id" type="hidden">
-
-            <!-- monthly price  -->
-            <div class="row">
-              <div class="col-12">
-                <span id="pricing-cost-vps" style="font-size: 50px;">$10</span>
-                <span style="font-size: 16px;">/MO</span>
-              </div>
-            </div><!-- / monthly price  -->
-
-            <!-- hourly price  -->
-            <div class="row">
-              <div class="col-12">
-                <small class="d-flex justify-content-center text-secondary">
-                  <span id="pricing-cost-hourly-vps">$.0075</span>
-                  <span>/hr</span>
-                </small>
-              </div>
-            </div><!-- / hourly price  -->
-
-            <!-- configuration selector  -->
-            <div class="row">
-              <div class="d-flex justify-content-center col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-2">
-                <div class="input-group mb-3 px-4">
-                  <label for="pricing-range-vps" class="form-label">&nbsp;</label>
-                  <input id="pricing-range-vps" type="range" class="form-range custom-range" min="1" max="5" step="1.0">
-                </div>
-              </div>
-            </div><!-- / configuration selector  -->
-
-            <!-- specs -->
-            <div class="row">
-              <div class="d-flex justify-content-center col mx-auto mb-4">
-                <div class="mx-2">
-                  <span id="pricing-spec-ram-vps" class="fw-bold">1 GB</span>
-                  <span>RAM</span>
-                </div>
-                <div class="mx-2">
-                  <span id="pricing-spec-cores-vps" class="fw-bold">1 vCPU</span>
-                  <span>CORE</span>
-                </div>
-                <div class="mx-2">
-                  <span id="pricing-spec-storage-vps" class="fw-bold">25 GB</span>
-                  <span id="pricing-spec-storage-type-vps">SSD</span>
-                </div>
-                <div class="mx-2">
-                  <span id="pricing-spec-bandwidth-vps" class="fw-bold">1 TB</span>
-                  <span>Transfer</span>
-                </div>
-              </div>
-            </div><!-- / specs -->
-
-            <!-- info  -->
-            <div class="row">
-              <div class="col-12 mb-3 px-5">
-                <span id="pricing-info-vps">...</span>
-              </div>
-            </div><!-- / info  -->
-
-            <!-- purchase  -->
-            <div class="row">
-              <div class="col mx-auto mb-2 d-flex align-items-center justify-content-center">
-                <button id="pricing-spec-purchase-vps" type="button" class="btn btn-outline-light">
-                  <i class="bi bi-cart-plus"></i>
-                  <span>Buy now</span>
-                </button>
-              </div>
-            </div><!-- / purchase  -->
-
-          </div><!-- / vps pricing -->
-
-        </div>
-        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-
-          <!-- dedicated pricing -->
-          <div id="pricing-wrapper-dedicated">
-
-            <input id="pricing-id-dedicated" name="product_id" type="hidden">
-
-            <!-- monthly price  -->
-            <div class="row">
-              <div class="col-12">
-                <span id="pricing-cost-dedicated" style="font-size: 50px;">$10</span>
-                <span style="font-size: 16px;">/MO</span>
-              </div>
-            </div><!-- / monthly price  -->
-
-            <!-- hourly price  -->
-            <div class="row">
-              <div class="col-12">
-                <small class="d-flex justify-content-center text-secondary">
-                  <span id="pricing-cost-hourly-dedicated">$.0075</span>
-                  <span>/hr</span>
-                </small>
-              </div>
-            </div><!-- / hourly price  -->
-
-            <!-- configuration selector  -->
-            <div class="row">
-              <div class="d-flex justify-content-center col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-2">
-                <div class="input-group mb-3 px-4">
-                  <label for="pricing-range-dedicated" class="form-label">&nbsp;</label>
-                  <input id="pricing-range-dedicated" type="range" class="form-range custom-range" min="1" max="5" step="1.0">
-                </div>
-              </div>
-            </div><!-- / configuration selector  -->
-
-            <!-- specs -->
-            <div class="row">
-              <div class="d-flex justify-content-center col mx-auto mb-4">
-                <div class="mx-2">
-                  <span id="pricing-spec-ram-dedicated" class="fw-bold">1 GB</span>
-                  <span>RAM</span>
-                </div>
-                <div class="mx-2">
-                  <span id="pricing-spec-cores-dedicated" class="fw-bold">1 vCPU</span>
-                  <span>CORE</span>
-                </div>
-                <div class="mx-2">
-                  <span id="pricing-spec-storage-dedicated" class="fw-bold">25 GB</span>
-                  <span id="pricing-spec-storage-type-dedicated">SSD</span>
-                </div>
-                <div class="mx-2">
-                  <span id="pricing-spec-bandwidth-dedicated" class="fw-bold">1 TB</span>
-                  <span>Transfer</span>
-                </div>
-              </div>
-            </div><!-- / specs -->
-
-            <!-- info  -->
-            <div class="row">
-              <div class="col-12 mb-3 px-5">
-                <span id="pricing-info-dedicated">...</span>
-              </div>
-            </div><!-- / info  -->
-
-            <!-- purchase  -->
-            <div class="row">
-              <div class="col mx-auto mb-2 d-flex align-items-center justify-content-center">
-                <button id="pricing-spec-purchase-dedicated" type="button" class="btn btn-outline-light">
-                  <i class="bi bi-cart-plus"></i>
-                  <span>Buy now</span>
-                </button>
-              </div>
-            </div><!-- / purchase  -->
-
-          </div><!-- / dedicated pricing -->
-
-        </div>
-      </div>
+    <div id="discounts" class="d-none">
+        {{#otd}}<span>{{#otdProduct}}{{category}}:{{ram}}:{{cores}}:{{storage}}:{{transfer}}:{{price}}{{/otdProduct}}:{{discountPercentage}}:otd</span>{{/otd}}
+        {{#ad}}<span>{{#adProduct}}{{category}}:{{ram}}:{{cores}}:{{storage}}:{{transfer}}:{{price}}{{/adProduct}}:{{discountPercentage}}:ad:{{bulkAmount}}</span>{{/ad}}
     </div>
-  </div><!-- / brief-description-->
-</div>
+
+    <div id="flash"></div>
+
+    <!-- infrastructure-features -->
+    <div data-name="infrastructure-features" class="container mt-5 text-light">
+
+
+        <!-- brief-description-->
+        <div class="row">
+            <div class="col-12 text-center text-white">
+                <h3>Select the plan for your application needs</h3>
+                <p class="text-secondary">
+                    <i>No other plan offers more choice. With multiple configurations, you’re sure to find the right
+                        performance at the right price.</i>
+                </p>
+                <nav>
+                    <div class="nav nav-tabs d-flex justify-content-center align-items-center"
+                         id="tabs-container"
+                         role="tablist">
+                    </div>
+                </nav>
+
+                <div class="text-center mt-5">
+
+                    <!-- shared pricing -->
+                    <div id="pricing-wrapper-shared">
+
+                        <p>
+                            <span class="fw-bold">Category:</span>
+                            <span id="selected-category" class="text-secondary">shared</span>
+                        </p>
+
+                        <input id="product-id" name="product_id" type="hidden">
+
+                        {{#products}}
+                            <div id="upper-product-{{id}}" data-daw-category="{{category}}" class="upper-item d-none">
+
+                                <!-- monthly price  -->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <span id="pricing-cost-shared" style="font-size: 50px;">${{getMonthlyPrice}}</span>
+                                        <span style="font-size: 16px;">/MO</span>
+                                    </div>
+                                </div><!-- / monthly price  -->
+
+                                <!-- hourly price  -->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <small class="d-flex justify-content-center text-secondary">
+                                            <span id="pricing-cost-hourly-shared">${{getHourlyPrice}}</span>
+                                            <span>/hr</span>
+                                        </small>
+                                    </div>
+                                </div><!-- / hourly price  -->
+
+                            </div>
+                        {{/products}}
+
+                        <!-- configuration selector  -->
+                        <div class="row">
+                            <div class="d-flex justify-content-center col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-2">
+                                <div class="input-group mb-3 px-4">
+                                    <label for="pricing-range-shared" class="form-label">&nbsp;</label>
+                                    <input id="package-switcher" type="range"
+                                           class="form-range custom-range"
+                                           min="1" max="5" step="1.0" value="1">
+                                </div>
+                            </div>
+                        </div><!-- / configuration selector  -->
+
+                        {{#products}}
+                            <div id="bottom-product-{{id}}" data-daw-category="{{category}}" class="d-none">
+
+                                <!-- specs -->
+                                <div class="row">
+                                    <div class="d-flex justify-content-center col mx-auto mb-4">
+                                        <div class="mx-2">
+                                            <span id="pricing-spec-ram-shared" class="fw-bold">{{ram}}</span>
+                                            <span>RAM</span>
+                                        </div>
+                                        <div class="mx-2">
+                                            <span id="pricing-spec-cores-shared" class="fw-bold">{{cores}}</span>
+                                            <span>CORE</span>
+                                        </div>
+                                        <div class="mx-2">
+                                            <span id="pricing-spec-storage-shared" class="fw-bold">{{storage}}</span>
+                                            <span id="pricing-spec-storage-type-shared">NVME</span>
+                                        </div>
+                                        <div class="mx-2">
+                                            <span id="pricing-spec-bandwidth-shared" class="fw-bold">{{transfer}}</span>
+                                            <span>TRANSFER</span>
+                                        </div>
+                                    </div>
+                                </div><!-- / specs -->
+
+                                <!-- info  -->
+                                <div class="row justify-content-center mx-auto">
+                                    <div class="col-6 mb-3 px-5">
+                                        <span id="pricing-info-shared">
+                                            Servers suitable for <i>all kinds of purposes</i>, testing,
+                                            CI/CD, web serving and also for high computational needs.
+                                        </span>
+                                    </div>
+                                </div><!-- / info  -->
+
+                                <!-- purchase  -->
+                                <div class="row mt-2">
+                                    <div class="col mx-auto mb-2 d-flex align-items-center justify-content-center">
+                                        <button onclick="location.href='/order/{{id}}/place';"
+                                                id="pricing-spec-purchase-shared"
+                                                type="button"
+                                                class="btn btn-outline-light">
+                                            <i class="bi bi-cart-plus"></i>
+                                            <span>Buy now</span>
+                                        </button>
+                                    </div>
+                                </div><!-- / purchase  -->
+
+                            </div>
+                        {{/products}}
+
+                    </div><!-- / shared pricing -->
+
+                </div>
+
+
+            </div>
+        </div>
+    </div><!-- / brief-description-->
+    </div>
 
 </main>
 
