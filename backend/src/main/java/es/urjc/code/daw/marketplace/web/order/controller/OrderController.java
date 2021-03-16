@@ -6,11 +6,8 @@ import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.repository.ProductRepository;
 import es.urjc.code.daw.marketplace.security.user.UserPrincipal;
 import es.urjc.code.daw.marketplace.service.OrderService;
-
 import es.urjc.code.daw.marketplace.service.SaleService;
-
 import es.urjc.code.daw.marketplace.service.PdfExporterService;
-
 import es.urjc.code.daw.marketplace.service.UserService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,13 +15,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Calendar;
-
 import javax.servlet.http.HttpServletResponse;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-
 import java.util.Date;
 import java.util.List;
 
@@ -36,25 +28,18 @@ public class OrderController {
 
     private final SaleService saleService;
     private final ProductRepository productRepository;
+    private final PdfExporterService pdfExporterService;
 
     public OrderController(OrderService orderService,
                            UserService userService,
                            SaleService saleService,
-                           ProductRepository productRepository) {
+                           ProductRepository productRepository,
+                           PdfExporterService pdfExporterService) {
         this.orderService = orderService;
         this.userService = userService;
         this.saleService = saleService;
         this.productRepository = productRepository;
-
-    private final PdfExporterService pdfExport;
-
-    public OrderController(OrderService orderService,
-                           UserService userService, PdfExporterService pdfExport) {
-        this.orderService = orderService;
-        this.userService = userService;
-
-        this.pdfExport = pdfExport;
-
+        this.pdfExporterService = pdfExporterService;
     }
 
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
@@ -115,10 +100,10 @@ public class OrderController {
         response.setContentType("application/pdf");
 
         String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=userorder_" + currentOrder.getId() + "_" + currentOrder.getUser().getId() + ".pdf";
+        String headerValue = "attachment; filename=userOrder_" + currentOrder.getId() + "_" + currentOrder.getUser().getId() + ".pdf";
         response.setHeader(headerKey, headerValue);
 
-        pdfExport.exportPdf(response, currentOrder);
+        pdfExporterService.exportPdf(response, currentOrder);
 
     }
 
