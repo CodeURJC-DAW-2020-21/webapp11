@@ -7,6 +7,7 @@ import es.urjc.code.daw.marketplace.repository.ProductRepository;
 import es.urjc.code.daw.marketplace.security.user.UserPrincipal;
 import es.urjc.code.daw.marketplace.service.OrderService;
 import es.urjc.code.daw.marketplace.service.SaleService;
+import es.urjc.code.daw.marketplace.service.PdfExporterService;
 import es.urjc.code.daw.marketplace.service.UserService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,8 +15,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Calendar;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
 
@@ -24,17 +25,21 @@ public class OrderController {
 
     private final OrderService orderService;
     private final UserService userService;
+
     private final SaleService saleService;
     private final ProductRepository productRepository;
+    private final PdfExporterService pdfExporterService;
 
     public OrderController(OrderService orderService,
                            UserService userService,
                            SaleService saleService,
-                           ProductRepository productRepository) {
+                           ProductRepository productRepository,
+                           PdfExporterService pdfExporterService) {
         this.orderService = orderService;
         this.userService = userService;
         this.saleService = saleService;
         this.productRepository = productRepository;
+        this.pdfExporterService = pdfExporterService;
     }
 
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
@@ -80,6 +85,26 @@ public class OrderController {
         }
 
         return "service";
+    }
+    
+    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
+    @GetMapping("/order/{orderId}/export_pdf")
+    public void exportToPDF(HttpServletResponse response, @PathVariable("orderId") Long orderId, @AuthenticationPrincipal UserPrincipal userPrincipal) throws Exception {
+
+        User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
+        Order currentOrder = orderService.findOrderById(orderId);
+        if (!currentUser.isAdmin() && !currentOrder.getUser().equals(currentUser)){
+            throw new RuntimeException("Access Denied");
+        }
+
+        response.setContentType("application/pdf");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=userOrder_" + currentOrder.getId() + "_" + currentOrder.getUser().getId() + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        pdfExporterService.exportPdf(response, currentOrder);
+
     }
 
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
