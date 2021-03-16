@@ -1,5 +1,6 @@
 package es.urjc.code.daw.marketplace.web.user.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.validation.constraints.*;
