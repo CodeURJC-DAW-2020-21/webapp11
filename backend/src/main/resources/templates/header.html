@@ -279,6 +279,7 @@
                     <!-- right side items -->
                     <ul class="navbar-nav mt-2 mt-lg-0 mr-4">
 
+                        {{^isLoggedIn}}
                         <!-- non-logged-in account -->
                         <li id="not-logged-in" class="nav-item mx-auto">
                             <a onclick="location.href='/login';" class="nav-link" href="#">
@@ -286,9 +287,11 @@
                                 <span>Account</span>
                             </a>
                         </li><!-- / non-logged-in account -->
+                        {{/isLoggedIn}}
 
+                        {{#isLoggedIn}}
                         <!-- logged-in account -->
-                        <li id="logged-in" class="nav-item mx-auto d-none">
+                        <li id="logged-in" class="nav-item mx-auto">
                             <div class="dropdown">
 
                                 <!-- displayed name -->
@@ -297,8 +300,6 @@
                                    role="button"
                                    data-bs-toggle="dropdown"
                                    aria-expanded="false">
-                                    <i id="account-image" class="bi bi-person-circle"></i>
-
                                     <small>
                                         <span id="account-rank" class="badge bg-danger">ADMIN</span>
                                         <!-- <span id="account-rank" class="badge bg-secondary">CLIENT</span> -->
@@ -346,22 +347,7 @@
 
                             </div>
                         </li><!-- / logged-in account -->
-
-                        <!-- account state toggler -->
-                        <li class="nav-item mx-auto">
-                            <div class="container" style="padding-top: 12px;" >
-                                <div class="row align-items-center h-100">
-                                    <div class="col-12 mx-auto">
-                                        <div class="jumbotron">
-                                            <label class="toggle-switch">
-                                                <input id="login-toggler" type="checkbox">
-                                                <span class="toggle-switch-slider round"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li><!-- / account state toggler -->
+                        {{/isLoggedIn}}
 
                     </ul><!-- / right side items -->
 

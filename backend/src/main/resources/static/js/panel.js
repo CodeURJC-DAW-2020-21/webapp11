@@ -28,7 +28,7 @@ const registerContentSwitch = () => {
 }
 
 const loadUsers = () => {
-    $.get(`/users/${currentPage}/3`, (data) => {
+    $.get(`/users/${currentPage}/10`, (data) => {
         $(`${data}`).appendTo("#clients");
         currentPage++;
     });
@@ -46,14 +46,14 @@ const toggleAccount = () => {
         });
         const updateLoaded = () => {
             $("#clients").html('');
-            let elementsAmount = (lastPage - 1) * 3;
+            let elementsAmount = (lastPage - 1) * 10;
             $.get(`/users/1/${elementsAmount}`, (data) => {
                 $(`${data}`).appendTo("#clients");
                 currentPage = lastPage;
             });
             document.getElementById("flash-spinner").outerHTML = "";
         }
-        setTimeout(() => updateLoaded(), 1000);
+        setTimeout(() => updateLoaded(), 10);
     });
 }
 

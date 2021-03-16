@@ -11,9 +11,8 @@ public class ErrorControllerAdvice {
     private final static String errorPath = "redirect:/error";
 
     @ExceptionHandler(value = Exception.class)
-    public ModelAndView handleError(Model model, Exception exception) {
-        model.addAttribute("exception", exception.getMessage());
-        return new ModelAndView(errorPath);
+    public String handleError() {
+        return errorPath;
     }
 
 }

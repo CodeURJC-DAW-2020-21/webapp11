@@ -19,6 +19,8 @@ public interface UserService {
 
     User findUserById(Long id);
 
+    User saveUser(User user);
+
     User findUserByEmail(String email);
 
     List<User> findAllUsers(Pageable pageable);

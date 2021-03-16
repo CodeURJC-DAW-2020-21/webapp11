@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-// Map struct documenttation
+// Map struct documentation
 @Mapper
 public interface UserMapper {
 
@@ -17,12 +17,13 @@ public interface UserMapper {
     @Mapping(target = "roles", ignore = true)
     @Mapping(target = "locked", ignore = true)
     @Mapping(target = "enabled", ignore = true)
-    @Mapping(target = "profilePictureUrl", ignore = true)
+    @Mapping(target = "profilePictureFilename", ignore = true)
     @Mapping(target = "accumulativeDiscountsConsumed", ignore = true)
     @Mapping(target = "oneTimeDiscountsConsumed", ignore = true)
     User asRegisterUser(RegisterUserRequestDto request);
 
-    @Mapping(target = "id", source = "userId")
+
+    @Mapping(target = "id", ignore=true)
     @Mapping(target = "roles", ignore = true)
     @Mapping(target = "accumulativeDiscountsConsumed", ignore = true)
     @Mapping(target = "oneTimeDiscountsConsumed", ignore = true)

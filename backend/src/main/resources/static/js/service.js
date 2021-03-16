@@ -28,8 +28,31 @@ $(document).ready(() => {
     $('#restart-server').click(restartAllBarsFluctuation);
 
     startAllBarsFluctuation();
-    console.log(progressHandler);
-    
+
+    const flashMessage = $('#flash-message');
+    if(flashMessage.length) {
+
+        const disableButton = (identifier) => {
+            $(identifier).addClass("disabled");
+            $(identifier).removeClass("btn-outline-success");
+            $(identifier).removeClass("btn-outline-danger");
+            $(identifier).removeClass("btn-outline-light");
+            $(identifier).addClass("btn-outline-secondary");
+        }
+
+        disableButton("#renew-button");
+        disableButton("#cancel-button");
+        disableButton("#start-server");
+        disableButton("#restart-server");
+        disableButton("#stop-server");
+
+        $("#server-ip-address").val("N/A");
+        $("#server-port").val("N/A");
+        $("#server-user").val("N/A");
+        $("#server-pass").val("N/A");
+
+        stopAllBarsFluctuation();
+    }
 
 });
 
