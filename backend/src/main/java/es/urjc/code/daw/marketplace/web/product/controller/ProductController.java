@@ -61,6 +61,7 @@ public class ProductController {
 
         if(!Objects.isNull(userPrincipal)) {
             model.addAttribute("isLoggedIn", "yes");
+            model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));
             if(userPrincipal.getUser().isAdmin()) {
                 model.addAttribute("isAdmin", "yes");
             }
@@ -91,11 +92,11 @@ public class ProductController {
 
         if(!Objects.isNull(userPrincipal)) {
             model.addAttribute("isLoggedIn", "yes");
+            model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));
             if(userPrincipal.getUser().isAdmin()) {
                 model.addAttribute("isAdmin", "yes");
             }
         }
-
 
         model.addAttribute("isPanel", true);
 
