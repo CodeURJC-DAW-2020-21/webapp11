@@ -8,14 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.*;
+import es.urjc.code.daw.marketplace.domain.Order;
+import org.springframework.stereotype.Component;
 
-
-public class PDFExporterServiceImpl {
-    private List<User> listUsers;
-
-    public PDFExporterServiceImpl(List<User> listUsers) {
-        this.listUsers = listUsers;
-    }
+@Component
+public class PdfExporterServiceImpl implements PdfExporterService {
 
     private void writeTableHeader(PdfPTable table) {
         PdfPCell cell = new PdfPCell();
@@ -25,34 +22,33 @@ public class PDFExporterServiceImpl {
         Font font = FontFactory.getFont(FontFactory.HELVETICA);
         font.setColor(Color.WHITE);
 
-        cell.setPhrase(new Phrase("User ID", font));
-
+        cell.setPhrase(new Phrase("Accumulative Cost", font));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("E-mail", font));
+        cell.setPhrase(new Phrase("First Name", font));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("Full Name", font));
+        cell.setPhrase(new Phrase("Surname", font));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("Roles", font));
+        cell.setPhrase(new Phrase("Creation Date", font));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("Enabled", font));
+        cell.setPhrase(new Phrase("Expiration Date", font));
         table.addCell(cell);
     }
 
-    private void writeTableData(PdfPTable table) {
-        for (User user : listUsers) {
-            table.addCell(String.valueOf(user.getId()));
-            table.addCell(user.getEmail());
-            table.addCell(user.getFullName());
-            table.addCell(user.getRoles().toString());
-            table.addCell(String.valueOf(user.isEnabled()));
-        }
+    private void writeTableData(PdfPTable table, Order order) {
+
+        table.addCell(String.valueOf(order.getFinalCost()));
+        table.addCell(order.getUser().getFirstName());
+        table.addCell(order.getUser().getSurname());
+        table.addCell(order.getCreationDate().toString());
+        table.addCell(String.valueOf(order.getExpiryDate().toString()));
+
     }
 
-    public void export(HttpServletResponse response) throws DocumentException, IOException {
+    public void exportPdf(HttpServletResponse response, Order order) throws Exception {
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document, response.getOutputStream());
 
@@ -61,7 +57,7 @@ public class PDFExporterServiceImpl {
         font.setSize(18);
         font.setColor(Color.BLUE);
 
-        Paragraph p = new Paragraph("List of Users", font);
+        Paragraph p = new Paragraph("Service " + order.getProduct().getCategory() + " " + order.getId() + " receipt", font);
         p.setAlignment(Paragraph.ALIGN_CENTER);
 
         document.add(p);
@@ -72,7 +68,7 @@ public class PDFExporterServiceImpl {
         table.setSpacingBefore(10);
 
         writeTableHeader(table);
-        writeTableData(table);
+        writeTableData(table, order);
 
         document.add(table);
 
