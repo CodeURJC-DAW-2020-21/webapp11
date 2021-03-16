@@ -102,6 +102,7 @@ public class UserController {
 
         User user = userService.findUserById(userId);
         model.addAttribute("user", user);
+        model.addAttribute("userId", user.getId());
         model.addAttribute("isLoggedIn", "yes");
         model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));
         if(userPrincipal.getUser().isAdmin()) {
@@ -127,8 +128,8 @@ public class UserController {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
-    @RequestMapping(path = "/user/{id}/update" , method = RequestMethod.POST)
-    public String updateUser(@PathVariable("id") Long userId,
+    @RequestMapping(path = "/user/{userId}/update" , method = RequestMethod.POST)
+    public String updateUser(@PathVariable("userId") Long userId,
                              @RequestParam("image") MultipartFile profilePicture,
                              @AuthenticationPrincipal UserPrincipal userPrincipal,
                              UpdateUserRequestDto request,
@@ -142,7 +143,7 @@ public class UserController {
         updateUser.setId(userId);
 
         if(!Objects.isNull(profilePicture) && !profilePicture.isEmpty()) {
-            String filename = pictureService.savePicture(updateUser.getId(), profilePicture);
+            String filename = pictureService.savePicture(userId, profilePicture);
             updateUser.setProfilePictureFilename(filename);
         }
 

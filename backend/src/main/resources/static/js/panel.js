@@ -28,30 +28,37 @@ const dateToString = (identifier) => {
 }
 
 const registerSaveOtd = () => {
+   const performOtdUpdate = () => {
+       const start = dateToString("#otd-start");
+       const stop = dateToString("#otd-stop");
+       const discount = $("#otd-discount").val();
+       const pack = $('#otd-packages option:selected').val();
+       const sentInfo = {
+           startDate: start,
+           stopDate: stop,
+           discountPercentage: discount,
+           productId: pack
+       };
+       $.post( "/sale/otd/update", sentInfo)
+           .done(function( data ) {
+               if($("#otd-message").length) {
+                   $("#otd-message").empty();
+               }
+               $(`${data}`).appendTo("#otd-message");
+           });
+   }
+
+
     $("#otd-update").click(() => {
-        const start = dateToString("#otd-start");
-        const stop = dateToString("#otd-stop");
-        const discount = $("#otd-discount").val();
-        const pack = $('#otd-packages option:selected').val();
-        const sentInfo = {
-            startDate: start,
-            stopDate: stop,
-            discountPercentage: discount,
-            productId: pack
-        };
-        $.post( "/sale/otd/update", sentInfo)
-            .done(function( data ) {
-                if($("#otd-message").length) {
-                    $("#otd-message").empty();
-                }
-                $(`${data}`).appendTo("#otd-message");
-                setTimeout(function() {
-                    if($("#otd-message").length) {
-                        $("#otd-message").empty();
-                    }
-                }, 3000);
-        });
+        performOtdUpdate();
     });
+
+    $('[id^="otd-"]').keypress(function(event) {
+        if (event.which === 13) {
+            performOtdUpdate();
+        }
+    });
+
 }
 
 const registerContentSwitch = () => {
@@ -64,6 +71,9 @@ const registerContentSwitch = () => {
             const contentId = currentButton.data('daw-content');
             $("#" + contentId).removeClass("d-none");
             $("#flash").replaceWith(`<div id="flash"></div>`);
+            if($("#otd-message").length) {
+                $("#otd-message").empty();
+            }
         });
     });
 }
