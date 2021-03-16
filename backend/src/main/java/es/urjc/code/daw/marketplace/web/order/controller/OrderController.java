@@ -6,7 +6,11 @@ import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.repository.ProductRepository;
 import es.urjc.code.daw.marketplace.security.user.UserPrincipal;
 import es.urjc.code.daw.marketplace.service.OrderService;
+
 import es.urjc.code.daw.marketplace.service.SaleService;
+
+import es.urjc.code.daw.marketplace.service.PdfExporterService;
+
 import es.urjc.code.daw.marketplace.service.UserService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,6 +20,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
+
+import javax.servlet.http.HttpServletResponse;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +33,7 @@ public class OrderController {
 
     private final OrderService orderService;
     private final UserService userService;
+
     private final SaleService saleService;
     private final ProductRepository productRepository;
 
@@ -35,6 +45,16 @@ public class OrderController {
         this.userService = userService;
         this.saleService = saleService;
         this.productRepository = productRepository;
+
+    private final PdfExporterService pdfExport;
+
+    public OrderController(OrderService orderService,
+                           UserService userService, PdfExporterService pdfExport) {
+        this.orderService = orderService;
+        this.userService = userService;
+
+        this.pdfExport = pdfExport;
+
     }
 
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
@@ -80,6 +100,26 @@ public class OrderController {
         }
 
         return "service";
+    }
+    
+    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
+    @GetMapping("/order/{orderId}/export_pdf")
+    public void exportToPDF(HttpServletResponse response, @PathVariable("orderId") Long orderId, @AuthenticationPrincipal UserPrincipal userPrincipal) throws Exception {
+
+        User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
+        Order currentOrder = orderService.findOrderById(orderId);
+        if (!currentUser.isAdmin() && !currentOrder.getUser().equals(currentUser)){
+            throw new RuntimeException("Access Denied");
+        }
+
+        response.setContentType("application/pdf");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=userorder_" + currentOrder.getId() + "_" + currentOrder.getUser().getId() + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        pdfExport.exportPdf(response, currentOrder);
+
     }
 
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
