@@ -80,4 +80,10 @@ const registerRegistrationAction = () => {
 
     });
 
+    $('.form-control').keypress(function(event) {
+        if (event.which === 13) {
+            submitRegister();
+        }
+    });
+
 }

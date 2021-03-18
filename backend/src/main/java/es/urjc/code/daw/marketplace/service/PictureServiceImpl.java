@@ -1,11 +1,10 @@
 package es.urjc.code.daw.marketplace.service;
 
-import es.urjc.code.daw.marketplace.domain.User;
+
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;

@@ -46,4 +46,9 @@ public class OneTimeDiscount {
     )
     private Set<User> consumers;
 
+    @PrePersist
+    private void onCreate() {
+        start = new Date();
+    }
+
 }

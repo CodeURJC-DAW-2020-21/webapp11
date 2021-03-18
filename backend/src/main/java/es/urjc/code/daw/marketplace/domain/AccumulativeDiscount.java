@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Set;
 
@@ -50,5 +51,10 @@ public class AccumulativeDiscount {
             inverseJoinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }
     )
     private Set<User> consumers;
+
+    @PrePersist
+    private void onCreate() {
+        start = new Date();
+    }
 
 }

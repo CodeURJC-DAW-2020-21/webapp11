@@ -112,7 +112,7 @@ const confirmChanges = () => {
         submitProfileChanges();
     });
 
-    $('.input').keypress(function(event) {
+    $('.form-control').keypress(function(event) {
         if (event.which === 13) {
             submitProfileChanges();
         }

@@ -62,10 +62,12 @@ public class UserServiceImpl implements UserService {
         }
 
         userRepository.save(storedUser);
-
+        
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
-        principal.setUser(storedUser);
+        if(principal.getUser().getId().longValue() == user.getId().longValue()) {
+            principal.setUser(storedUser);
+        }
 
         return storedUser;
     }

@@ -5,6 +5,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.PortMapper;
+import org.springframework.security.web.PortMapperImpl;
+import org.springframework.security.web.PortResolverImpl;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
+
+import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
@@ -21,6 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.requiresChannel().anyRequest().requiresSecure();
+
         http.authorizeRequests().antMatchers(properties.getLoggedRoutes()).authenticated();
 
         http.formLogin().loginPage(properties.getLoginRoute());
