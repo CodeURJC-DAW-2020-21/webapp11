@@ -5,10 +5,7 @@ import es.urjc.code.daw.marketplace.domain.Product;
 import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.repository.ProductRepository;
 import es.urjc.code.daw.marketplace.security.user.UserPrincipal;
-import es.urjc.code.daw.marketplace.service.OrderService;
-import es.urjc.code.daw.marketplace.service.SaleService;
-import es.urjc.code.daw.marketplace.service.PdfExporterService;
-import es.urjc.code.daw.marketplace.service.UserService;
+import es.urjc.code.daw.marketplace.service.*;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -25,7 +22,7 @@ public class OrderController {
 
     private final OrderService orderService;
     private final UserService userService;
-
+    private final EmailService emailService;
     private final SaleService saleService;
     private final ProductRepository productRepository;
     private final PdfExporterService pdfExporterService;
@@ -33,10 +30,12 @@ public class OrderController {
     public OrderController(OrderService orderService,
                            UserService userService,
                            SaleService saleService,
+                           EmailService emailService,
                            ProductRepository productRepository,
                            PdfExporterService pdfExporterService) {
         this.orderService = orderService;
         this.userService = userService;
+        this.emailService = emailService;
         this.saleService = saleService;
         this.productRepository = productRepository;
         this.pdfExporterService = pdfExporterService;
@@ -144,7 +143,20 @@ public class OrderController {
             saleService.applyAdDiscount(order);
         }
 
-        orderService.saveOrder(order);
+        Order savedOrder = orderService.saveOrder(order);
+
+        String htmlMessage = "<h2>Thanks for your purchase, " +
+                currentUser.getFirstName() +
+                " " + currentUser.getSurname() + "!"+ "</h2>" + "<br><h3>Here is your purchased product information</h3>" +
+                "<ul>" +
+                "   <li>Price: $" + product.getPrice() +  "</li>" +
+                "   <li>Ram:" + product.getRam() +  "</li>" +
+                "   <li>Cores: " + product.getCores() +  "</li>" +
+                "   <li>Storage: " + product.getStorage() +  "</li>" +
+                "   <li>Transfer: " + product.getTransfer() +  "</li>" +
+                "</ul>" + "<br><h2>Remember that you can manage each purchased product from your personal profile!</h2>";
+
+        emailService.sendEmail(currentUser.getEmail(), "#" + savedOrder.getId() + " Purchase receipt", htmlMessage);
 
         return "redirect:/services";
     }

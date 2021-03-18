@@ -2,6 +2,7 @@ package es.urjc.code.daw.marketplace.web.user.controller;
 
 import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.security.user.UserPrincipal;
+import es.urjc.code.daw.marketplace.service.EmailService;
 import es.urjc.code.daw.marketplace.service.PictureService;
 import es.urjc.code.daw.marketplace.service.UserService;
 import es.urjc.code.daw.marketplace.web.user.dto.RegisterUserRequestDto;
@@ -29,13 +30,16 @@ public class UserController {
 
     private final UserService userService;
     private final PictureService pictureService;
+    private final EmailService emailService;
     private final UserMapper userMapper;
 
     public UserController(UserService userService,
                           PictureService pictureService,
+                          EmailService emailService,
                           UserMapper userMapper) {
         this.userService = userService;
         this.pictureService = pictureService;
+        this.emailService = emailService;
         this.userMapper = userMapper;
     }
 
@@ -72,6 +76,17 @@ public class UserController {
                                Model model) {
 
         userService.registerUser(userMapper.asRegisterUser(request));
+
+        String htmlMessage = "<h2>Thanks for registering " +
+                request.getFirstName() +
+                " " + request.getSurname() + "!"+ "</h2>" + "<br><h3>Here is your profile information</h3>" +
+                "<ul>" +
+                "   <li>Name: " + request.getFirstName() +  "</li>" +
+                "   <li>Surname: " + request.getSurname() +  "</li>" +
+                "   <li>Email: " + request.getEmail() +  "</li>" +
+                "</ul>" + "<br><h2>And welcome to DAWHostServices!</h2>";
+
+        emailService.sendEmail(request.getEmail(), "Welcome to DAWHostServices", htmlMessage);
 
         final String viewIndicator = "isRegister";
         model.addAttribute(viewIndicator, "yes");
