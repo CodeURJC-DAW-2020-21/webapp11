@@ -3,7 +3,6 @@ package es.urjc.code.daw.marketplace.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.LinkedList;

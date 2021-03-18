@@ -32,7 +32,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Pair<String, Integer>> findCategoryToWeeklyPurchases() {
-
         Date firstDayOfWeek = TimeUtils.firstDayOfCurrentWeek();
         Date lastDayOfWeek = TimeUtils.sumDaysToDate(firstDayOfWeek, 7);
         lastDayOfWeek = TimeUtils.removeSecondsFromDate(lastDayOfWeek, 1);
@@ -50,10 +49,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Integer> findSalesPerDayInWeek() {
-
         List<Integer> salesPerDayInWeek = new LinkedList<>();
         Date startDate = TimeUtils.firstDayOfCurrentWeek();
-
         for(int dayIncrement = 0; dayIncrement < 7; dayIncrement++) {
             Date endDate = TimeUtils.sumDaysToDate(startDate, 1);
             Date exclusiveEndDate = TimeUtils.removeSecondsFromDate(endDate, 1);
@@ -61,7 +58,6 @@ public class ProductServiceImpl implements ProductService {
             salesPerDayInWeek.add(count);
             startDate = endDate;
         }
-
         return salesPerDayInWeek;
     }
 

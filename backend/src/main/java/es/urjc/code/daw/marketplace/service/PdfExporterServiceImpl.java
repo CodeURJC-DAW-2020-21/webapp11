@@ -1,15 +1,15 @@
 package es.urjc.code.daw.marketplace.service;
 
-import java.awt.Color;
-import java.io.IOException;
-import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
-
+import com.lowagie.text.Font;
 import com.lowagie.text.*;
-import com.lowagie.text.pdf.*;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
 import es.urjc.code.daw.marketplace.domain.Order;
 import org.springframework.stereotype.Component;
+
+import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
 
 @Component
 public class PdfExporterServiceImpl implements PdfExporterService {
@@ -39,13 +39,11 @@ public class PdfExporterServiceImpl implements PdfExporterService {
     }
 
     private void writeTableData(PdfPTable table, Order order) {
-
         table.addCell(String.valueOf(order.getFinalCost()));
         table.addCell(order.getUser().getFirstName());
         table.addCell(order.getUser().getSurname());
         table.addCell(order.getCreationDate().toString());
         table.addCell(String.valueOf(order.getExpiryDate().toString()));
-
     }
 
     public void exportPdf(HttpServletResponse response, Order order) throws Exception {
@@ -71,8 +69,7 @@ public class PdfExporterServiceImpl implements PdfExporterService {
         writeTableData(table, order);
 
         document.add(table);
-
         document.close();
-
     }
+
 }

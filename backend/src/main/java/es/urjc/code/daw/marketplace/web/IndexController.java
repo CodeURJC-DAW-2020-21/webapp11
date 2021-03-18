@@ -2,7 +2,6 @@ package es.urjc.code.daw.marketplace.web;
 
 import es.urjc.code.daw.marketplace.security.user.UserPrincipal;
 import es.urjc.code.daw.marketplace.service.UserService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -107,6 +106,5 @@ public class IndexController {
 
         return "screenshots";
     }
-
 
 }

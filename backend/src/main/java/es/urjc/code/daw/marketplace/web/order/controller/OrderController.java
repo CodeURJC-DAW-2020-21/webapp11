@@ -43,11 +43,13 @@ public class OrderController {
 
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @RequestMapping(path = "/services", method = RequestMethod.GET)
-    public String listServices(@AuthenticationPrincipal UserPrincipal userPrincipal, Model model) {
+    public String listServices(@AuthenticationPrincipal UserPrincipal userPrincipal,
+                               Model model) {
 
         model.addAttribute("isServices", true);
         model.addAttribute("isLoggedIn", "yes");
         model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));
+
         if(userPrincipal.getUser().isAdmin()) {
             model.addAttribute("isAdmin", "yes");
         }
@@ -58,19 +60,21 @@ public class OrderController {
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @GetMapping(path = "/service/{id}")
     public String displayService(@PathVariable("id") Long id,
-                          @AuthenticationPrincipal UserPrincipal userPrincipal,
-                          Model model) {
+                                 @AuthenticationPrincipal UserPrincipal userPrincipal,
+                                 Model model) {
 
         model.addAttribute("isService", true);
 
         User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
         Order order = orderService.findOrderById(id);
+
         if(!currentUser.isAdmin() && !order.getUser().equals(currentUser)) {
             throw new RuntimeException("You don't have access to this order");
         }
 
         model.addAttribute("isLoggedIn", "yes");
         model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));
+
         if(userPrincipal.getUser().isAdmin()) {
             model.addAttribute("isAdmin", "yes");
         }
@@ -79,6 +83,7 @@ public class OrderController {
         model.addAttribute("orderCategory", order.getProduct().getCategory());
         model.addAttribute("orderPurchaseDate", order.getCreationDate().toString());
         model.addAttribute("orderExpiryDate", order.getExpiryDate().toString());
+
         if(order.isExpired()) {
             model.addAttribute("orderIsExpired", order.isExpired());
         }
@@ -88,10 +93,13 @@ public class OrderController {
     
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @GetMapping("/order/{orderId}/export_pdf")
-    public void exportToPDF(HttpServletResponse response, @PathVariable("orderId") Long orderId, @AuthenticationPrincipal UserPrincipal userPrincipal) throws Exception {
+    public void exportToPDF(HttpServletResponse response,
+                            @PathVariable("orderId") Long orderId,
+                            @AuthenticationPrincipal UserPrincipal userPrincipal) throws Exception {
 
         User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
         Order currentOrder = orderService.findOrderById(orderId);
+
         if (!currentUser.isAdmin() && !currentOrder.getUser().equals(currentUser)){
             throw new RuntimeException("Access Denied");
         }
@@ -109,9 +117,9 @@ public class OrderController {
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @RequestMapping(path = "/services/{page}/{amount}", method = RequestMethod.GET)
     public String findOrders(@PathVariable("page") Integer page,
-                            @PathVariable("amount") Integer amount,
-                            @AuthenticationPrincipal UserPrincipal userPrincipal,
-                            Model model) {
+                             @PathVariable("amount") Integer amount,
+                             @AuthenticationPrincipal UserPrincipal userPrincipal,
+                             Model model) {
 
         User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
         List<Order> orders = orderService.findAllOrdersByUserId(currentUser.getId(), PageRequest.of(page - 1, amount));
@@ -168,6 +176,7 @@ public class OrderController {
 
         Order order = orderService.findOrderById(orderId);
         User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
+
         if(!currentUser.isAdmin() && !order.getUser().equals(currentUser)) {
             throw new RuntimeException("Access denied");
         }
@@ -187,10 +196,11 @@ public class OrderController {
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @RequestMapping(path = "/order/{orderId}/cancel", method = RequestMethod.GET)
     public String cancelOrder(@PathVariable("orderId") Long orderId,
-                             @AuthenticationPrincipal UserPrincipal userPrincipal) {
+                              @AuthenticationPrincipal UserPrincipal userPrincipal) {
 
         Order order = orderService.findOrderById(orderId);
         User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
+
         if(!currentUser.isAdmin() && !order.getUser().equals(currentUser)) {
             throw new RuntimeException("Access denied");
         }

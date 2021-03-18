@@ -25,18 +25,15 @@ public class UserBootstrap implements CommandLineRunner {
     private final SecurityProperties securityProperties;
     private final RoleRepository authorityRepository;
     private final UserRepository userRepository;
-    private final ProductRepository productRepository;
     private final PasswordEncoder passwordEncoder;
 
     public UserBootstrap(SecurityProperties securityProperties,
                          RoleRepository authorityRepository,
                          UserRepository userRepository,
-                         ProductRepository productRepository,
                          PasswordEncoder passwordEncoder) {
         this.securityProperties = securityProperties;
         this.authorityRepository = authorityRepository;
         this.userRepository = userRepository;
-        this.productRepository = productRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -73,7 +70,6 @@ public class UserBootstrap implements CommandLineRunner {
             .build();
 
         userRepository.save(user);
-
 
     }
 

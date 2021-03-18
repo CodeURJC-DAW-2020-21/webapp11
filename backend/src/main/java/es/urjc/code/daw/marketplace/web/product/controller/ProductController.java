@@ -80,7 +80,8 @@ public class ProductController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/panel")
-    public String panel(@AuthenticationPrincipal UserPrincipal userPrincipal, Model model) {
+    public String panel(@AuthenticationPrincipal UserPrincipal userPrincipal,
+                        Model model) {
 
         List<Pair<String, Integer>> weeklyCategoryPurchases = productService.findCategoryToWeeklyPurchases();
         model.addAttribute("weeklyCategoryPurchases", weeklyCategoryPurchases);

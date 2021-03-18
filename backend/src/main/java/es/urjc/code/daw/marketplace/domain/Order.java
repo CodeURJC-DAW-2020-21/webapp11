@@ -6,8 +6,6 @@ import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;
 
-import static javax.persistence.FetchType.EAGER;
-
 @ToString
 @Entity
 @Table(name = "orders")
@@ -42,7 +40,6 @@ public class Order {
     @PrePersist
     private void onCreate() {
         creationDate = new Date();
-
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MONTH, 1);
         expiryDate = calendar.getTime();

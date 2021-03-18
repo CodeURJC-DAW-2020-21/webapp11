@@ -26,11 +26,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) {
         User user = userRepository.findUserByEmail(email);
         if(user == null) {
-            final String message = String.format("No user found with email '%s'", email);
-            LOGGER.error(message);
+            final String message = String.format("[UserDetailsService] No user found with email '%s'", email);
+            LOGGER.info(message);
             throw new UsernameNotFoundException(message);
         } else {
-            final String message = String.format("Found user with email '%s'", email);
+            final String message = String.format("[UserDetailsService] Found user with email '%s'", email);
             LOGGER.info(message);
             return new UserPrincipal(user);
         }

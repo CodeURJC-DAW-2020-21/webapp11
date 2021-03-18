@@ -26,7 +26,6 @@ public class CustomErrorController implements ErrorController {
 
     @RequestMapping("/error")
     public String handleError(@AuthenticationPrincipal UserPrincipal userPrincipal, Model model) {
-
         if(!Objects.isNull(userPrincipal)) {
             if(userPrincipal.getUser().isAdmin()) {
                 model.addAttribute("isAdmin", "yes");
@@ -34,7 +33,6 @@ public class CustomErrorController implements ErrorController {
             model.addAttribute("isLoggedIn", "yes");
             model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));
         }
-
         return "error";
     }
 

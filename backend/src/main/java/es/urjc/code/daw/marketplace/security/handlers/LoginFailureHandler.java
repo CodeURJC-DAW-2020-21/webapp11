@@ -27,9 +27,7 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request,
                                         HttpServletResponse response,
-                                        AuthenticationException exception)
-            throws IOException {
-
+                                        AuthenticationException exception) throws IOException {
         if(!Objects.isNull(exception)) {
             SessionFlashMapManager flashMapManager = new SessionFlashMapManager();
             FlashMap flashMap = new FlashMap();
@@ -37,7 +35,6 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
             flashMapManager.saveOutputFlashMap(flashMap, request, response);
         }
         response.sendRedirect(request.getHeader("referer"));
-
     }
 
 }

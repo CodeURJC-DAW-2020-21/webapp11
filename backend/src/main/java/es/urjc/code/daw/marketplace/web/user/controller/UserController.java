@@ -120,6 +120,7 @@ public class UserController {
         model.addAttribute("userId", user.getId());
         model.addAttribute("isLoggedIn", "yes");
         model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));
+
         if(userPrincipal.getUser().isAdmin()) {
             model.addAttribute("isAdmin", "yes");
         }
@@ -231,7 +232,5 @@ public class UserController {
         InputStream targetStream = new FileInputStream(file);
         return IOUtils.toByteArray(targetStream);
     }
-
-
 
 }

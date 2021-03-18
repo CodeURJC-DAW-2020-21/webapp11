@@ -40,6 +40,7 @@ public class Product {
         return getPrice();
     }
 
+    @SuppressWarnings("unused")
     public double getHourlyPrice() {
         return ((double) getMonthlyPrice() / 24d) / (5d / 0.18d);
     }
