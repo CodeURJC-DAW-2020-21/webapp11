@@ -16,3 +16,5 @@ cp "$BASE/backend/target/$BUILD_FILENAME" "$BASE/docker/$DEST_FILENAME"
 cd "$BASE/docker"
 
 docker build -t daw-team-11/marketplace .
+
+docker-compose up -d
