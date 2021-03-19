@@ -8,7 +8,7 @@ DEST_FILENAME="marketplace.jar"
 cd "$BASE/backend"
 
 apt-get update
-apt-get install maven
+apt-get install maven -y
 mvn clean install
 
 cp "$BASE/backend/target/$BUILD_FILENAME" "$BASE/docker/$DEST_FILENAME"

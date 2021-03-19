@@ -1,4 +1,4 @@
-FROM openjdk:11-alpine
+FROM adoptopenjdk/openjdk11:latest
 
 COPY ./marketplace.jar ./marketplace.jar
 
