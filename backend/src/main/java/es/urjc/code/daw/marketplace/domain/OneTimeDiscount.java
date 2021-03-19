@@ -22,7 +22,7 @@ public class OneTimeDiscount {
     private Long id;
 
     @Builder.Default
-    private boolean enabled = true;
+    private Boolean enabled = true;
 
     private Long productId;
 

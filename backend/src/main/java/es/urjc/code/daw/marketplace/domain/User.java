@@ -52,11 +52,11 @@ public class User implements Serializable {
 
     @Column(name = "is_enabled", nullable = false)
     @Builder.Default
-    private boolean isEnabled = true;
+    private Boolean isEnabled = true;
 
     @Column(name = "is_locked", nullable = false)
     @Builder.Default
-    private boolean isLocked = false;
+    private Boolean isLocked = false;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @Builder.Default

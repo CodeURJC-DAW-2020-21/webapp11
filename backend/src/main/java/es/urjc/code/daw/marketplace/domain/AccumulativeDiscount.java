@@ -22,7 +22,7 @@ public class AccumulativeDiscount {
     private Long id;
 
     @Builder.Default
-    private boolean enabled = true;
+    private Boolean enabled = true;
 
     @Column(name = "product_id")
     private Long productId;
