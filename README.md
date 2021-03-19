@@ -24,11 +24,11 @@ Software Engineering Degree, at _University King Juan Carlos_, Spain (2020/2021)
   * [Advanced algorithm](#algorithm)
 * [Visuals](#visuals)
   * [Screenshots](#screenshots)
-  * [Navigation Diagram](#navigation)
-**Phase 2**
-* [Installation](#phase-2)
-  * [Linux](#linux-install-linux-2)
-  * [Windows](#linux-install-win-2)
+  * [Navigation Diagram](#navigation)   
+**Phase 2**    
+* [Installation](#phase-2)   
+  * [Linux](#linux-install-linux-2)   
+  * [Windows](#linux-install-win-2)   
 
 # Introduction <a name="introduction"></a>
 
