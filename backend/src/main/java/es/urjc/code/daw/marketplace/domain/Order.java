@@ -39,7 +39,9 @@ public class Order {
 
     @PrePersist
     private void onCreate() {
-        creationDate = new Date();
+        if(creationDate == null) {
+            creationDate = new Date();
+        }
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MONTH, 1);
         expiryDate = calendar.getTime();
