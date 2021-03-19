@@ -137,6 +137,10 @@ We will be using two kinds of algorithms based on discounts for products:
 
 ![alt text](artifacts/screenshots/0008%20-%20register.jpeg)
 
+- **Error**: the page which is shown when the provided page does not exist or you're unauthorized:
+
+![alt text](artifacts/screenshots/0019%20-%20error.jpeg)
+
 #### Client View
 
 - **My Services**: a page where you can see a list of your recently purchased services.
