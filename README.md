@@ -25,6 +25,10 @@ Software Engineering Degree, at _University King Juan Carlos_, Spain (2020/2021)
 * [Visuals](#visuals)
   * [Screenshots](#screenshots)
   * [Navigation Diagram](#navigation)
+**Phase 2**
+* [Installation](#phase-2)
+  * [Linux](#linux-install-linux-2)
+  * [Windows](#linux-install-win-2)
 
 # Introduction <a name="introduction"></a>
 
@@ -182,11 +186,11 @@ We will be using two kinds of algorithms based on discounts for products:
 
 ![alt text](artifacts/navigation_diagram.png)
 
-## Phase 2
+## Phase 2 <a name="phase-2"></a>
 
 Fully working traditional MVC application with all the backend implemented.
 
-### Installation instructions for Linux (Ubuntu/Debian based Systems)
+### Installation instructions for Linux (Ubuntu/Debian based Systems) <a name="linux-install-linux-2"></a>
 
 Copy and execute with **sudo** this script:
 
@@ -199,7 +203,7 @@ chmod +x install_and_run.sh
 ./install_and_run.sh
 ```
 
-### Installation instructions for Windows
+### Installation instructions for Windows <a name="linux-install-win-2"></a>
 
 1. Download and install [Docker Desktop](https://docs.docker.com/docker-for-windows)
 2. Download and install [Maven](https://maven.apache.org/guides/getting-started/windows-prerequisites.html)
