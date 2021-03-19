@@ -31,7 +31,7 @@ Software Engineering Degree, at _University King Juan Carlos_, Spain (2020/2021)
 The main objective of this application is to simulate, as closely as possible, a hosting provider.
 A lot of different kinds of products will be available for rental, the products will be based on
 multiple elegible configurations (_hardware and network specifications_). Each package rental will
-have associated an expiration time (_when package usage time expires you need to renew it_).
+have associated an expiration time (_before package usage time expires you need to renew it_).
 
 ## Team Members <a name="members"></a>
 
@@ -96,7 +96,7 @@ represent an additional action which the user can perform (i.e. see a page, perf
 
 We will be using two kinds of algorithms based on discounts for products:
 1. Giving XX% non-recurrent discount on inauguration (or special events), this algorithm will be configurable.
-2. Incremental purchases, every X services you rent in a concrete timespan, given an additional XX% discount
+2. Acummulative purchases, every X services you rent in a concrete timespan, given an additional XX% discount
    on subsequent purchases, all percentages also configurable.
 
 # Visuals <a name="visuals"></a>
