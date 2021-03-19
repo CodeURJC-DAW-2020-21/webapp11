@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "users", indexes = @Index(name = "uniqueUserEmail", columnList = "email", unique = true))
+@Table(name = "clients", indexes = @Index(name = "uniqueUserEmail", columnList = "email", unique = true))
 @Getter
 @Setter
 @AllArgsConstructor
