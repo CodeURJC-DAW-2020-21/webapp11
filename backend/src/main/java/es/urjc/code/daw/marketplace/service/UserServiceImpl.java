@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Role clientRole = roleRepository.findByName(DEFAULT_ROLE);
         user.getRoles().add(Role.builder().id(clientRole.getId()).build());
-        return userRepository.save(user);
+        return userRepository.saveAndFlush(user);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
             storedUser.setPassword(newEncodedPassword);
         }
 
-        userRepository.save(storedUser);
+        userRepository.saveAndFlush(storedUser);
         
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
@@ -76,14 +76,14 @@ public class UserServiceImpl implements UserService {
     public User enableUser(Long id) {
         User storedUser = userRepository.findUserById(id);
         storedUser.setEnabled(true);
-        return userRepository.save(storedUser);
+        return userRepository.saveAndFlush(storedUser);
     }
 
     @Override
     public User disableUser(Long id) {
         User storedUser = userRepository.findUserById(id);
         storedUser.setEnabled(false);
-        return userRepository.save(storedUser);
+        return userRepository.saveAndFlush(storedUser);
     }
 
     @Override

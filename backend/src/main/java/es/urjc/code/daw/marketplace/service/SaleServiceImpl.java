@@ -58,7 +58,7 @@ public class SaleServiceImpl implements SaleService {
         if(optionalCurrentOtd.isEmpty()) return;
         OneTimeDiscount currentOtd = optionalCurrentOtd.get();
         currentOtd.getConsumers().add(order.getUser());
-        otdRepository.save(currentOtd);
+        otdRepository.saveAndFlush(currentOtd);
         int discountPercentage = currentOtd.getDiscountPercentage();
         int orderCost = order.getFinalCost();
         int finalCost = ((100 - discountPercentage) * orderCost) / 100;
@@ -71,7 +71,7 @@ public class SaleServiceImpl implements SaleService {
         if(optionalCurrentAd.isEmpty()) return;
         AccumulativeDiscount currentAd = optionalCurrentAd.get();
         currentAd.getConsumers().add(order.getUser());
-        adRepository.save(currentAd);
+        adRepository.saveAndFlush(currentAd);
         int discountPercentage = currentAd.getDiscountPercentage();
         int orderCost = order.getFinalCost();
         int finalCost = ((100 - discountPercentage) * orderCost) / 100;
@@ -99,7 +99,7 @@ public class SaleServiceImpl implements SaleService {
                 .discountPercentage(discount)
             .build();
 
-        otdRepository.save(otd);
+        otdRepository.saveAndFlush(otd);
     }
 
     @Override
@@ -119,7 +119,7 @@ public class SaleServiceImpl implements SaleService {
                 .bulkAmount(bulkAmount)
             .build();
 
-        adRepository.save(ad);
+        adRepository.saveAndFlush(ad);
 
     }
 

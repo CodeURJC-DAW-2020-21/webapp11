@@ -177,7 +177,7 @@ const toggleAccount = () => {
             }
 
         }
-        setTimeout(() => updateLoaded(), 10);
+        setTimeout(() => updateLoaded(), 100);
     });
 }
 
