@@ -60,8 +60,7 @@ All the organisation will be done using a _Trello_ board.
 - **Product**: is an entity that contains all the information related to the product (i.e. price, category and specs)
 - **Order**: represents a product rental action and contains order attributes (i.e. rental date, expiration
   date, etc)
-- **Discount**: will represent a product sale (a.k.a. discount) for your first purchase and will contain all
-  the neccesary attributes related to that sale (i.e. sale duration, discount percentage).
+- **OneTimeDiscount**: will represent a one time discount sale, this is non-recurrent one time applied discount.
 - **AccumulativeDiscount**: it will represent a discount as a reward for subsequent purchases in a concrete
   timespan and will contain a configuration (i.e. after 5 puchasing packages of a category, the next packages
   of the same kind, will be given an X% amount of discount)
@@ -89,8 +88,8 @@ represent an additional action which the user can perform (i.e. see a page, perf
 ### Third-party Additional Technology <a name="third-tech"></a>
 
 - [Gmail API](https://developers.google.com/gmail/api): we will be using the Gmail API with Spring Email
-  to send order receipts and server information to the clients.
-- [Apache PDF Box](https://pdfbox.apache.org/): we will also be using Apache PDF Box to generate PDF's for
+  to send registration welcome messages and order receipts and server information to the clients.
+- [Open PDF](https://github.com/LibrePDF/OpenPDF): we will also be using OpenPDF to generate PDF's for
   the product receipts in the client rented services area.
 
 ### Advanced Algorithm <a name="algorithm"></a>
@@ -136,7 +135,8 @@ Pages:
 ![alt text](artifacts/frontend/admin.gif)
 
 Pages:
-- **Admin Panel**: a panel where you can see several charts with statistics and manage clients.
+- **Admin Panel**: a panel where you can see several charts with statistics, manage 
+  clients and sale related stuff (one time discounts and accumulative discounts).
 
 ### Navigation Diagram <a name="navigation"></a>
 
