@@ -125,7 +125,6 @@ public class ProductController {
         model.addAttribute("isPanel", true);
 
         return "panel";
-
     }
 
 }

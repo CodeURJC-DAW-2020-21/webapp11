@@ -6,6 +6,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
+/**
+ * This class represents the binding of the security properties
+ * file to its Java parsed POJO representation.
+ */
 @Component
 @Data
 @ConfigurationProperties("security")

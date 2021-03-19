@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 
+/**
+ * A simple implementation for the {@link PdfExporterService}.
+ */
 @Component
 public class PdfExporterServiceImpl implements PdfExporterService {
 
@@ -52,7 +55,7 @@ public class PdfExporterServiceImpl implements PdfExporterService {
 
         document.open();
         Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
-        font.setSize(18);
+        font.setSize(12);
         font.setColor(Color.BLUE);
 
         Paragraph p = new Paragraph("Service " + order.getProduct().getCategory() + " " + order.getId() + " receipt", font);

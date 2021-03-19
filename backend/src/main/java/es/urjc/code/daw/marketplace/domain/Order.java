@@ -8,7 +8,7 @@ import java.util.Date;
 
 @ToString
 @Entity
-@Table(name = "purchased_orders")
+@Table(name = "ordered_services")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

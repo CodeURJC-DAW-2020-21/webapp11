@@ -12,6 +12,11 @@ import org.springframework.security.web.authentication.LoginUrlAuthenticationEnt
 
 import java.util.Collections;
 
+/**
+ * This class's responsibility is to perform the default
+ * configuration of default properties for our web security
+ * (i.e. public routes, private routes, http/https, etc).
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
