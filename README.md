@@ -191,6 +191,9 @@ We will be using two kinds of algorithms based on discounts for products:
 
 Fully working traditional MVC application with all the backend implemented.
 
+**NOTE**: before installing, make sure you have set all the properties files with the neccesary
+credentials (i.e. mailing, admin default account, etc).
+
 ### Installation instructions for Linux (Ubuntu/Debian based Systems) <a name="linux-install-linux-2"></a>
 
 Copy and execute with **sudo** this script:
