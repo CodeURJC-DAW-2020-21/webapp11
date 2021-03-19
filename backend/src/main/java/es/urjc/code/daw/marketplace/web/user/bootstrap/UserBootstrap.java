@@ -1,5 +1,6 @@
 package es.urjc.code.daw.marketplace.web.user.bootstrap;
 
+import com.github.javafaker.Faker;
 import es.urjc.code.daw.marketplace.domain.Product;
 import es.urjc.code.daw.marketplace.domain.Role;
 import es.urjc.code.daw.marketplace.domain.User;
@@ -9,6 +10,7 @@ import es.urjc.code.daw.marketplace.repository.UserRepository;
 import es.urjc.code.daw.marketplace.security.SecurityProperties;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -42,34 +44,45 @@ public class UserBootstrap implements CommandLineRunner {
     public void run(String... args) {
         Arrays.stream(roles).forEach(role -> authorityRepository.save(Role.builder().name(role).build()));
 
-        final String adminEmail = securityProperties.getAdminEmail();
-        final String adminPassword = securityProperties.getAdminPassword();
         final Role defaultRole = authorityRepository.findByName("ROLE_CLIENT");
         final Role adminRole = authorityRepository.findByName("ROLE_ADMIN");
 
         for(int i = 0; i<25; i++) {
+            Faker faker = new Faker();
+
             User random = User.builder()
-                    .firstName(RandomStringUtils.randomAlphabetic(10))
-                    .surname(RandomStringUtils.randomAlphabetic(10))
-                    .email(RandomStringUtils.randomAlphabetic(5) + "@" + RandomStringUtils.randomAlphabetic(5) + ".ru")
-                    .password(passwordEncoder.encode("FUCK"))
-                    .isEnabled(RandomUtils.nextInt(0, 2) == 0)
-                    .role(RandomUtils.nextInt(0, 2) == 0 ? defaultRole : adminRole)
+                    .firstName(faker.name().firstName())
+                    .surname(faker.name().lastName())
+                    .email(faker.internet().emailAddress())
+                    .password(passwordEncoder.encode("password"))
+                    .role(defaultRole)
                     .address("Main St. 123, New York")
                 .build();
-            userRepository.save(random);
+
+            userRepository.saveAndFlush(random);
         }
 
-        User user = User.builder()
-                .firstName("Default")
-                .surname("Administrator")
-                .email(adminEmail)
-                .password(adminPassword)
+        User admin = User.builder()
+                .firstName("Administrator")
+                .surname(StringUtils.EMPTY)
+                .email(securityProperties.getAdminEmail())
+                .password(securityProperties.getAdminPassword())
                 .role(adminRole)
                 .address("Main St. 123, New York")
             .build();
 
-        userRepository.save(user);
+        userRepository.saveAndFlush(admin);
+
+        User client = User.builder()
+                .firstName("Peter")
+                .surname("Moon")
+                .email(securityProperties.getClientEmail())
+                .password(securityProperties.getClientPassword())
+                .role(defaultRole)
+                .address("Main St. 123, New York")
+            .build();
+
+        userRepository.saveAndFlush(client);
 
     }
 

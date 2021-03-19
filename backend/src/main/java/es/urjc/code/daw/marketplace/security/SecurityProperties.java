@@ -49,4 +49,10 @@ public class SecurityProperties {
     @Value("${auth.account.admin.password}")
     private String adminPassword;
 
+    @Value("${auth.account.client.email}")
+    private String clientEmail;
+
+    @Value("${auth.account.client.password}")
+    private String clientPassword;
+
 }

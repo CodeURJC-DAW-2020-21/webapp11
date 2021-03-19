@@ -44,7 +44,7 @@ public class SaleBootstrap implements CommandLineRunner {
                 .stop(new Date(System.currentTimeMillis() + Integer.MAX_VALUE))
             .build();
 
-        otdRepository.save(otd);
+        otdRepository.saveAndFlush(otd);
 
         AccumulativeDiscount ad = AccumulativeDiscount.builder()
                 .productId(product.getId())
@@ -53,7 +53,7 @@ public class SaleBootstrap implements CommandLineRunner {
                 .stop(new Date(System.currentTimeMillis() + Integer.MAX_VALUE))
             .build();
 
-        adRepository.save(ad);
+        adRepository.saveAndFlush(ad);
 
     }
 
