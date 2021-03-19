@@ -3,7 +3,6 @@ package es.urjc.code.daw.marketplace.web.order.controller;
 import es.urjc.code.daw.marketplace.domain.Order;
 import es.urjc.code.daw.marketplace.domain.Product;
 import es.urjc.code.daw.marketplace.domain.User;
-import es.urjc.code.daw.marketplace.repository.ProductRepository;
 import es.urjc.code.daw.marketplace.security.user.UserPrincipal;
 import es.urjc.code.daw.marketplace.service.*;
 import org.springframework.data.domain.PageRequest;
@@ -24,20 +23,19 @@ public class OrderController {
     private final UserService userService;
     private final EmailService emailService;
     private final SaleService saleService;
-    private final ProductRepository productRepository;
+    private final ProductService productService;
     private final PdfExporterService pdfExporterService;
 
     public OrderController(OrderService orderService,
                            UserService userService,
                            SaleService saleService,
                            EmailService emailService,
-                           ProductRepository productRepository,
-                           PdfExporterService pdfExporterService) {
+                           ProductService productService, PdfExporterService pdfExporterService) {
         this.orderService = orderService;
         this.userService = userService;
         this.emailService = emailService;
         this.saleService = saleService;
-        this.productRepository = productRepository;
+        this.productService = productService;
         this.pdfExporterService = pdfExporterService;
     }
 
@@ -135,7 +133,7 @@ public class OrderController {
                              @AuthenticationPrincipal UserPrincipal userPrincipal) {
 
         User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
-        Product product = productRepository.findById(productId).orElseThrow();
+        Product product = productService.findProductById(productId);
 
         Order order = Order.builder()
                 .product(product)

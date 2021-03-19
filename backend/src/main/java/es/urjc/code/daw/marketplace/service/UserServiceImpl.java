@@ -75,14 +75,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User enableUser(Long id) {
         User storedUser = userRepository.findUserById(id);
-        storedUser.setEnabled(true);
+        storedUser.setIsEnabled(true);
         return userRepository.saveAndFlush(storedUser);
     }
 
     @Override
     public User disableUser(Long id) {
         User storedUser = userRepository.findUserById(id);
-        storedUser.setEnabled(false);
+        storedUser.setIsEnabled(false);
         return userRepository.saveAndFlush(storedUser);
     }
 
