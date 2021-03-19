@@ -101,42 +101,78 @@ We will be using two kinds of algorithms based on discounts for products:
 
 # Visuals <a name="visuals"></a>
 
-### Screenshots (_animated gifs_) <a name="screenshots"></a>
+### Screenshots <a name="screenshots"></a>
 
 #### Visitor View
 
-![alt text](artifacts/frontend/visitor.gif)
-
-Pages:
 - **Homepage**: main page when you enter the application, it contains basic information.
-- **About us**: describes the enterprise, its origins, present, and future.
-- **Screenshots**: contains an overview of the user services panel and other interface stuff.
+
+![alt text](artifacts/screenshots/0001%20-%20homepage.jpeg)
+
 - **Pricing**: specifies the price for each package configuration available to purchase.
+
+![alt text](artifacts/screenshots/0002%20-%20pricing.jpeg)
+
+- **About us**: describes the enterprise, its origins, present, and future.
+
+![alt text](artifacts/screenshots/0003%20-%20about.jpeg)
+
 - **Legal**: contains all legal, privacy & security, terms of use and trademarks.
+
+![alt text](artifacts/screenshots/0004%20-%20legal.jpeg)
+
 - **FAQ**: stands for frequently asked questions and contains the most asked questions about our services.
 
-![alt text](artifacts/frontend/auth.gif)
+![alt text](artifacts/screenshots/0005%20-%20faq.jpeg)
 
-Pages:
+- **Screenshots**: contains an overview of the user services panel and other interface stuff.
+
+![alt text](artifacts/screenshots/0006%20-%20screenshots.jpeg)
+
 - **Login**: page to perform the authentication and log-in into our account.
+
+![alt text](artifacts/screenshots/0007%20-%20login.jpeg)
+
 - **Register**: here we register providing our personal data and creating an account to become clients.
+
+![alt text](artifacts/screenshots/0008%20-%20register.jpeg)
 
 #### Client View
 
-![alt text](artifacts/frontend/client.gif)
-
-Pages:
 - **My Services**: a page where you can see a list of your recently purchased services.
-- **Service**: where you manage your concretely selected service from the previous page.
+
+![alt text](artifacts/screenshots/0009%20-%20services.jpeg)
+
 - **Profile**: allows you to modify your personal information details.
+
+![alt text](artifacts/screenshots/0010%20-%20profile.jpeg)
+
+- **Service**: where you manage your concretely selected service from the previous page.
+
+![alt text](artifacts/screenshots/00011%20-%20active%20service.jpeg)
+
+![alt text](artifacts/screenshots/00012%20-%20cancelled%20service.jpeg)
 
 #### Admin View
 
-![alt text](artifacts/frontend/admin.gif)
+- **Panel > Statistics**: chart section of the panel where you can easily track your sales.
 
-Pages:
-- **Admin Panel**: a panel where you can see several charts with statistics, manage 
-  clients and sale related stuff (one time discounts and accumulative discounts).
+![alt text](artifacts/screenshots/00013%20-%20panel%20statistics.jpeg)
+
+- **Panel > Manage Clients**: client management section of the panel where you can disable,
+  enable and check client profile information.
+
+![alt text](artifacts/screenshots/00014%20-%20panel%20clients.jpeg)
+
+- **Panel > One Time Discount**: one time discount sale management.
+
+![alt text](artifacts/screenshots/00015%20-%20sale%20otd%20active.jpeg)
+![alt text](artifacts/screenshots/00016%20-%20sale%20otd%20inactive.jpeg)
+
+- **Panel > Accumulative Discount**: accumulative or recurrent sale management.
+
+![alt text](artifacts/screenshots/00017%20-%20sale%20ad%20active.jpeg)
+![alt text](artifacts/screenshots/00018%20-%20sale%20ad%20inactive.jpeg)
 
 ### Navigation Diagram <a name="navigation"></a>
 
