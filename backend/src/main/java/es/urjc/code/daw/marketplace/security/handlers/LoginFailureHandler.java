@@ -15,6 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * This class is responsible of intercepting login attempts
+ * and when any of them fails adds the flash error message
+ * to the current request.
+ */
 @Component
 public class LoginFailureHandler implements AuthenticationFailureHandler {
 

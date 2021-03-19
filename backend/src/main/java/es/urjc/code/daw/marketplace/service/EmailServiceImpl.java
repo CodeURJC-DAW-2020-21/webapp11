@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * A simple implementation for the {@link EmailService}.
+ */
 @Service
 public class EmailServiceImpl implements EmailService {
 

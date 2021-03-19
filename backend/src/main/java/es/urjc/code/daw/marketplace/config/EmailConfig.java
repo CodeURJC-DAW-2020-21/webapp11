@@ -9,6 +9,11 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Properties;
 
+/**
+ * This class is a bean configuration class, responsible
+ * to configure the {@link JavaMailSender} singleton bean
+ * which will be provided to the mailing service.
+ */
 @Configuration
 public class EmailConfig {
 

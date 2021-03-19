@@ -6,6 +6,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
+/**
+ * This class represents the binding of the configuration
+ * file of the mailing service connection credentials.
+ */
 @Component
 @Data
 @ConfigurationProperties("mailing")
@@ -21,7 +25,7 @@ public class EmailProperties {
     @Value("${mailing.email}")
     private String email;
 
-    @Value("${mailing.email}")
+    @Value("${mailing.password}")
     private String password;
 
 }

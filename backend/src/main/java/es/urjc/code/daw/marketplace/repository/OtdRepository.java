@@ -1,15 +1,12 @@
 package es.urjc.code.daw.marketplace.repository;
 
 import es.urjc.code.daw.marketplace.domain.OneTimeDiscount;
-import es.urjc.code.daw.marketplace.domain.Order;
-import es.urjc.code.daw.marketplace.domain.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.Optional;
-import java.util.Set;
 
 public interface OtdRepository extends JpaRepository<OneTimeDiscount, Long>, PagingAndSortingRepository<OneTimeDiscount, Long> {
 

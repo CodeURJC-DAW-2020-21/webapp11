@@ -10,6 +10,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+/**
+ * This class is the implementation of the {@link UserDetailsService}
+ * to be able to load the {@link UserDetails} associated to the logged
+ * user.
+ */
 @Service
 @Qualifier("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {

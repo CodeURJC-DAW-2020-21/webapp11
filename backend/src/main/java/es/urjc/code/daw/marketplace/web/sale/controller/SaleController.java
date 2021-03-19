@@ -169,7 +169,6 @@ public class SaleController {
         model.addAttribute("info", "yes");
 
         return "flash";
-
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -182,7 +181,6 @@ public class SaleController {
         model.addAttribute("info", "yes");
 
         return "flash";
-
     }
 
 }
