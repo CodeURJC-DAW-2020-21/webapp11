@@ -149,30 +149,30 @@ We will be using two kinds of algorithms based on discounts for products:
 
 - **Service**: where you manage your concretely selected service from the previous page.
 
-![alt text](artifacts/screenshots/00011%20-%20active%20service.jpeg)
+![alt text](artifacts/screenshots/0011%20-%20active%20service.jpeg)
 
-![alt text](artifacts/screenshots/00012%20-%20cancelled%20service.jpeg)
+![alt text](artifacts/screenshots/0012%20-%20cancelled%20service.jpeg)
 
 #### Admin View
 
 - **Panel > Statistics**: chart section of the panel where you can easily track your sales.
 
-![alt text](artifacts/screenshots/00013%20-%20panel%20statistics.jpeg)
+![alt text](artifacts/screenshots/0013%20-%20panel%20statistics.jpeg)
 
 - **Panel > Manage Clients**: client management section of the panel where you can disable,
   enable and check client profile information.
 
-![alt text](artifacts/screenshots/00014%20-%20panel%20clients.jpeg)
+![alt text](artifacts/screenshots/0014%20-%20panel%20clients.jpeg)
 
 - **Panel > One Time Discount**: one time discount sale management.
 
-![alt text](artifacts/screenshots/00015%20-%20sale%20otd%20active.jpeg)
-![alt text](artifacts/screenshots/00016%20-%20sale%20otd%20inactive.jpeg)
+![alt text](artifacts/screenshots/0015%20-%20sale%20otd%20active.jpeg)
+![alt text](artifacts/screenshots/0016%20-%20sale%20otd%20inactive.jpeg)
 
 - **Panel > Accumulative Discount**: accumulative or recurrent sale management.
 
-![alt text](artifacts/screenshots/00017%20-%20sale%20ad%20active.jpeg)
-![alt text](artifacts/screenshots/00018%20-%20sale%20ad%20inactive.jpeg)
+![alt text](artifacts/screenshots/0017%20-%20sale%20ad%20active.jpeg)
+![alt text](artifacts/screenshots/0018%20-%20sale%20ad%20inactive.jpeg)
 
 ### Navigation Diagram <a name="navigation"></a>
 
