@@ -181,3 +181,57 @@ We will be using two kinds of algorithms based on discounts for products:
 ### Navigation Diagram <a name="navigation"></a>
 
 ![alt text](artifacts/navigation_diagram.png)
+
+## Phase 2
+
+Fully working traditional MVC application with all the backend implemented.
+
+### Installation instructions for Linux (Ubuntu/Debian based Systems)
+
+Copy and execute with **sudo** this script:
+
+```bash
+#!/bin/bash
+git clone https://github.com/CodeURJC-DAW-2020-21/webapp11
+rm -rf $HOME/webapp11
+cd $HOME/webapp11/backend
+chmod +x install_and_run.sh
+./install_and_run.sh
+```
+
+### Installation instructions for Windows
+
+1. Download and install [Docker Desktop](https://docs.docker.com/docker-for-windows)
+2. Download and install [Maven](https://maven.apache.org/guides/getting-started/windows-prerequisites.html)
+3. Download and install [Git](https://git-scm.com/)
+4. Clone the application repository with Git: 
+
+```cmd
+git clone https://github.com/CodeURJC-DAW-2020-21/webapp11
+```
+
+5. Inside the cloned repository folder, go inside the "backend" folder.
+6. Execute the maven command to compile the code:
+
+```cmd
+mvn clean install
+```
+
+7. Inside the "backend" folder go inside the "target" folder.
+8. Copy the "marketplace-0.0.1-SNAPSHOT.jar" file to the "docker" folder.
+9. Inside the "docker" folder, change the "_marketplace-0.0.1-SNAPSHOT.jar_" file name to "_marketplace.jar_"
+10. Execute the docker image creation command:
+
+```cmd
+docker build -t daw-team-11/marketplace .
+```
+
+11. Run the docker compose file:
+
+```cmd
+docker-compose up -d
+```
+
+
+
+
