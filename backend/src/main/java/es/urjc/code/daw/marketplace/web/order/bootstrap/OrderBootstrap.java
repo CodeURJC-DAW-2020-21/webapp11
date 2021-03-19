@@ -43,15 +43,15 @@ public class OrderBootstrap implements CommandLineRunner {
         User user = userRepository.findUserByEmail(securityProperties.getClientEmail());
         Iterable<Product> products = productRepository.findAll();
 
-        Date todayDate = new Date();
+        Date firstDayOfWeek = TimeUtils.firstDayOfCurrentWeek();
         List<Date> dates = Lists.newArrayList(
-                todayDate,
-                TimeUtils.sumDaysToDate(todayDate, 1),
-                TimeUtils.sumDaysToDate(todayDate, 2),
-                TimeUtils.sumDaysToDate(todayDate, 3),
-                TimeUtils.sumDaysToDate(todayDate, 4),
-                TimeUtils.sumDaysToDate(todayDate, 5),
-                TimeUtils.sumDaysToDate(todayDate, 6)
+                firstDayOfWeek,
+                TimeUtils.sumDaysToDate(firstDayOfWeek, 1),
+                TimeUtils.sumDaysToDate(firstDayOfWeek, 2),
+                TimeUtils.sumDaysToDate(firstDayOfWeek, 3),
+                TimeUtils.sumDaysToDate(firstDayOfWeek, 4),
+                TimeUtils.sumDaysToDate(firstDayOfWeek, 5),
+                TimeUtils.sumDaysToDate(firstDayOfWeek, 6)
         );
         List<Order> orders = Lists.newArrayList();
         for(int i = 0; i < 3; i++) {
