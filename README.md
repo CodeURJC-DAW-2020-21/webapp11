@@ -191,18 +191,44 @@ We will be using two kinds of algorithms based on discounts for products:
 
 Fully working traditional MVC application with all the backend implemented.
 
-**NOTE**: before installing, make sure you have set all the properties files with the neccesary
-credentials (i.e. mailing, admin default account, etc).
+### Note
+
+Before 
 
 ### Installation instructions for Linux (Ubuntu/Debian based Systems) <a name="linux-install-linux-2"></a>
 
-Copy and execute with **sudo** this script:
+**Implications of the scripts**:
+1. Clones the repository to home directory (_removing the old cloned repo if present_).
+2. Installs _Docker_, _Docker-Compose_ and _Maven_.
+3. Builds the application packaging it to a _JAR_ file.
+4. Builds a docker image of the currently build Spring application
+5. Creates and runs two containers (application + mysql instance, in the same network).
+
+**Installation script**:
+
+Create a new file, copy this script and give it execution permissions. This script just 
+clones the current code to your home directory.
+
+**Clone script**:
+
+```bash
+cd $HOME
+rm -rf webapp11
+git clone https://github.com/CodeURJC-DAW-2020-21/webapp11
+```
+
+Create a new file, copy this script and give it execution permissions. This script must
+be executed with **sudo**.
+
+**WARNING**: Before building and executing make sure you've set up the neccesary credentials
+for all the .properties files in "webapp11/backend/src/main/resources/*".
+
+**Build and execution script**:
 
 ```bash
 #!/bin/bash
-git clone https://github.com/CodeURJC-DAW-2020-21/webapp11
-rm -rf $HOME/webapp11
-cd $HOME/webapp11/backend
+cd $HOME
+cd webapp11/backend
 chmod +x install_and_run.sh
 ./install_and_run.sh
 ```
