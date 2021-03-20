@@ -11,7 +11,6 @@ import es.urjc.code.daw.marketplace.security.SecurityProperties;
 import es.urjc.code.daw.marketplace.util.TimeUtils;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;

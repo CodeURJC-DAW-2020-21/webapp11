@@ -2,8 +2,6 @@ package es.urjc.code.daw.marketplace.web.sale.dto;
 
 import lombok.*;
 
-import javax.validation.constraints.*;
-
 @Getter
 @Setter
 @Builder
