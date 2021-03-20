@@ -11,8 +11,8 @@ import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Long>, PagingAndSortingRepository<Order, Long> {
 
-    @Query("select count(o) from Order o where o.creationDate between :startDate and :endDate")
-    Integer countAllBetweenDates(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+    @Query("select count(o) from Order o where o.creationDate = :givenDate")
+    Integer countAllGivenDate(@Param("givenDate") Date givenDate);
 
     @Query("select count(o) from Order o where o.product.category = :category and o.creationDate between :startDate and :endDate")
     Integer countAllBetweenDatesByCategory(@Param("category") String category, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
