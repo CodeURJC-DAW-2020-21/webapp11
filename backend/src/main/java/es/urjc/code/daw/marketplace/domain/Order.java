@@ -31,11 +31,11 @@ public class Order {
     private User user;
 
     @Temporal(TemporalType.DATE)
-    @Column("creation_date")
+    @Column(name = "creation_date")
     private Date creationDate;
 
     @Temporal(TemporalType.DATE)
-    @Column("expiry_date")
+    @Column(name = "expiry_date")
     private Date expiryDate;
 
     @PrePersist
