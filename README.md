@@ -275,9 +275,18 @@ docker-compose up -d
 
 #### Domain entities diagram <a name="diagrams-2-ed"></a>
 
+This diagram represents our domain entities and their associative 
+relationships (This diagram is just a quick overview so _methods 
+are ommited for sake of shortness_).
+
 ![alt text](artifacts/entity-diagram.png)
 
 #### Database EER diagram <a name="diagrams-2-eer"></a>
+
+This diagram is an enhanced entity-relationship diagram (EER), 
+and this is basically an expanded version of ER diagrams, this
+high-level model represents the relationship between the database
+entities.
 
 ![alt text](artifacts/database-diagram.png)
 
