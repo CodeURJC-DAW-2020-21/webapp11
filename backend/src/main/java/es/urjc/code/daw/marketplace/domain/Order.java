@@ -52,7 +52,7 @@ public class Order {
     }
 
     public void applyDiscount(int discountPercentage) {
-        int finalCost = ((100 - discountPercentage) * getFinalCost()) / 100;
+        int finalCost = ((100 - discountPercentage) * product.getPrice()) / 100;
         this.setFinalCost(finalCost);
     }
 
