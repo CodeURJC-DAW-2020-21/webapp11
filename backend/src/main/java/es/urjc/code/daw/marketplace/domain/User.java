@@ -74,4 +74,12 @@ public class User implements Serializable {
         return roles.stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
     }
 
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public boolean isEnabled() {
+        return isEnabled;
+    }
+
 }

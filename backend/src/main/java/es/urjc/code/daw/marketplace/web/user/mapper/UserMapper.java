@@ -14,8 +14,8 @@ public interface UserMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "roles", ignore = true)
-    @Mapping(target = "locked", ignore = true)
-    @Mapping(target = "enabled", ignore = true)
+    @Mapping(target = "isLocked", ignore = true)
+    @Mapping(target = "isEnabled", ignore = true)
     @Mapping(target = "profilePictureFilename", ignore = true)
     @Mapping(target = "accumulativeDiscountsConsumed", ignore = true)
     @Mapping(target = "oneTimeDiscountsConsumed", ignore = true)
