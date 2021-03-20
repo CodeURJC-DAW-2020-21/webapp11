@@ -191,7 +191,7 @@ We will be using two kinds of algorithms based on discounts for products:
 
 Fully working traditional MVC application with all the backend implemented.
 
-### Installation instructions for Linux (Ubuntu/Debian based Systems) <a name="linux-install-linux-2"></a>
+### Installation instructions for GNU/Linux (Ubuntu/Debian based systems) <a name="linux-install-linux-2"></a>
 
 **Implications of the scripts**:
 1. Clones the repository to home directory (_removing the old cloned repo if present_).
