@@ -292,4 +292,17 @@ entities.
 
 #### Classes and templates diagram <a name="diagrams-2-ctd"></a>
 
+This diagram is a classes and templates diagram of our application,
+represents a high-level view of the entire application without going
+too much into details, basically the flow of the requests thru the
+controllers, services, repositories to the domain entities and the
+response view associated to the request.
+
+**Legend**:
+- Yellow (_Views_) represent the view that is loaded upon a given request.
+- Green (_Controllers_) represent the controllers that are our web adapters.
+- Red (_Services_) self-contained unit of software that performs a specific task.
+- Blue (_Repositories_) acts like a list of data, basically abstracts data access.
+- Light Pink (_Domain_) represent our domain entities and their relationships.
+
 ![alt text](artifacts/classes-templates-diagram.png)
