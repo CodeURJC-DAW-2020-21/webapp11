@@ -49,11 +49,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Integer> findSalesPerDayInWeek() {
         List<Integer> salesPerDayInWeek = new LinkedList<>();
-        Date currentDate = TimeUtils.firstDayOfCurrentWeek();
+        Date startDate = TimeUtils.firstDayOfCurrentWeek();
         for(int dayIncrement = 0; dayIncrement < 7; dayIncrement++) {
-            Integer count = orderRepository.countAllGivenDate(currentDate);
+            Date endDate = TimeUtils.sumDaysToDate(startDate, 1);
+            Date exclusiveEndDate = TimeUtils.removeSecondsFromDate(endDate, 1);
+            Integer count = orderRepository.countAllBetweenDates(startDate, exclusiveEndDate);
             salesPerDayInWeek.add(count);
-            currentDate = TimeUtils.sumDaysToDate(currentDate, 1);
+            startDate = endDate;
         }
         return salesPerDayInWeek;
     }
