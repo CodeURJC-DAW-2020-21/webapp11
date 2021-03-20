@@ -8,11 +8,9 @@ import es.urjc.code.daw.marketplace.repository.OtdRepository;
 import es.urjc.code.daw.marketplace.repository.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.Optional;
 
 @Component
 @Transactional

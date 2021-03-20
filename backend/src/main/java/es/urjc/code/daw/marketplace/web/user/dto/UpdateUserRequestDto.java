@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.validation.constraints.*;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -24,7 +22,6 @@ public class UpdateUserRequestDto {
     @NotEmpty
     private String surname;
 
-    @Pattern(regexp = "^[\\w\\s.-]+\\d+,\\s*[\\w\\s.-]+$")
     @NotNull
     @NotEmpty
     private String address;

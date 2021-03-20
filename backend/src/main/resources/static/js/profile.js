@@ -38,11 +38,10 @@ const submitProfileChanges = () => {
     isValid = /^\w+@[a-zA-Z_]+?(\.[a-zA-Z]{2,3})?$/.test(email);
     if(!isValid) { displayProfileChangeError(failMessage); return; }
 
-    failMessage = "Invalid address (use this format 'Main St. 123, New York')";
+    failMessage = "Address can't be empty";
     const address = $("#address").val();
-    isValid = /^[\w\s.-]+\d+,\s*[\w\s.-]+$/.test(address);
-    if(!isValid) { displayProfileChangeError(failMessage); return; }
-
+    isValid = address !== "";
+    if(!isValid) { displayLoginError(failMessage); return; }
 
     const password = $("#password").val();
     if(password !== "") {

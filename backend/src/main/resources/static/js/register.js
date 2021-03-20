@@ -58,12 +58,12 @@ const registerRegistrationAction = () => {
 
         failMessage = "Please introduce a valid email address";
         const email = $("#email").val();
-        isValid = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email);
+        isValid = /^\w+@[a-zA-Z_]+?(\.[a-zA-Z]{2,3})?$/.test(email);
         if(!isValid) { displayLoginError(failMessage); return; }
 
-        failMessage = "Invalid address (use this format 'Main St. 123, New York')";
+        failMessage = "Address can't be empty";
         const address = $("#address").val();
-        isValid = /^[\w\s.-]+\d+,\s*[\w\s.-]+$/.test(address);
+        isValid = address !== "";
         if(!isValid) { displayLoginError(failMessage); return; }
 
         failMessage = "Password must contain at least one digit, one uppercase and must be 8 characters long minimum";

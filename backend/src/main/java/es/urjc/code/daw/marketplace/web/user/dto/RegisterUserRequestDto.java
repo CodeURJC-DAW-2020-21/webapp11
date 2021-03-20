@@ -22,7 +22,6 @@ public class RegisterUserRequestDto {
     @NotEmpty
     private String surname;
 
-    @Pattern(regexp = "^[\\w\\s.-]+\\d+,\\s*[\\w\\s.-]+$")
     @NotNull
     @NotEmpty
     private String address;

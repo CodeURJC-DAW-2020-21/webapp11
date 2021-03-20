@@ -1,7 +1,6 @@
 package es.urjc.code.daw.marketplace.util;
 
 import lombok.Setter;
-
 import java.util.List;
 
 /**
