@@ -67,3 +67,7 @@
 - ✔ Admin can modify client profiles
 - ✔ Client profile pictures are successfully displayed in clients management listing
 - ✔ Admin can modify client profiles
+- ✔ One time discount works
+- ✔ Accumulative discount works
+- ✔ Discounts not applied when inactive (when disabled)
+- ✔ Discounts not applied when inactive (when disabled)

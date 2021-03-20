@@ -39,11 +39,18 @@ public class Order {
     @PrePersist
     private void onCreate() {
         if(creationDate == null) {
-            creationDate = new Date();
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.clear(Calendar.MINUTE);
+            calendar.clear(Calendar.SECOND);
+            calendar.clear(Calendar.MILLISECOND);
+            creationDate = calendar.getTime();
         }
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MONTH, 1);
-        expiryDate = calendar.getTime();
+        if(expiryDate == null) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.MONTH, 1);
+            expiryDate = calendar.getTime();
+        }
     }
 
     public boolean isExpired() {
