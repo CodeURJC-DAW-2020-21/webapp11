@@ -208,6 +208,7 @@ Create a new file, copy this script and give it execution permissions. This scri
 clones the current code to your home directory.
 
 ```bash
+#!/bin/bash
 cd $HOME
 rm -rf webapp11
 git clone https://github.com/CodeURJC-DAW-2020-21/webapp11
