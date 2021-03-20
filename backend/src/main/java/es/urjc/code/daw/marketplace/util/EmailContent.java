@@ -25,9 +25,9 @@ public class EmailContent {
         builder.append("<h3>");
         builder.append(title);
         builder.append("</h3>");
-        builder.append("<ol>");
+        builder.append("<ul>");
         items.forEach(item -> builder.append(String.format("<li>%s</li>", item)));
-        builder.append("</ol>");
+        builder.append("</ul>");
         builder.append("<br>");
         return this;
     }
