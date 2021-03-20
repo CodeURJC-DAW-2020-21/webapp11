@@ -32,11 +32,11 @@ public class Order {
     @JoinColumn(name = "user_order")
     private User user;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creation_date")
     private Date creationDate;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "expiry_date")
     private Date expiryDate;
 
