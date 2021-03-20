@@ -1,10 +1,12 @@
 package es.urjc.code.daw.marketplace.web.user.controller;
 
+import com.google.common.collect.Lists;
 import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.security.user.UserPrincipal;
 import es.urjc.code.daw.marketplace.service.EmailService;
 import es.urjc.code.daw.marketplace.service.PictureService;
 import es.urjc.code.daw.marketplace.service.UserService;
+import es.urjc.code.daw.marketplace.util.EmailContent;
 import es.urjc.code.daw.marketplace.web.user.dto.RegisterUserRequestDto;
 import es.urjc.code.daw.marketplace.web.user.dto.UpdateUserRequestDto;
 import es.urjc.code.daw.marketplace.web.user.mapper.UserMapper;
@@ -75,18 +77,22 @@ public class UserController {
                                @AuthenticationPrincipal UserPrincipal userPrincipal,
                                Model model) {
 
-        userService.registerUser(userMapper.asRegisterUser(request));
+        User user = userService.registerUser(userMapper.asRegisterUser(request));
 
-        String htmlMessage = "<h2>Thanks for registering " +
-                request.getFirstName() +
-                " " + request.getSurname() + "!"+ "</h2>" + "<br><h3>Here is your profile information</h3>" +
-                "<ul>" +
-                "   <li>Name: " + request.getFirstName() +  "</li>" +
-                "   <li>Surname: " + request.getSurname() +  "</li>" +
-                "   <li>Email: " + request.getEmail() +  "</li>" +
-                "</ul>" + "<br><h2>And welcome to DAWHostServices!</h2>";
+        String message = EmailContent.create()
+                .addHeading("Thanks for registering")
+                .addUnorderedList(
+                        "Here is your profile information",
+                        Lists.newArrayList(
+                                "Name: " + user.getFirstName(),
+                                "Surname: " + user.getSurname(),
+                                "Email: " + user.getEmail()
+                        )
+                )
+                .addHeading("and welcome to DAWHostServices!")
+            .build();
 
-        emailService.sendEmail(request.getEmail(), "Welcome to DAWHostServices", htmlMessage);
+        emailService.sendEmail(request.getEmail(), "Welcome to DAWHostServices", message);
 
         final String viewIndicator = "isRegister";
         model.addAttribute(viewIndicator, "yes");
