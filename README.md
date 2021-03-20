@@ -30,6 +30,10 @@ Software Engineering Degree, at _University King Juan Carlos_, Spain (2020/2021)
 * [Installation](#phase-2)   
   * [Linux](#linux-install-linux-2)   
   * [Windows](#linux-install-win-2)   
+* [Diagrams](#diagrams-2) 
+  * [Domain Entities](diagrams-2-ed)
+  * [Database EER](diagrams-2-eer)
+  * [Classes and Templates](diagrams-2-ctd)
 
 # Introduction <a name="introduction"></a>
 
@@ -267,10 +271,16 @@ docker build -t daw-team-11/marketplace .
 docker-compose up -d
 ```
 
-### Domain entities diagram
+### Diagrams <a name="diagrams-2"></a>
+
+#### Domain entities diagram <a name="diagrams-2-ed"></a>
 
 ![alt text](artifacts/entity-diagram.png)
 
-### Classes and templates diagram
+#### Database EER diagram <a name="diagrams-2-eer"></a>
+
+![alt text](artifacts/database-diagram.png)
+
+#### Classes and templates diagram <a name="diagrams-2-ctd"></a>
 
 ![alt text](artifacts/classes-templates-diagram.png)
