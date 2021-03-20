@@ -315,59 +315,59 @@ response view associated to the request.
 This team member established the base application, security, worked on the algorithm (discounts), image uploading, and helped
 team members with everything that was necessary.
 
-| Number | Description | Commit |
-| ------------- | ------------- | ------------- |
-| #1 | Added security, draft entities and configuration | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/5175ef97cf93165e2a420507432f6c553bf1ac4d) |
-| #2 | Added templates and static resources | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/44bd5c2b558dd319619c44c9ed5b4ad555dddba4) |
-| #3 | Fixed pricing and made it work | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/feb0b1af86083f7a07a62ea4986a50caa512fb30) |
-| #4 | Added working profile pictures | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/9511b3e09a8ae888048898694c12be13804b8b0f) |
-| #5 | Added working sales | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/fce2e41f3f8b87266eeec5233692186b0f9b9d1e) |
+| Number | Description | Commit | Focused on Files |
+| ------------- | ------------- | ------------- | ------------- |
+| #1 | Added security, draft entities and configuration | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/5175ef97cf93165e2a420507432f6c553bf1ac4d) | [UserServiceImpl.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blame/main/backend/src/main/java/es/urjc/code/daw/marketplace/service/UserServiceImpl.java)
+| #2 | Added templates and static resources | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/44bd5c2b558dd319619c44c9ed5b4ad555dddba4) | [ProductServiceImpl.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/service/ProductServiceImpl.java) | 
+| #3 | Fixed pricing and made it work | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/feb0b1af86083f7a07a62ea4986a50caa512fb30) | [ProductController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blame/main/backend/src/main/java/es/urjc/code/daw/marketplace/web/product/controller/ProductController.java) | 
+| #4 | Added working profile pictures | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/9511b3e09a8ae888048898694c12be13804b8b0f) | [PictureServiceImpl.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/service/PictureServiceImpl.java) | 
+| #5 | Added working sales | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/fce2e41f3f8b87266eeec5233692186b0f9b9d1e) | [OrderRepository.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/repository/OrderRepository.java) | 
 
 #### Allan Robert Cobb
 
 This team member mainly worked on the profile, pdf exportation, https, form functionality, cleaned code, fixed bugs and helped team members.
 
-| Number | Description | Commit |
-| ------------- | ------------- | ------------- |
-| #1 | Added profile functionality | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/911176fb4427d532582fe3d06277331377f6a08e) |
-| #2 | Added HTTPS | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/7acdfe3fd6701778b48f5ac3f5f6c196754a63dd) |
-| #3 | Added PDF export functionality | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/6a27f3873a8d328bb96222db6541f64ef19d1b86) |
-| #4 | Added accumulative discount form and fixes | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/f9069bd9c3e66ad59174baae6fa03790ce443ff7) |
-| #5 | Cleaned code | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/d65f292669c155f33acbe1624c330e002706a40a) |
+| Number | Description | Commit | Focused on Files |
+| ------------- | ------------- | ------------- | ------------- |
+| #1 | Added profile functionality | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/911176fb4427d532582fe3d06277331377f6a08e) | [UserController.class]() | 
+| #2 | Added HTTPS | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/7acdfe3fd6701778b48f5ac3f5f6c196754a63dd) | [ServerConfig.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/7acdfe3fd6701778b48f5ac3f5f6c196754a63dd/backend/src/main/java/es/urjc/code/daw/marketplace/config/ServerConfig.java) | 
+| #3 | Added PDF export functionality | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/6a27f3873a8d328bb96222db6541f64ef19d1b86) | [PdfExportServiceImpl.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/service/PdfExporterServiceImpl.java) | 
+| #4 | Added accumulative discount form and fixes | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/f9069bd9c3e66ad59174baae6fa03790ce443ff7) | [ProductController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/web/product/controller/ProductController.java) | 
+| #5 | Cleaned code | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/d65f292669c155f33acbe1624c330e002706a40a) | [SaleServiceImpl.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/service/SaleServiceImpl.java) | 
 
 #### Alberto Mautone
 
 This team member mainly worked on the mailing service, the html generation, and register functionality, also
 created the database diagram.
 
-| Number | Description | Commit |
-| ------------- | ------------- | ------------- |
-| #1 | Added the mail service | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/6e0da3174d3d1f77e9804b99b84b470f61e82d5d) |
-| #2 | Added database diagram | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/9dbc1e20e0d5b52cf5a00383ecf58a6ef62d5b32) |
-| #3 | Improved html generation for emails | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/83e54b12459833d2e8a61d5399d83966a4699e33) |
-| #4 | Added register functionality | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/91446619e9ee6c109d49082e0872ecbeb632fe20) |
-| #5 | Fixed not displaying name when logged in error | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/3462c59b0ded0d2f47240c47e179067d16c64556) |
+| Number | Description | Commit | Focused on Files |
+| ------------- | ------------- | ------------- | ------------- |
+| #1 | Added the mail service | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/6e0da3174d3d1f77e9804b99b84b470f61e82d5d) | [EmailServiceImpl.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/service/EmailServiceImpl.java) | 
+| #2 | Added database diagram | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/9dbc1e20e0d5b52cf5a00383ecf58a6ef62d5b32) | [UserController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/web/user/controller/UserController.java) | 
+| #3 | Improved html generation for emails | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/83e54b12459833d2e8a61d5399d83966a4699e33) | [EmailContent.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/util/EmailContent.java) | 
+| #4 | Added register functionality | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/91446619e9ee6c109d49082e0872ecbeb632fe20) | [OrderController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/web/order/controller/OrderController.java) | 
+| #5 | Fixed not displaying name when logged in error | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/3462c59b0ded0d2f47240c47e179067d16c64556) | [UserController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/web/user/controller/UserController.java) | 
 
 #### Alejandro José Rodriguez Montero
 
 This team member mainly worked on the service overview, classes and templates diagram, pdf exportation and multiple bug fixes.
 
-| Number | Description | Commit |
-| ------------- | ------------- | ------------- |
-| #1 | Added working service overview | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/4695410461b7f15d1717a6e337d83a675b583390) |
-| #2 | Multiple bug fixes | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/892b078b420fce4756ee16122375ffb74d8521fd) |
-| #3 | Added classes and templates diagram | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/a9d63f5f99450cb79dfb238dfd853a986d8d5361) |
-| #4 | Beautified generated PDF format | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/17b1027ce63fbd161f17a0f87b20106a83b6d8b5) |
-| #5 | Fixed address and email restrictions | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/5f47970d2906e84ac354b33837bdcbb598e2267e) |
+| Number | Description | Commit | Focused on Files |
+| ------------- | ------------- | ------------- | ------------- |
+| #1 | Added working service overview | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/4695410461b7f15d1717a6e337d83a675b583390) | [OrderController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/web/order/controller/OrderController.java) | 
+| #2 | Multiple bug fixes | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/892b078b420fce4756ee16122375ffb74d8521fd) | [SaleServiceImpl.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blame/main/backend/src/main/java/es/urjc/code/daw/marketplace/service/SaleServiceImpl.java) | 
+| #3 | Added classes and templates diagram | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/a9d63f5f99450cb79dfb238dfd853a986d8d5361) | [PdfExporterServiceImpl.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/service/PdfExporterServiceImpl.java) | 
+| #4 | Beautified generated PDF format | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/17b1027ce63fbd161f17a0f87b20106a83b6d8b5) | [OrderServiceImpl.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/service/OrderServiceImpl.java) | 
+| #5 | Fixed address and email restrictions | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/5f47970d2906e84ac354b33837bdcbb598e2267e) | [Order.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blame/main/backend/src/main/java/es/urjc/code/daw/marketplace/domain/Order.java) | 
 
 #### Álvaro Noguerales Ramos
 
 This team member mainly worked on the services listing, one time discount, oders, and bug fixes, also created the entity diagram.
 
-| Number | Description | Commit |
-| ------------- | ------------- | ------------- |
-| #1 | Added services listing | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/51b043bc02207646bcd2faba8ac0e56793a1ca28) |
-| #2 | Added working one time discount form | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/33b6c0ddeabafc23e65ba237cef9fdc297f66ec1) |
-| #3 | Fixed multiple bugs | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/7e5e4131603d34db69297ec7d02288f33e952de3) |
-| #4 | Added entity diagram | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/bab79b7722ac715524d545a0dfbd13f1fe05f4cf) |
-| #5 | Improved discount applicability | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/1bafa39d43949420d651e14282fe30c50261c96a) |
+| Number | Description | Commit | Focused on Files |
+| ------------- | ------------- | ------------- | ------------- |
+| #1 | Added services listing | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/51b043bc02207646bcd2faba8ac0e56793a1ca28) | [OrderController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/web/order/controller/OrderController.java) | 
+| #2 | Added working one time discount form | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/33b6c0ddeabafc23e65ba237cef9fdc297f66ec1) | [ProductController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blame/main/backend/src/main/java/es/urjc/code/daw/marketplace/web/product/controller/ProductController.java) | 
+| #3 | Fixed multiple bugs | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/7e5e4131603d34db69297ec7d02288f33e952de3) | [UserController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/web/user/controller/UserController.java) | 
+| #4 | Added entity diagram | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/bab79b7722ac715524d545a0dfbd13f1fe05f4cf) | [UserServiceImpl.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blame/main/backend/src/main/java/es/urjc/code/daw/marketplace/service/UserServiceImpl.java)
+| #5 | Improved discount applicability | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/1bafa39d43949420d651e14282fe30c50261c96a) | [SaleServiceImpl.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blame/main/backend/src/main/java/es/urjc/code/daw/marketplace/service/SaleServiceImpl.java) | 
