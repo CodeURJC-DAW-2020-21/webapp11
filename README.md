@@ -189,6 +189,8 @@ We will be using two kinds of algorithms based on discounts for products:
 
 ## Phase 2 <a name="phase-2"></a>
 
+### Installation
+
 Fully working traditional MVC application with all the backend implemented.
 
 ### Installation instructions for GNU/Linux (Ubuntu/Debian based systems) <a name="linux-install-linux-2"></a>
@@ -265,6 +267,10 @@ docker build -t daw-team-11/marketplace .
 docker-compose up -d
 ```
 
+### Domain entities diagram
 
+![alt text](artifacts/entity-diagram.png)
 
+### Classes and templates diagram
 
+![alt text](artifacts/classes-templates-diagram.png)
