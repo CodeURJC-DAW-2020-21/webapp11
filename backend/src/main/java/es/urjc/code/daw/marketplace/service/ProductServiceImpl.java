@@ -52,8 +52,7 @@ public class ProductServiceImpl implements ProductService {
         Date startDate = TimeUtils.firstDayOfCurrentWeek();
         for(int dayIncrement = 0; dayIncrement < 7; dayIncrement++) {
             Date endDate = TimeUtils.sumDaysToDate(startDate, 1);
-            Date exclusiveEndDate = TimeUtils.removeSecondsFromDate(endDate, 1);
-            Integer count = orderRepository.countAllBetweenDates(startDate, exclusiveEndDate);
+            Integer count = orderRepository.countAllInGivenDateDay(startDate);
             salesPerDayInWeek.add(count);
             startDate = endDate;
         }
