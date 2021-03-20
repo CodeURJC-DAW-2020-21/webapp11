@@ -34,6 +34,7 @@ Software Engineering Degree, at _University King Juan Carlos_, Spain (2020/2021)
   * [Domain Entities](#diagrams-2-ed)
   * [Database EER](#diagrams-2-eer)
   * [Classes and Templates](#diagrams-2-ctd)
+* [Members Participation](#members-part-2)
 
 # Introduction <a name="introduction"></a>
 
@@ -307,11 +308,11 @@ response view associated to the request.
 
 ![alt text](artifacts/classes-templates-diagram.png)
 
-### Members Participation
+### Members Participation <a name="members-part-2"></a>
 
 #### Serghei Sergheev
 
-This team member established the base application, worked on the algorithm and helped
+This team member established the base application, security, worked on the algorithm (discounts), image uploading, and helped
 team members with everything that was necessary.
 
 | Number | Description | Commit |
