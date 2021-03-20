@@ -69,7 +69,7 @@ public class OrderController {
         Order order = orderService.findOrderById(id);
 
         if(!currentUser.isAdmin() && !order.getUser().equals(currentUser)) {
-            throw new RuntimeException("You don't have access to this order");
+            return "redirect:/error";
         }
 
         model.addAttribute("isLoggedIn", "yes");
@@ -182,7 +182,7 @@ public class OrderController {
         User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
 
         if(!currentUser.isAdmin() && !order.getUser().equals(currentUser)) {
-            throw new RuntimeException("Access denied");
+            return "redirect:/error";
         }
 
         order.setFinalCost(order.getFinalCost() + order.getProduct().getPrice());
@@ -206,7 +206,7 @@ public class OrderController {
         User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
 
         if(!currentUser.isAdmin() && !order.getUser().equals(currentUser)) {
-            throw new RuntimeException("Access denied");
+            return "redirect:/error";
         }
 
         order.setExpiryDate(new Date());

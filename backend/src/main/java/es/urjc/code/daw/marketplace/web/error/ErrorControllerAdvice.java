@@ -6,11 +6,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ErrorControllerAdvice {
 
-    private final static String errorPath = "redirect:/error";
-
-    @ExceptionHandler(value = Exception.class)
+    @ExceptionHandler(Throwable.class)
     public String handleError() {
-        return errorPath;
+        return "redirect:/error";
     }
 
 }

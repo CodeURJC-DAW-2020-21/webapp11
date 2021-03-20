@@ -7,9 +7,14 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Objects;
 
+/**
+ * Represents the controller responsible for displaying
+ * the error message associated to its route.
+ */
 @Controller
 public class CustomErrorController implements ErrorController {
 
@@ -24,7 +29,7 @@ public class CustomErrorController implements ErrorController {
         return "/error";
     }
 
-    @RequestMapping("/error")
+    @RequestMapping(path = "/error", method = RequestMethod.GET)
     public String handleError(@AuthenticationPrincipal UserPrincipal userPrincipal, Model model) {
         if(!Objects.isNull(userPrincipal)) {
             if(userPrincipal.getUser().isAdmin()) {

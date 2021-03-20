@@ -4,6 +4,10 @@ import lombok.Setter;
 
 import java.util.List;
 
+/**
+ * The responsibility of this class is to construct the
+ * html message and then return it as a string.
+ */
 @Setter
 public class EmailContent {
 

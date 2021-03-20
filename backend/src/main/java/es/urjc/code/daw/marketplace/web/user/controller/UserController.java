@@ -119,7 +119,7 @@ public class UserController {
 
         User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
         boolean cannotPerform = !currentUser.isAdmin() && currentUser.getId().longValue() != userId.longValue();
-        if(cannotPerform) return "error";
+        if(cannotPerform) return "redirect:/error";
 
         User user = userService.findUserById(userId);
         model.addAttribute("user", user);
@@ -159,7 +159,7 @@ public class UserController {
 
         User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
         boolean cannotPerform = !currentUser.isAdmin() && currentUser.getId().longValue() != userId.longValue();
-        if(cannotPerform) return "error";
+        if(cannotPerform) return "redirect:/error";
 
         User updateUser = userMapper.asUpdateUser(request);
         updateUser.setId(userId);
