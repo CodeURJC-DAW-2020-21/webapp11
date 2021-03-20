@@ -31,9 +31,9 @@ Software Engineering Degree, at _University King Juan Carlos_, Spain (2020/2021)
   * [Linux](#linux-install-linux-2)   
   * [Windows](#linux-install-win-2)   
 * [Diagrams](#diagrams-2) 
-  * [Domain Entities](diagrams-2-ed)
-  * [Database EER](diagrams-2-eer)
-  * [Classes and Templates](diagrams-2-ctd)
+  * [Domain Entities](#diagrams-2-ed)
+  * [Database EER](#diagrams-2-eer)
+  * [Classes and Templates](#diagrams-2-ctd)
 
 # Introduction <a name="introduction"></a>
 
