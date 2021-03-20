@@ -202,10 +202,10 @@ Fully working traditional MVC application with all the backend implemented.
 
 **Installation steps**:
 
+1. **Clone script**:
+
 Create a new file, copy this script and give it execution permissions. This script just 
 clones the current code to your home directory.
-
-1. **Clone script**:
 
 ```bash
 cd $HOME
@@ -213,13 +213,13 @@ rm -rf webapp11
 git clone https://github.com/CodeURJC-DAW-2020-21/webapp11
 ```
 
-Create a new file, copy this script and give it execution permissions. This script must
-be executed with **sudo**.
-
 **WARNING**: Before building and executing make sure you've set up the neccesary credentials
 for all the .properties files in "webapp11/backend/src/main/resources/*".
 
 2. **Build and execution script**:
+
+Create a new file, copy this script and give it execution permissions. This script must
+be executed with **sudo**.
 
 ```bash
 #!/bin/bash
@@ -231,9 +231,11 @@ chmod +x install_and_run.sh
 
 ### Installation instructions for Windows <a name="linux-install-win-2"></a>
 
-1. Download and install [Docker Desktop](https://docs.docker.com/docker-for-windows)
+**NOTE**: The first three steps can be easily automated by using a windows package manager like [Chocolatey](https://chocolatey.org/install).
+
+1. Download and install [Docker Desktop](https://desktop.docker.com/win/stable/Docker%20Desktop%20Installer.exe)
 2. Download and install [Maven](https://maven.apache.org/guides/getting-started/windows-prerequisites.html)
-3. Download and install [Git](https://git-scm.com/)
+3. Download and install [Git](https://git-scm.com/download/win)
 4. Clone the application repository with Git: 
 
 ```cmd
