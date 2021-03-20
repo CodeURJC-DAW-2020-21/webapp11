@@ -143,13 +143,8 @@ public class OrderController {
                 .user(currentUser)
                 .build();
 
-        if(saleService.isEligibleForCurrentOtd(currentUser.getId(), productId)) {
-            saleService.applyOtdDiscount(order);
-        }
-
-        if(saleService.isEligibleForCurrentAd(currentUser.getId(), productId)) {
-            saleService.applyAdDiscount(order);
-        }
+        saleService.applyOtdDiscount(order);
+        saleService.applyAdDiscount(order);
 
         Order savedOrder = orderService.saveOrder(order);
 

@@ -5,7 +5,6 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@ToString
 @Entity
 @Table(name = "products")
 @Getter

@@ -51,7 +51,8 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public void applyOtdDiscount(Order order) {
-        if(!isEligibleForCurrentOtd(order.getUser().getId(), order.getProduct().getId())) return;
+        boolean isEligible = isEligibleForCurrentOtd(order.getUser().getId(), order.getProduct().getId());
+        if(!isEligible) return;
         OneTimeDiscount discount = otdRepository.findCurrentlyActiveOtd().orElseThrow();
         discount.addConsumer(order.getUser());
         otdRepository.saveAndFlush(discount);
@@ -60,7 +61,8 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public void applyAdDiscount(Order order) {
-        if(!isEligibleForCurrentOtd(order.getUser().getId(), order.getProduct().getId())) return;
+        boolean isEligible = isEligibleForCurrentAd(order.getUser().getId(), order.getProduct().getId());
+        if(!isEligible) return;
         AccumulativeDiscount discount = adRepository.findCurrentlyActiveAd().orElseThrow();
         discount.addConsumer(order.getUser());
         adRepository.saveAndFlush(discount);
