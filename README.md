@@ -191,10 +191,6 @@ We will be using two kinds of algorithms based on discounts for products:
 
 Fully working traditional MVC application with all the backend implemented.
 
-### Note
-
-Before 
-
 ### Installation instructions for Linux (Ubuntu/Debian based Systems) <a name="linux-install-linux-2"></a>
 
 **Implications of the scripts**:
@@ -204,12 +200,12 @@ Before
 4. Builds a docker image of the currently build Spring application
 5. Creates and runs two containers (application + mysql instance, in the same network).
 
-**Installation script**:
+**Installation steps**:
 
 Create a new file, copy this script and give it execution permissions. This script just 
 clones the current code to your home directory.
 
-**Clone script**:
+1. **Clone script**:
 
 ```bash
 cd $HOME
@@ -223,7 +219,7 @@ be executed with **sudo**.
 **WARNING**: Before building and executing make sure you've set up the neccesary credentials
 for all the .properties files in "webapp11/backend/src/main/resources/*".
 
-**Build and execution script**:
+2. **Build and execution script**:
 
 ```bash
 #!/bin/bash
