@@ -1,5 +1,6 @@
 package es.urjc.code.daw.marketplace.domain;
 
+import es.urjc.code.daw.marketplace.util.TimeUtils;
 import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -51,7 +52,7 @@ public class AccumulativeDiscount {
 
     @PrePersist
     private void onCreate() {
-        start = new Date();
+        start = TimeUtils.now();
     }
 
     public void addConsumer(User user) {

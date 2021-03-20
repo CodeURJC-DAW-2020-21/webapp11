@@ -1,9 +1,11 @@
 package es.urjc.code.daw.marketplace.domain;
 
+import es.urjc.code.daw.marketplace.util.TimeUtils;
 import lombok.*;
 import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 @ToString
 @Entity
@@ -41,22 +43,17 @@ public class Order {
     @PrePersist
     private void onCreate() {
         if(creationDate == null) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.HOUR_OF_DAY, 0);
-            calendar.clear(Calendar.MINUTE);
-            calendar.clear(Calendar.SECOND);
-            calendar.clear(Calendar.MILLISECOND);
-            creationDate = calendar.getTime();
+            creationDate = TimeUtils.now();
         }
         if(expiryDate == null) {
-            Calendar calendar = Calendar.getInstance();
+            Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Madrid"));
             calendar.add(Calendar.MONTH, 1);
             expiryDate = calendar.getTime();
         }
     }
 
     public boolean isExpired() {
-        Date today = new Date();
+        Date today = TimeUtils.now();
         return today.after(expiryDate);
     }
 
