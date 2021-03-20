@@ -54,4 +54,8 @@ public class AccumulativeDiscount {
         start = new Date();
     }
 
+    public void addConsumer(User user) {
+        consumers.add(user);
+    }
+
 }
