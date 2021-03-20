@@ -50,4 +50,8 @@ public class OneTimeDiscount {
         start = new Date();
     }
 
+    public void addConsumer(User user) {
+        consumers.add(user);
+    }
+
 }

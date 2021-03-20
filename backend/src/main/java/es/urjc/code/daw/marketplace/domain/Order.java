@@ -52,4 +52,9 @@ public class Order {
         return today.after(expiryDate);
     }
 
+    public void applyDiscount(int discountPercentage) {
+        int finalCost = ((100 - discountPercentage) * getFinalCost()) / 100;
+        this.setFinalCost(finalCost);
+    }
+
 }
