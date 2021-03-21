@@ -70,7 +70,9 @@ public class OrderBootstrap implements CommandLineRunner {
     }
 
     public static Date pseudoRandomDate(List<Date> items) {
-        return items.get(new Random().nextInt(items.size()));
+        Date date = items.get(new Random().nextInt(items.size()));
+        while(date.after(TimeUtils.now())) date = items.get(new Random().nextInt(items.size()));
+        return date;
     }
 
 }
