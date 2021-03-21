@@ -57,6 +57,7 @@
     - ✔ Changing address and other details like name works
     - ✔ Picture upload works
 - ✔ Logout works
+- ✔ Clients cannot access administrator pages
 
 #### Admin
 
@@ -69,5 +70,4 @@
 - ✔ Admin can modify client profiles
 - ✔ One time discount works
 - ✔ Accumulative discount works
-- ✔ Discounts not applied when inactive (when disabled)
 - ✔ Discounts not applied when inactive (when disabled)
