@@ -1,12 +1,14 @@
 # Demo Preparation
 
+- ✔ Verified whole functionality list more than twice
+
 ### Questionnaire requirements
 
-- ✔ Example data preloaded 
+- ✔ Example data preloaded
 - ✔ Avatar images folder prepared
-- ✔ Visitor functionality 
-- ✔ Client functionality 
-- ✔ Admin functionality 
+- ✔ Visitor functionality
+- ✔ Client functionality
+- ✔ Admin functionality
 - ✔ Statistics chart correct
 - ✔ Implemented sales algorithm
 - ✔ Extra technology (emails & pdf exportation)
