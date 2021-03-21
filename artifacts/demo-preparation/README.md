@@ -20,7 +20,7 @@
 - ✔ Code and comments in english
 - ✔ Clean code and good formatting
 - ✔ Same style error page
-- ✖ Updated navigation diagram
+- ✔ Updated navigation diagram
 - ✔ Entity diagram
 - ✔ Database EER diagram
 - ✔ Class and templates diagram
