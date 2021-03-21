@@ -35,7 +35,7 @@ const submitProfileChanges = () => {
 
     failMessage = "Please introduce a valid email address";
     const email = $("#email").val();
-    isValid = /^\w+@[a-zA-Z_]+?(\.[a-zA-Z]{2,3})?$/.test(email);
+    isValid = /^\w+@[a-zA-Z_.]+?(\.[a-zA-Z]{2,3})?$/.test(email);
     if(!isValid) { displayProfileChangeError(failMessage); return; }
 
     failMessage = "Address can't be empty";
