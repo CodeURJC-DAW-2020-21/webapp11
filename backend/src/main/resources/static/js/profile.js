@@ -35,13 +35,13 @@ const submitProfileChanges = () => {
 
     failMessage = "Please introduce a valid email address";
     const email = $("#email").val();
-    isValid = /^\w+@[a-zA-Z_.]+?(\.[a-zA-Z]{2,3})?$/.test(email);
+    isValid = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(String(email).toLowerCase());
     if(!isValid) { displayProfileChangeError(failMessage); return; }
 
     failMessage = "Address can't be empty";
     const address = $("#address").val();
     isValid = address !== "";
-    if(!isValid) { displayLoginError(failMessage); return; }
+    if(!isValid) { displayProfileChangeError(failMessage); return; }
 
     const password = $("#password").val();
     if(password !== "") {
