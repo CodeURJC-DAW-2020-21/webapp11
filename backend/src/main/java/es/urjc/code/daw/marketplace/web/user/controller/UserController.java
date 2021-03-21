@@ -26,6 +26,11 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Represents the controller responsible for anything related
+ * with the User class (logging in, registering, updating user info...)
+ */
+
 @Controller
 public class UserController {
 
@@ -147,6 +152,12 @@ public class UserController {
 
         return "users";
     }
+
+    /**
+     * Updates the user info with the newly acquired information
+     * from the form. Returns to the profile page, displaying
+     * the newly updated information.
+     */
 
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @RequestMapping(path = "/user/{userId}/update" , method = RequestMethod.POST)

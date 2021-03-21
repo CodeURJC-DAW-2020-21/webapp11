@@ -16,6 +16,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * An implementation of the {@link UserService}.
+ */
+
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {

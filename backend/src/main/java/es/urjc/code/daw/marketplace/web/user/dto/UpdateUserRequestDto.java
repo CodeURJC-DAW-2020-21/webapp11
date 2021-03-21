@@ -6,6 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.validation.constraints.*;
 
+/**
+ * The information and its correct structure that is needed
+ * in order to successfully update an user.
+ * Differs from {@link RegisterUserRequestDto}, as the password can be empty.
+ */
+
+
 @Getter
 @Setter
 @AllArgsConstructor

@@ -90,6 +90,12 @@ public class OrderController {
 
         return "service";
     }
+
+    /**
+     * Exports a pdf detailing the information of the receipt
+     * from the order of the purchased server, giving out the id of the order
+     * and the id of the user who ordered it.
+     */
     
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @GetMapping("/order/{orderId}/export_pdf")
