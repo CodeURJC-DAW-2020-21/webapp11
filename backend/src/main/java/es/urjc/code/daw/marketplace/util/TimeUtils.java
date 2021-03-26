@@ -24,6 +24,13 @@ public class TimeUtils {
         return calendar.getTime();
     }
 
+    public static Date sumsMillisToDate(Date date, int millis) {
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Madrid"));
+        calendar.setTime(date);
+        calendar.add(Calendar.MILLISECOND, millis);
+        return calendar.getTime();
+    }
+
     public static Date removeSecondsFromDate(Date date, int seconds) {
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Madrid"));
         calendar.setTime(date);
