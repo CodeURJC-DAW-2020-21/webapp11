@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserTokenAuthorizationServiceImpl implements UserTokenAuthorizationService {
 
-    private static final String OPERATOR_ROLE_NAME = "ROLE_ADMIN";
-
     private final JwtTokenService tokenService;
     private final TokenExtractor tokenExtractor;
     private final UserService userService;
@@ -33,8 +31,8 @@ public class UserTokenAuthorizationServiceImpl implements UserTokenAuthorization
 
     @Override
     public boolean requesterIsOperator() {
-        String modifiedEmail = extractTokenEmail();
-        User modifierUser = userService.findUserByEmail(modifiedEmail);
+        String modifierEmail = extractTokenEmail();
+        User modifierUser = userService.findUserByEmail(modifierEmail);
         return modifierUser.isAdmin();
     }
 
