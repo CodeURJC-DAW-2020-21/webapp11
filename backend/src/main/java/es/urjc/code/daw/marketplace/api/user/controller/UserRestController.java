@@ -73,8 +73,8 @@ public class UserRestController {
 
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @RequestMapping(
-            path = BASE_ROUTE + "/{id}/update",
-            method = RequestMethod.POST,
+            path = BASE_ROUTE + "/{id}",
+            method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<UpdateUserResponseDto> updateUser(@PathVariable("id") Long userId,
@@ -82,7 +82,7 @@ public class UserRestController {
                                                             @AuthenticationPrincipal UserPrincipal userPrincipal) {
         User loggedUser = userService.findUserByEmail(userPrincipal.getUsername());
         boolean cannotPerform = !loggedUser.isAdmin() && loggedUser.getId().longValue() != userId.longValue();
-        if(cannotPerform) throw new RuntimeException("Access denied");
+        if(cannotPerform) return ResponseEntity.badRequest().build();
 
         User updateUser = userMapper.asUpdateUser(request);
         updateUser.setId(userId);
@@ -109,7 +109,7 @@ public class UserRestController {
                                                         @AuthenticationPrincipal UserPrincipal userPrincipal) {
         User loggedUser = userService.findUserByEmail(userPrincipal.getUsername());
         boolean cannotPerform = !loggedUser.isAdmin() && loggedUser.getId().longValue() != userId.longValue();
-        if(cannotPerform) throw new RuntimeException("Access denied");
+        if(cannotPerform) return ResponseEntity.badRequest().build();
 
         User findUser = userService.findUserById(userId);
         FindUserResponseDto response = userMapper.asFindUserResponse(findUser);
