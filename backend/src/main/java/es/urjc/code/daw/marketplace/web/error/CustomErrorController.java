@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 
 /**
@@ -29,15 +31,21 @@ public class CustomErrorController implements ErrorController {
     }
 
     @RequestMapping(path = "/error", method = RequestMethod.GET)
-    public String handleError(@AuthenticationPrincipal UserPrincipal userPrincipal, Model model) {
-        if(!Objects.isNull(userPrincipal)) {
-            if(userPrincipal.getUser().isAdmin()) {
-                model.addAttribute("isAdmin", "yes");
+    public String handleError(@AuthenticationPrincipal UserPrincipal userPrincipal,
+                              HttpServletRequest request, Model model) {
+        String path = request.getRequestURI().substring(request.getContextPath().length());
+        if(path.startsWith("/api")) {
+            return "redirect:/api/error";
+        } else {
+            if(!Objects.isNull(userPrincipal)) {
+                if(userPrincipal.getUser().isAdmin()) {
+                    model.addAttribute("isAdmin", "yes");
+                }
+                model.addAttribute("isLoggedIn", "yes");
+                model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));
             }
-            model.addAttribute("isLoggedIn", "yes");
-            model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));
+            return "error";
         }
-        return "error";
     }
 
 }
