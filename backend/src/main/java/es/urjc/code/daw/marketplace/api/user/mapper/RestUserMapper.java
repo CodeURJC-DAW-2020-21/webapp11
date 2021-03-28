@@ -1,5 +1,6 @@
 package es.urjc.code.daw.marketplace.api.user.mapper;
 
+import es.urjc.code.daw.marketplace.api.user.dto.FindUserResponseDto;
 import es.urjc.code.daw.marketplace.api.user.dto.RegisterUserRequestDto;
 import es.urjc.code.daw.marketplace.api.user.dto.UpdateUserRequestDto;
 import es.urjc.code.daw.marketplace.domain.User;
@@ -27,5 +28,7 @@ public interface RestUserMapper {
     @Mapping(target = "accumulativeDiscountsConsumed", ignore = true)
     @Mapping(target = "oneTimeDiscountsConsumed", ignore = true)
     User asUpdateUser(UpdateUserRequestDto request);
+
+    FindUserResponseDto asFindUserResponse(User user);
 
 }
