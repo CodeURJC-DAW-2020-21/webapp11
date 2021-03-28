@@ -3,22 +3,17 @@ package es.urjc.code.daw.marketplace.api.user.controller;
 import es.urjc.code.daw.marketplace.api.user.dto.*;
 import es.urjc.code.daw.marketplace.api.user.mapper.RestUserMapper;
 import es.urjc.code.daw.marketplace.domain.User;
-import es.urjc.code.daw.marketplace.security.user.UserPrincipal;
 import es.urjc.code.daw.marketplace.service.EmailService;
 import es.urjc.code.daw.marketplace.service.PictureService;
 import es.urjc.code.daw.marketplace.service.UserService;
+import es.urjc.code.daw.marketplace.service.UserTokenAuthorizationService;
 import es.urjc.code.daw.marketplace.util.DecodedBase64MultipartFile;
 import es.urjc.code.daw.marketplace.util.EmailMessageFactory;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.ui.Model;
-import org.springframework.util.MimeType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponents;
@@ -40,15 +35,18 @@ public class UserRestController {
     private final UserService userService;
     private final EmailService emailService;
     private final PictureService pictureService;
+    private final UserTokenAuthorizationService authorizationService;
 
     public UserRestController(RestUserMapper userMapper,
                               UserService userService,
                               EmailService emailService,
-                              PictureService pictureService) {
+                              PictureService pictureService,
+                              UserTokenAuthorizationService authorizationService) {
         this.userMapper = userMapper;
         this.userService = userService;
         this.emailService = emailService;
         this.pictureService = pictureService;
+        this.authorizationService = authorizationService;
     }
 
     @RequestMapping(
@@ -71,18 +69,16 @@ public class UserRestController {
         return ResponseEntity.created(components.toUri()).body(RegisterUserResponseDto.successful());
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @RequestMapping(
             path = BASE_ROUTE + "/{id}",
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<UpdateUserResponseDto> updateUser(@PathVariable("id") Long userId,
-                                                            @RequestBody UpdateUserRequestDto request,
-                                                            @AuthenticationPrincipal UserPrincipal userPrincipal) {
-        User loggedUser = userService.findUserByEmail(userPrincipal.getUsername());
-        boolean cannotPerform = !loggedUser.isAdmin() && loggedUser.getId().longValue() != userId.longValue();
-        if(cannotPerform) return ResponseEntity.badRequest().build();
+                                                            @RequestBody UpdateUserRequestDto request) {
+        if(!authorizationService.requesterCanManipulateUser(userId)) {
+            return ResponseEntity.badRequest().build();
+        }
 
         User updateUser = userMapper.asUpdateUser(request);
         updateUser.setId(userId);
@@ -100,16 +96,15 @@ public class UserRestController {
         return ResponseEntity.ok(UpdateUserResponseDto.successful());
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @RequestMapping(
             path = BASE_ROUTE + "/{id}",
             method = RequestMethod.GET
     )
-    public ResponseEntity<FindUserResponseDto> findUser(@PathVariable("id") Long userId,
-                                                        @AuthenticationPrincipal UserPrincipal userPrincipal) {
-        User loggedUser = userService.findUserByEmail(userPrincipal.getUsername());
-        boolean cannotPerform = !loggedUser.isAdmin() && loggedUser.getId().longValue() != userId.longValue();
-        if(cannotPerform) return ResponseEntity.badRequest().build();
+    public ResponseEntity<FindUserResponseDto> findUser(@PathVariable("id") Long userId) {
+
+        if(!authorizationService.requesterCanManipulateUser(userId)) {
+            return ResponseEntity.badRequest().build();
+        }
 
         User findUser = userService.findUserById(userId);
         FindUserResponseDto response = userMapper.asFindUserResponse(findUser);
@@ -117,56 +112,63 @@ public class UserRestController {
         return ResponseEntity.ok(response);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(
             path = BASE_ROUTE,
             method = RequestMethod.GET
     )
     public ResponseEntity<List<FindUserResponseDto>> findUsers(@RequestParam("page") Integer page,
                                                                @RequestParam("amount") Integer amount) {
+        if(!authorizationService.requesterIsOperator()) {
+            return ResponseEntity.badRequest().build();
+        }
+
         List<User> users = userService.findAllUsers(PageRequest.of(page - 1, amount));
         List<FindUserResponseDto> response = users.stream().map(userMapper::asFindUserResponse).collect(Collectors.toList());
 
         return ResponseEntity.ok(response);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(
             path = BASE_ROUTE + "/{id}/enable",
             method = RequestMethod.POST
     )
     public ResponseEntity<EnableUserResponseDto> enableUser(@PathVariable("id") Long userId) {
 
+        if(!authorizationService.requesterIsOperator()) {
+            return ResponseEntity.badRequest().build();
+        }
+
         userService.enableUser(userId);
 
         return ResponseEntity.ok(EnableUserResponseDto.successful());
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(
             path = BASE_ROUTE + "/{id}/disable",
             method = RequestMethod.POST
     )
     public ResponseEntity<DisableUserResponseDto> disableUser(@PathVariable("id") Long userId) {
 
+        if(!authorizationService.requesterIsOperator()) {
+            return ResponseEntity.badRequest().build();
+        }
+
         userService.disableUser(userId);
 
         return ResponseEntity.ok(DisableUserResponseDto.successful());
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @ResponseBody
     @RequestMapping(
             path = BASE_ROUTE + "/{id}/picture",
             method = RequestMethod.GET,
             produces = { MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE }
     )
-    public byte[] getImage(@PathVariable("id") Long userId,
-                           @AuthenticationPrincipal UserPrincipal userPrincipal) throws Exception {
+    public byte[] getImage(@PathVariable("id") Long userId) throws Exception {
 
-        User loggedUser = userService.findUserByEmail(userPrincipal.getUsername());
-        boolean cannotPerform = !loggedUser.isAdmin() && loggedUser.getId().longValue() != userId.longValue();
-        if(cannotPerform) throw new RuntimeException("Access denied");
+        if(!authorizationService.requesterCanManipulateUser(userId)) {
+            throw new RuntimeException("Access denied");
+        }
 
         User toLoad = userService.findUserById(userId);
         File file = new File("user-profile-pictures/" + toLoad.getProfilePictureFilename());
