@@ -10,7 +10,7 @@ public class ErrorRestController {
 
     @RequestMapping(path = "/api/error")
     public ResponseEntity<String> error() {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
 }
