@@ -1,6 +1,8 @@
 package es.urjc.code.daw.marketplace.util;
 
 import com.google.common.collect.Lists;
+import es.urjc.code.daw.marketplace.domain.Order;
+import es.urjc.code.daw.marketplace.domain.Product;
 import es.urjc.code.daw.marketplace.domain.User;
 
 public class EmailMessageFactory {
@@ -21,6 +23,27 @@ public class EmailMessageFactory {
                     )
                 )
                 .addHeading("and welcome to DAWHostServices!")
+            .build();
+    }
+
+    public static String newPurchaseTitle(Order order) {
+        return "#" + order.getId() + " Purchase receipt";
+    }
+
+    public static String newPurchaseMessage(User user, Product product) {
+        return EmailContent.create()
+                .addHeading("Thanks for your purchase, " + user.getFirstName() + " " + user.getSurname())
+                .addUnorderedList(
+                    "Here is your purchased product information",
+                    Lists.newArrayList(
+                        "Price: " + product.getPrice(),
+                        "Ram: " + product.getRam(),
+                        "Cores: " + product.getCores(),
+                        "Storage: " + product.getStorage(),
+                        "Transfer: " + product.getTransfer()
+                    )
+                )
+                .addHeading("Remember that you can manage each purchased product from my services page!")
             .build();
     }
 
