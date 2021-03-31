@@ -3,7 +3,6 @@ package es.urjc.code.daw.marketplace.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -11,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "users", indexes = @Index(name = "uniqueUserEmail", columnList = "email", unique = true))
+@Table(name = "clients", indexes = @Index(name = "uniqueUserEmail", columnList = "email", unique = true))
 @Getter
 @Setter
 @AllArgsConstructor
@@ -34,8 +33,7 @@ public class User implements Serializable {
     private String address;
 
     @Column(name = "avatar_url")
-    @Pattern(regexp = "^(http|https)\\:\\/\\/[a-zA-Z0-9\\-\\.]+\\.[a-zA-Z]{2,3}(\\/\\S*)?$")
-    private String profilePictureUrl;
+    private String profilePictureFilename;
 
     @Singular
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
@@ -54,11 +52,11 @@ public class User implements Serializable {
 
     @Column(name = "is_enabled", nullable = false)
     @Builder.Default
-    private boolean isEnabled = true;
+    private Boolean isEnabled = true;
 
     @Column(name = "is_locked", nullable = false)
     @Builder.Default
-    private boolean isLocked = false;
+    private Boolean isLocked = false;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @Builder.Default
@@ -74,6 +72,14 @@ public class User implements Serializable {
 
     public boolean isAdmin() {
         return roles.stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
+    }
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public boolean isEnabled() {
+        return isEnabled;
     }
 
 }

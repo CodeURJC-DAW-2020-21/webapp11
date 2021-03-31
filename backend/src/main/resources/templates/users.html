@@ -4,7 +4,12 @@
     <th scope="row">
         <div class="row d-flex justify-content-start" >
             <div class="col-md-12">
-                <img class="profile-picture" src="/img/profile.png"/>
+                {{#profilePictureFilename}}
+                    <img class="profile-picture" src="/user-profile-pictures/{{id}}"/>
+                {{/profilePictureFilename}}
+                {{^profilePictureFilename}}
+                    <img class="profile-picture" src="/img/profile.png"/>
+                {{/profilePictureFilename}}
                 <small>
                     {{#isAdmin}}
                         <span class="badge bg-danger">ADMIN</span>

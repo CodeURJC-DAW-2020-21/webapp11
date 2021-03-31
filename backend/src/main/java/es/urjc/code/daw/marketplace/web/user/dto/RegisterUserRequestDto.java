@@ -1,8 +1,12 @@
 package es.urjc.code.daw.marketplace.web.user.dto;
 
 import lombok.*;
-
 import javax.validation.constraints.*;
+
+/**
+ * The information and its correct structure that is needed
+ * in order to successfully register an user.
+ */
 
 @Getter
 @Setter
@@ -21,7 +25,6 @@ public class RegisterUserRequestDto {
     @NotEmpty
     private String surname;
 
-    @Pattern(regexp = "^[\\w\\s.-]+\\d+,\\s*[\\w\\s.-]+$")
     @NotNull
     @NotEmpty
     private String address;

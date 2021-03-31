@@ -3,7 +3,6 @@ package es.urjc.code.daw.marketplace.web.product.controller;
 import es.urjc.code.daw.marketplace.domain.AccumulativeDiscount;
 import es.urjc.code.daw.marketplace.domain.OneTimeDiscount;
 import es.urjc.code.daw.marketplace.domain.Product;
-import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.security.user.UserPrincipal;
 import es.urjc.code.daw.marketplace.service.ProductService;
 import es.urjc.code.daw.marketplace.service.SaleService;
@@ -15,7 +14,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -59,6 +58,14 @@ public class ProductController {
             model.addAttribute("hasDiscount", "yes");
         }
 
+        if(!Objects.isNull(userPrincipal)) {
+            model.addAttribute("isLoggedIn", "yes");
+            model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));
+            if(userPrincipal.getUser().isAdmin()) {
+                model.addAttribute("isAdmin", "yes");
+            }
+        }
+
         final String viewIndicator = "isPricing";
         model.addAttribute(viewIndicator, "yes");
 
@@ -71,7 +78,8 @@ public class ProductController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping(path = "/panel")
-    public String panel(Model model) {
+    public String panel(@AuthenticationPrincipal UserPrincipal userPrincipal,
+                        Model model) {
 
         List<Pair<String, Integer>> weeklyCategoryPurchases = productService.findCategoryToWeeklyPurchases();
         model.addAttribute("weeklyCategoryPurchases", weeklyCategoryPurchases);
@@ -82,10 +90,39 @@ public class ProductController {
         Long accumulatedCapital = productService.findAccumulatedCapital();
         model.addAttribute("accumulatedCapital", accumulatedCapital);
 
+        Optional<OneTimeDiscount> optionalOtd = saleService.getCurrentOtd();
+        optionalOtd.ifPresent(oneTimeDiscount -> {
+            model.addAttribute("otdActive", "yes");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            model.addAttribute("otdStart" , formatter.format(oneTimeDiscount.getStart()));
+            model.addAttribute("otdStop" , formatter.format(oneTimeDiscount.getStop()));
+            model.addAttribute("otdDiscount" , oneTimeDiscount.getDiscountPercentage());
+            model.addAttribute("otdProductId" , oneTimeDiscount.getProductId());
+        });
+
+        Optional<AccumulativeDiscount> optionalAd = saleService.getCurrentAd();
+        optionalAd.ifPresent(accumulativeDiscount -> {
+            model.addAttribute("adActive", "yes");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            model.addAttribute("adStart" , formatter.format(accumulativeDiscount.getStart()));
+            model.addAttribute("adStop" , formatter.format(accumulativeDiscount.getStop()));
+            model.addAttribute("adDiscount" , accumulativeDiscount.getDiscountPercentage());
+            model.addAttribute("adAmount" , accumulativeDiscount.getBulkAmount());
+            model.addAttribute("adProductId" , accumulativeDiscount.getProductId());
+        });
+
+        if(!Objects.isNull(userPrincipal)) {
+            model.addAttribute("isLoggedIn", "yes");
+            model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));
+            if(userPrincipal.getUser().isAdmin()) {
+                model.addAttribute("isAdmin", "yes");
+            }
+        }
+
+        model.addAttribute("products", productService.findAllProducts());
         model.addAttribute("isPanel", true);
 
         return "panel";
-
     }
 
 }

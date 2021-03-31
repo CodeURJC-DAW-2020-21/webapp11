@@ -3,7 +3,8 @@
 <main>
 
 <!-- service expired alert -->
-<div id="flash-message" class="row m-0 d-none">
+{{#orderIsExpired}}
+<div id="flash-message" class="row m-0">
   <div class="col m-2">
     <div class="alert alert-transparent text-danger border border-danger fade show text-center" role="alert">
       <strong>Your service seems to be expired</strong>
@@ -12,6 +13,7 @@
     </div>
   </div>
 </div><!-- / service expired alert -->
+{{/orderIsExpired}}
 
 <!-- page title -->
 <div class="d-flex justify-content-center text-white text-center">
@@ -52,25 +54,25 @@
                 <!-- service id -->
                 <div class="d-block">
                   <span class="fw-bold">Service Id:</span>
-                  <span id="service-id">1234</span>
+                  <span id="service-id">{{orderId}}</span>
                 </div><!-- / service id -->
 
                 <!-- service category -->
                 <div class="d-block">
                   <span class="fw-bold">Category:</span>
-                  <span id="service-category">Shared</span>
+                  <span id="service-category">{{orderCategory}}</span>
                 </div><!-- / service category -->
 
                 <!-- service purchase date -->
                 <div class="d-block">
                   <span class="fw-bold">Purchase Date:</span>
-                  <span id="service-purchase">Mon, 22 Feb 2021 16:09:32</span>
+                  <span id="service-purchase">{{orderPurchaseDate}}</span>
                 </div><!-- / service purchase date -->
 
                 <!-- service expiry date -->
                 <div class="d-block">
                   <span class="fw-bold">Expiry Date:</span>
-                  <span id="service-expiry">Mon, 21 Mar 2021 16:09:32</span>
+                  <span id="service-expiry">{{orderExpiryDate}}</span>
                 </div><!-- / service expiry date -->
 
               </div>
@@ -96,21 +98,21 @@
 
                 <!-- renew service button -->
                 <div class="d-block">
-                  <button id="renew-button" type="button" class="btn btn-outline-success btn-sm mb-2">
+                  <button onclick="location.href='/order/{{orderId}}/renew';" id="renew-button" type="button" class="btn btn-outline-success btn-sm mb-2">
                     Renew Service
                   </button>
                 </div><!-- / renew service button -->
 
                 <!-- cancel service button -->
                 <div class="d-block">
-                  <button id="cancel-button" type="button" class="btn btn-outline-danger btn-sm mb-2">
+                  <button onclick="location.href='/order/{{orderId}}/cancel';" id="cancel-button" type="button" class="btn btn-outline-danger btn-sm mb-2">
                     Cancel Service
                   </button>
                 </div><!-- / cancel service button -->
 
                 <!-- download receipt button -->
                 <div class="d-block">
-                  <button id="receipt-button" type="button" class="btn btn-outline-light btn-sm mb-2">
+                  <button onclick="location.href='/order/{{orderId}}/export_pdf';" id="receipt-button" type="button" class="btn btn-outline-light btn-sm mb-2">
                     Download Receipt
                   </button>
                 </div><!-- / download receipt button -->
@@ -248,10 +250,10 @@
                     <div class="row mb-2">
                       <div class="col-lg-4 col-sm-12 col-xs-12 text-center">
                         <i class="bi bi-at"></i>
-                        <span>Public IP Address:</span>
+                        <span >Public IP Address:</span>
                       </div>
                       <div class="col-lg-8 col-sm-12 col-xs-12 text-center">
-                        <input readonly type="text"
+                        <input readonly type="text" id="server-ip-address"
                           class="text-center bg-transparent text-white border border-light w-100" value="127.0.0.1" />
                       </div>
                     </div><!-- / public ip address -->
@@ -263,7 +265,7 @@
                         <span>SSH Port:</span>
                       </div>
                       <div class="col-lg-8 col-sm-12 col-xs-12 text-center">
-                        <input readonly type="text"
+                        <input readonly type="text" id="server-port"
                           class="text-center bg-transparent text-white border border-light w-100" value="22" />
                       </div>
                     </div><!-- / ssh port -->
@@ -286,7 +288,7 @@
                         <span>SSH User:</span>
                       </div>
                       <div class="col-lg-8 col-sm-12 col-xs-12 text-center">
-                        <input readonly type="text"
+                        <input readonly type="text" id="server-user"
                           class="text-center bg-transparent text-white border border-light w-100" value="root" />
                       </div>
                     </div><!-- / ssh user -->
@@ -298,7 +300,7 @@
                         <span>SSH Password:</span>
                       </div>
                       <div class="col-lg-8 col-sm-12 col-xs-12 text-center">
-                        <input readonly type="text"
+                        <input readonly type="text" id="server-pass"
                           class="text-center bg-transparent text-white border border-light w-100"
                           value="dGhldHJ1dGhpc291dHRoZXJl" />
                       </div>
@@ -334,7 +336,7 @@
       <span class="animated-link">Technical Support</span>
     </h5><!-- / title -->
     <p>
-      <pre >tech.support@dawhostservices.com</pre>
+      <pre>dawhostservices@gmail.com</pre>
     </p>
   </div>
 </div>

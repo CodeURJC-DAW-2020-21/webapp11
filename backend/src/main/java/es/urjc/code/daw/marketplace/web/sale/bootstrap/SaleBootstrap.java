@@ -8,14 +8,13 @@ import es.urjc.code.daw.marketplace.repository.OtdRepository;
 import es.urjc.code.daw.marketplace.repository.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
 import javax.transaction.Transactional;
 import java.util.Date;
-import java.util.Optional;
+import java.util.Iterator;
 
 @Component
 @Transactional
-@org.springframework.core.annotation.Order(3)
+@org.springframework.core.annotation.Order(4)
 public class SaleBootstrap implements CommandLineRunner {
 
     private final OtdRepository otdRepository;
@@ -33,8 +32,9 @@ public class SaleBootstrap implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
-        Optional<Product> optionalProduct = productRepository.findById(1L);
-        Product product = optionalProduct.orElseThrow();
+        Iterable<Product> products = productRepository.findAll();
+        Iterator<Product> productIterator = products.iterator();
+        Product product = productIterator.next();
 
         OneTimeDiscount otd = OneTimeDiscount.builder()
                 .productId(product.getId())
@@ -42,7 +42,7 @@ public class SaleBootstrap implements CommandLineRunner {
                 .stop(new Date(System.currentTimeMillis() + Integer.MAX_VALUE))
             .build();
 
-        otdRepository.save(otd);
+        otdRepository.saveAndFlush(otd);
 
         AccumulativeDiscount ad = AccumulativeDiscount.builder()
                 .productId(product.getId())
@@ -51,7 +51,7 @@ public class SaleBootstrap implements CommandLineRunner {
                 .stop(new Date(System.currentTimeMillis() + Integer.MAX_VALUE))
             .build();
 
-        adRepository.save(ad);
+        adRepository.saveAndFlush(ad);
 
     }
 
