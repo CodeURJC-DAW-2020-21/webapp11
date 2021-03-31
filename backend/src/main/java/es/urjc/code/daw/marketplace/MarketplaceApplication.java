@@ -6,7 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import javax.annotation.PostConstruct;
+import java.util.TimeZone;
 
 @Configuration
 @EnableSpringDataWebSupport
@@ -17,6 +19,11 @@ public class MarketplaceApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MarketplaceApplication.class, args);
+    }
+
+    @PostConstruct
+    public void init(){
+        TimeZone.setDefault(TimeZone.getTimeZone("Europe/Madrid"));
     }
 
 }

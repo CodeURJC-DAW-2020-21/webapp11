@@ -5,9 +5,7 @@ import es.urjc.code.daw.marketplace.domain.OneTimeDiscount;
 import es.urjc.code.daw.marketplace.domain.Order;
 import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.repository.*;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.Optional;
@@ -53,29 +51,22 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public void applyOtdDiscount(Order order) {
-        if(!isEligibleForCurrentOtd(order.getUser().getId(), order.getProduct().getId())) return;
-        Optional<OneTimeDiscount> optionalCurrentOtd = otdRepository.findCurrentlyActiveOtd();
-        if(optionalCurrentOtd.isEmpty()) return;
-        OneTimeDiscount currentOtd = optionalCurrentOtd.get();
-        currentOtd.getConsumers().add(order.getUser());
-        otdRepository.save(currentOtd);
-        int discountPercentage = currentOtd.getDiscountPercentage();
-        int orderCost = order.getFinalCost();
-        int finalCost = ((100 - discountPercentage) * orderCost) / 100;
-        order.setFinalCost(finalCost);
+        boolean isEligible = isEligibleForCurrentOtd(order.getUser().getId(), order.getProduct().getId());
+        if(!isEligible) return;
+        OneTimeDiscount discount = otdRepository.findCurrentlyActiveOtd().orElseThrow();
+        discount.addConsumer(order.getUser());
+        otdRepository.saveAndFlush(discount);
+        order.applyDiscount(discount.getDiscountPercentage());
     }
 
     @Override
     public void applyAdDiscount(Order order) {
-        Optional<AccumulativeDiscount> optionalCurrentAd = adRepository.findCurrentlyActiveAd();
-        if(optionalCurrentAd.isEmpty()) return;
-        AccumulativeDiscount currentAd = optionalCurrentAd.get();
-        currentAd.getConsumers().add(order.getUser());
-        adRepository.save(currentAd);
-        int discountPercentage = currentAd.getDiscountPercentage();
-        int orderCost = order.getFinalCost();
-        int finalCost = ((100 - discountPercentage) * orderCost) / 100;
-        order.setFinalCost(finalCost);
+        boolean isEligible = isEligibleForCurrentAd(order.getUser().getId(), order.getProduct().getId());
+        if(!isEligible) return;
+        AccumulativeDiscount discount = adRepository.findCurrentlyActiveAd().orElseThrow();
+        discount.addConsumer(order.getUser());
+        adRepository.saveAndFlush(discount);
+        order.applyDiscount(discount.getDiscountPercentage());
     }
 
     @Override
@@ -99,7 +90,7 @@ public class SaleServiceImpl implements SaleService {
                 .discountPercentage(discount)
             .build();
 
-        otdRepository.save(otd);
+        otdRepository.saveAndFlush(otd);
     }
 
     @Override
@@ -119,7 +110,7 @@ public class SaleServiceImpl implements SaleService {
                 .bulkAmount(bulkAmount)
             .build();
 
-        adRepository.save(ad);
+        adRepository.saveAndFlush(ad);
 
     }
 

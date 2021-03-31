@@ -10,6 +10,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+/**
+ * This class is the implementation of the {@link UserDetailsService}
+ * to be able to load the {@link UserDetails} associated to the logged
+ * user.
+ */
 @Service
 @Qualifier("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -26,11 +31,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) {
         User user = userRepository.findUserByEmail(email);
         if(user == null) {
-            final String message = String.format("No user found with email '%s'", email);
-            LOGGER.error(message);
+            final String message = String.format("[UserDetailsService] No user found with email '%s'", email);
+            LOGGER.info(message);
             throw new UsernameNotFoundException(message);
         } else {
-            final String message = String.format("Found user with email '%s'", email);
+            final String message = String.format("[UserDetailsService] Found user with email '%s'", email);
             LOGGER.info(message);
             return new UserPrincipal(user);
         }

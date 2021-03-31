@@ -1,9 +1,12 @@
 package es.urjc.code.daw.marketplace.web.user.controller;
 
+import com.google.common.collect.Lists;
 import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.security.user.UserPrincipal;
+import es.urjc.code.daw.marketplace.service.EmailService;
 import es.urjc.code.daw.marketplace.service.PictureService;
 import es.urjc.code.daw.marketplace.service.UserService;
+import es.urjc.code.daw.marketplace.util.EmailContent;
 import es.urjc.code.daw.marketplace.web.user.dto.RegisterUserRequestDto;
 import es.urjc.code.daw.marketplace.web.user.dto.UpdateUserRequestDto;
 import es.urjc.code.daw.marketplace.web.user.mapper.UserMapper;
@@ -17,25 +20,32 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Represents the controller responsible for anything related
+ * with the User class (logging in, registering, updating user info...)
+ */
+
 @Controller
 public class UserController {
 
     private final UserService userService;
     private final PictureService pictureService;
+    private final EmailService emailService;
     private final UserMapper userMapper;
 
     public UserController(UserService userService,
                           PictureService pictureService,
+                          EmailService emailService,
                           UserMapper userMapper) {
         this.userService = userService;
         this.pictureService = pictureService;
+        this.emailService = emailService;
         this.userMapper = userMapper;
     }
 
@@ -71,7 +81,22 @@ public class UserController {
                                @AuthenticationPrincipal UserPrincipal userPrincipal,
                                Model model) {
 
-        userService.registerUser(userMapper.asRegisterUser(request));
+        User user = userService.registerUser(userMapper.asRegisterUser(request));
+
+        String message = EmailContent.create()
+                .addHeading("Thanks for registering")
+                .addUnorderedList(
+                        "Here is your profile information",
+                        Lists.newArrayList(
+                                "Name: " + user.getFirstName(),
+                                "Surname: " + user.getSurname(),
+                                "Email: " + user.getEmail()
+                        )
+                )
+                .addHeading("and welcome to DAWHostServices!")
+            .build();
+
+        emailService.sendEmail(request.getEmail(), "Welcome to DAWHostServices", message);
 
         final String viewIndicator = "isRegister";
         model.addAttribute(viewIndicator, "yes");
@@ -98,13 +123,14 @@ public class UserController {
 
         User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
         boolean cannotPerform = !currentUser.isAdmin() && currentUser.getId().longValue() != userId.longValue();
-        if(cannotPerform) return "error";
+        if(cannotPerform) return "redirect:/error";
 
         User user = userService.findUserById(userId);
         model.addAttribute("user", user);
         model.addAttribute("userId", user.getId());
         model.addAttribute("isLoggedIn", "yes");
         model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));
+
         if(userPrincipal.getUser().isAdmin()) {
             model.addAttribute("isAdmin", "yes");
         }
@@ -127,6 +153,12 @@ public class UserController {
         return "users";
     }
 
+    /**
+     * Updates the user info with the newly acquired information
+     * from the form. Returns to the profile page, displaying
+     * the newly updated information.
+     */
+
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @RequestMapping(path = "/user/{userId}/update" , method = RequestMethod.POST)
     public String updateUser(@PathVariable("userId") Long userId,
@@ -137,7 +169,7 @@ public class UserController {
 
         User currentUser = userService.findUserByEmail(userPrincipal.getUsername());
         boolean cannotPerform = !currentUser.isAdmin() && currentUser.getId().longValue() != userId.longValue();
-        if(cannotPerform) return "error";
+        if(cannotPerform) return "redirect:/error";
 
         User updateUser = userMapper.asUpdateUser(request);
         updateUser.setId(userId);
@@ -216,7 +248,5 @@ public class UserController {
         InputStream targetStream = new FileInputStream(file);
         return IOUtils.toByteArray(targetStream);
     }
-
-
 
 }

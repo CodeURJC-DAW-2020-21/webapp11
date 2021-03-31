@@ -2,8 +2,12 @@ package es.urjc.code.daw.marketplace.service;
 
 import es.urjc.code.daw.marketplace.domain.User;
 import org.springframework.data.domain.Pageable;
-
 import java.util.List;
+
+/**
+ * Handles the user, by registering the user, updating, enabling/disabling,
+ * saving/deleting the user and finding it via email or Id.
+ */
 
 public interface UserService {
 

@@ -5,13 +5,12 @@ import es.urjc.code.daw.marketplace.service.SaleService;
 import es.urjc.code.daw.marketplace.web.sale.dto.UpdateAdDto;
 import es.urjc.code.daw.marketplace.web.sale.dto.UpdateOtdDto;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
@@ -28,6 +27,7 @@ public class SaleController {
         this.saleService = saleService;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(
             path = "/sale/otd/update",
             method = RequestMethod.POST,
@@ -87,6 +87,7 @@ public class SaleController {
         return "flash";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(
             path = "/sale/ad/update",
             method = RequestMethod.POST,
@@ -151,6 +152,30 @@ public class SaleController {
 
         model.addAttribute("message", "The sale has been successfully saved");
         model.addAttribute("success", "yes");
+
+        return "flash";
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(path = "/sale/otd/disable", method = RequestMethod.POST)
+    public String disableOtdSale(Model model) {
+
+        saleService.disableCurrentOtd();
+
+        model.addAttribute("message", "The one time discount sale has been successfully disabled!");
+        model.addAttribute("info", "yes");
+
+        return "flash";
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(path = "/sale/ad/disable", method = RequestMethod.POST)
+    public String disableAdSale(Model model) {
+
+        saleService.disableCurrentAd();
+
+        model.addAttribute("message", "The accumulative discount sale has been successfully disabled!");
+        model.addAttribute("info", "yes");
 
         return "flash";
     }

@@ -207,10 +207,10 @@
 
               <div class="mt-2">
                   {{#otdActive}}
-                      <span class="badge bg-success">Currently Active</span>
+                      <span id="otd-status" class="badge bg-success">Currently Active</span>
                   {{/otdActive}}
                   {{^otdActive}}
-                      <span class="badge bg-danger">Currently Inactive</span>
+                      <span id="otd-status" class="badge bg-danger">Currently Inactive</span>
                   {{/otdActive}}
               </div>
 
@@ -291,7 +291,7 @@
                 </p>
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                   <button id="otd-update" type="button" class="btn btn-outline-success" style="width: 140px;">Update</button>
-                  <button id="otd-disable" type="button" class="btn btn-outline-danger" style="width: 140px;">Disable</button>
+                  <button id="otd-disable" type="button" class="btn btn-outline-danger {{^otdActive}}disabled{{/otdActive}}" style="width: 140px;">Disable</button>
                 </div>
               </div>
             </div><!-- / discount box -->
@@ -324,10 +324,10 @@
 
               <div class="mt-2">
                   {{#adActive}}
-                      <span class="badge bg-success">Currently Active</span>
+                      <span id="ad-status" class="badge bg-success">Currently Active</span>
                   {{/adActive}}
                   {{^adActive}}
-                      <span class="badge bg-danger">Currently Inactive</span>
+                      <span id="ad-status" class="badge bg-danger">Currently Inactive</span>
                   {{/adActive}}
               </div>
 
@@ -430,7 +430,7 @@
                 </p>
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                   <button id="ad-update" type="button" class="btn btn-outline-success" style="width: 140px;">Update</button>
-                  <button id="ad-disable" type="button" class="btn btn-outline-danger" style="width: 140px;">Disable</button>
+                  <button id="ad-disable" type="button" class="btn btn-outline-danger {{^adActive}}disabled{{/adActive}}" style="width: 140px;">Disable</button>
                 </div>
               </div>
             </div><!-- / discount box -->
