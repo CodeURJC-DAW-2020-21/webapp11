@@ -4,9 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.validation.constraints.*;
-import java.util.Set;
+
+/**
+ * The information and its correct structure that is needed
+ * in order to successfully update an user.
+ * Differs from {@link RegisterUserRequestDto}, as the password can be empty.
+ */
+
 
 @Getter
 @Setter
@@ -24,7 +29,6 @@ public class UpdateUserRequestDto {
     @NotEmpty
     private String surname;
 
-    @Pattern(regexp = "^[\\w\\s.-]+\\d+,\\s*[\\w\\s.-]+$")
     @NotNull
     @NotEmpty
     private String address;

@@ -1,7 +1,7 @@
 package es.urjc.code.daw.marketplace.web;
 
 import es.urjc.code.daw.marketplace.security.user.UserPrincipal;
-import org.springframework.security.access.prepost.PreAuthorize;
+import es.urjc.code.daw.marketplace.service.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,11 +12,21 @@ import java.util.Objects;
 @Controller
 public class IndexController {
 
+    private final UserService userService;
+
+    public IndexController(UserService userService) {
+        this.userService = userService;
+    }
+
     @GetMapping(path = { "", "/", "/index", "/home" })
     public String home(@AuthenticationPrincipal UserPrincipal userPrincipal, Model model) {
 
         if(!Objects.isNull(userPrincipal)) {
+            if(userPrincipal.getUser().isAdmin()) {
+                model.addAttribute("isAdmin", "yes");
+            }
             model.addAttribute("isLoggedIn", "yes");
+            model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));
         }
 
         model.addAttribute("isHome", true);
@@ -27,7 +37,11 @@ public class IndexController {
     public String about(@AuthenticationPrincipal UserPrincipal userPrincipal, Model model) {
 
         if(!Objects.isNull(userPrincipal)) {
+            if(userPrincipal.getUser().isAdmin()) {
+                model.addAttribute("isAdmin", "yes");
+            }
             model.addAttribute("isLoggedIn", "yes");
+            model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));
         }
 
         model.addAttribute("isAbout", true);
@@ -38,7 +52,11 @@ public class IndexController {
     public String legal(@AuthenticationPrincipal UserPrincipal userPrincipal, Model model) {
 
         if(!Objects.isNull(userPrincipal)) {
+            if(userPrincipal.getUser().isAdmin()) {
+                model.addAttribute("isAdmin", "yes");
+            }
             model.addAttribute("isLoggedIn", "yes");
+            model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));
         }
 
         model.addAttribute("isLegal", true);
@@ -49,7 +67,11 @@ public class IndexController {
     public String faq(@AuthenticationPrincipal UserPrincipal userPrincipal, Model model) {
 
         if(!Objects.isNull(userPrincipal)) {
+            if(userPrincipal.getUser().isAdmin()) {
+                model.addAttribute("isAdmin", "yes");
+            }
             model.addAttribute("isLoggedIn", "yes");
+            model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));
         }
 
         model.addAttribute("isFaq", true);
@@ -60,7 +82,11 @@ public class IndexController {
     public String register(@AuthenticationPrincipal UserPrincipal userPrincipal, Model model) {
 
         if(!Objects.isNull(userPrincipal)) {
+            if(userPrincipal.getUser().isAdmin()) {
+                model.addAttribute("isAdmin", "yes");
+            }
             model.addAttribute("isLoggedIn", "yes");
+            model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));
         }
 
         model.addAttribute("isRegister", true);
@@ -71,11 +97,14 @@ public class IndexController {
     public String screenshots(@AuthenticationPrincipal UserPrincipal userPrincipal, Model model) {
 
         if(!Objects.isNull(userPrincipal)) {
+            if(userPrincipal.getUser().isAdmin()) {
+                model.addAttribute("isAdmin", "yes");
+            }
             model.addAttribute("isLoggedIn", "yes");
+            model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));
         }
 
         return "screenshots";
     }
-
 
 }

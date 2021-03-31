@@ -10,6 +10,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+/**
+ * An implementation of the {@link UserDetails}, basically
+ * a decorator around our user entity to wrap it and be able
+ * to handle authentication the way Spring does it.
+ */
 @Getter
 @Setter
 public class UserPrincipal implements UserDetails {

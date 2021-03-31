@@ -1,17 +1,15 @@
 package es.urjc.code.daw.marketplace.repository;
 
 import es.urjc.code.daw.marketplace.domain.Order;
-import es.urjc.code.daw.marketplace.domain.Product;
-import es.urjc.code.daw.marketplace.domain.User;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
-
 import java.util.Date;
 import java.util.List;
 
-public interface OrderRepository extends PagingAndSortingRepository<Order, Long> {
+public interface OrderRepository extends JpaRepository<Order, Long>, PagingAndSortingRepository<Order, Long> {
 
     @Query("select count(o) from Order o where o.creationDate between :startDate and :endDate")
     Integer countAllBetweenDates(@Param("startDate") Date startDate, @Param("endDate") Date endDate);

@@ -301,11 +301,16 @@
                                    data-bs-toggle="dropdown"
                                    aria-expanded="false">
                                     <small>
-                                        <span id="account-rank" class="badge bg-danger">ADMIN</span>
-                                        <!-- <span id="account-rank" class="badge bg-secondary">CLIENT</span> -->
+                                        {{#isAdmin}}
+                                            <span id="account-rank" class="badge bg-danger">ADMIN</span>
+                                        {{/isAdmin}}
+                                        {{^isAdmin}}
+                                            <span id="account-rank" class="badge bg-info">CLIENT</span>
+                                        {{/isAdmin}}
                                     </small>
-
-                                    <span id="account-name">Jack Sparrow</span>
+                                    {{#loggedUser}}
+                                        <span id="account-name">{{firstName}} {{surname}}</span>
+                                    {{/loggedUser}}
                                 </a><!-- / displayed name -->
 
                                 <!-- account menu -->
@@ -319,6 +324,7 @@
                                         </a>
                                     </li><!-- / my services-->
 
+                                    {{#isAdmin}}
                                     <!-- control panel-->
                                     <li>
                                         <a onclick="location.href='/panel';" class="nav-link" href="#">
@@ -326,6 +332,7 @@
                                             <span class="animated-link">Control Panel</span>
                                         </a>
                                     </li><!-- / control panel-->
+                                    {{/isAdmin}}
 
                                     <!-- profile -->
                                     <li>

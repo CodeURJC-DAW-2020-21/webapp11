@@ -18,12 +18,34 @@ const displayLoginError = (errorMessage, error = true) => {
 
 }
 
+const submitRegister = () => {
+
+    const form = $("<form></form>");
+    form.attr("name", "registerUser");
+    form.attr("method", "post");
+    form.attr("action", "/register");
+
+    const elementIds = [ "first-name", "surname", "email", "address", "password" ];
+    elementIds.forEach((item) => {
+
+        const field = $("<input></input>");
+        field.attr("type", "hidden");
+        field.attr("name", item === "first-name" ? "firstName" : item);
+
+        const element = $(`#${item}`);
+        field.attr("value", element.val());
+        form.append(field);
+    });
+
+    $(document.body).append(form);
+    form.submit();
+
+}
+
 const registerRegistrationAction = () => {
 
     $("#register-button").click(() => {
 
-        const successMessage = "Registration successful, redirecting...";
-        
         let failMessage = "The first name must be alphabetic";
         const firstName = $("#first-name").val();
         let isValid = /^[a-zA-Z -]+$/.test(firstName);
@@ -36,12 +58,12 @@ const registerRegistrationAction = () => {
 
         failMessage = "Please introduce a valid email address";
         const email = $("#email").val();
-        isValid = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email);
+        isValid = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(String(email).toLowerCase());
         if(!isValid) { displayLoginError(failMessage); return; }
 
-        failMessage = "Invalid address (use this format 'Main St. 123, New York')";
+        failMessage = "Address can't be empty";
         const address = $("#address").val();
-        isValid = /^[\w\s.-]+\d+,\s*[\w\s.-]+$/.test(address);
+        isValid = address !== "";
         if(!isValid) { displayLoginError(failMessage); return; }
 
         failMessage = "Password must contain at least one digit, one uppercase and must be 8 characters long minimum";
@@ -54,21 +76,14 @@ const registerRegistrationAction = () => {
         isValid = password === confirmPassword;
         if(!isValid) { displayLoginError(failMessage); return; }
 
-        const requestData = {
-            first_name: firstName,
-            surname: surname,
-            email: email,
-            address: address,
-            password: password
-        };
+        submitRegister();
 
-        alert(JSON.stringify(requestData));
-        
-        /*
-        In the future just use POST AJAX request registration
-        */
-        displayLoginError(successMessage, false);
-        
+    });
+
+    $('.form-control').keypress(function(event) {
+        if (event.which === 13) {
+            submitRegister();
+        }
     });
 
 }
