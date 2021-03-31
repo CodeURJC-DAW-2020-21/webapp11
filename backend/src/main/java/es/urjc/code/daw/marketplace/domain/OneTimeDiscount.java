@@ -1,11 +1,10 @@
 package es.urjc.code.daw.marketplace.domain;
 
+import es.urjc.code.daw.marketplace.util.TimeUtils;
 import lombok.*;
-
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Set;
 
@@ -23,7 +22,7 @@ public class OneTimeDiscount {
     private Long id;
 
     @Builder.Default
-    private boolean enabled = true;
+    private Boolean enabled = true;
 
     private Long productId;
 
@@ -45,5 +44,14 @@ public class OneTimeDiscount {
             inverseJoinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }
     )
     private Set<User> consumers;
+
+    @PrePersist
+    private void onCreate() {
+        start = TimeUtils.now();
+    }
+
+    public void addConsumer(User user) {
+        consumers.add(user);
+    }
 
 }

@@ -8,10 +8,125 @@ $(document).ready(() => {
     toggleAccount();
     loadWithDataWeeklySalesChart();
     loadWithDataWeeklyServicesChart();
+    registerSaveOtd();
+    registerSaveAd();
 
     $("#current-date").text(moment().format('ddd DD MMM, YYYY'));
 
+    const otdId = $("#otd-pid").text();
+    if(otdId !== "") {
+        $(`#otd-packages option[value=${otdId}]`).attr('selected','selected');
+    }
+
+    const adId = $("#ad-pid").text();
+    if(adId !== "") {
+        $(`#ad-packages option[value=${adId}]`).attr('selected','selected');
+    }
+
+    $("#otd-disable").click(() => {
+        $.post(`/sale/otd/disable`, (data) => {
+            if($("#otd-message").length) {
+                $("#otd-message").empty();
+            }
+            $(`${data}`).appendTo("#otd-message");
+            $("#otd-status").text("Currently Inactive");
+            $("#otd-status").addClass("bg-danger");
+            $("#otd-status").removeClass("bg-success");
+            $("#otd-disable").addClass("disabled");
+        });
+    });
+
+    $("#ad-disable").click(() => {
+        $.post(`/sale/ad/disable`, (data) => {
+            if($("#ad-message").length) {
+                $("#ad-message").empty();
+            }
+            $(`${data}`).appendTo("#ad-message");
+            $("#ad-status").text("Currently Inactive");
+            $("#ad-status").addClass("bg-danger");
+            $("#ad-status").removeClass("bg-success");
+            $("#ad-disable").addClass("disabled");
+        });
+    });
+
 });
+
+const dateToString = (identifier) => {
+    const date = new Date($(identifier).val());
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return [day, month, year].join('/');
+}
+
+const registerSaveOtd = () => {
+   const performOtdUpdate = () => {
+       const start = dateToString("#otd-start");
+       const stop = dateToString("#otd-stop");
+       const discount = $("#otd-discount").val();
+       const pack = $('#otd-packages option:selected').val();
+       const sentInfo = {
+           startDate: start,
+           stopDate: stop,
+           discountPercentage: discount,
+           productId: pack
+       };
+       $.post( "/sale/otd/update", sentInfo)
+           .done(function( data ) {
+               if($("#otd-message").length) {
+                   $("#otd-message").empty();
+               }
+               $(`${data}`).appendTo("#otd-message");
+               if($("#otd-message").html().includes("successfully")) {
+                   $("#otd-status").text("Currently Active");
+                   $("#otd-status").removeClass("bg-danger");
+                   $("#otd-status").addClass("bg-success");
+                   $("#otd-disable").removeClass("disabled");
+               }
+           });
+   }
+
+
+    $("#otd-update").click(() => {
+        performOtdUpdate();
+    });
+
+}
+
+const registerSaveAd = () => {
+    const performAdUpdate = () => {
+        const start = dateToString("#ad-start");
+        const stop = dateToString("#ad-stop");
+        const discount = $("#ad-discount").val();
+        const amount = $("#ad-amount").val();
+        const pack = $('#ad-packages option:selected').val();
+        const sentInfo = {
+            startDate: start,
+            stopDate: stop,
+            discountPercentage: discount,
+            bulkAmount: amount,
+            productId: pack
+        };
+        $.post( "/sale/ad/update", sentInfo)
+            .done(function( data ) {
+                if($("#ad-message").length) {
+                    $("#ad-message").empty();
+                }
+                $(`${data}`).appendTo("#ad-message");
+                if($("#ad-message").html().includes("successfully")) {
+                    $("#ad-status").text("Currently Active");
+                    $("#ad-status").removeClass("bg-danger");
+                    $("#ad-status").addClass("bg-success");
+                    $("#ad-disable").removeClass("disabled");
+                }
+            });
+    }
+
+    $("#ad-update").click(() => {
+        performAdUpdate();
+    });
+
+}
 
 const registerContentSwitch = () => {
     $(".content-button").each(function(){
@@ -23,12 +138,18 @@ const registerContentSwitch = () => {
             const contentId = currentButton.data('daw-content');
             $("#" + contentId).removeClass("d-none");
             $("#flash").replaceWith(`<div id="flash"></div>`);
+            if($("#otd-message").length) {
+                $("#otd-message").empty();
+            }
+            if($("#ad-message").length) {
+                $("#ad-message").empty();
+            }
         });
     });
 }
 
 const loadUsers = () => {
-    $.get(`/users/${currentPage}/3`, (data) => {
+    $.get(`/users/${currentPage}/10`, (data) => {
         $(`${data}`).appendTo("#clients");
         currentPage++;
     });
@@ -46,14 +167,17 @@ const toggleAccount = () => {
         });
         const updateLoaded = () => {
             $("#clients").html('');
-            let elementsAmount = (lastPage - 1) * 3;
+            let elementsAmount = (lastPage - 1) * 10;
             $.get(`/users/1/${elementsAmount}`, (data) => {
                 $(`${data}`).appendTo("#clients");
                 currentPage = lastPage;
             });
-            document.getElementById("flash-spinner").outerHTML = "";
+            if(document.getElementById("flash-spinner") !== null) {
+                document.getElementById("flash-spinner").outerHTML = "";
+            }
+
         }
-        setTimeout(() => updateLoaded(), 1000);
+        setTimeout(() => updateLoaded(), 100);
     });
 }
 
