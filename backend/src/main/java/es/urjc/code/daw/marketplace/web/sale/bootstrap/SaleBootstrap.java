@@ -8,11 +8,9 @@ import es.urjc.code.daw.marketplace.repository.OtdRepository;
 import es.urjc.code.daw.marketplace.repository.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.Optional;
 
 @Component
 @Transactional
@@ -44,7 +42,7 @@ public class SaleBootstrap implements CommandLineRunner {
                 .stop(new Date(System.currentTimeMillis() + Integer.MAX_VALUE))
             .build();
 
-        otdRepository.save(otd);
+        otdRepository.saveAndFlush(otd);
 
         AccumulativeDiscount ad = AccumulativeDiscount.builder()
                 .productId(product.getId())
@@ -53,7 +51,7 @@ public class SaleBootstrap implements CommandLineRunner {
                 .stop(new Date(System.currentTimeMillis() + Integer.MAX_VALUE))
             .build();
 
-        adRepository.save(ad);
+        adRepository.saveAndFlush(ad);
 
     }
 

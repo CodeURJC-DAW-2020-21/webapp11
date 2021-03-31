@@ -1,16 +1,15 @@
 package es.urjc.code.daw.marketplace.domain;
 
+import es.urjc.code.daw.marketplace.util.TimeUtils;
 import lombok.*;
-
 import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;
-
-import static javax.persistence.FetchType.EAGER;
+import java.util.TimeZone;
 
 @ToString
 @Entity
-@Table(name = "orders")
+@Table(name = "ordered_services")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -33,24 +32,34 @@ public class Order {
     @JoinColumn(name = "user_order")
     private User user;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "creation_date")
     private Date creationDate;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "expiry_date")
     private Date expiryDate;
 
     @PrePersist
     private void onCreate() {
-        creationDate = new Date();
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MONTH, 1);
-        expiryDate = calendar.getTime();
+        if(creationDate == null) {
+            creationDate = TimeUtils.now();
+        }
+        if(expiryDate == null) {
+            Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Madrid"));
+            calendar.add(Calendar.MONTH, 1);
+            expiryDate = calendar.getTime();
+        }
     }
 
     public boolean isExpired() {
-        Date today = new Date();
+        Date today = TimeUtils.now();
         return today.after(expiryDate);
+    }
+
+    public void applyDiscount(int discountPercentage) {
+        int finalCost = ((100 - discountPercentage) * product.getPrice()) / 100;
+        this.setFinalCost(finalCost);
     }
 
 }

@@ -11,11 +11,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+/**
+ * An implementation of the {@link UserService}.
+ */
 
 @Service
 @Transactional
@@ -40,7 +43,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Role clientRole = roleRepository.findByName(DEFAULT_ROLE);
         user.getRoles().add(Role.builder().id(clientRole.getId()).build());
-        return userRepository.save(user);
+        return userRepository.saveAndFlush(user);
     }
 
     @Override
@@ -61,7 +64,7 @@ public class UserServiceImpl implements UserService {
             storedUser.setPassword(newEncodedPassword);
         }
 
-        userRepository.save(storedUser);
+        userRepository.saveAndFlush(storedUser);
         
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
@@ -75,15 +78,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User enableUser(Long id) {
         User storedUser = userRepository.findUserById(id);
-        storedUser.setEnabled(true);
-        return userRepository.save(storedUser);
+        storedUser.setIsEnabled(true);
+        return userRepository.saveAndFlush(storedUser);
     }
 
     @Override
     public User disableUser(Long id) {
         User storedUser = userRepository.findUserById(id);
-        storedUser.setEnabled(false);
-        return userRepository.save(storedUser);
+        storedUser.setIsEnabled(false);
+        return userRepository.saveAndFlush(storedUser);
     }
 
     @Override

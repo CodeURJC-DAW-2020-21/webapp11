@@ -1,6 +1,5 @@
 package es.urjc.code.daw.marketplace.service;
 
-
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -15,6 +14,9 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Objects;
 
+/**
+ * A simple implementation for the {@link PictureService}.
+ */
 @Service
 @Transactional
 public class PictureServiceImpl implements PictureService {
@@ -49,7 +51,6 @@ public class PictureServiceImpl implements PictureService {
         }
 
         return newName;
-
     }
 
 }
