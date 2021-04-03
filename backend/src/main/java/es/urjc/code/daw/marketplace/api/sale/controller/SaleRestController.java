@@ -1,5 +1,6 @@
 package es.urjc.code.daw.marketplace.api.sale.controller;
 
+import es.urjc.code.daw.marketplace.api.sale.dto.DisableSaleResponseDto;
 import es.urjc.code.daw.marketplace.api.sale.dto.UpdateAdSaleRequestDto;
 import es.urjc.code.daw.marketplace.api.sale.dto.UpdateSaleResponseDto;
 import es.urjc.code.daw.marketplace.api.sale.mapper.RestSaleMapper;
@@ -64,6 +65,22 @@ public class SaleRestController {
         );
 
         return ResponseEntity.ok(UpdateSaleResponseDto.successful());
+    }
+
+    @RequestMapping(
+            path = BASE_ROUTE + "/otd/disable",
+            method = RequestMethod.POST
+    )
+    public ResponseEntity<DisableSaleResponseDto> disableOtdSale() {
+
+        User loggedUser = loggedUserFromToken();
+        if(!loggedUser.isAdmin()) {
+            throw new RuntimeException("Not authorized");
+        }
+
+        saleService.disableCurrentOtd();
+
+        return ResponseEntity.ok(DisableSaleResponseDto.successful());
     }
 
 
