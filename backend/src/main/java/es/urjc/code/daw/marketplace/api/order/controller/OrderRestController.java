@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -81,6 +82,29 @@ public class OrderRestController {
             throw new RuntimeException("Access denied, you do not have permission");
         }
         return ResponseEntity.ok(restOrderMapper.asFindResponse(order));
+    }
+
+    @RequestMapping(
+            path = ROOT_ROUTE + "/{id}/export",
+            method = RequestMethod.GET
+    )
+    public void exportOrderToPdf(HttpServletResponse response, @PathVariable("id") Long orderId) throws Exception {
+        User loggedUser = loggedUserFromToken();
+        List<Order> orders = orderService.findAllOrdersByUserId(loggedUserFromToken().getId());
+        Order order = orderService.findOrderById(orderId);
+        boolean accessPermitted = loggedUser.isAdmin() || orders.contains(order);
+        if(!accessPermitted) {
+            throw new RuntimeException("Access denied, you do not have permission");
+        }
+
+        response.setContentType("application/pdf");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "Attachment; filename=userOrder_" + order.getId() + "_" + order.getUser().getId() + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        pdfExporterService.exportPdf(response, order);
+
     }
 
 
