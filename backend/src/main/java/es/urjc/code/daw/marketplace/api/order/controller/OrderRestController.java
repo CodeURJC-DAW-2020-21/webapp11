@@ -12,8 +12,7 @@ import es.urjc.code.daw.marketplace.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,10 +43,12 @@ public class OrderRestController {
         this.pdfExporterService = pdfExporterService;
     }
 
-
+    @RequestMapping(
+            path = ROOT_ROUTE,
+            method = RequestMethod.GET
+    )
     public ResponseEntity<List<FindOrderResponseDto>> findServices(@RequestParam("page") Integer page,
                                                                    @RequestParam("amount") Integer amount) {
-
         User loggedUser = loggedUserFromToken();
         List<Order> orders = orderService.findAllOrdersByUserId(loggedUser.getId(), PageRequest.of(page-1, amount));
         List<FindOrderResponseDto> response = orders.stream().map(restOrderMapper::asFindResponse).collect(Collectors.toList());
@@ -65,6 +66,21 @@ public class OrderRestController {
             return loggedUser;
         }
 
+    }
+
+    @RequestMapping(
+            path = ROOT_ROUTE + "/{id}",
+            method = RequestMethod.GET
+    )
+    public ResponseEntity<FindOrderResponseDto> findService(@PathVariable("id") Long serviceId) {
+        User loggedUser  = loggedUserFromToken();
+        List<Order> orders = orderService.findAllOrdersByUserId(loggedUser.getId());
+        Order order = orderService.findOrderById((serviceId));
+        boolean accessPermitted = loggedUser.isAdmin() || orders.contains(order);
+        if(!accessPermitted) {
+            throw new RuntimeException("Access denied, you do not have permission");
+        }
+        return ResponseEntity.ok(restOrderMapper.asFindResponse(order));
     }
 
 
