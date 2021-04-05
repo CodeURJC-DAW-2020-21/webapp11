@@ -1,0 +1,771 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: https://localhost:8443
+  description: Generated server url
+paths:
+  /api/users/{id}:
+    get:
+      tags:
+      - user-rest-controller
+      operationId: findUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FindUserResponseDto'
+    put:
+      tags:
+      - user-rest-controller
+      operationId: updateUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequestDto'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateUserResponseDto'
+  /api/sales/otd:
+    get:
+      tags:
+      - sale-rest-controller
+      operationId: findOneTimeDiscount
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FindOtdResponseDto'
+    put:
+      tags:
+      - sale-rest-controller
+      operationId: updateOtdSale
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOtdSaleRequestDto'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateSaleResponseDto'
+  /api/sales/ad:
+    get:
+      tags:
+      - sale-rest-controller
+      operationId: findAccumulativeDiscount
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FindAdResponseDto'
+    put:
+      tags:
+      - sale-rest-controller
+      operationId: updateAdSale
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAdSaleRequestDto'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateSaleResponseDto'
+  /api/users:
+    get:
+      tags:
+      - user-rest-controller
+      operationId: findUsers
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: amount
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FindUserResponseDto'
+    post:
+      tags:
+      - user-rest-controller
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterUserRequestDto'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RegisterUserResponseDto'
+  /api/users/{id}/enable:
+    post:
+      tags:
+      - user-rest-controller
+      operationId: enableUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/EnableUserResponseDto'
+  /api/users/{id}/disable:
+    post:
+      tags:
+      - user-rest-controller
+      operationId: disableUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DisableUserResponseDto'
+  /api/tokens/validate:
+    post:
+      tags:
+      - token-rest-controller
+      operationId: validateToken
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ValidateTokenResponseDto'
+  /api/tokens/generate:
+    post:
+      tags:
+      - token-rest-controller
+      operationId: generateToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateTokenRequestDto'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GenerateTokenResponseDto'
+  /api/sales/otd/disable:
+    post:
+      tags:
+      - sale-rest-controller
+      operationId: disableOtdSale
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DisableSaleResponseDto'
+  /api/sales/ad/disable:
+    post:
+      tags:
+      - sale-rest-controller
+      operationId: disableAdSale
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DisableSaleResponseDto'
+  /api/products/{id}/purchase:
+    post:
+      tags:
+      - product-rest-controller
+      operationId: placeOrder
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PlaceOrderResponseDto'
+  /api/orders/{id}/renew:
+    post:
+      tags:
+      - order-rest-controller
+      operationId: renewOrder
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RenewOrderResponseDto'
+  /api/orders/{id}/cancel:
+    post:
+      tags:
+      - order-rest-controller
+      operationId: cancelOrder
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CancelOrderResponseDto'
+  /api/users/{id}/picture:
+    get:
+      tags:
+      - user-rest-controller
+      operationId: getImage
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            image/jpeg:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: byte
+            image/png:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: byte
+  /api/statistics:
+    get:
+      tags:
+      - statistics-rest-controller
+      operationId: findStatistics
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StatisticsResponseDto'
+  /api/products:
+    get:
+      tags:
+      - product-rest-controller
+      operationId: findAllProducts
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FindProductResponseDto'
+  /api/orders:
+    get:
+      tags:
+      - order-rest-controller
+      operationId: findServices
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: amount
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FindOrderResponseDto'
+  /api/orders/{id}:
+    get:
+      tags:
+      - order-rest-controller
+      operationId: findService
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FindOrderResponseDto'
+  /api/orders/{id}/export:
+    get:
+      tags:
+      - order-rest-controller
+      operationId: exportOrderToPdf
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+  /api/error:
+    get:
+      tags:
+      - error-rest-controller
+      operationId: error_2
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+    put:
+      tags:
+      - error-rest-controller
+      operationId: error_3
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+    post:
+      tags:
+      - error-rest-controller
+      operationId: error_6
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+    delete:
+      tags:
+      - error-rest-controller
+      operationId: error
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+    options:
+      tags:
+      - error-rest-controller
+      operationId: error_4
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+    head:
+      tags:
+      - error-rest-controller
+      operationId: error_5
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+    patch:
+      tags:
+      - error-rest-controller
+      operationId: error_1
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+components:
+  schemas:
+    UpdateUserRequestDto:
+      type: object
+      properties:
+        encoded_picture:
+          type: string
+        content_type:
+          type: string
+        first_name:
+          type: string
+        surname:
+          type: string
+        address:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+    UpdateUserResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+    UpdateOtdSaleRequestDto:
+      type: object
+      properties:
+        product_id:
+          type: integer
+          format: int64
+        start:
+          type: string
+          format: date-time
+        stop:
+          type: string
+          format: date-time
+        discount:
+          type: integer
+          format: int32
+    UpdateSaleResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+    UpdateAdSaleRequestDto:
+      type: object
+      properties:
+        product_id:
+          type: integer
+          format: int64
+        start:
+          type: string
+          format: date-time
+        stop:
+          type: string
+          format: date-time
+        discount:
+          type: integer
+          format: int32
+        amount:
+          type: integer
+          format: int32
+    RegisterUserRequestDto:
+      required:
+      - address
+      - email
+      - first_name
+      - password
+      - surname
+      type: object
+      properties:
+        first_name:
+          pattern: "^[a-zA-Z -]+$"
+          type: string
+        surname:
+          pattern: "^[a-zA-Z -]+$"
+          type: string
+        address:
+          type: string
+        email:
+          maxLength: 255
+          minLength: 0
+          type: string
+        password:
+          pattern: "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$"
+          type: string
+    RegisterUserResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+    EnableUserResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+    DisableUserResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+    ValidateTokenResponseDto:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          format: int64
+        token:
+          type: string
+        is_valid:
+          type: boolean
+    GenerateTokenRequestDto:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    GenerateTokenResponseDto:
+      type: object
+      properties:
+        token:
+          type: string
+        successful:
+          type: boolean
+    DisableSaleResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+    PlaceOrderResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+    RenewOrderResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+    CancelOrderResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+    FindUserResponseDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        first_name:
+          type: string
+        surname:
+          type: string
+        address:
+          type: string
+        email:
+          type: string
+        enabled:
+          type: boolean
+    PairStringInteger:
+      type: object
+      properties:
+        value:
+          type: integer
+          format: int32
+        key:
+          type: string
+        left:
+          type: string
+        right:
+          type: integer
+          format: int32
+    StatisticsResponseDto:
+      type: object
+      properties:
+        accumulated_capital:
+          type: integer
+          format: int64
+        week_sales:
+          type: array
+          items:
+            type: integer
+            format: int32
+        category_purchases:
+          type: array
+          items:
+            $ref: '#/components/schemas/PairStringInteger'
+    FindOtdResponseDto:
+      type: object
+      properties:
+        price:
+          type: integer
+          format: int32
+        discount:
+          type: integer
+          format: int32
+        discount_price:
+          type: integer
+          format: int32
+        ram:
+          type: string
+        cores:
+          type: string
+        storage:
+          type: string
+        transfer:
+          type: string
+    FindAdResponseDto:
+      type: object
+      properties:
+        price:
+          type: integer
+          format: int32
+        discount:
+          type: integer
+          format: int32
+        discount_price:
+          type: integer
+          format: int32
+        bulk_amount:
+          type: integer
+          format: int32
+        ram:
+          type: string
+        cores:
+          type: string
+        storage:
+          type: string
+        transfer:
+          type: string
+    FindProductResponseDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        category:
+          type: string
+        price:
+          type: integer
+          format: int32
+        hourly_price:
+          type: number
+          format: double
+        ram:
+          type: string
+        cores:
+          type: string
+        storage:
+          type: string
+        transfer:
+          type: string
+    FindOrderResponseDto:
+      type: object
+      properties:
+        order_id:
+          type: integer
+          format: int64
+        category:
+          type: string
+        purchase_date:
+          type: string
+          format: date-time
+        expiration_date:
+          type: string
+          format: date-time
+        ram:
+          type: string
+        cores:
+          type: string
+        storage:
+          type: string
+        transfer:
+          type: string

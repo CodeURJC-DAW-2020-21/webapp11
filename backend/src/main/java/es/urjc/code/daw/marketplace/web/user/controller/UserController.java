@@ -10,6 +10,7 @@ import es.urjc.code.daw.marketplace.util.EmailContent;
 import es.urjc.code.daw.marketplace.web.user.dto.RegisterUserRequestDto;
 import es.urjc.code.daw.marketplace.web.user.dto.UpdateUserRequestDto;
 import es.urjc.code.daw.marketplace.web.user.mapper.UserMapper;
+import io.swagger.v3.oas.annotations.Operation;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.data.domain.PageRequest;
@@ -30,6 +31,7 @@ import java.util.Objects;
  * Represents the controller responsible for anything related
  * with the User class (logging in, registering, updating user info...)
  */
+
 
 @Controller
 public class UserController {
@@ -233,6 +235,7 @@ public class UserController {
         return String.format("redirect:/user/%d", currentUser.getId());
     }
 
+    @Operation(hidden = true)
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @ResponseBody
     @GetMapping(path = "/user-profile-pictures/{id}",
