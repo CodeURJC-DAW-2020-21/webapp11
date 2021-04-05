@@ -11,8 +11,10 @@ import es.urjc.code.daw.marketplace.service.PdfExporterService;
 import es.urjc.code.daw.marketplace.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -28,7 +30,6 @@ public class OrderRestController {
     private final OrderService orderService;
     private final RestOrderMapper restOrderMapper;
     private final PdfExporterService pdfExporterService;
-
 
     public OrderRestController(UserService userService,
                                JwtTokenService tokenService,
@@ -51,22 +52,10 @@ public class OrderRestController {
     public ResponseEntity<List<FindOrderResponseDto>> findServices(@RequestParam("page") Integer page,
                                                                    @RequestParam("amount") Integer amount) {
         User loggedUser = loggedUserFromToken();
-        List<Order> orders = orderService.findAllOrdersByUserId(loggedUser.getId(), PageRequest.of(page-1, amount));
+        List<Order> orders = orderService.findAllOrdersByUserId(loggedUser.getId(), PageRequest.of(page - 1, amount));
         List<FindOrderResponseDto> response = orders.stream().map(restOrderMapper::asFindResponse).collect(Collectors.toList());
 
         return ResponseEntity.ok(response);
-    }
-
-    private User loggedUserFromToken() {
-        String token = tokenExtractor.containsToken() ? tokenExtractor.extractToken() : StringUtils.EMPTY;
-        String email = tokenService.extractTokenSubject(token);
-        User loggedUser = userService.findUserByEmail(email);
-        if (loggedUser == null){
-            throw new RuntimeException("Access denied");
-        } else {
-            return loggedUser;
-        }
-
     }
 
     @RequestMapping(
@@ -79,7 +68,7 @@ public class OrderRestController {
         Order order = orderService.findOrderById((serviceId));
         boolean accessPermitted = loggedUser.isAdmin() || orders.contains(order);
         if(!accessPermitted) {
-            throw new RuntimeException("Access denied, you do not have permission");
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
         return ResponseEntity.ok(restOrderMapper.asFindResponse(order));
     }
@@ -93,18 +82,25 @@ public class OrderRestController {
         List<Order> orders = orderService.findAllOrdersByUserId(loggedUserFromToken().getId());
         Order order = orderService.findOrderById(orderId);
         boolean accessPermitted = loggedUser.isAdmin() || orders.contains(order);
-        if(!accessPermitted) {
-            throw new RuntimeException("Access denied, you do not have permission");
-        }
+        if(!accessPermitted) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
 
         response.setContentType("application/pdf");
-
         String headerKey = "Content-Disposition";
         String headerValue = "Attachment; filename=userOrder_" + order.getId() + "_" + order.getUser().getId() + ".pdf";
         response.setHeader(headerKey, headerValue);
 
         pdfExporterService.exportPdf(response, order);
+    }
 
+    private User loggedUserFromToken() {
+        String token = tokenExtractor.containsToken() ? tokenExtractor.extractToken() : StringUtils.EMPTY;
+        String email = tokenService.extractTokenSubject(token);
+        User loggedUser = userService.findUserByEmail(email);
+        if (loggedUser == null){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        } else {
+            return loggedUser;
+        }
     }
 
 

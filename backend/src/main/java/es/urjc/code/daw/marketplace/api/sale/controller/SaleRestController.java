@@ -17,11 +17,13 @@ import es.urjc.code.daw.marketplace.service.ProductService;
 import es.urjc.code.daw.marketplace.service.SaleService;
 import es.urjc.code.daw.marketplace.service.UserService;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -56,7 +58,6 @@ public class SaleRestController {
             method = RequestMethod.GET
     )
     public ResponseEntity<FindOtdResponseDto> findOneTimeDiscount() {
-
         Optional<OneTimeDiscount> optional = saleService.getCurrentOtd();
         if (optional.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -74,7 +75,6 @@ public class SaleRestController {
             method = RequestMethod.GET
     )
     public ResponseEntity<FindAdResponseDto> findAccumulativeDiscount() {
-
         Optional<AccumulativeDiscount> optional = saleService.getCurrentAd();
         if(optional.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -94,9 +94,7 @@ public class SaleRestController {
     public ResponseEntity<UpdateSaleResponseDto> updateOtdSale(@RequestBody UpdateOtdSaleRequestDto request) {
 
         User loggedUser = loggedUserFromToken();
-        if(!loggedUser.isAdmin()) {
-            throw new RuntimeException("Not authorized");
-        }
+        if(!loggedUser.isAdmin()) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
         OneTimeDiscount discount = restSaleMapper.asOtd(request);
         saleService.updateCurrentOtd(
@@ -116,9 +114,7 @@ public class SaleRestController {
     public ResponseEntity<UpdateSaleResponseDto> updateAdSale(@RequestBody UpdateAdSaleRequestDto request) {
 
         User loggedUser = loggedUserFromToken();
-        if(!loggedUser.isAdmin()) {
-            throw new RuntimeException("Not authorized");
-        }
+        if(!loggedUser.isAdmin()) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
         AccumulativeDiscount discount = restSaleMapper.asAd(request);
         saleService.updateCurrentAd(
@@ -137,11 +133,8 @@ public class SaleRestController {
             method = RequestMethod.POST
     )
     public ResponseEntity<DisableSaleResponseDto> disableOtdSale() {
-
         User loggedUser = loggedUserFromToken();
-        if(!loggedUser.isAdmin()) {
-            throw new RuntimeException("Not authorized");
-        }
+        if(!loggedUser.isAdmin()) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
         saleService.disableCurrentOtd();
 
@@ -153,11 +146,8 @@ public class SaleRestController {
             method = RequestMethod.POST
     )
     public ResponseEntity<DisableSaleResponseDto> disableAdSale() {
-
         User loggedUser = loggedUserFromToken();
-        if(!loggedUser.isAdmin()) {
-            throw new RuntimeException("Not authorized");
-        }
+        if(!loggedUser.isAdmin()) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
         saleService.disableCurrentAd();
 
@@ -169,7 +159,7 @@ public class SaleRestController {
         String email = tokenService.extractTokenSubject(token);
         User loggedUser = userService.findUserByEmail(email);
         if(loggedUser == null) {
-            throw new RuntimeException("Access denied");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         } else {
             return loggedUser;
         }
