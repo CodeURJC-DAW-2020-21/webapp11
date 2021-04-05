@@ -350,15 +350,9 @@
 			"name": "0004 - Visitor - Check pricing",
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "{{client_token}}",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"url": {
-					"raw": "https://localhost:8443/api/orders?page=2&amount=10",
+					"raw": "https://localhost:8443/api/products",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -366,17 +360,7 @@
 					"port": "8443",
 					"path": [
 						"api",
-						"orders"
-					],
-					"query": [
-						{
-							"key": "page",
-							"value": "2"
-						},
-						{
-							"key": "amount",
-							"value": "10"
-						}
+						"products"
 					]
 				}
 			},
