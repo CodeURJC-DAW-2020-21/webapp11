@@ -10,7 +10,6 @@ import javax.annotation.PostConstruct;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class FindOtdResponseDto {
 
     @JsonProperty("price")
@@ -35,5 +34,10 @@ public class FindOtdResponseDto {
     private String transfer;
 
     @PostConstruct
+    public void setDiscountedCost() {
+        this.discountedPrice = ((100 - discount) * price) / 100;
+    }
+
     public void setDiscountedCost() {this.discountedPrice = ((100-discount)* price)/ 100; }
+  
 }

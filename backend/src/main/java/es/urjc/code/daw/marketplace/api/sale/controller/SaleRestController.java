@@ -1,5 +1,10 @@
 package es.urjc.code.daw.marketplace.api.sale.controller;
 
+import es.urjc.code.daw.marketplace.api.sale.dto.DisableSaleResponseDto;
+import es.urjc.code.daw.marketplace.api.sale.dto.UpdateAdSaleRequestDto;
+import es.urjc.code.daw.marketplace.api.sale.dto.UpdateSaleResponseDto;
+import es.urjc.code.daw.marketplace.api.sale.mapper.RestSaleMapper;
+import es.urjc.code.daw.marketplace.domain.AccumulativeDiscount;
 import es.urjc.code.daw.marketplace.api.sale.dto.*;
 import es.urjc.code.daw.marketplace.api.sale.mapper.RestSaleMapper;
 import es.urjc.code.daw.marketplace.domain.AccumulativeDiscount;
@@ -21,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-public class  SaleRestController {
+public class SaleRestController {
 
     private static final String BASE_ROUTE = "/api/sales";
 
@@ -104,6 +109,61 @@ public class  SaleRestController {
         return ResponseEntity.ok(UpdateSaleResponseDto.successful());
     }
 
+    @RequestMapping(
+            path = BASE_ROUTE + "/ad",
+            method = RequestMethod.PUT
+    )
+    public ResponseEntity<UpdateSaleResponseDto> updateAdSale(@RequestBody UpdateAdSaleRequestDto request) {
+
+        User loggedUser = loggedUserFromToken();
+        if(!loggedUser.isAdmin()) {
+            throw new RuntimeException("Not authorized");
+        }
+
+        AccumulativeDiscount discount = restSaleMapper.asAd(request);
+        saleService.updateCurrentAd(
+                discount.getStart(),
+                discount.getStop(),
+                discount.getDiscountPercentage(),
+                discount.getProductId(),
+                discount.getBulkAmount()
+        );
+
+        return ResponseEntity.ok(UpdateSaleResponseDto.successful());
+    }
+
+    @RequestMapping(
+            path = BASE_ROUTE + "/otd/disable",
+            method = RequestMethod.POST
+    )
+    public ResponseEntity<DisableSaleResponseDto> disableOtdSale() {
+
+        User loggedUser = loggedUserFromToken();
+        if(!loggedUser.isAdmin()) {
+            throw new RuntimeException("Not authorized");
+        }
+
+        saleService.disableCurrentOtd();
+
+        return ResponseEntity.ok(DisableSaleResponseDto.successful());
+    }
+
+    @RequestMapping(
+            path = BASE_ROUTE + "/ad/disable",
+            method = RequestMethod.POST
+    )
+    public ResponseEntity<DisableSaleResponseDto> disableAdSale() {
+
+        User loggedUser = loggedUserFromToken();
+        if(!loggedUser.isAdmin()) {
+            throw new RuntimeException("Not authorized");
+        }
+
+        saleService.disableCurrentAd();
+
+        return ResponseEntity.ok(DisableSaleResponseDto.successful());
+    }
+  
     private User loggedUserFromToken() {
         String token = tokenExtractor.containsToken() ? tokenExtractor.extractToken() : StringUtils.EMPTY;
         String email = tokenService.extractTokenSubject(token);
