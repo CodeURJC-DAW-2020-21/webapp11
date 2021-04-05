@@ -1,5 +1,7 @@
 package es.urjc.code.daw.marketplace.api.product.mapper;
 
+import es.urjc.code.daw.marketplace.api.product.dto.FindProductResponseDto;
+import es.urjc.code.daw.marketplace.domain.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -8,6 +10,6 @@ public interface RestProductMapper {
 
     RestProductMapper INSTANCE = Mappers.getMapper(RestProductMapper.class);
 
-    // Implement me...
+    FindProductResponseDto asFindResponse(Product product);
 
 }
