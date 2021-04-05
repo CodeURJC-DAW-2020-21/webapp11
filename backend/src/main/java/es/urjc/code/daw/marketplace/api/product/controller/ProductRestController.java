@@ -6,18 +6,14 @@ import es.urjc.code.daw.marketplace.api.product.mapper.RestProductMapper;
 import es.urjc.code.daw.marketplace.domain.Order;
 import es.urjc.code.daw.marketplace.domain.Product;
 import es.urjc.code.daw.marketplace.domain.User;
-import es.urjc.code.daw.marketplace.security.jwt.JwtTokenService;
-import es.urjc.code.daw.marketplace.security.jwt.extractor.TokenExtractor;
+import es.urjc.code.daw.marketplace.security.auth.AuthenticationService;
 import es.urjc.code.daw.marketplace.service.*;
 import es.urjc.code.daw.marketplace.util.EmailMessageFactory;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,27 +27,21 @@ public class ProductRestController {
     private final RestProductMapper restProductMapper;
     private final SaleService saleService;
     private final EmailService emailService;
-    private final UserService userService;
-    private final JwtTokenService tokenService;
-    private final TokenExtractor tokenExtractor;
     private final OrderService orderService;
+    private final AuthenticationService authenticationService;
 
     public ProductRestController(ProductService productService,
                                  RestProductMapper restProductMapper,
                                  SaleService saleService,
                                  EmailService emailService,
-                                 UserService userService,
-                                 JwtTokenService tokenService,
-                                 TokenExtractor tokenExtractor,
-                                 OrderService orderService) {
+                                 OrderService orderService,
+                                 AuthenticationService authenticationService) {
         this.productService = productService;
         this.restProductMapper = restProductMapper;
         this.saleService = saleService;
         this.emailService = emailService;
-        this.userService = userService;
-        this.tokenService = tokenService;
-        this.tokenExtractor = tokenExtractor;
         this.orderService = orderService;
+        this.authenticationService = authenticationService;
     }
 
     @RequestMapping(
@@ -69,7 +59,7 @@ public class ProductRestController {
             method = RequestMethod.POST
     )
     public ResponseEntity<PlaceOrderResponseDto> placeOrder(@PathVariable("id") Long productId) {
-        User loggedUser = loggedUserFromToken();
+        User loggedUser = authenticationService.getTokenUser();
         Product product = productService.findProductById(productId);
 
         Order order = Order.builder()
@@ -88,17 +78,6 @@ public class ProductRestController {
         emailService.sendEmail(loggedUser.getEmail(), title, message);
 
         return ResponseEntity.ok(PlaceOrderResponseDto.successful());
-    }
-
-    private User loggedUserFromToken() {
-        String token = tokenExtractor.containsToken() ? tokenExtractor.extractToken() : StringUtils.EMPTY;
-        String email = tokenService.extractTokenSubject(token);
-        User loggedUser = userService.findUserByEmail(email);
-        if(loggedUser == null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        } else {
-            return loggedUser;
-        }
     }
 
 }

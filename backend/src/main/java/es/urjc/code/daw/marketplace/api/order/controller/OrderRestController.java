@@ -4,12 +4,9 @@ import es.urjc.code.daw.marketplace.api.order.dto.FindOrderResponseDto;
 import es.urjc.code.daw.marketplace.api.order.mapper.RestOrderMapper;
 import es.urjc.code.daw.marketplace.domain.Order;
 import es.urjc.code.daw.marketplace.domain.User;
-import es.urjc.code.daw.marketplace.security.jwt.JwtTokenService;
-import es.urjc.code.daw.marketplace.security.jwt.extractor.TokenExtractor;
+import es.urjc.code.daw.marketplace.security.auth.AuthenticationService;
 import es.urjc.code.daw.marketplace.service.OrderService;
 import es.urjc.code.daw.marketplace.service.PdfExporterService;
-import es.urjc.code.daw.marketplace.service.UserService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,25 +21,20 @@ import java.util.stream.Collectors;
 public class OrderRestController {
 
     private static final String ROOT_ROUTE = "api/orders";
-    private final UserService userService;
-    private final JwtTokenService tokenService;
-    private final TokenExtractor tokenExtractor;
+
     private final OrderService orderService;
     private final RestOrderMapper restOrderMapper;
     private final PdfExporterService pdfExporterService;
+    private final AuthenticationService authenticationService;
 
-    public OrderRestController(UserService userService,
-                               JwtTokenService tokenService,
-                               TokenExtractor tokenExtractor,
-                               OrderService orderService,
+    public OrderRestController(OrderService orderService,
                                RestOrderMapper restOrderMapper,
-                               PdfExporterService pdfExporterService) {
-        this.userService = userService;
-        this.tokenService = tokenService;
-        this.tokenExtractor = tokenExtractor;
+                               PdfExporterService pdfExporterService,
+                               AuthenticationService authenticationService) {
         this.orderService = orderService;
         this.restOrderMapper = restOrderMapper;
         this.pdfExporterService = pdfExporterService;
+        this.authenticationService = authenticationService;
     }
 
     @RequestMapping(
@@ -51,7 +43,7 @@ public class OrderRestController {
     )
     public ResponseEntity<List<FindOrderResponseDto>> findServices(@RequestParam("page") Integer page,
                                                                    @RequestParam("amount") Integer amount) {
-        User loggedUser = loggedUserFromToken();
+        User loggedUser = authenticationService.getTokenUser();
         List<Order> orders = orderService.findAllOrdersByUserId(loggedUser.getId(), PageRequest.of(page - 1, amount));
         List<FindOrderResponseDto> response = orders.stream().map(restOrderMapper::asFindResponse).collect(Collectors.toList());
 
@@ -63,7 +55,7 @@ public class OrderRestController {
             method = RequestMethod.GET
     )
     public ResponseEntity<FindOrderResponseDto> findService(@PathVariable("id") Long serviceId) {
-        User loggedUser  = loggedUserFromToken();
+        User loggedUser = authenticationService.getTokenUser();
         List<Order> orders = orderService.findAllOrdersByUserId(loggedUser.getId());
         Order order = orderService.findOrderById((serviceId));
         boolean accessPermitted = loggedUser.isAdmin() || orders.contains(order);
@@ -78,8 +70,8 @@ public class OrderRestController {
             method = RequestMethod.GET
     )
     public void exportOrderToPdf(HttpServletResponse response, @PathVariable("id") Long orderId) throws Exception {
-        User loggedUser = loggedUserFromToken();
-        List<Order> orders = orderService.findAllOrdersByUserId(loggedUserFromToken().getId());
+        User loggedUser = authenticationService.getTokenUser();
+        List<Order> orders = orderService.findAllOrdersByUserId(loggedUser.getId());
         Order order = orderService.findOrderById(orderId);
         boolean accessPermitted = loggedUser.isAdmin() || orders.contains(order);
         if(!accessPermitted) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
@@ -91,17 +83,5 @@ public class OrderRestController {
 
         pdfExporterService.exportPdf(response, order);
     }
-
-    private User loggedUserFromToken() {
-        String token = tokenExtractor.containsToken() ? tokenExtractor.extractToken() : StringUtils.EMPTY;
-        String email = tokenService.extractTokenSubject(token);
-        User loggedUser = userService.findUserByEmail(email);
-        if (loggedUser == null){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        } else {
-            return loggedUser;
-        }
-    }
-
 
 }

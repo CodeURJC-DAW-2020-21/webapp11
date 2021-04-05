@@ -1,5 +1,7 @@
 package es.urjc.code.daw.marketplace.security.auth;
 
+import es.urjc.code.daw.marketplace.domain.User;
+
 /**
  * An common interface to represent authentication.
  */
@@ -14,5 +16,12 @@ public interface AuthenticationService {
      * @throws RuntimeException if the authentication fails
      */
     void authenticate(Object principal, Object credentials) throws RuntimeException;
+
+    /**
+     * Returns the currently logged in user with token.
+     *
+     * @throws RuntimeException if the authentication fails
+     */
+    User getTokenUser();
 
 }

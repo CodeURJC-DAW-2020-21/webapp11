@@ -38,6 +38,4 @@ public class FindOtdResponseDto {
         this.discountedPrice = ((100 - discount) * price) / 100;
     }
 
-    public void setDiscountedCost() {this.discountedPrice = ((100-discount)* price)/ 100; }
-  
 }

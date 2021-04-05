@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TokenRestController {
 
-    private static final String BASE_ROUTE = "/api/tokens/";
+    private static final String BASE_ROUTE = "/api/tokens";
 
     private final AuthenticationService authenticationService;
     private final JwtTokenService tokenService;
@@ -31,17 +31,17 @@ public class TokenRestController {
         this.tokenExtractor = tokenExtractor;
     }
 
-    @RequestMapping(path = { BASE_ROUTE + "generate" }, method = RequestMethod.POST)
+    @RequestMapping(path = { BASE_ROUTE + "/generate" }, method = RequestMethod.POST)
     public ResponseEntity<GenerateTokenResponseDto> generateToken(@RequestBody GenerateTokenRequestDto request) {
         authenticationService.authenticate(request.getEmail(), request.getPassword());
         String generatedToken = tokenService.generateTokenFor(request.getEmail());
         boolean generationSuccessful = Strings.isNotEmpty(generatedToken);
         GenerateTokenResponseDto response = GenerateTokenResponseDto.create(generatedToken, generationSuccessful);
-        HttpStatus status = generationSuccessful ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
+        HttpStatus status = generationSuccessful ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return new ResponseEntity<>(response, status);
     }
 
-    @RequestMapping(path = { BASE_ROUTE + "validate" }, method = RequestMethod.POST)
+    @RequestMapping(path = { BASE_ROUTE + "/validate" }, method = RequestMethod.POST)
     public ResponseEntity<ValidateTokenResponseDto> validateToken() {
         String token = tokenExtractor.containsToken() ? tokenExtractor.extractToken() : Strings.EMPTY;
         boolean isTokenValid = tokenService.isTokenValid(token);
