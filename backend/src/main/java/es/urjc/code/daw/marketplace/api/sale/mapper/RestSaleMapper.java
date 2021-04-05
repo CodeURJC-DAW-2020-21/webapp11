@@ -23,7 +23,7 @@ public interface RestSaleMapper {
     @Mapping(target = "start", source = "startDate")
     @Mapping(target = "stop", source = "stopDate")
     OneTimeDiscount asOtd(UpdateOtdSaleRequestDto updateOtdSaleDto);
-
+  
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "enabled", ignore = true)
     @Mapping(target = "consumers", ignore = true)
