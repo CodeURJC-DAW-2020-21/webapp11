@@ -1,6 +1,8 @@
 package es.urjc.code.daw.marketplace.api.sale.mapper;
 
+import es.urjc.code.daw.marketplace.api.sale.dto.FindAdResponseDto;
 import es.urjc.code.daw.marketplace.api.sale.dto.FindOtdResponseDto;
+import es.urjc.code.daw.marketplace.domain.AccumulativeDiscount;
 import es.urjc.code.daw.marketplace.domain.OneTimeDiscount;
 import es.urjc.code.daw.marketplace.domain.Product;
 import org.mapstruct.Mapper;
@@ -17,5 +19,8 @@ public interface RestSaleMapper {
     @Mapping(target = "discount", source = "discount.discountPercentage")
     FindOtdResponseDto asFindResponse(OneTimeDiscount discount, Product product);
 
+    @Mapping(target = "discountedPrice", ignore = true)
+    @Mapping(target = "discount", source = "discount.discountPercentage")
+    FindAdResponseDto asFindResponse(AccumulativeDiscount discount, Product product);
 
 }

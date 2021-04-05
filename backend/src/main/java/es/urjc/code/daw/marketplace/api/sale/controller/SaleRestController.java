@@ -2,6 +2,7 @@ package es.urjc.code.daw.marketplace.api.sale.controller;
 
 import es.urjc.code.daw.marketplace.api.sale.dto.*;
 import es.urjc.code.daw.marketplace.api.sale.mapper.RestSaleMapper;
+import es.urjc.code.daw.marketplace.domain.AccumulativeDiscount;
 import es.urjc.code.daw.marketplace.domain.OneTimeDiscount;
 import es.urjc.code.daw.marketplace.domain.Product;
 import es.urjc.code.daw.marketplace.service.ProductService;
@@ -48,6 +49,24 @@ public class  SaleRestController {
         OneTimeDiscount otd = optional.get();
         Product product = productService.findProductById(otd.getProductId());
         FindOtdResponseDto response = restSaleMapper.asFindResponse(otd, product);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @RequestMapping(
+            path = BASE_ROUTE + "/ad",
+            method = RequestMethod.GET
+    )
+    public ResponseEntity<FindAdResponseDto> findAccumulativeDiscount() {
+
+        Optional<AccumulativeDiscount> optional = saleService.getCurrentAd();
+        if(optional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        AccumulativeDiscount ad = optional.get();
+        Product product = productService.findProductById(ad.getProductId());
+        FindAdResponseDto response = restSaleMapper.asFindResponse(ad, product);
 
         return ResponseEntity.ok(response);
     }
