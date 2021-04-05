@@ -83,6 +83,21 @@ public class SaleRestController {
         return ResponseEntity.ok(DisableSaleResponseDto.successful());
     }
 
+    @RequestMapping(
+            path = BASE_ROUTE + "/ad/disable",
+            method = RequestMethod.POST
+    )
+    public ResponseEntity<DisableSaleResponseDto> disableAdSale() {
+
+        User loggedUser = loggedUserFromToken();
+        if(!loggedUser.isAdmin()) {
+            throw new RuntimeException("Not authorized");
+        }
+
+        saleService.disableCurrentAd();
+
+        return ResponseEntity.ok(DisableSaleResponseDto.successful());
+    }
 
     private User loggedUserFromToken() {
         String token = tokenExtractor.containsToken() ? tokenExtractor.extractToken() : StringUtils.EMPTY;
