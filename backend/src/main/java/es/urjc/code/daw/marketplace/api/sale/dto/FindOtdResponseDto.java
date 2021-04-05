@@ -33,8 +33,13 @@ public class FindOtdResponseDto {
     @JsonProperty("transfer")
     private String transfer;
 
+    public void setPrice(Integer price) {
+        this.price = price;
+        updateDiscountedCost();
+    }
+
     @PostConstruct
-    public void setDiscountedCost() {
+    public void updateDiscountedCost() {
         this.discountedPrice = ((100 - discount) * price) / 100;
     }
 

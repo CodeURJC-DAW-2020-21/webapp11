@@ -3,19 +3,21 @@ package es.urjc.code.daw.marketplace.api.user.controller;
 import es.urjc.code.daw.marketplace.api.user.dto.*;
 import es.urjc.code.daw.marketplace.api.user.mapper.RestUserMapper;
 import es.urjc.code.daw.marketplace.domain.User;
+import es.urjc.code.daw.marketplace.security.auth.AuthenticationService;
 import es.urjc.code.daw.marketplace.service.EmailService;
 import es.urjc.code.daw.marketplace.service.PictureService;
 import es.urjc.code.daw.marketplace.service.UserService;
-import es.urjc.code.daw.marketplace.service.UserTokenAuthorizationService;
 import es.urjc.code.daw.marketplace.util.DecodedBase64MultipartFile;
 import es.urjc.code.daw.marketplace.util.EmailMessageFactory;
 import org.apache.commons.io.IOUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -35,18 +37,18 @@ public class UserRestController {
     private final UserService userService;
     private final EmailService emailService;
     private final PictureService pictureService;
-    private final UserTokenAuthorizationService authorizationService;
+    private final AuthenticationService authenticationService;
 
     public UserRestController(RestUserMapper userMapper,
                               UserService userService,
                               EmailService emailService,
                               PictureService pictureService,
-                              UserTokenAuthorizationService authorizationService) {
+                              AuthenticationService authenticationService) {
         this.userMapper = userMapper;
         this.userService = userService;
         this.emailService = emailService;
         this.pictureService = pictureService;
-        this.authorizationService = authorizationService;
+        this.authenticationService = authenticationService;
     }
 
     @RequestMapping(
@@ -76,8 +78,10 @@ public class UserRestController {
     )
     public ResponseEntity<UpdateUserResponseDto> updateUser(@PathVariable("id") Long userId,
                                                             @RequestBody UpdateUserRequestDto request) {
-        if(!authorizationService.requesterCanManipulateUser(userId)) {
-            return ResponseEntity.badRequest().build();
+
+        User loggedUser = authenticationService.getTokenUser();
+        if(!loggedUser.isAdmin() && userId.longValue() != loggedUser.getId().longValue()) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
         User updateUser = userMapper.asUpdateUser(request);
@@ -102,8 +106,9 @@ public class UserRestController {
     )
     public ResponseEntity<FindUserResponseDto> findUser(@PathVariable("id") Long userId) {
 
-        if(!authorizationService.requesterCanManipulateUser(userId)) {
-            return ResponseEntity.badRequest().build();
+        User loggedUser = authenticationService.getTokenUser();
+        if(!loggedUser.isAdmin() && userId.longValue() != loggedUser.getId().longValue()) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
         User findUser = userService.findUserById(userId);
@@ -118,8 +123,9 @@ public class UserRestController {
     )
     public ResponseEntity<List<FindUserResponseDto>> findUsers(@RequestParam("page") Integer page,
                                                                @RequestParam("amount") Integer amount) {
-        if(!authorizationService.requesterIsOperator()) {
-            return ResponseEntity.badRequest().build();
+        User loggedUser = authenticationService.getTokenUser();
+        if(!loggedUser.isAdmin()) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
         List<User> users = userService.findAllUsers(PageRequest.of(page - 1, amount));
@@ -134,8 +140,9 @@ public class UserRestController {
     )
     public ResponseEntity<EnableUserResponseDto> enableUser(@PathVariable("id") Long userId) {
 
-        if(!authorizationService.requesterIsOperator()) {
-            return ResponseEntity.badRequest().build();
+        User loggedUser = authenticationService.getTokenUser();
+        if(!loggedUser.isAdmin()) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
         userService.enableUser(userId);
@@ -149,8 +156,9 @@ public class UserRestController {
     )
     public ResponseEntity<DisableUserResponseDto> disableUser(@PathVariable("id") Long userId) {
 
-        if(!authorizationService.requesterIsOperator()) {
-            return ResponseEntity.badRequest().build();
+        User loggedUser = authenticationService.getTokenUser();
+        if(!loggedUser.isAdmin()) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
         userService.disableUser(userId);
@@ -166,8 +174,9 @@ public class UserRestController {
     )
     public byte[] getImage(@PathVariable("id") Long userId) throws Exception {
 
-        if(!authorizationService.requesterCanManipulateUser(userId)) {
-            throw new RuntimeException("Access denied");
+        User loggedUser = authenticationService.getTokenUser();
+        if(!loggedUser.isAdmin() && userId.longValue() != loggedUser.getId().longValue()) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
 
         User toLoad = userService.findUserById(userId);

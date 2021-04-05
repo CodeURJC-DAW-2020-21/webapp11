@@ -1,0 +1,2186 @@
+{
+	"info": {
+		"_postman_id": "cf3f2266-e466-49e6-921d-9507e0cbb0a2",
+		"name": "DAW Phase 3 - Postman Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "0001 - Admin - Generate token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"admin@localhost\",\r\n    \"password\": \"another_brick_in_the_wall\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/tokens/generate",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"tokens",
+						"generate"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@localhost\",\r\n    \"password\": \"another_brick_in_the_wall\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/tokens/generate",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"tokens",
+								"generate"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Apr 2021 13:41:16 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ\",\n    \"successful\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "0002 - Admin - Validate token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8443/api/tokens/validate",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"tokens",
+						"validate"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8443/api/tokens/validate",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"tokens",
+								"validate"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Apr 2021 13:42:53 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ\",\n    \"is_valid\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "0003 - Admin - Check statistics",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8443/api/statistics",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"statistics"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8443/api/statistics",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"statistics"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Apr 2021 13:51:35 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"accumulated_capital\": 1920,\n    \"week_sales\": [\n        33,\n        0,\n        0,\n        0,\n        0,\n        0,\n        0\n    ],\n    \"category_purchases\": [\n        {\n            \"dedicated\": 9\n        },\n        {\n            \"shared\": 15\n        },\n        {\n            \"vps\": 9\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "0004 - Admin - Find users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8443/api/users?page=1&amount=10",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "amount",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response 1",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8443/api/users?page=1&amount=10",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "amount",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Apr 2021 13:59:27 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 3,\n        \"first_name\": \"Sidney\",\n        \"surname\": \"Schuppe\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"araceli.homenick@gmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 4,\n        \"first_name\": \"Andrea\",\n        \"surname\": \"Abernathy\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"laverne.spencer@gmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 5,\n        \"first_name\": \"Leo\",\n        \"surname\": \"Hilll\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"joshua.walter@yahoo.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 6,\n        \"first_name\": \"Ethel\",\n        \"surname\": \"Boyle\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"alyce.murazik@yahoo.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 7,\n        \"first_name\": \"Lesley\",\n        \"surname\": \"Kozey\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"zachariah.hickle@yahoo.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 8,\n        \"first_name\": \"Pok\",\n        \"surname\": \"Huel\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"yong.gaylord@hotmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 9,\n        \"first_name\": \"Stacia\",\n        \"surname\": \"Luettgen\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"kristine.schmidt@yahoo.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 10,\n        \"first_name\": \"Alfred\",\n        \"surname\": \"Erdman\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"katelyn.mosciski@hotmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 11,\n        \"first_name\": \"Brian\",\n        \"surname\": \"Bosco\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"lawanda.miller@hotmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 12,\n        \"first_name\": \"Anissa\",\n        \"surname\": \"Larson\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"jordan.king@gmail.com\",\n        \"enabled\": true\n    }\n]"
+				},
+				{
+					"name": "Response 4",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8443/api/users?page=4&amount=10",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "4"
+								},
+								{
+									"key": "amount",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Apr 2021 14:00:29 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[]"
+				},
+				{
+					"name": "Response 3",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8443/api/users?page=3&amount=10",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "3"
+								},
+								{
+									"key": "amount",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Apr 2021 14:00:08 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 23,\n        \"first_name\": \"Cyril\",\n        \"surname\": \"Torp\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"norman.breitenberg@hotmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 24,\n        \"first_name\": \"Van\",\n        \"surname\": \"Ullrich\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"felix.barrows@hotmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 25,\n        \"first_name\": \"Lane\",\n        \"surname\": \"Wolf\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"georgette.swaniawski@hotmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 26,\n        \"first_name\": \"Nichol\",\n        \"surname\": \"Rodriguez\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"arlen.walter@gmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 27,\n        \"first_name\": \"Adrianne\",\n        \"surname\": \"Crooks\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"francisco.stoltenberg@hotmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 28,\n        \"first_name\": \"Administrator\",\n        \"surname\": \"\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"admin@localhost\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 29,\n        \"first_name\": \"Peter\",\n        \"surname\": \"Moon\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"client@localhost\",\n        \"enabled\": true\n    }\n]"
+				},
+				{
+					"name": "Response 2",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8443/api/users?page=2&amount=10",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "amount",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Apr 2021 13:59:46 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 13,\n        \"first_name\": \"Cole\",\n        \"surname\": \"Daugherty\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"frederic.rohan@yahoo.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 14,\n        \"first_name\": \"Fritz\",\n        \"surname\": \"Welch\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"nicholas.brekke@hotmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 15,\n        \"first_name\": \"Garfield\",\n        \"surname\": \"Kunde\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"giuseppina.gaylord@yahoo.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 16,\n        \"first_name\": \"Kory\",\n        \"surname\": \"Batz\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"christoper.ryan@hotmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 17,\n        \"first_name\": \"Anja\",\n        \"surname\": \"Boyer\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"kennith.larson@gmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 18,\n        \"first_name\": \"Stephany\",\n        \"surname\": \"O'Kon\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"roselia.ankunding@gmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 19,\n        \"first_name\": \"Deonna\",\n        \"surname\": \"Smitham\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"eloy.braun@yahoo.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 20,\n        \"first_name\": \"Karol\",\n        \"surname\": \"Bode\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"sanford.prohaska@gmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 21,\n        \"first_name\": \"Roselle\",\n        \"surname\": \"Jerde\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"kelvin.zemlak@yahoo.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 22,\n        \"first_name\": \"Cecil\",\n        \"surname\": \"Dicki\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"albertine.schaefer@hotmail.com\",\n        \"enabled\": true\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "0005 - Admin - Find user by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8443/api/users/5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"users",
+						"5"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response 1",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8443/api/users/3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"3"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Apr 2021 14:03:54 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 3,\n    \"first_name\": \"Sidney\",\n    \"surname\": \"Schuppe\",\n    \"address\": \"Main St. 123, New York\",\n    \"email\": \"araceli.homenick@gmail.com\",\n    \"enabled\": true\n}"
+				},
+				{
+					"name": "Response 3",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8443/api/users/5",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"5"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Apr 2021 14:04:29 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 5,\n    \"first_name\": \"Leo\",\n    \"surname\": \"Hilll\",\n    \"address\": \"Main St. 123, New York\",\n    \"email\": \"joshua.walter@yahoo.com\",\n    \"enabled\": true\n}"
+				},
+				{
+					"name": "Response 2",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8443/api/users/4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"4"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Apr 2021 14:04:16 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 4,\n    \"first_name\": \"Andrea\",\n    \"surname\": \"Abernathy\",\n    \"address\": \"Main St. 123, New York\",\n    \"email\": \"laverne.spencer@gmail.com\",\n    \"enabled\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "0006 - Admin - Find picture by user id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8443/api/users/3/picture",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"users",
+						"3",
+						"picture"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "0007 - Admin - Disable user by user id",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8443/api/users/3/disable",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"users",
+						"3",
+						"disable"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "amount",
+							"value": "10",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8443/api/users/3/disable",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"3",
+								"disable"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "amount",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Apr 2021 14:16:24 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "0008 - Admin - Enable user by user id",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8443/api/users/3/enable",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"users",
+						"3",
+						"enable"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "amount",
+							"value": "10",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8443/api/users/3/enable",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"3",
+								"enable"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "amount",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Apr 2021 14:20:42 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "0009 - Admin - Disable otd sale",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8443/api/sales/otd/disable",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"sales",
+						"otd",
+						"disable"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "amount",
+							"value": "10",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8443/api/sales/otd/disable",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"sales",
+								"otd",
+								"disable"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "amount",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Apr 2021 14:22:39 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "0010 - Admin - Update otd sale",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"10-04-2021\",\r\n    \"discount\": 50\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/sales/otd",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"sales",
+						"otd"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "amount",
+							"value": "10",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"10-04-2021\",\r\n    \"discount\": 50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/sales/otd",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"sales",
+								"otd"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "amount",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Apr 2021 14:38:59 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "0011 - Admin - Get current otd sale",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"10-04-2021\",\r\n    \"discount\": 50\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/sales/otd",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"sales",
+						"otd"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "amount",
+							"value": "10",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"10-04-2021\",\r\n    \"discount\": 50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/sales/otd",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"sales",
+								"otd"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "amount",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Apr 2021 14:43:25 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"price\": 5,\n    \"discount\": 50,\n    \"discount_price\": 2,\n    \"ram\": \"1 GB\",\n    \"cores\": \"1 vCPU\",\n    \"storage\": \"32 GB\",\n    \"transfer\": \"1 TB\"\n}"
+				}
+			]
+		},
+		{
+			"name": "0012 - Admin - Disable ad sale",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8443/api/sales/ad/disable",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"sales",
+						"ad",
+						"disable"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "amount",
+							"value": "10",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8443/api/sales/ad/disable",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"sales",
+								"ad",
+								"disable"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "amount",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Apr 2021 14:46:29 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "0013 - Admin - Update ad sale",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"25-08-2025\",\r\n    \"discount\": 50,\r\n    \"amount\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/sales/ad",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"sales",
+						"ad"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "amount",
+							"value": "10",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"25-08-2025\",\r\n    \"discount\": 50,\r\n    \"amount\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/sales/ad",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"sales",
+								"ad"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "amount",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Apr 2021 14:49:36 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "0014 - Admin - Get current ad sale",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"10-04-2021\",\r\n    \"discount\": 50\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/sales/ad",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"sales",
+						"ad"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "amount",
+							"value": "10",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"10-04-2021\",\r\n    \"discount\": 50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/sales/ad",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"sales",
+								"ad"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "amount",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Apr 2021 14:50:34 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"price\": 5,\n    \"discount\": 50,\n    \"discount_price\": 2,\n    \"bulk_amount\": 2,\n    \"ram\": \"1 GB\",\n    \"cores\": \"1 vCPU\",\n    \"storage\": \"32 GB\",\n    \"transfer\": \"1 TB\"\n}"
+				}
+			]
+		}
+	]
+}
