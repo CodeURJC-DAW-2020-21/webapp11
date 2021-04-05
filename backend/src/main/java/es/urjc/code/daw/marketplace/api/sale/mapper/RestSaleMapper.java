@@ -2,6 +2,7 @@ package es.urjc.code.daw.marketplace.api.sale.mapper;
 
 import es.urjc.code.daw.marketplace.api.sale.dto.FindAdResponseDto;
 import es.urjc.code.daw.marketplace.api.sale.dto.FindOtdResponseDto;
+import es.urjc.code.daw.marketplace.api.sale.dto.UpdateOtdSaleRequestDto;
 import es.urjc.code.daw.marketplace.domain.AccumulativeDiscount;
 import es.urjc.code.daw.marketplace.domain.OneTimeDiscount;
 import es.urjc.code.daw.marketplace.domain.Product;
@@ -14,6 +15,13 @@ public interface RestSaleMapper {
 
     RestSaleMapper INSTANCE = Mappers.getMapper(RestSaleMapper.class);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "enabled", ignore = true)
+    @Mapping(target = "consumers", ignore = true)
+    @Mapping(target = "discountPercentage", source = "discount")
+    @Mapping(target = "start", source = "startDate")
+    @Mapping(target = "stop", source = "stopDate")
+    OneTimeDiscount asOtd(UpdateOtdSaleRequestDto updateOtdSaleDto);
 
     @Mapping(target = "discountedPrice", ignore = true)
     @Mapping(target = "discount", source = "discount.discountPercentage")
