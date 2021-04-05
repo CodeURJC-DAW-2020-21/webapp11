@@ -1,14 +1,18 @@
 package es.urjc.code.daw.marketplace.api.product.controller;
 
 import es.urjc.code.daw.marketplace.api.product.dto.FindProductResponseDto;
+import es.urjc.code.daw.marketplace.api.product.dto.PlaceOrderResponseDto;
 import es.urjc.code.daw.marketplace.api.product.mapper.RestProductMapper;
+import es.urjc.code.daw.marketplace.domain.Order;
 import es.urjc.code.daw.marketplace.domain.Product;
 import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.security.jwt.JwtTokenService;
 import es.urjc.code.daw.marketplace.security.jwt.extractor.TokenExtractor;
 import es.urjc.code.daw.marketplace.service.*;
+import es.urjc.code.daw.marketplace.util.EmailMessageFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,6 +64,33 @@ public class ProductRestController {
         return ResponseEntity.ok(response);
     }
 
+
+    @RequestMapping(
+            path = BASE_ROUTE + "/{id}/purchase",
+            method = RequestMethod.POST
+    )
+    public ResponseEntity<PlaceOrderResponseDto> placeOrder(@PathVariable("id") Long productId) {
+
+        User loggedUser = loggedUserFromToken();
+        Product product = productService.findProductById(productId);
+
+        Order order = Order.builder()
+                .product(product)
+                .finalCost(product.getPrice())
+                .user(loggedUser)
+                .build();
+
+        saleService.applyOtdDiscount(order);
+        saleService.applyAdDiscount(order);
+
+        Order savedOrder = orderService.saveOrder(order);
+
+        final String title = EmailMessageFactory.newPurchaseTitle(savedOrder);
+        final String message = EmailMessageFactory.newPurchaseMessage(loggedUser, product);
+        emailService.sendEmail(loggedUser.getEmail(), title, message);
+
+        return ResponseEntity.ok(PlaceOrderResponseDto.successful());
+    }
 
     private User loggedUserFromToken() {
         String token = tokenExtractor.containsToken() ? tokenExtractor.extractToken() : StringUtils.EMPTY;
