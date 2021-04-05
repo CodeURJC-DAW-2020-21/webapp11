@@ -67,9 +67,13 @@ public class UserServiceImpl implements UserService {
         userRepository.saveAndFlush(storedUser);
         
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
-        if(principal.getUser().getId().longValue() == user.getId().longValue()) {
-            principal.setUser(storedUser);
+        if(authentication != null) {
+            try {
+                UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
+                if(principal.getUser().getId().longValue() == user.getId().longValue()) {
+                    principal.setUser(storedUser);
+                }
+            } catch (Exception ignored) { }
         }
 
         return storedUser;

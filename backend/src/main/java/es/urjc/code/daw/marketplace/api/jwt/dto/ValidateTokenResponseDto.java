@@ -10,9 +10,12 @@ import lombok.Setter;
 @Setter
 public class ValidateTokenResponseDto {
 
-    public static ValidateTokenResponseDto create(String token, boolean isValid) {
-        return new ValidateTokenResponseDto(token, isValid);
+    public static ValidateTokenResponseDto create(Long userId, String token, boolean isValid) {
+        return new ValidateTokenResponseDto(userId, token, isValid);
     }
+
+    @JsonProperty("user_id")
+    private Long userId;
 
     @JsonProperty("token")
     private String token;

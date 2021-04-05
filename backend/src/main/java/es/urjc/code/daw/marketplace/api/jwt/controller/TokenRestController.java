@@ -3,6 +3,7 @@ package es.urjc.code.daw.marketplace.api.jwt.controller;
 import es.urjc.code.daw.marketplace.api.jwt.dto.GenerateTokenRequestDto;
 import es.urjc.code.daw.marketplace.api.jwt.dto.GenerateTokenResponseDto;
 import es.urjc.code.daw.marketplace.api.jwt.dto.ValidateTokenResponseDto;
+import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.security.jwt.JwtTokenService;
 import es.urjc.code.daw.marketplace.security.auth.AuthenticationService;
 import es.urjc.code.daw.marketplace.security.jwt.extractor.TokenExtractor;
@@ -45,7 +46,8 @@ public class TokenRestController {
     public ResponseEntity<ValidateTokenResponseDto> validateToken() {
         String token = tokenExtractor.containsToken() ? tokenExtractor.extractToken() : Strings.EMPTY;
         boolean isTokenValid = tokenService.isTokenValid(token);
-        ValidateTokenResponseDto response = ValidateTokenResponseDto.create(token, isTokenValid);
+        User loggedUser = authenticationService.getTokenUser();
+        ValidateTokenResponseDto response = ValidateTokenResponseDto.create(loggedUser.getId(), token, isTokenValid);
         HttpStatus status = isTokenValid ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return new ResponseEntity<>(response, status);
     }

@@ -1,6 +1,8 @@
 package es.urjc.code.daw.marketplace.api.order.controller;
 
+import es.urjc.code.daw.marketplace.api.order.dto.CancelOrderResponseDto;
 import es.urjc.code.daw.marketplace.api.order.dto.FindOrderResponseDto;
+import es.urjc.code.daw.marketplace.api.order.dto.RenewOrderResponseDto;
 import es.urjc.code.daw.marketplace.api.order.mapper.RestOrderMapper;
 import es.urjc.code.daw.marketplace.domain.Order;
 import es.urjc.code.daw.marketplace.domain.User;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -71,9 +75,8 @@ public class OrderRestController {
     )
     public void exportOrderToPdf(HttpServletResponse response, @PathVariable("id") Long orderId) throws Exception {
         User loggedUser = authenticationService.getTokenUser();
-        List<Order> orders = orderService.findAllOrdersByUserId(loggedUser.getId());
         Order order = orderService.findOrderById(orderId);
-        boolean accessPermitted = loggedUser.isAdmin() || orders.contains(order);
+        boolean accessPermitted = loggedUser.isAdmin() || order.getUser().equals(loggedUser);
         if(!accessPermitted) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
 
         response.setContentType("application/pdf");
@@ -82,6 +85,51 @@ public class OrderRestController {
         response.setHeader(headerKey, headerValue);
 
         pdfExporterService.exportPdf(response, order);
+    }
+
+    @RequestMapping(
+            path = ROOT_ROUTE + "/{id}/renew",
+            method = RequestMethod.POST
+    )
+    public ResponseEntity<RenewOrderResponseDto> renewOrder(@PathVariable("id") Long orderId) {
+
+        User loggedUser = authenticationService.getTokenUser();
+        Order order = orderService.findOrderById(orderId);
+        List<Order> orders = orderService.findAllOrdersByUserId(loggedUser.getId());
+
+        boolean accessPermitted = loggedUser.isAdmin() || orders.contains(order);
+        if(!accessPermitted) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+
+        order.setFinalCost(order.getFinalCost() + order.getProduct().getPrice());
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date().after(order.getExpiryDate()) ? new Date() : order.getExpiryDate());
+        calendar.add(Calendar.MONTH, 1);
+        order.setExpiryDate(calendar.getTime());
+
+        orderService.saveOrder(order);
+
+        return ResponseEntity.ok(RenewOrderResponseDto.successful());
+    }
+
+    @RequestMapping(
+            path = ROOT_ROUTE + "/{id}/cancel",
+            method = RequestMethod.POST
+    )
+    public ResponseEntity<CancelOrderResponseDto> cancelOrder(@PathVariable("id") Long orderId) {
+
+        User loggedUser = authenticationService.getTokenUser();
+        Order order = orderService.findOrderById(orderId);
+        List<Order> orders = orderService.findAllOrdersByUserId(loggedUser.getId());
+
+        boolean accessPermitted = loggedUser.isAdmin() || orders.contains(order);
+        if(!accessPermitted) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+
+        order.setExpiryDate(new Date());
+
+        orderService.saveOrder(order);
+
+        return ResponseEntity.ok(CancelOrderResponseDto.successful());
     }
 
 }
