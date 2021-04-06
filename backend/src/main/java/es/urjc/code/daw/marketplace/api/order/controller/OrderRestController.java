@@ -1,6 +1,5 @@
 package es.urjc.code.daw.marketplace.api.order.controller;
 
-import es.urjc.code.daw.marketplace.api.jwt.dto.GenerateTokenResponseDto;
 import es.urjc.code.daw.marketplace.api.order.dto.CancelOrderResponseDto;
 import es.urjc.code.daw.marketplace.api.order.dto.FindOrderResponseDto;
 import es.urjc.code.daw.marketplace.api.order.dto.RenewOrderResponseDto;
