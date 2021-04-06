@@ -7,6 +7,11 @@ import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.security.jwt.JwtTokenService;
 import es.urjc.code.daw.marketplace.security.auth.AuthenticationService;
 import es.urjc.code.daw.marketplace.security.jwt.extractor.TokenExtractor;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +37,21 @@ public class TokenRestController {
         this.tokenExtractor = tokenExtractor;
     }
 
+    @Operation(summary = "Generates a token for the provided user credentials")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Returns the generated token",
+                    content = {@Content(
+                            schema = @Schema(implementation = GenerateTokenResponseDto.class)
+                    )}
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "The provided credentials are not valid",
+                    content = @Content
+            ),
+    })
     @RequestMapping(path = { BASE_ROUTE + "/generate" }, method = RequestMethod.POST)
     public ResponseEntity<GenerateTokenResponseDto> generateToken(@RequestBody GenerateTokenRequestDto request) {
         authenticationService.authenticate(request.getEmail(), request.getPassword());
@@ -41,6 +61,7 @@ public class TokenRestController {
         HttpStatus status = generationSuccessful ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return new ResponseEntity<>(response, status);
     }
+
 
     @RequestMapping(path = { BASE_ROUTE + "/validate" }, method = RequestMethod.POST)
     public ResponseEntity<ValidateTokenResponseDto> validateToken() {
