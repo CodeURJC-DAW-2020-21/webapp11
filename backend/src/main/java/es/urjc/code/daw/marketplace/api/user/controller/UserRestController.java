@@ -1,5 +1,6 @@
 package es.urjc.code.daw.marketplace.api.user.controller;
 
+import es.urjc.code.daw.marketplace.api.statistics.dto.StatisticsResponseDto;
 import es.urjc.code.daw.marketplace.api.user.dto.*;
 import es.urjc.code.daw.marketplace.api.user.mapper.RestUserMapper;
 import es.urjc.code.daw.marketplace.domain.User;
@@ -9,6 +10,12 @@ import es.urjc.code.daw.marketplace.service.PictureService;
 import es.urjc.code.daw.marketplace.service.UserService;
 import es.urjc.code.daw.marketplace.util.DecodedBase64MultipartFile;
 import es.urjc.code.daw.marketplace.util.EmailMessageFactory;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.apache.commons.io.IOUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.data.domain.PageRequest;
@@ -51,6 +58,21 @@ public class UserRestController {
         this.authenticationService = authenticationService;
     }
 
+    @Operation(summary = "Registers a new user")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "201",
+                    description = "The new user creation was successful",
+                    content = {@Content(
+                            schema = @Schema(implementation = RegisterUserResponseDto.class)
+                    )}
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "The provided input was not valid",
+                    content = @Content
+            ),
+    })
     @RequestMapping(
             path = BASE_ROUTE,
             method = RequestMethod.POST,
@@ -71,6 +93,26 @@ public class UserRestController {
         return ResponseEntity.created(components.toUri()).body(RegisterUserResponseDto.successful());
     }
 
+    @Operation(summary = "Updates the information of a user")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "The information update of the user was successful",
+                    content = {@Content(
+                            schema = @Schema(implementation = UpdateUserResponseDto.class)
+                    )}
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "The provided input was not valid",
+                    content = @Content
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "There was no user associated with the provided user id",
+                    content = @Content
+            ),
+    })
     @RequestMapping(
             path = BASE_ROUTE + "/{id}",
             method = RequestMethod.PUT,
@@ -85,6 +127,9 @@ public class UserRestController {
         }
 
         User updateUser = userMapper.asUpdateUser(request);
+        if(updateUser == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         updateUser.setId(userId);
 
         if(!Objects.isNull(request.getEncodedPicture()) && !Objects.isNull(request.getContentType())) {
@@ -100,6 +145,26 @@ public class UserRestController {
         return ResponseEntity.ok(UpdateUserResponseDto.successful());
     }
 
+    @Operation(summary = "Finds the user information")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Returns the information of a requested user",
+                    content = {@Content(
+                            schema = @Schema(implementation = FindUserResponseDto.class)
+                    )}
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "The requester is not authorized to perform this operation",
+                    content = @Content
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "There was no user associated with the provided user id",
+                    content = @Content
+            ),
+    })
     @RequestMapping(
             path = BASE_ROUTE + "/{id}",
             method = RequestMethod.GET
@@ -112,11 +177,35 @@ public class UserRestController {
         }
 
         User findUser = userService.findUserById(userId);
+        if(findUser == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
         FindUserResponseDto response = userMapper.asFindUserResponse(findUser);
 
         return ResponseEntity.ok(response);
     }
 
+    @Operation(summary = "Finds a paginated list of users")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "The list of users was retrieved successfully",
+                    content = {@Content(
+                            array = @ArraySchema(schema = @Schema(implementation = FindUserResponseDto.class))
+                    )}
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "The requester is not authorized to perform this operation",
+                    content = @Content
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "There are no users available for the provided pagination information",
+                    content = @Content
+            ),
+    })
     @RequestMapping(
             path = BASE_ROUTE,
             method = RequestMethod.GET
@@ -129,11 +218,35 @@ public class UserRestController {
         }
 
         List<User> users = userService.findAllUsers(PageRequest.of(page - 1, amount));
+        if(users.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
         List<FindUserResponseDto> response = users.stream().map(userMapper::asFindUserResponse).collect(Collectors.toList());
 
         return ResponseEntity.ok(response);
     }
 
+    @Operation(summary = "Enables a user account")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "The user account was successfully enabled",
+                    content = {@Content(
+                            schema = @Schema(implementation = FindUserResponseDto.class)
+                    )}
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "The requester is not authorized to perform this operation",
+                    content = @Content
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "There is no user account associated to the given user id",
+                    content = @Content
+            ),
+    })
     @RequestMapping(
             path = BASE_ROUTE + "/{id}/enable",
             method = RequestMethod.POST
@@ -145,11 +258,35 @@ public class UserRestController {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
+        if(userService.existsUserById(userId)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
         userService.enableUser(userId);
 
         return ResponseEntity.ok(EnableUserResponseDto.successful());
     }
 
+    @Operation(summary = "Disables a user account")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "The user account was successfully disabled",
+                    content = {@Content(
+                            schema = @Schema(implementation = FindUserResponseDto.class)
+                    )}
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "The requester is not authorized to perform this operation",
+                    content = @Content
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "There is no user account associated to the given user id",
+                    content = @Content
+            ),
+    })
     @RequestMapping(
             path = BASE_ROUTE + "/{id}/disable",
             method = RequestMethod.POST
@@ -161,11 +298,35 @@ public class UserRestController {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
+        if(userService.existsUserById(userId)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
         userService.disableUser(userId);
 
         return ResponseEntity.ok(DisableUserResponseDto.successful());
     }
 
+    @Operation(summary = "Delivers an image in binary format")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "The image was successfully delivered",
+                    content = {@Content(
+                            schema = @Schema(implementation = FindUserResponseDto.class)
+                    )}
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "The requester is not authorized to perform this operation",
+                    content = @Content
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "The requested image was not found",
+                    content = @Content
+            ),
+    })
     @ResponseBody
     @RequestMapping(
             path = BASE_ROUTE + "/{id}/picture",
@@ -180,7 +341,15 @@ public class UserRestController {
         }
 
         User toLoad = userService.findUserById(userId);
+        if(toLoad.getProfilePictureFilename() == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
         File file = new File("user-profile-pictures/" + toLoad.getProfilePictureFilename());
+        if(!file.exists()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
         InputStream targetStream = new FileInputStream(file);
         return IOUtils.toByteArray(targetStream);
     }

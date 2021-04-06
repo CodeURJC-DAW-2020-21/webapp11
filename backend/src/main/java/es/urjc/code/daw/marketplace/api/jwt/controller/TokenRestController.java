@@ -48,7 +48,7 @@ public class TokenRestController {
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "The provided credentials are not valid",
+                    description = "The provided credentials to generate a token were invalid",
                     content = @Content
             ),
     })
@@ -62,7 +62,21 @@ public class TokenRestController {
         return new ResponseEntity<>(response, status);
     }
 
-
+    @Operation(summary = "Validates a given token")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Returns the validation response",
+                    content = {@Content(
+                            schema = @Schema(implementation = ValidateTokenResponseDto.class)
+                    )}
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "No valid token was provided",
+                    content = @Content
+            ),
+    })
     @RequestMapping(path = { BASE_ROUTE + "/validate" }, method = RequestMethod.POST)
     public ResponseEntity<ValidateTokenResponseDto> validateToken() {
         String token = tokenExtractor.containsToken() ? tokenExtractor.extractToken() : Strings.EMPTY;
