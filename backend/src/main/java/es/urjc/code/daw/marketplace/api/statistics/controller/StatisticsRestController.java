@@ -1,9 +1,15 @@
 package es.urjc.code.daw.marketplace.api.statistics.controller;
 
+import es.urjc.code.daw.marketplace.api.jwt.dto.ValidateTokenResponseDto;
 import es.urjc.code.daw.marketplace.api.statistics.dto.StatisticsResponseDto;
 import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.security.auth.AuthenticationService;
 import es.urjc.code.daw.marketplace.service.ProductService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +33,21 @@ public class StatisticsRestController {
         this.authenticationService = authenticationService;
     }
 
+    @Operation(summary = "Finds the statistics associated to the sales")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "The sales statistics were found successfully",
+                    content = {@Content(
+                            schema = @Schema(implementation = StatisticsResponseDto.class)
+                    )}
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "The requester is not authorized to perform this operation",
+                    content = @Content
+            ),
+    })
     @RequestMapping(
             path = ROOT_ROUTE,
             method = RequestMethod.GET
