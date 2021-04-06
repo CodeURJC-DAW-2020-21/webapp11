@@ -1,5 +1,6 @@
 package es.urjc.code.daw.marketplace.api.sale.controller;
 
+import es.urjc.code.daw.marketplace.api.jwt.dto.GenerateTokenResponseDto;
 import es.urjc.code.daw.marketplace.api.sale.dto.DisableSaleResponseDto;
 import es.urjc.code.daw.marketplace.api.sale.dto.UpdateAdSaleRequestDto;
 import es.urjc.code.daw.marketplace.api.sale.dto.UpdateSaleResponseDto;
@@ -15,6 +16,11 @@ import es.urjc.code.daw.marketplace.security.jwt.extractor.TokenExtractor;
 import es.urjc.code.daw.marketplace.service.ProductService;
 import es.urjc.code.daw.marketplace.service.SaleService;
 import es.urjc.code.daw.marketplace.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,6 +50,22 @@ public class SaleRestController {
         this.authenticationService = authenticationService;
     }
 
+    @Operation(summary = "Checks the application of a one time discount for a given product")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Obtains the current one time discount",
+                    content = {@Content(
+                            schema = @Schema(implementation = GenerateTokenResponseDto.class)
+                    )}
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "It's not possible to apply the one time discount",
+                    content = @Content
+            ),
+    })
+
     @RequestMapping(
             path = BASE_ROUTE + "/otd",
             method = RequestMethod.GET
@@ -61,6 +83,22 @@ public class SaleRestController {
         return ResponseEntity.ok(response);
     }
 
+    @Operation(summary = "Checks the application of a cumulative discount for a given product")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Obtains the cumulative one time discount",
+                    content = {@Content(
+                            schema = @Schema(implementation = GenerateTokenResponseDto.class)
+                    )}
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "It's not possible to apply the cumulative discount",
+                    content = @Content
+            ),
+    })
+
     @RequestMapping(
             path = BASE_ROUTE + "/ad",
             method = RequestMethod.GET
@@ -77,6 +115,22 @@ public class SaleRestController {
 
         return ResponseEntity.ok(response);
     }
+
+    @Operation(summary = "Updates the one time discount for a given user")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Updates the current one time discount",
+                    content = {@Content(
+                            schema = @Schema(implementation = GenerateTokenResponseDto.class)
+                    )}
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "It's not possible to update the one time discount",
+                    content = @Content
+            ),
+    })
 
     @RequestMapping(
             path = BASE_ROUTE + "/otd",
@@ -97,6 +151,22 @@ public class SaleRestController {
 
         return ResponseEntity.ok(UpdateSaleResponseDto.successful());
     }
+
+    @Operation(summary = "Updates the cumulative discount for a given user")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Updates the current cumulative discount",
+                    content = {@Content(
+                            schema = @Schema(implementation = GenerateTokenResponseDto.class)
+                    )}
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "It's not possible to update the cumulative discount",
+                    content = @Content
+            ),
+    })
 
     @RequestMapping(
             path = BASE_ROUTE + "/ad",
@@ -119,6 +189,22 @@ public class SaleRestController {
         return ResponseEntity.ok(UpdateSaleResponseDto.successful());
     }
 
+    @Operation(summary = "Disable the one time discount for a given user")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Disable the current one time discount",
+                    content = {@Content(
+                            schema = @Schema(implementation = GenerateTokenResponseDto.class)
+                    )}
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "It's not possible to disable the one time discount",
+                    content = @Content
+            ),
+    })
+
     @RequestMapping(
             path = BASE_ROUTE + "/otd/disable",
             method = RequestMethod.POST
@@ -131,6 +217,22 @@ public class SaleRestController {
 
         return ResponseEntity.ok(DisableSaleResponseDto.successful());
     }
+
+    @Operation(summary = "Disable the cumulative discount for a given user")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Disables the current cumulative discount",
+                    content = {@Content(
+                            schema = @Schema(implementation = GenerateTokenResponseDto.class)
+                    )}
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "It's not possible to disable the cumulative discount",
+                    content = @Content
+            ),
+    })
 
     @RequestMapping(
             path = BASE_ROUTE + "/ad/disable",
