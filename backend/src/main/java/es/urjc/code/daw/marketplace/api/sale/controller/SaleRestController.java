@@ -56,7 +56,7 @@ public class SaleRestController {
                     responseCode = "200",
                     description = "Obtains the current one time discount",
                     content = {@Content(
-                            schema = @Schema(implementation = GenerateTokenResponseDto.class)
+                            schema = @Schema(implementation = FindOtdResponseDto.class)
                     )}
             ),
             @ApiResponse(
@@ -64,8 +64,12 @@ public class SaleRestController {
                     description = "It's not possible to apply the one time discount",
                     content = @Content
             ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "There is currently no one time discount active",
+                    content = @Content
+            ),
     })
-
     @RequestMapping(
             path = BASE_ROUTE + "/otd",
             method = RequestMethod.GET
@@ -89,7 +93,7 @@ public class SaleRestController {
                     responseCode = "200",
                     description = "Obtains the cumulative one time discount",
                     content = {@Content(
-                            schema = @Schema(implementation = GenerateTokenResponseDto.class)
+                            schema = @Schema(implementation = FindAdResponseDto.class)
                     )}
             ),
             @ApiResponse(
@@ -97,8 +101,12 @@ public class SaleRestController {
                     description = "It's not possible to apply the cumulative discount",
                     content = @Content
             ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "There is currently no cumulative discount active",
+                    content = @Content
+            ),
     })
-
     @RequestMapping(
             path = BASE_ROUTE + "/ad",
             method = RequestMethod.GET
@@ -122,16 +130,15 @@ public class SaleRestController {
                     responseCode = "200",
                     description = "Updates the current one time discount",
                     content = {@Content(
-                            schema = @Schema(implementation = GenerateTokenResponseDto.class)
+                            schema = @Schema(implementation = UpdateSaleResponseDto.class)
                     )}
             ),
             @ApiResponse(
-                    responseCode = "400",
+                    responseCode = "401",
                     description = "It's not possible to update the one time discount",
                     content = @Content
             ),
     })
-
     @RequestMapping(
             path = BASE_ROUTE + "/otd",
             method = RequestMethod.PUT
@@ -158,16 +165,15 @@ public class SaleRestController {
                     responseCode = "200",
                     description = "Updates the current cumulative discount",
                     content = {@Content(
-                            schema = @Schema(implementation = GenerateTokenResponseDto.class)
+                            schema = @Schema(implementation = UpdateSaleResponseDto.class)
                     )}
             ),
             @ApiResponse(
-                    responseCode = "400",
+                    responseCode = "401",
                     description = "It's not possible to update the cumulative discount",
                     content = @Content
             ),
     })
-
     @RequestMapping(
             path = BASE_ROUTE + "/ad",
             method = RequestMethod.PUT
@@ -195,16 +201,20 @@ public class SaleRestController {
                     responseCode = "200",
                     description = "Disable the current one time discount",
                     content = {@Content(
-                            schema = @Schema(implementation = GenerateTokenResponseDto.class)
+                            schema = @Schema(implementation = DisableSaleResponseDto.class)
                     )}
             ),
             @ApiResponse(
+                    responseCode = "401",
+                    description = "It's not possible to disable the one time discount because the user is not authorized to perform the operation",
+                    content = @Content
+            ),
+            @ApiResponse(
                     responseCode = "400",
-                    description = "It's not possible to disable the one time discount",
+                    description = "It's not possible to disable the one time discount because it's already disabled",
                     content = @Content
             ),
     })
-
     @RequestMapping(
             path = BASE_ROUTE + "/otd/disable",
             method = RequestMethod.POST
@@ -212,6 +222,10 @@ public class SaleRestController {
     public ResponseEntity<DisableSaleResponseDto> disableOtdSale() {
         User loggedUser = authenticationService.getTokenUser();
         if(!loggedUser.isAdmin()) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+
+        if(saleService.getCurrentOtd().isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
         saleService.disableCurrentOtd();
 
@@ -224,16 +238,20 @@ public class SaleRestController {
                     responseCode = "200",
                     description = "Disables the current cumulative discount",
                     content = {@Content(
-                            schema = @Schema(implementation = GenerateTokenResponseDto.class)
+                            schema = @Schema(implementation = DisableSaleResponseDto.class)
                     )}
             ),
             @ApiResponse(
+                    responseCode = "401",
+                    description = "It's not possible to disable the cumulative discount because the user is not authorized",
+                    content = @Content
+            ),
+            @ApiResponse(
                     responseCode = "400",
-                    description = "It's not possible to disable the cumulative discount",
+                    description = "It's not possible to disable the cumulative discount because it's already disabled",
                     content = @Content
             ),
     })
-
     @RequestMapping(
             path = BASE_ROUTE + "/ad/disable",
             method = RequestMethod.POST
@@ -241,6 +259,10 @@ public class SaleRestController {
     public ResponseEntity<DisableSaleResponseDto> disableAdSale() {
         User loggedUser = authenticationService.getTokenUser();
         if(!loggedUser.isAdmin()) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+
+        if(saleService.getCurrentAd().isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
         saleService.disableCurrentAd();
 
