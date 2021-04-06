@@ -63,7 +63,6 @@ public class OrderRestController {
             ),
 
     })
-
     @RequestMapping(
             path = ROOT_ROUTE,
             method = RequestMethod.GET
@@ -79,7 +78,6 @@ public class OrderRestController {
 
         return ResponseEntity.ok(response);
     }
-
 
     @Operation(summary = "Returns a service given a serviceId, if the logged user has it")
     @ApiResponses(value = {
@@ -101,7 +99,6 @@ public class OrderRestController {
                     content = @Content
             ),
     })
-
     @RequestMapping(
             path = ROOT_ROUTE + "/{id}",
             method = RequestMethod.GET
@@ -134,7 +131,6 @@ public class OrderRestController {
                     content = @Content
             ),
     })
-
     @RequestMapping(
             path = ROOT_ROUTE + "/{id}/export",
             method = RequestMethod.GET
@@ -175,7 +171,6 @@ public class OrderRestController {
                     content = @Content
             ),
     })
-
     @RequestMapping(
             path = ROOT_ROUTE + "/{id}/renew",
             method = RequestMethod.POST
@@ -225,7 +220,6 @@ public class OrderRestController {
                     content = @Content
             ),
     })
-
     @RequestMapping(
             path = ROOT_ROUTE + "/{id}/cancel",
             method = RequestMethod.POST

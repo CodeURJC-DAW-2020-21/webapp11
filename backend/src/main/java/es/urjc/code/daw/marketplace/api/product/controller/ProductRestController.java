@@ -73,7 +73,6 @@ public class ProductRestController {
             ),
 
     })
-
     @RequestMapping(
             path = BASE_ROUTE,
             method = RequestMethod.GET
@@ -108,7 +107,6 @@ public class ProductRestController {
                     content = @Content
             ),
     })
-
     @RequestMapping(
             path = BASE_ROUTE + "/{id}/purchase",
             method = RequestMethod.POST
