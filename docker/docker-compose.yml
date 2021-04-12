@@ -3,7 +3,7 @@ version: "3"
 services:
 
   backend:
-    image: daw-team-11/marketplace:latest
+    image: dawhost/marketplace:latest
     ports:
       - "8443:8443"
     networks:
