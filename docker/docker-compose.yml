@@ -6,6 +6,12 @@ services:
     image: dawhost/marketplace:latest
     ports:
       - "8443:8443"
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url": "jdbc:mysql://database/marketplace?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Europe/Madrid",
+        "spring.datasource.username": "root",
+        "spring.datasource.password": "root"
+      }'
     networks:
       - marketplace-net
     depends_on:
