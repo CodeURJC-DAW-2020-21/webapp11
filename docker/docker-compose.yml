@@ -16,6 +16,11 @@ services:
     image: mysql:5.7
     ports:
       - "3306:3306"
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=pass --execute \"SHOW DATABASES;\""
+      interval: 2s
+      timeout: 20s
+      retries: 10
     networks:
       - marketplace-net
     environment:
