@@ -243,4 +243,33 @@ public class OrderRestController {
         return ResponseEntity.ok(CancelOrderResponseDto.successful());
     }
 
+    @RequestMapping(
+            path = BASE_ROUTE,
+            method = RequestMethod.POST
+    )
+    public ResponseEntity<PlaceOrderResponseDto> placeOrder(@PathVariable("id") Long productId) {
+        User loggedUser = authenticationService.getTokenUser();
+        Product product = productService.findProductById(productId);
+        if(product == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Order order = Order.builder()
+                .product(product)
+                .finalCost(product.getPrice())
+                .user(loggedUser)
+                .build();
+
+        saleService.applyOtdDiscount(order);
+        saleService.applyAdDiscount(order);
+
+        Order savedOrder = orderService.saveOrder(order);
+
+        final String title = EmailMessageFactory.newPurchaseTitle(savedOrder);
+        final String message = EmailMessageFactory.newPurchaseMessage(loggedUser, product);
+        emailService.sendEmail(loggedUser.getEmail(), title, message);
+
+        return ResponseEntity.ok(PlaceOrderResponseDto.successful());
+    }
+
 }
