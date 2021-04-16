@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 
@@ -34,7 +35,8 @@ public class CustomErrorController implements ErrorController {
     public String handleError(@AuthenticationPrincipal UserPrincipal userPrincipal,
                               HttpServletRequest request, Model model) {
         String path = request.getRequestURI().substring(request.getContextPath().length());
-        if(path.startsWith("/api")) {
+        String url = (String) request.getAttribute(RequestDispatcher.ERROR_REQUEST_URI);
+        if(path.startsWith("/api") || (url != null && url.startsWith("/api"))) {
             return "redirect:/api/error";
         } else {
             if(!Objects.isNull(userPrincipal)) {
