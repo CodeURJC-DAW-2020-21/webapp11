@@ -137,7 +137,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/tokens/generate",
+					"raw": "https://localhost:8443/api/tokens",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -145,8 +145,7 @@
 					"port": "8443",
 					"path": [
 						"api",
-						"tokens",
-						"generate"
+						"tokens"
 					]
 				}
 			},
@@ -240,7 +239,7 @@
 		{
 			"name": "0003 - Visitor - Validate token",
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
@@ -249,7 +248,7 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:8443/api/tokens/validate",
+					"raw": "https://localhost:8443/api/tokens",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -257,8 +256,7 @@
 					"port": "8443",
 					"path": [
 						"api",
-						"tokens",
-						"validate"
+						"tokens"
 					]
 				}
 			},

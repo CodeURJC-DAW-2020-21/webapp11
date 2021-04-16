@@ -52,7 +52,7 @@ public class TokenRestController {
                     content = @Content
             ),
     })
-    @RequestMapping(path = { BASE_ROUTE + "/generate" }, method = RequestMethod.POST)
+    @RequestMapping(path = BASE_ROUTE, method = RequestMethod.POST)
     public ResponseEntity<GenerateTokenResponseDto> generateToken(@RequestBody GenerateTokenRequestDto request) {
         authenticationService.authenticate(request.getEmail(), request.getPassword());
         String generatedToken = tokenService.generateTokenFor(request.getEmail());
@@ -77,7 +77,7 @@ public class TokenRestController {
                     content = @Content
             ),
     })
-    @RequestMapping(path = { BASE_ROUTE + "/validate" }, method = RequestMethod.POST)
+    @RequestMapping(path = BASE_ROUTE, method = RequestMethod.GET)
     public ResponseEntity<ValidateTokenResponseDto> validateToken() {
         String token = tokenExtractor.containsToken() ? tokenExtractor.extractToken() : Strings.EMPTY;
         boolean isTokenValid = tokenService.isTokenValid(token);
