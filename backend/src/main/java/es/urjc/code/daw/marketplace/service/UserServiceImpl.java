@@ -69,13 +69,11 @@ public class UserServiceImpl implements UserService {
             storedUser.setProfilePictureFilename(user.getProfilePictureFilename());
         }
 
-
         String newPassword = StringUtils.trim(user.getPassword());
         if(StringUtils.isNotEmpty(newPassword) && StringUtils.isNotBlank(newPassword)) {
             String newEncodedPassword = passwordEncoder.encode(user.getPassword());
             storedUser.setPassword(newEncodedPassword);
         }
-        System.out.println(storedUser);
         userRepository.saveAndFlush(storedUser);
         
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

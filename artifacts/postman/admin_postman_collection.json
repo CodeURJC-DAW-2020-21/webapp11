@@ -1016,7 +1016,7 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:8443/api/users/3/picture",
+					"raw": "https://localhost:8443/api/users/29/picture",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -1025,7 +1025,7 @@
 					"path": [
 						"api",
 						"users",
-						"3",
+						"29",
 						"picture"
 					]
 				}

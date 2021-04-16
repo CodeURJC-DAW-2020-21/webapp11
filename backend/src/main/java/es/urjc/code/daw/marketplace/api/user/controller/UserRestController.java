@@ -249,8 +249,7 @@ public class UserRestController {
     @ResponseBody
     @RequestMapping(
             path = BASE_ROUTE + "/{id}/picture",
-            method = RequestMethod.GET,
-            produces = { MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE }
+            method = RequestMethod.GET
     )
     public ResponseEntity<String> getImage(@PathVariable("id") Long userId) throws Exception {
         User loggedUser = authenticationService.getTokenUser();
