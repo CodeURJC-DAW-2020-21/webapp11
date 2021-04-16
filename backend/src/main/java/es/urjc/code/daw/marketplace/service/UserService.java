@@ -13,7 +13,7 @@ public interface UserService {
 
     User registerUser(User user);
 
-    User updateUser(User user);
+    User updateUser(User user, boolean isModifierAdmin);
 
     User enableUser(Long id);
 

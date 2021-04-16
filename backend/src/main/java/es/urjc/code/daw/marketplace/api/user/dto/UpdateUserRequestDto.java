@@ -32,5 +32,8 @@ public class UpdateUserRequestDto {
     @JsonProperty("password")
     private String password;
 
+    @JsonProperty("enabled")
+    private Boolean enabled;
+
 }
 

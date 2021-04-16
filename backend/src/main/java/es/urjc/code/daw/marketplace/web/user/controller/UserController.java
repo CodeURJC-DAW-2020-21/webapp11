@@ -181,7 +181,7 @@ public class UserController {
             updateUser.setProfilePictureFilename(filename);
         }
 
-        User user = userService.updateUser(updateUser);
+        User user = userService.updateUser(updateUser, currentUser.isAdmin());
 
         model.addAttribute("isLoggedIn", "yes");
         model.addAttribute("loggedUser", userService.findUserByEmail(userPrincipal.getUsername()));

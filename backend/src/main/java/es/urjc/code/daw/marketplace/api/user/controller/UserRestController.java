@@ -140,7 +140,7 @@ public class UserRestController {
             updateUser.setProfilePictureFilename(filename);
         }
 
-        userService.updateUser(updateUser);
+        userService.updateUser(updateUser, loggedUser.isAdmin());
 
         return ResponseEntity.ok(UpdateUserResponseDto.successful());
     }
@@ -225,86 +225,6 @@ public class UserRestController {
         List<FindUserResponseDto> response = users.stream().map(userMapper::asFindUserResponse).collect(Collectors.toList());
 
         return ResponseEntity.ok(response);
-    }
-
-    @Operation(summary = "Enables a user account")
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "The user account was successfully enabled",
-                    content = {@Content(
-                            schema = @Schema(implementation = FindUserResponseDto.class)
-                    )}
-            ),
-            @ApiResponse(
-                    responseCode = "401",
-                    description = "The requester is not authorized to perform this operation",
-                    content = @Content
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "There is no user account associated to the given user id",
-                    content = @Content
-            ),
-    })
-    @RequestMapping(
-            path = BASE_ROUTE + "/{id}/enable",
-            method = RequestMethod.POST
-    )
-    public ResponseEntity<EnableUserResponseDto> enableUser(@PathVariable("id") Long userId) {
-
-        User loggedUser = authenticationService.getTokenUser();
-        if(!loggedUser.isAdmin()) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
-
-        if(userService.existsUserById(userId)) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        userService.enableUser(userId);
-
-        return ResponseEntity.ok(EnableUserResponseDto.successful());
-    }
-
-    @Operation(summary = "Disables a user account")
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "The user account was successfully disabled",
-                    content = {@Content(
-                            schema = @Schema(implementation = FindUserResponseDto.class)
-                    )}
-            ),
-            @ApiResponse(
-                    responseCode = "401",
-                    description = "The requester is not authorized to perform this operation",
-                    content = @Content
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "There is no user account associated to the given user id",
-                    content = @Content
-            ),
-    })
-    @RequestMapping(
-            path = BASE_ROUTE + "/{id}/disable",
-            method = RequestMethod.POST
-    )
-    public ResponseEntity<DisableUserResponseDto> disableUser(@PathVariable("id") Long userId) {
-
-        User loggedUser = authenticationService.getTokenUser();
-        if(!loggedUser.isAdmin()) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
-
-        if(userService.existsUserById(userId)) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        userService.disableUser(userId);
-
-        return ResponseEntity.ok(DisableUserResponseDto.successful());
     }
 
     @Operation(summary = "Delivers an image in binary format")

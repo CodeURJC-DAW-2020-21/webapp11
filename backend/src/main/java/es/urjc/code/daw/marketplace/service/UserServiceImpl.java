@@ -47,12 +47,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(User user) {
+    public User updateUser(User user, boolean isModifierAdmin) {
         User storedUser = userRepository.findUserById(user.getId());
         storedUser.setFirstName(user.getFirstName());
         storedUser.setSurname(user.getSurname());
         storedUser.setAddress(user.getAddress());
         storedUser.setEmail(user.getEmail());
+        if(isModifierAdmin) {
+            storedUser.setIsEnabled(user.getIsEnabled());
+        }
 
         if(!Objects.isNull(user.getProfilePictureFilename())) {
             storedUser.setProfilePictureFilename(user.getProfilePictureFilename());

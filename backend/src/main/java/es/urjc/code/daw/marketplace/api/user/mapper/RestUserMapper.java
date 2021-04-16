@@ -27,6 +27,7 @@ public interface RestUserMapper {
     @Mapping(target = "roles", ignore = true)
     @Mapping(target = "accumulativeDiscountsConsumed", ignore = true)
     @Mapping(target = "oneTimeDiscountsConsumed", ignore = true)
+    @Mapping(target="isEnabled", source="enabled")
     User asUpdateUser(UpdateUserRequestDto request);
 
     FindUserResponseDto asFindUserResponse(User user);
