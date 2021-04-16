@@ -244,7 +244,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJkYXdob3N0c2VydmljZXNAZ21haWwuY29tIiwiaXNzIjoiZGF3LnVyamMuZXMiLCJleHAiOjE2MTc3MjY5NjAsImlhdCI6MTYxNzY0MDU2MH0.yTn9f00ByehLTikGXAtkuMPrzqrHRSVzjCJ9cfj_3VTRbQ30rSC77FqpSQQPr85FetLhB4JPb1UOkAJAgU1tGg",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],

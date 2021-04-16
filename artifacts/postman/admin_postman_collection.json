@@ -127,7 +127,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{admin_token}}",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
@@ -236,7 +236,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{admin_token}}",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
@@ -343,7 +343,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{admin_token}}",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
@@ -740,7 +740,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{admin_token}}",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
@@ -1011,7 +1011,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{admin_token}}",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
@@ -1035,16 +1035,25 @@
 		{
 			"name": "0007 - Admin - Disable user by user id",
 			"request": {
-				"method": "POST",
+				"method": "PUT",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{admin_token}}",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"enabled\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "https://localhost:8443/api/users/3/disable",
+					"raw": "https://localhost:8443/api/users/5",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -1053,8 +1062,7 @@
 					"path": [
 						"api",
 						"users",
-						"3",
-						"disable"
+						"5"
 					],
 					"query": [
 						{
@@ -1170,16 +1178,25 @@
 		{
 			"name": "0008 - Admin - Enable user by user id",
 			"request": {
-				"method": "POST",
+				"method": "PUT",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{admin_token}}",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"enabled\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "https://localhost:8443/api/users/3/enable",
+					"raw": "https://localhost:8443/api/users/5",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -1188,8 +1205,7 @@
 					"path": [
 						"api",
 						"users",
-						"3",
-						"enable"
+						"5"
 					],
 					"query": [
 						{
@@ -1305,16 +1321,25 @@
 		{
 			"name": "0009 - Admin - Disable otd sale",
 			"request": {
-				"method": "POST",
+				"method": "PUT",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{admin_token}}",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"enabled\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "https://localhost:8443/api/sales/otd/disable",
+					"raw": "https://localhost:8443/api/sales/onetime",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -1323,8 +1348,7 @@
 					"path": [
 						"api",
 						"sales",
-						"otd",
-						"disable"
+						"onetime"
 					],
 					"query": [
 						{
@@ -1444,13 +1468,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{admin_token}}",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"10-04-2021\",\r\n    \"discount\": 50\r\n}",
+					"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"10-04-2021\",\r\n    \"discount\": 50,\r\n    \"enabled\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1458,7 +1482,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/sales/otd",
+					"raw": "https://localhost:8443/api/sales/onetime",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -1467,7 +1491,7 @@
 					"path": [
 						"api",
 						"sales",
-						"otd"
+						"onetime"
 					],
 					"query": [
 						{
@@ -1598,13 +1622,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{admin_token}}",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"10-04-2021\",\r\n    \"discount\": 50\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1612,7 +1636,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/sales/otd",
+					"raw": "https://localhost:8443/api/sales/onetime",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -1621,7 +1645,7 @@
 					"path": [
 						"api",
 						"sales",
-						"otd"
+						"onetime"
 					],
 					"query": [
 						{
@@ -1745,16 +1769,25 @@
 		{
 			"name": "0012 - Admin - Disable ad sale",
 			"request": {
-				"method": "POST",
+				"method": "PUT",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{admin_token}}",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"enabled\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "https://localhost:8443/api/sales/ad/disable",
+					"raw": "https://localhost:8443/api/sales/accumulative",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -1763,8 +1796,7 @@
 					"path": [
 						"api",
 						"sales",
-						"ad",
-						"disable"
+						"accumulative"
 					],
 					"query": [
 						{
@@ -1884,13 +1916,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{admin_token}}",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"25-08-2025\",\r\n    \"discount\": 50,\r\n    \"amount\": 2\r\n}",
+					"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"25-08-2025\",\r\n    \"discount\": 50,\r\n    \"amount\": 2,\r\n    \"enabled\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1898,7 +1930,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/sales/ad",
+					"raw": "https://localhost:8443/api/sales/accumulative",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -1907,7 +1939,7 @@
 					"path": [
 						"api",
 						"sales",
-						"ad"
+						"accumulative"
 					],
 					"query": [
 						{
@@ -2030,29 +2062,17 @@
 		},
 		{
 			"name": "0014 - Admin - Get current ad sale",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "{{admin_token}}",
+						"value": "{{token}}",
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"10-04-2021\",\r\n    \"discount\": 50\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "https://localhost:8443/api/sales/ad",
+					"raw": "https://localhost:8443/api/sales/accumulative",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -2061,7 +2081,7 @@
 					"path": [
 						"api",
 						"sales",
-						"ad"
+						"accumulative"
 					],
 					"query": [
 						{
