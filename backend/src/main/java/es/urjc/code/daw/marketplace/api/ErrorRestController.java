@@ -1,21 +1,21 @@
 package es.urjc.code.daw.marketplace.api;
 
-import es.urjc.code.daw.marketplace.api.jwt.controller.TokenRestController;
-import es.urjc.code.daw.marketplace.api.order.controller.OrderRestController;
-import es.urjc.code.daw.marketplace.api.product.controller.ProductRestController;
-import es.urjc.code.daw.marketplace.api.sale.controller.SaleRestController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
-@RestController
+import javax.servlet.http.HttpServletRequest;
+
+@Controller
+@ControllerAdvice
 public class ErrorRestController {
 
     @Operation(summary = "Send an error if some process has failed o the page does not exist")
@@ -26,9 +26,25 @@ public class ErrorRestController {
                     content = @Content
             ),
     })
+
     @RequestMapping(path = "/api/error")
     public ResponseEntity<String> error() {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @RequestMapping(path = "/api/not_found")
+    public ResponseEntity<String> notFound() {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public String handleError(HttpServletRequest request) {
+        String path = request.getRequestURI().substring(request.getContextPath().length());
+        if(path.startsWith("/api")) {
+            return "redirect:/api/not_found";
+        } else {
+            return "redirect:/error";
+        }
     }
 
 }
