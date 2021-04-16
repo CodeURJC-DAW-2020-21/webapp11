@@ -1,6 +1,5 @@
 package es.urjc.code.daw.marketplace.api.statistics.controller;
 
-import es.urjc.code.daw.marketplace.api.jwt.dto.ValidateTokenResponseDto;
 import es.urjc.code.daw.marketplace.api.statistics.dto.StatisticsResponseDto;
 import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.security.auth.AuthenticationService;
@@ -54,18 +53,19 @@ public class StatisticsRestController {
     )
     public ResponseEntity<StatisticsResponseDto> findStatistics() {
         User loggedUser = authenticationService.getTokenUser();
+        // Ensure the user that requests the statistics is an admin
         if(!loggedUser.isAdmin()) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-
+        // Find the required statistics
         List<Integer> currentWeekSales = productService.findSalesPerDayInWeek();
         List<Pair<String, Integer>> categoryWeeklyPurchases = productService.findCategoryToWeeklyPurchases();
         Long accumulatedCapital = productService.findAccumulatedCapital();
-
+        // Build the statistics response manually
         StatisticsResponseDto response = StatisticsResponseDto.builder()
                 .accumulatedCapital(accumulatedCapital)
                 .categoryWeeklyPurchases(categoryWeeklyPurchases)
                 .currentWeekSales(currentWeekSales)
             .build();
-
+        // Return a successful response
         return ResponseEntity.ok(response);
     }
 

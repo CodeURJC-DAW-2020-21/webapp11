@@ -52,7 +52,7 @@ public class AccumulativeDiscount {
 
     @PrePersist
     private void onCreate() {
-        start = TimeUtils.now();
+        if(start == null) start = TimeUtils.now();
     }
 
     public void addConsumer(User user) {

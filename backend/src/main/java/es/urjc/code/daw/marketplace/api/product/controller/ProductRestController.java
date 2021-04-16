@@ -1,15 +1,9 @@
 package es.urjc.code.daw.marketplace.api.product.controller;
 
-import es.urjc.code.daw.marketplace.api.jwt.dto.GenerateTokenResponseDto;
 import es.urjc.code.daw.marketplace.api.product.dto.FindProductResponseDto;
-import es.urjc.code.daw.marketplace.api.product.dto.PlaceOrderResponseDto;
 import es.urjc.code.daw.marketplace.api.product.mapper.RestProductMapper;
-import es.urjc.code.daw.marketplace.domain.Order;
 import es.urjc.code.daw.marketplace.domain.Product;
-import es.urjc.code.daw.marketplace.domain.User;
-import es.urjc.code.daw.marketplace.security.auth.AuthenticationService;
-import es.urjc.code.daw.marketplace.service.*;
-import es.urjc.code.daw.marketplace.util.EmailMessageFactory;
+import es.urjc.code.daw.marketplace.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -17,7 +11,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,30 +25,17 @@ public class ProductRestController {
 
     private final ProductService productService;
     private final RestProductMapper restProductMapper;
-    private final SaleService saleService;
-    private final EmailService emailService;
-    private final OrderService orderService;
-    private final AuthenticationService authenticationService;
 
-    public ProductRestController(ProductService productService,
-                                 RestProductMapper restProductMapper,
-                                 SaleService saleService,
-                                 EmailService emailService,
-                                 OrderService orderService,
-                                 AuthenticationService authenticationService) {
+    public ProductRestController(ProductService productService, RestProductMapper restProductMapper) {
         this.productService = productService;
         this.restProductMapper = restProductMapper;
-        this.saleService = saleService;
-        this.emailService = emailService;
-        this.orderService = orderService;
-        this.authenticationService = authenticationService;
     }
 
     @Operation(summary = "Finds a list of all products")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "The list of products was found succesfully",
+                    description = "The list of products was found successfully",
                     content = {@Content(
                             array = @ArraySchema(schema = @Schema(implementation = FindProductResponseDto.class))
                     )}
@@ -78,34 +58,14 @@ public class ProductRestController {
             method = RequestMethod.GET
     )
     public ResponseEntity<List<FindProductResponseDto>> findAllProducts() {
+        // Find all the available products
         List<Product> products = productService.findAllProducts();
-        if(products.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
+        // If there are no products return the appropriate response
+        if(products.isEmpty()) return ResponseEntity.notFound().build();
+        // All the found products map them to DTO's
         List<FindProductResponseDto> response = products.stream().map(restProductMapper::asFindResponse).collect(Collectors.toList());
+        // Send the successful response with all the DTO products
         return ResponseEntity.ok(response);
     }
-
-
-    @Operation(summary = "Finds an order with all the user´s products")
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "The order from the user was found succesfully",
-                    content = {@Content(
-                            schema = @Schema(implementation = PlaceOrderResponseDto.class)
-                    )}
-            ),
-            @ApiResponse(
-                    responseCode = "400",
-                    description = "Cannot perform placing order",
-                    content = @Content
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Cannot perform the order because the product does not exist",
-                    content = @Content
-            ),
-    })
 
 }

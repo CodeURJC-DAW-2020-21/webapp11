@@ -1,5 +1,7 @@
 package es.urjc.code.daw.marketplace.web.sale.controller;
 
+import es.urjc.code.daw.marketplace.domain.AccumulativeDiscount;
+import es.urjc.code.daw.marketplace.domain.OneTimeDiscount;
 import es.urjc.code.daw.marketplace.service.ProductService;
 import es.urjc.code.daw.marketplace.service.SaleService;
 import es.urjc.code.daw.marketplace.web.sale.dto.UpdateAdDto;
@@ -79,7 +81,14 @@ public class SaleController {
             return "flash";
         }
 
-        saleService.updateCurrentOtd(startDate, stopDate, discount, productId);
+        OneTimeDiscount oneTimeDiscount = OneTimeDiscount.builder()
+                .productId(productId)
+                .start(startDate)
+                .stop(stopDate)
+                .discountPercentage(discount)
+            .build();
+
+        saleService.updateCurrentOtd(oneTimeDiscount);
 
         model.addAttribute("message", "The sale has been successfully saved");
         model.addAttribute("success", "yes");
@@ -148,7 +157,15 @@ public class SaleController {
             return "flash";
         }
 
-        saleService.updateCurrentAd(startDate, stopDate, discount, productId, bulkAmount);
+        AccumulativeDiscount accumulativeDiscount = AccumulativeDiscount.builder()
+                .productId(productId)
+                .start(startDate)
+                .stop(stopDate)
+                .discountPercentage(discount)
+                .bulkAmount(bulkAmount)
+            .build();
+
+        saleService.updateCurrentAd(accumulativeDiscount);
 
         model.addAttribute("message", "The sale has been successfully saved");
         model.addAttribute("success", "yes");

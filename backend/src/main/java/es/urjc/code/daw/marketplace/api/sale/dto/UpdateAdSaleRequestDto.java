@@ -30,4 +30,7 @@ public class UpdateAdSaleRequestDto {
     @JsonProperty("amount")
     private Integer amount;
 
+    @JsonProperty("enabled")
+    private Boolean isEnabled;
+
 }

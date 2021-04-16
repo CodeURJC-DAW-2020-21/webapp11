@@ -27,4 +27,7 @@ public class UpdateOtdSaleRequestDto {
     @JsonProperty("discount")
     private Integer discount;
 
+    @JsonProperty("enabled")
+    private Boolean isEnabled;
+
 }

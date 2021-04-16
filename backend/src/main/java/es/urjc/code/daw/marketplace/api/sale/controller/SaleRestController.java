@@ -1,21 +1,14 @@
 package es.urjc.code.daw.marketplace.api.sale.controller;
 
-import es.urjc.code.daw.marketplace.api.jwt.dto.GenerateTokenResponseDto;
-import es.urjc.code.daw.marketplace.api.sale.dto.DisableSaleResponseDto;
-import es.urjc.code.daw.marketplace.api.sale.dto.UpdateAdSaleRequestDto;
-import es.urjc.code.daw.marketplace.api.sale.dto.UpdateSaleResponseDto;
+import es.urjc.code.daw.marketplace.api.sale.dto.*;
 import es.urjc.code.daw.marketplace.api.sale.mapper.RestSaleMapper;
 import es.urjc.code.daw.marketplace.domain.AccumulativeDiscount;
-import es.urjc.code.daw.marketplace.api.sale.dto.*;
 import es.urjc.code.daw.marketplace.domain.OneTimeDiscount;
 import es.urjc.code.daw.marketplace.domain.Product;
 import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.security.auth.AuthenticationService;
-import es.urjc.code.daw.marketplace.security.jwt.JwtTokenService;
-import es.urjc.code.daw.marketplace.security.jwt.extractor.TokenExtractor;
 import es.urjc.code.daw.marketplace.service.ProductService;
 import es.urjc.code.daw.marketplace.service.SaleService;
-import es.urjc.code.daw.marketplace.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -55,9 +48,9 @@ public class SaleRestController {
             @ApiResponse(
                     responseCode = "200",
                     description = "Obtains the current one time discount",
-                    content = {@Content(
-                            schema = @Schema(implementation = FindOtdResponseDto.class)
-                    )}
+                    content = {
+                            @Content(schema = @Schema(implementation = FindOtdResponseDto.class))
+                    }
             ),
             @ApiResponse(
                     responseCode = "400",
@@ -71,19 +64,21 @@ public class SaleRestController {
             ),
     })
     @RequestMapping(
-            path = BASE_ROUTE + "/otd",
+            path = BASE_ROUTE + "/onetime",
             method = RequestMethod.GET
     )
-    public ResponseEntity<FindOtdResponseDto> findOneTimeDiscount() {
+    public ResponseEntity<FindOtdResponseDto> findCurrentOneTimeDiscount() {
+        User loggedUser = authenticationService.getTokenUser();
+        // Ensure the user that requests to get the current one time discount is an admin
+        if(!loggedUser.isAdmin()) return ResponseEntity.badRequest().build();
+        // Check if there is a one time discount active
         Optional<OneTimeDiscount> optional = saleService.getCurrentOtd();
-        if (optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        OneTimeDiscount otd = optional.get();
-        Product product = productService.findProductById(otd.getProductId());
-        FindOtdResponseDto response = restSaleMapper.asFindResponse(otd, product);
-
+        if (optional.isEmpty()) return ResponseEntity.notFound().build();
+        // Obtain the discount and map it to a DTO
+        OneTimeDiscount discount = optional.get();
+        Product product = productService.findProductById(discount.getProductId());
+        FindOtdResponseDto response = restSaleMapper.asFindResponse(discount, product);
+        // Return a successful response with the discount information
         return ResponseEntity.ok(response);
     }
 
@@ -92,9 +87,9 @@ public class SaleRestController {
             @ApiResponse(
                     responseCode = "200",
                     description = "Obtains the cumulative one time discount",
-                    content = {@Content(
-                            schema = @Schema(implementation = FindAdResponseDto.class)
-                    )}
+                    content = {
+                            @Content(schema = @Schema(implementation = FindAdResponseDto.class))
+                    }
             ),
             @ApiResponse(
                     responseCode = "400",
@@ -108,19 +103,21 @@ public class SaleRestController {
             ),
     })
     @RequestMapping(
-            path = BASE_ROUTE + "/ad",
+            path = BASE_ROUTE + "/accumulative",
             method = RequestMethod.GET
     )
-    public ResponseEntity<FindAdResponseDto> findAccumulativeDiscount() {
+    public ResponseEntity<FindAdResponseDto> findCurrentAccumulativeDiscount() {
+        User loggedUser = authenticationService.getTokenUser();
+        // Ensure the user that requests to get the current one time discount is an admin
+        if(!loggedUser.isAdmin()) return ResponseEntity.badRequest().build();
+        // Check if there is an accumulative discount active
         Optional<AccumulativeDiscount> optional = saleService.getCurrentAd();
-        if(optional.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        AccumulativeDiscount ad = optional.get();
-        Product product = productService.findProductById(ad.getProductId());
-        FindAdResponseDto response = restSaleMapper.asFindResponse(ad, product);
-
+        if(optional.isEmpty()) return ResponseEntity.notFound().build();
+        // Obtain the discount and map it to a DTO
+        AccumulativeDiscount discount = optional.get();
+        Product product = productService.findProductById(discount.getProductId());
+        FindAdResponseDto response = restSaleMapper.asFindResponse(discount, product);
+        // Return a successful response with the discount information
         return ResponseEntity.ok(response);
     }
 
@@ -129,9 +126,9 @@ public class SaleRestController {
             @ApiResponse(
                     responseCode = "200",
                     description = "Updates the current one time discount",
-                    content = {@Content(
-                            schema = @Schema(implementation = UpdateSaleResponseDto.class)
-                    )}
+                    content = {
+                            @Content(schema = @Schema(implementation = UpdateSaleResponseDto.class))
+                    }
             ),
             @ApiResponse(
                     responseCode = "401",
@@ -140,22 +137,18 @@ public class SaleRestController {
             ),
     })
     @RequestMapping(
-            path = BASE_ROUTE + "/otd",
+            path = BASE_ROUTE + "/onetime",
             method = RequestMethod.PUT
     )
-    public ResponseEntity<UpdateSaleResponseDto> updateOtdSale(@RequestBody UpdateOtdSaleRequestDto request) {
-
+    public ResponseEntity<UpdateSaleResponseDto> updateCurrentOneTimeDiscount(@RequestBody UpdateOtdSaleRequestDto request) {
         User loggedUser = authenticationService.getTokenUser();
+        // Ensure the user that requests to update the current one time discount is an admin
         if(!loggedUser.isAdmin()) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-
+        // Map the request to the domain object
         OneTimeDiscount discount = restSaleMapper.asOtd(request);
-        saleService.updateCurrentOtd(
-                discount.getStart(),
-                discount.getStop(),
-                discount.getDiscountPercentage(),
-                discount.getProductId()
-        );
-
+        // Update the current one time discount (otd)
+        saleService.updateCurrentOtd(discount);
+        // Return a successful response
         return ResponseEntity.ok(UpdateSaleResponseDto.successful());
     }
 
@@ -164,9 +157,9 @@ public class SaleRestController {
             @ApiResponse(
                     responseCode = "200",
                     description = "Updates the current cumulative discount",
-                    content = {@Content(
-                            schema = @Schema(implementation = UpdateSaleResponseDto.class)
-                    )}
+                    content = {
+                            @Content(schema = @Schema(implementation = UpdateSaleResponseDto.class))
+                    }
             ),
             @ApiResponse(
                     responseCode = "401",
@@ -175,98 +168,19 @@ public class SaleRestController {
             ),
     })
     @RequestMapping(
-            path = BASE_ROUTE + "/ad",
+            path = BASE_ROUTE + "/accumulative",
             method = RequestMethod.PUT
     )
-    public ResponseEntity<UpdateSaleResponseDto> updateAdSale(@RequestBody UpdateAdSaleRequestDto request) {
-
+    public ResponseEntity<UpdateSaleResponseDto> updateCurrentAccumulativeDiscount(@RequestBody UpdateAdSaleRequestDto request) {
         User loggedUser = authenticationService.getTokenUser();
+        // Ensure the user that requests to update the current one time discount is an admin
         if(!loggedUser.isAdmin()) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-
+        // Map the request to the domain object
         AccumulativeDiscount discount = restSaleMapper.asAd(request);
-        saleService.updateCurrentAd(
-                discount.getStart(),
-                discount.getStop(),
-                discount.getDiscountPercentage(),
-                discount.getProductId(),
-                discount.getBulkAmount()
-        );
-
+        // Update the current accumulative discount (ad)
+        saleService.updateCurrentAd(discount);
+        // Return a successful response
         return ResponseEntity.ok(UpdateSaleResponseDto.successful());
-    }
-
-    @Operation(summary = "Disable the one time discount for a given user")
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Disable the current one time discount",
-                    content = {@Content(
-                            schema = @Schema(implementation = DisableSaleResponseDto.class)
-                    )}
-            ),
-            @ApiResponse(
-                    responseCode = "401",
-                    description = "It's not possible to disable the one time discount because the user is not authorized to perform the operation",
-                    content = @Content
-            ),
-            @ApiResponse(
-                    responseCode = "400",
-                    description = "It's not possible to disable the one time discount because it's already disabled",
-                    content = @Content
-            ),
-    })
-    @RequestMapping(
-            path = BASE_ROUTE + "/otd/disable",
-            method = RequestMethod.POST
-    )
-    public ResponseEntity<DisableSaleResponseDto> disableOtdSale() {
-        User loggedUser = authenticationService.getTokenUser();
-        if(!loggedUser.isAdmin()) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-
-        if(saleService.getCurrentOtd().isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        saleService.disableCurrentOtd();
-
-        return ResponseEntity.ok(DisableSaleResponseDto.successful());
-    }
-
-    @Operation(summary = "Disable the cumulative discount for a given user")
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Disables the current cumulative discount",
-                    content = {@Content(
-                            schema = @Schema(implementation = DisableSaleResponseDto.class)
-                    )}
-            ),
-            @ApiResponse(
-                    responseCode = "401",
-                    description = "It's not possible to disable the cumulative discount because the user is not authorized",
-                    content = @Content
-            ),
-            @ApiResponse(
-                    responseCode = "400",
-                    description = "It's not possible to disable the cumulative discount because it's already disabled",
-                    content = @Content
-            ),
-    })
-    @RequestMapping(
-            path = BASE_ROUTE + "/ad/disable",
-            method = RequestMethod.POST
-    )
-    public ResponseEntity<DisableSaleResponseDto> disableAdSale() {
-        User loggedUser = authenticationService.getTokenUser();
-        if(!loggedUser.isAdmin()) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-
-        if(saleService.getCurrentAd().isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        saleService.disableCurrentAd();
-
-        return ResponseEntity.ok(DisableSaleResponseDto.successful());
     }
 
 }

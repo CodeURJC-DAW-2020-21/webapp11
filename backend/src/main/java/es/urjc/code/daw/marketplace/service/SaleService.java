@@ -20,11 +20,11 @@ public interface SaleService {
 
     Optional<AccumulativeDiscount> getCurrentAd();
 
-    void updateCurrentOtd(Date start, Date stop, int discount, long productId);
+    void updateCurrentOtd(OneTimeDiscount discount);
 
     void disableCurrentOtd();
 
-    void updateCurrentAd(Date start, Date stop, int discount, long productId, int bulkAmount);
+    void updateCurrentAd(AccumulativeDiscount discount);
 
     void disableCurrentAd();
 

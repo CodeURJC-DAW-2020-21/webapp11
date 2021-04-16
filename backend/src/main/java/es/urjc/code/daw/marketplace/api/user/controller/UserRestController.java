@@ -1,6 +1,5 @@
 package es.urjc.code.daw.marketplace.api.user.controller;
 
-import es.urjc.code.daw.marketplace.api.statistics.dto.StatisticsResponseDto;
 import es.urjc.code.daw.marketplace.api.user.dto.*;
 import es.urjc.code.daw.marketplace.api.user.mapper.RestUserMapper;
 import es.urjc.code.daw.marketplace.domain.User;
@@ -22,6 +21,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
@@ -80,16 +80,19 @@ public class UserRestController {
     )
     public ResponseEntity<RegisterUserResponseDto> createUser(@RequestBody RegisterUserRequestDto request,
                                                               UriComponentsBuilder uriComponentsBuilder) {
+        // Build the domain user from the request
         User requestUser = userMapper.asRegisterUser(request);
+        // Save the built user
         User storedUser = userService.registerUser(requestUser);
-
+        // Construct the user welcome email message
         final String title = EmailMessageFactory.newWelcomeTitle();
         final String message = EmailMessageFactory.newWelcomeMessage(storedUser);
+        // Send the message
         emailService.sendEmail(storedUser.getEmail(), title, message);
-
+        // Create the location header to be returned
         final String storedResourceUri = BASE_ROUTE + "/{id}";
         UriComponents components = uriComponentsBuilder.path(storedResourceUri).buildAndExpand(storedUser.getId());
-
+        // Return a successful response with the location header
         return ResponseEntity.created(components.toUri()).body(RegisterUserResponseDto.successful());
     }
 
@@ -120,28 +123,29 @@ public class UserRestController {
     )
     public ResponseEntity<UpdateUserResponseDto> updateUser(@PathVariable("id") Long userId,
                                                             @RequestBody UpdateUserRequestDto request) {
-
         User loggedUser = authenticationService.getTokenUser();
+        // Ensure the logged in user has permissions to update
         if(!loggedUser.isAdmin() && userId.longValue() != loggedUser.getId().longValue()) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-
+        // Map the user to update to a domain entity
         User updateUser = userMapper.asUpdateUser(request);
-        if(updateUser == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        if(updateUser == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        // Set the id to the the user to be modified id
         updateUser.setId(userId);
-
+        // Ensure the picture to be updated is present in the request and if so update the picture
         if(!Objects.isNull(request.getEncodedPicture()) && !Objects.isNull(request.getContentType())) {
             byte[] bytePicture = Base64.decodeBase64(request.getEncodedPicture());
             final String DEFAULT_FILENAME = "." + request.getContentType().split("/")[1];
+            // Decode the base64 picture into a stream of bytes
             MultipartFile profilePicture = new DecodedBase64MultipartFile(DEFAULT_FILENAME, request.getContentType(), bytePicture);
             String filename = pictureService.savePicture(userId, profilePicture);
+            // Update the profile picture
             updateUser.setProfilePictureFilename(filename);
         }
-
+        // Update the user data
         userService.updateUser(updateUser, loggedUser.isAdmin());
-
+        // Send a successful response
         return ResponseEntity.ok(UpdateUserResponseDto.successful());
     }
 
@@ -170,19 +174,17 @@ public class UserRestController {
             method = RequestMethod.GET
     )
     public ResponseEntity<FindUserResponseDto> findUser(@PathVariable("id") Long userId) {
-
         User loggedUser = authenticationService.getTokenUser();
+        // Ensure the logged in user has permissions to update
         if(!loggedUser.isAdmin() && userId.longValue() != loggedUser.getId().longValue()) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-
+        // Ensure the user associated to the provided id exists
         User findUser = userService.findUserById(userId);
-        if(findUser == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
+        if(findUser == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        // Map the found user to a response DTO
         FindUserResponseDto response = userMapper.asFindUserResponse(findUser);
-
+        // Send successful response
         return ResponseEntity.ok(response);
     }
 
@@ -213,17 +215,14 @@ public class UserRestController {
     public ResponseEntity<List<FindUserResponseDto>> findUsers(@RequestParam("page") Integer page,
                                                                @RequestParam("amount") Integer amount) {
         User loggedUser = authenticationService.getTokenUser();
-        if(!loggedUser.isAdmin()) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
-
+        // Ensure the requester is an admin
+        if(!loggedUser.isAdmin()) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        // Find all users
         List<User> users = userService.findAllUsers(PageRequest.of(page - 1, amount));
-        if(users.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
+        if(users.isEmpty()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        // Map users to DTO's
         List<FindUserResponseDto> response = users.stream().map(userMapper::asFindUserResponse).collect(Collectors.toList());
-
+        // Send successful response
         return ResponseEntity.ok(response);
     }
 
@@ -253,25 +252,26 @@ public class UserRestController {
             method = RequestMethod.GET,
             produces = { MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE }
     )
-    public byte[] getImage(@PathVariable("id") Long userId) throws Exception {
-
+    public ResponseEntity<String> getImage(@PathVariable("id") Long userId) throws Exception {
         User loggedUser = authenticationService.getTokenUser();
+        // Ensure the requester is requesting their own image or is an admin
         if(!loggedUser.isAdmin() && userId.longValue() != loggedUser.getId().longValue()) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
-
+        // Find the user whose picture must be loaded
         User toLoad = userService.findUserById(userId);
         if(toLoad.getProfilePictureFilename() == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-
-        File file = new File("user-profile-pictures/" + toLoad.getProfilePictureFilename());
-        if(!file.exists()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-
+        // Find that user's picture
+        final String PICTURES_FOLDER = "user-profile-pictures/";
+        File file = new File(PICTURES_FOLDER + toLoad.getProfilePictureFilename());
+        if(!file.exists()) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        // Convert the pictures bytes to base64 and send a response
         InputStream targetStream = new FileInputStream(file);
-        return IOUtils.toByteArray(targetStream);
+        String base64Picture = Base64Utils.encodeToString(IOUtils.toByteArray(targetStream));
+        // Return a successful response
+        return ResponseEntity.ok(base64Picture);
     }
 
 }

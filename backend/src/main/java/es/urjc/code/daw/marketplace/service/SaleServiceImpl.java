@@ -80,17 +80,9 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public void updateCurrentOtd(Date start, Date stop, int discount, long productId) {
+    public void updateCurrentOtd(OneTimeDiscount discount) {
         disableCurrentOtd();
-
-        OneTimeDiscount otd = OneTimeDiscount.builder()
-                .productId(productId)
-                .start(start)
-                .stop(stop)
-                .discountPercentage(discount)
-            .build();
-
-        otdRepository.saveAndFlush(otd);
+        if(discount.getEnabled()) otdRepository.saveAndFlush(discount);
     }
 
     @Override
@@ -99,19 +91,9 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public void updateCurrentAd(Date start, Date stop, int discount, long productId, int bulkAmount) {
+    public void updateCurrentAd(AccumulativeDiscount discount) {
         disableCurrentAd();
-
-        AccumulativeDiscount ad = AccumulativeDiscount.builder()
-                .productId(productId)
-                .start(start)
-                .stop(stop)
-                .discountPercentage(discount)
-                .bulkAmount(bulkAmount)
-            .build();
-
-        adRepository.saveAndFlush(ad);
-
+        if(discount.getEnabled()) adRepository.saveAndFlush(discount);
     }
 
     @Override

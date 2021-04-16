@@ -1,5 +1,6 @@
 package es.urjc.code.daw.marketplace.api.order.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -10,13 +11,9 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PlaceOrderResponseDto {
+public class PlaceOrderRequestDto {
 
-    public static PlaceOrderResponseDto successful() {
-        return new PlaceOrderResponseDto();
-    }
-
-    @JsonProperty("success")
-    private boolean success = true;
+    @JsonProperty("product_id")
+    private Long productId;
 
 }

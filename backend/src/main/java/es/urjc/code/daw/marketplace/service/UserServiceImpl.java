@@ -49,10 +49,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public User updateUser(User user, boolean isModifierAdmin) {
         User storedUser = userRepository.findUserById(user.getId());
-        storedUser.setFirstName(user.getFirstName());
-        storedUser.setSurname(user.getSurname());
-        storedUser.setAddress(user.getAddress());
-        storedUser.setEmail(user.getEmail());
+        if(user.getFirstName() != null && StringUtils.isNotEmpty(user.getFirstName())) {
+            storedUser.setFirstName(user.getFirstName());
+        }
+        if(user.getSurname() != null && StringUtils.isNotEmpty(user.getSurname())) {
+            storedUser.setSurname(user.getSurname());
+        }
+        if(user.getAddress() != null && StringUtils.isNotEmpty(user.getAddress())) {
+            storedUser.setAddress(user.getAddress());
+        }
+        if(user.getEmail() != null && StringUtils.isNotEmpty(user.getEmail())) {
+            storedUser.setEmail(user.getEmail());
+        }
         if(isModifierAdmin) {
             storedUser.setIsEnabled(user.getIsEnabled());
         }
@@ -61,12 +69,13 @@ public class UserServiceImpl implements UserService {
             storedUser.setProfilePictureFilename(user.getProfilePictureFilename());
         }
 
+
         String newPassword = StringUtils.trim(user.getPassword());
         if(StringUtils.isNotEmpty(newPassword) && StringUtils.isNotBlank(newPassword)) {
             String newEncodedPassword = passwordEncoder.encode(user.getPassword());
             storedUser.setPassword(newEncodedPassword);
         }
-
+        System.out.println(storedUser);
         userRepository.saveAndFlush(storedUser);
         
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

@@ -17,20 +17,20 @@ public interface RestSaleMapper {
     RestSaleMapper INSTANCE = Mappers.getMapper(RestSaleMapper.class);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "enabled", ignore = true)
     @Mapping(target = "consumers", ignore = true)
     @Mapping(target = "discountPercentage", source = "discount")
     @Mapping(target = "start", source = "startDate")
     @Mapping(target = "stop", source = "stopDate")
+    @Mapping(target = "enabled", source = "isEnabled")
     OneTimeDiscount asOtd(UpdateOtdSaleRequestDto updateOtdSaleDto);
-  
+
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "enabled", ignore = true)
     @Mapping(target = "consumers", ignore = true)
     @Mapping(target = "discountPercentage", source = "discount")
     @Mapping(target = "start", source = "startDate")
     @Mapping(target = "stop", source = "stopDate")
     @Mapping(target = "bulkAmount", source = "amount")
+    @Mapping(target = "enabled", source = "isEnabled")
     AccumulativeDiscount asAd(UpdateAdSaleRequestDto updateOtdSaleDto);
 
     @Mapping(target = "discountedPrice", ignore = true)
