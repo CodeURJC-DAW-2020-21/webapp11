@@ -10,7 +10,7 @@ echo %cd%
 
 echo Make sure you maven and docker hub installed with docker-compose included
 
-echo Press any key to confirm 
+echo Press any key to confirm
 
 pause
 
@@ -37,18 +37,8 @@ rem Build the docker image
 
 docker build -t dawhost/marketplace .
 
-rem Login to docker hub
+rem Run the image
 
-docker login --username=dawhost
-
-rem Push the image to docker
-
-docker push dawhost/marketplace
+docker-compose up -d
 
 pause
-
-
-
-
-
-

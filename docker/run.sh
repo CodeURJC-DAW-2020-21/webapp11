@@ -31,10 +31,6 @@ cd "$BASE/docker"
 
 docker build -t dawhost/marketplace .
 
-# Login to docker hub
+# Run the image
 
-docker login --username=dawhost
-
-# Push the image to docker
-
-docker push dawhost/marketplace
+docker-compose up -d
