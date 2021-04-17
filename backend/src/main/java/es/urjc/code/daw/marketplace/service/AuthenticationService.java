@@ -1,4 +1,4 @@
-package es.urjc.code.daw.marketplace.security.auth;
+package es.urjc.code.daw.marketplace.service;
 
 import es.urjc.code.daw.marketplace.domain.User;
 

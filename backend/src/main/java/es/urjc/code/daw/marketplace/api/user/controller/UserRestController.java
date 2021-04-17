@@ -3,7 +3,7 @@ package es.urjc.code.daw.marketplace.api.user.controller;
 import es.urjc.code.daw.marketplace.api.user.dto.*;
 import es.urjc.code.daw.marketplace.api.user.mapper.RestUserMapper;
 import es.urjc.code.daw.marketplace.domain.User;
-import es.urjc.code.daw.marketplace.security.auth.AuthenticationService;
+import es.urjc.code.daw.marketplace.service.AuthenticationService;
 import es.urjc.code.daw.marketplace.service.EmailService;
 import es.urjc.code.daw.marketplace.service.PictureService;
 import es.urjc.code.daw.marketplace.service.UserService;
@@ -15,23 +15,16 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -73,6 +66,11 @@ public class UserRestController {
                     description = "The provided input was not valid",
                     content = @Content
             ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "The requester is not authorized to perform this operation",
+                    content = @Content
+            ),
     })
     @RequestMapping(
             path = BASE_ROUTE,
@@ -109,6 +107,11 @@ public class UserRestController {
             @ApiResponse(
                     responseCode = "400",
                     description = "The provided input was not valid",
+                    content = @Content
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "The requester is not authorized to perform this operation",
                     content = @Content
             ),
             @ApiResponse(

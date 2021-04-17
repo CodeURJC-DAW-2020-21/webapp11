@@ -1,11 +1,12 @@
 package es.urjc.code.daw.marketplace.api.jwt.controller;
 
+import es.urjc.code.daw.marketplace.api.common.RestResponseDto;
 import es.urjc.code.daw.marketplace.api.jwt.dto.GenerateTokenRequestDto;
 import es.urjc.code.daw.marketplace.api.jwt.dto.GenerateTokenResponseDto;
 import es.urjc.code.daw.marketplace.api.jwt.dto.ValidateTokenResponseDto;
 import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.security.jwt.JwtTokenService;
-import es.urjc.code.daw.marketplace.security.auth.AuthenticationService;
+import es.urjc.code.daw.marketplace.service.AuthenticationService;
 import es.urjc.code.daw.marketplace.security.jwt.extractor.TokenExtractor;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -42,9 +43,7 @@ public class TokenRestController {
             @ApiResponse(
                     responseCode = "200",
                     description = "Returns the generated token",
-                    content = {@Content(
-                            schema = @Schema(implementation = GenerateTokenResponseDto.class)
-                    )}
+                    content = @Content
             ),
             @ApiResponse(
                     responseCode = "400",
@@ -53,12 +52,13 @@ public class TokenRestController {
             ),
     })
     @RequestMapping(path = BASE_ROUTE, method = RequestMethod.POST)
-    public ResponseEntity<GenerateTokenResponseDto> generateToken(@RequestBody GenerateTokenRequestDto request) {
+    public ResponseEntity<RestResponseDto> generateToken(@RequestBody GenerateTokenRequestDto request) {
         authenticationService.authenticate(request.getEmail(), request.getPassword());
         String generatedToken = tokenService.generateTokenFor(request.getEmail());
         boolean generationSuccessful = Strings.isNotEmpty(generatedToken);
-        GenerateTokenResponseDto response = GenerateTokenResponseDto.create(generatedToken, generationSuccessful);
         HttpStatus status = generationSuccessful ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        GenerateTokenResponseDto content = GenerateTokenResponseDto.create(generatedToken, generationSuccessful);
+        RestResponseDto response = RestResponseDto.builder().status(status).content(content).build();
         return new ResponseEntity<>(response, status);
     }
 
@@ -67,9 +67,7 @@ public class TokenRestController {
             @ApiResponse(
                     responseCode = "200",
                     description = "Returns the validation response",
-                    content = {@Content(
-                            schema = @Schema(implementation = ValidateTokenResponseDto.class)
-                    )}
+                    content = @Content
             ),
             @ApiResponse(
                     responseCode = "400",
@@ -78,12 +76,13 @@ public class TokenRestController {
             ),
     })
     @RequestMapping(path = BASE_ROUTE, method = RequestMethod.GET)
-    public ResponseEntity<ValidateTokenResponseDto> validateToken() {
+    public ResponseEntity<RestResponseDto> validateToken() {
         String token = tokenExtractor.containsToken() ? tokenExtractor.extractToken() : Strings.EMPTY;
         boolean isTokenValid = tokenService.isTokenValid(token);
         User loggedUser = authenticationService.getTokenUser();
-        ValidateTokenResponseDto response = ValidateTokenResponseDto.create(loggedUser.getId(), token, isTokenValid);
         HttpStatus status = isTokenValid ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        ValidateTokenResponseDto content = ValidateTokenResponseDto.create(loggedUser.getId(), token, isTokenValid);
+        RestResponseDto response = RestResponseDto.builder().status(status).content(content).build();
         return new ResponseEntity<>(response, status);
     }
 

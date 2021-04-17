@@ -2,7 +2,7 @@ package es.urjc.code.daw.marketplace.api.statistics.controller;
 
 import es.urjc.code.daw.marketplace.api.statistics.dto.StatisticsResponseDto;
 import es.urjc.code.daw.marketplace.domain.User;
-import es.urjc.code.daw.marketplace.security.auth.AuthenticationService;
+import es.urjc.code.daw.marketplace.service.AuthenticationService;
 import es.urjc.code.daw.marketplace.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

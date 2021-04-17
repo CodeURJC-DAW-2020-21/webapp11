@@ -1,9 +1,8 @@
-package es.urjc.code.daw.marketplace.security.auth;
+package es.urjc.code.daw.marketplace.service;
 
 import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.security.jwt.JwtTokenService;
 import es.urjc.code.daw.marketplace.security.jwt.extractor.TokenExtractor;
-import es.urjc.code.daw.marketplace.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -42,7 +41,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         String email = tokenService.extractTokenSubject(token);
         User loggedUser = userService.findUserByEmail(email);
         if (loggedUser == null){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         } else {
             return loggedUser;
         }
