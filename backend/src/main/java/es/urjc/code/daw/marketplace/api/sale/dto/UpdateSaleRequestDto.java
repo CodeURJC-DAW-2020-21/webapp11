@@ -11,7 +11,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateOtdSaleRequestDto {
+public class UpdateSaleRequestDto {
 
     @JsonProperty("product_id")
     private Long productId;
@@ -26,6 +26,9 @@ public class UpdateOtdSaleRequestDto {
 
     @JsonProperty("discount")
     private Integer discount;
+
+    @JsonProperty("amount")
+    private Integer amount;
 
     @JsonProperty("enabled")
     private Boolean isEnabled;

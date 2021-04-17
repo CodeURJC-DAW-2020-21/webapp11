@@ -2,8 +2,7 @@ package es.urjc.code.daw.marketplace.api.sale.mapper;
 
 import es.urjc.code.daw.marketplace.api.sale.dto.FindAdResponseDto;
 import es.urjc.code.daw.marketplace.api.sale.dto.FindOtdResponseDto;
-import es.urjc.code.daw.marketplace.api.sale.dto.UpdateAdSaleRequestDto;
-import es.urjc.code.daw.marketplace.api.sale.dto.UpdateOtdSaleRequestDto;
+import es.urjc.code.daw.marketplace.api.sale.dto.UpdateSaleRequestDto;
 import es.urjc.code.daw.marketplace.domain.AccumulativeDiscount;
 import es.urjc.code.daw.marketplace.domain.OneTimeDiscount;
 import es.urjc.code.daw.marketplace.domain.Product;
@@ -22,7 +21,7 @@ public interface RestSaleMapper {
     @Mapping(target = "start", source = "startDate")
     @Mapping(target = "stop", source = "stopDate")
     @Mapping(target = "enabled", source = "isEnabled")
-    OneTimeDiscount asOtd(UpdateOtdSaleRequestDto updateOtdSaleDto);
+    OneTimeDiscount asOtd(UpdateSaleRequestDto updateOtdSaleDto);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "consumers", ignore = true)
@@ -31,7 +30,7 @@ public interface RestSaleMapper {
     @Mapping(target = "stop", source = "stopDate")
     @Mapping(target = "bulkAmount", source = "amount")
     @Mapping(target = "enabled", source = "isEnabled")
-    AccumulativeDiscount asAd(UpdateAdSaleRequestDto updateOtdSaleDto);
+    AccumulativeDiscount asAd(UpdateSaleRequestDto updateOtdSaleDto);
 
     @Mapping(target = "discountedPrice", ignore = true)
     @Mapping(target = "discount", source = "discount.discountPercentage")
