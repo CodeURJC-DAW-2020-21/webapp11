@@ -1,11 +1,16 @@
 package es.urjc.code.daw.marketplace.service;
 
+import es.urjc.code.daw.marketplace.domain.User;
+import lombok.SneakyThrows;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Base64Utils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -51,6 +56,22 @@ public class PictureServiceImpl implements PictureService {
         }
 
         return newName;
+    }
+
+    @Override
+    @SneakyThrows
+    public String getEncodedPicture(User user) {
+        if(user.getProfilePictureFilename() != null) {
+            // Find that user's picture
+            final String PICTURES_FOLDER = "user-profile-pictures/";
+            File file = new File(PICTURES_FOLDER + user.getProfilePictureFilename());
+            if(file.exists()) {
+                // Convert the picture bytes to base64
+                InputStream targetStream = new FileInputStream(file);
+                return Base64Utils.encodeToString(IOUtils.toByteArray(targetStream));
+            }
+        }
+        return "";
     }
 
 }

@@ -16,6 +16,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -173,7 +174,7 @@ public class UserRestController {
             path = BASE_ROUTE + "/{id}",
             method = RequestMethod.GET
     )
-    public ResponseEntity<FindUserResponseDto> findUser(@PathVariable("id") Long userId) {
+    public ResponseEntity<FindUserResponseDto> findUser(@PathVariable("id") Long userId) throws Exception {
         User loggedUser = authenticationService.getTokenUser();
         // Ensure the logged in user has permissions to update
         if(!loggedUser.isAdmin() && userId.longValue() != loggedUser.getId().longValue()) {
@@ -182,8 +183,10 @@ public class UserRestController {
         // Ensure the user associated to the provided id exists
         User findUser = userService.findUserById(userId);
         if(findUser == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        // Map the found user to a response DTO
-        FindUserResponseDto response = userMapper.asFindUserResponse(findUser);
+        // Find the base64 encoded picture
+        String encodedImage = pictureService.getEncodedPicture(findUser);
+        // Build the response with the user and encoded image
+        FindUserResponseDto response = userMapper.asFindUserResponse(findUser, encodedImage);
         // Send successful response
         return ResponseEntity.ok(response);
     }
@@ -221,56 +224,12 @@ public class UserRestController {
         List<User> users = userService.findAllUsers(PageRequest.of(page - 1, amount));
         if(users.isEmpty()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         // Map users to DTO's
-        List<FindUserResponseDto> response = users.stream().map(userMapper::asFindUserResponse).collect(Collectors.toList());
+        List<FindUserResponseDto> response = users.stream().map(user -> {
+            String encodedImage = pictureService.getEncodedPicture(user);
+            return userMapper.asFindUserResponse(user, encodedImage);
+        }).collect(Collectors.toList());
         // Send successful response
         return ResponseEntity.ok(response);
-    }
-
-    @Operation(summary = "Delivers an image in binary format")
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "The image was successfully delivered",
-                    content = {@Content(
-                            schema = @Schema(implementation = FindUserResponseDto.class)
-                    )}
-            ),
-            @ApiResponse(
-                    responseCode = "401",
-                    description = "The requester is not authorized to perform this operation",
-                    content = @Content
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "The requested image was not found",
-                    content = @Content
-            ),
-    })
-    @ResponseBody
-    @RequestMapping(
-            path = BASE_ROUTE + "/{id}/picture",
-            method = RequestMethod.GET
-    )
-    public ResponseEntity<String> getImage(@PathVariable("id") Long userId) throws Exception {
-        User loggedUser = authenticationService.getTokenUser();
-        // Ensure the requester is requesting their own image or is an admin
-        if(!loggedUser.isAdmin() && userId.longValue() != loggedUser.getId().longValue()) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
-        }
-        // Find the user whose picture must be loaded
-        User toLoad = userService.findUserById(userId);
-        if(toLoad.getProfilePictureFilename() == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-        // Find that user's picture
-        final String PICTURES_FOLDER = "user-profile-pictures/";
-        File file = new File(PICTURES_FOLDER + toLoad.getProfilePictureFilename());
-        if(!file.exists()) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        // Convert the pictures bytes to base64 and send a response
-        InputStream targetStream = new FileInputStream(file);
-        String base64Picture = Base64Utils.encodeToString(IOUtils.toByteArray(targetStream));
-        // Return a successful response
-        return ResponseEntity.ok(base64Picture);
     }
 
 }

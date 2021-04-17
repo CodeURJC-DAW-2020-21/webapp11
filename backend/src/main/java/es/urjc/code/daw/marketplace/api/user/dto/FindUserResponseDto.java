@@ -2,6 +2,7 @@ package es.urjc.code.daw.marketplace.api.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.apache.commons.lang3.StringUtils;
 
 @Getter
 @Setter
@@ -27,5 +28,8 @@ public class FindUserResponseDto {
 
     @JsonProperty("enabled")
     private Boolean isEnabled = true;
+
+    @JsonProperty("encoded_image")
+    private String encodedImage = StringUtils.EMPTY;
 
 }
