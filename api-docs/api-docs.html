@@ -195,35 +195,24 @@
   <div class="method-summary"></div>
   <h4><a href="#ErrorRestController">ErrorRestController</a></h4>
   <ul>
-  <li><a href="#error"><code><span class="http-method">patch</span> /api/error</code></a></li>
-  <li><a href="#error1"><code><span class="http-method">get</span> /api/error</code></a></li>
-  <li><a href="#error2"><code><span class="http-method">delete</span> /api/error</code></a></li>
-  <li><a href="#error3"><code><span class="http-method">head</span> /api/error</code></a></li>
-  <li><a href="#error4"><code><span class="http-method">post</span> /api/error</code></a></li>
-  <li><a href="#error5"><code><span class="http-method">options</span> /api/error</code></a></li>
-  <li><a href="#error6"><code><span class="http-method">put</span> /api/error</code></a></li>
+  <li><a href="#error"><code><span class="http-method">get</span> /api/error</code></a></li>
+  <li><a href="#notFound"><code><span class="http-method">get</span> /api/not_found</code></a></li>
   </ul>
   <h4><a href="#OrderRestController">OrderRestController</a></h4>
   <ul>
-  <li><a href="#cancelOrder"><code><span class="http-method">post</span> /api/orders/{id}/cancel</code></a></li>
-  <li><a href="#exportOrderToPdf"><code><span class="http-method">get</span> /api/orders/{id}/export</code></a></li>
-  <li><a href="#findService"><code><span class="http-method">get</span> /api/orders/{id}</code></a></li>
-  <li><a href="#findServices"><code><span class="http-method">get</span> /api/orders</code></a></li>
-  <li><a href="#renewOrder"><code><span class="http-method">post</span> /api/orders/{id}/renew</code></a></li>
+  <li><a href="#findAllOrders"><code><span class="http-method">get</span> /api/orders</code></a></li>
+  <li><a href="#findOrder"><code><span class="http-method">get</span> /api/orders/{id}</code></a></li>
+  <li><a href="#placeOrder"><code><span class="http-method">post</span> /api/orders</code></a></li>
+  <li><a href="#updateOrder"><code><span class="http-method">put</span> /api/orders/{id}</code></a></li>
   </ul>
   <h4><a href="#ProductRestController">ProductRestController</a></h4>
   <ul>
   <li><a href="#findAllProducts"><code><span class="http-method">get</span> /api/products</code></a></li>
-  <li><a href="#placeOrder"><code><span class="http-method">post</span> /api/products/{id}/purchase</code></a></li>
   </ul>
   <h4><a href="#SaleRestController">SaleRestController</a></h4>
   <ul>
-  <li><a href="#disableAdSale"><code><span class="http-method">post</span> /api/sales/ad/disable</code></a></li>
-  <li><a href="#disableOtdSale"><code><span class="http-method">post</span> /api/sales/otd/disable</code></a></li>
-  <li><a href="#findAccumulativeDiscount"><code><span class="http-method">get</span> /api/sales/ad</code></a></li>
-  <li><a href="#findOneTimeDiscount"><code><span class="http-method">get</span> /api/sales/otd</code></a></li>
-  <li><a href="#updateAdSale"><code><span class="http-method">put</span> /api/sales/ad</code></a></li>
-  <li><a href="#updateOtdSale"><code><span class="http-method">put</span> /api/sales/otd</code></a></li>
+  <li><a href="#findCurrentDiscount"><code><span class="http-method">get</span> /api/sales/{type}</code></a></li>
+  <li><a href="#updateCurrentDiscount"><code><span class="http-method">put</span> /api/sales/{type}</code></a></li>
   </ul>
   <h4><a href="#StatisticsRestController">StatisticsRestController</a></h4>
   <ul>
@@ -231,17 +220,14 @@
   </ul>
   <h4><a href="#TokenRestController">TokenRestController</a></h4>
   <ul>
-  <li><a href="#generateToken"><code><span class="http-method">post</span> /api/tokens/generate</code></a></li>
-  <li><a href="#validateToken"><code><span class="http-method">post</span> /api/tokens/validate</code></a></li>
+  <li><a href="#generateToken"><code><span class="http-method">post</span> /api/tokens</code></a></li>
+  <li><a href="#validateToken"><code><span class="http-method">get</span> /api/tokens</code></a></li>
   </ul>
   <h4><a href="#UserRestController">UserRestController</a></h4>
   <ul>
   <li><a href="#createUser"><code><span class="http-method">post</span> /api/users</code></a></li>
-  <li><a href="#disableUser"><code><span class="http-method">post</span> /api/users/{id}/disable</code></a></li>
-  <li><a href="#enableUser"><code><span class="http-method">post</span> /api/users/{id}/enable</code></a></li>
   <li><a href="#findUser"><code><span class="http-method">get</span> /api/users/{id}</code></a></li>
   <li><a href="#findUsers"><code><span class="http-method">get</span> /api/users</code></a></li>
-  <li><a href="#getImage"><code><span class="http-method">get</span> /api/users/{id}/picture</code></a></li>
   <li><a href="#updateUser"><code><span class="http-method">put</span> /api/users/{id}</code></a></li>
   </ul>
 
@@ -249,32 +235,8 @@
   <div class="method"><a name="error"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="patch"><code class="huge"><span class="http-method">patch</span> /api/error</code></pre></div>
-    <div class="method-summary">Send an error if some process has failed o the page does not exist (<span class="nickname">error</span>)</div>
-    <div class="method-notes"></div>
-
-
-
-
-
-
-
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">400</h4>
-    There was an error when trying to perform a operation
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="error1"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /api/error</code></pre></div>
-    <div class="method-summary">Send an error if some process has failed o the page does not exist (<span class="nickname">error1</span>)</div>
+    <div class="method-summary">Send an error if some process has failed (<span class="nickname">error</span>)</div>
     <div class="method-notes"></div>
 
 
@@ -294,11 +256,11 @@
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="error2"></a>
+  <div class="method"><a name="notFound"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /api/error</code></pre></div>
-    <div class="method-summary">Send an error if some process has failed o the page does not exist (<span class="nickname">error2</span>)</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/not_found</code></pre></div>
+    <div class="method-summary">Send an error if the page does not exist (<span class="nickname">notFound</span>)</div>
     <div class="method-notes"></div>
 
 
@@ -313,263 +275,17 @@
 
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">400</h4>
-    There was an error when trying to perform a operation
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="error3"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="head"><code class="huge"><span class="http-method">head</span> /api/error</code></pre></div>
-    <div class="method-summary">Send an error if some process has failed o the page does not exist (<span class="nickname">error3</span>)</div>
-    <div class="method-notes"></div>
-
-
-
-
-
-
-
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">400</h4>
-    There was an error when trying to perform a operation
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="error4"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/error</code></pre></div>
-    <div class="method-summary">Send an error if some process has failed o the page does not exist (<span class="nickname">error4</span>)</div>
-    <div class="method-notes"></div>
-
-
-
-
-
-
-
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">400</h4>
-    There was an error when trying to perform a operation
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="error5"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="options"><code class="huge"><span class="http-method">options</span> /api/error</code></pre></div>
-    <div class="method-summary">Send an error if some process has failed o the page does not exist (<span class="nickname">error5</span>)</div>
-    <div class="method-notes"></div>
-
-
-
-
-
-
-
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">400</h4>
-    There was an error when trying to perform a operation
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="error6"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="put"><code class="huge"><span class="http-method">put</span> /api/error</code></pre></div>
-    <div class="method-summary">Send an error if some process has failed o the page does not exist (<span class="nickname">error6</span>)</div>
-    <div class="method-notes"></div>
-
-
-
-
-
-
-
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">400</h4>
+    <h4 class="field-label">404</h4>
     There was an error when trying to perform a operation
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <h1><a name="OrderRestController">OrderRestController</a></h1>
-  <div class="method"><a name="cancelOrder"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/orders/{id}/cancel</code></pre></div>
-    <div class="method-summary">Returns if the cancellation of a service has been successful (<span class="nickname">cancelOrder</span>)</div>
-    <div class="method-notes"></div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">id (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  format: int64</div>    </div>  <!-- field-items -->
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#CancelOrderResponseDto">CancelOrderResponseDto</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "success" : true
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    The order has been canceled
-        <a href="#CancelOrderResponseDto">CancelOrderResponseDto</a>
-    <h4 class="field-label">404</h4>
-    The service to be cancelled was not found
-        <a href="#"></a>
-    <h4 class="field-label">401</h4>
-    The logged user does not have permission or does not have the service in question to cancel it
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="exportOrderToPdf"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/orders/{id}/export</code></pre></div>
-    <div class="method-summary">Returns a pdf of an order given its orderId (<span class="nickname">exportOrderToPdf</span>)</div>
-    <div class="method-notes"></div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">id (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  format: int64</div>    </div>  <!-- field-items -->
-
-
-
-
-
-
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">404</h4>
-    The service to be exported to pdf was not found
-        <a href="#"></a>
-    <h4 class="field-label">401</h4>
-    The logged used does not have permissions to generate a pdf from the orderId provided
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="findService"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/orders/{id}</code></pre></div>
-    <div class="method-summary">Returns a service given a serviceId, if the logged user has it (<span class="nickname">findService</span>)</div>
-    <div class="method-notes"></div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">id (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  format: int64</div>    </div>  <!-- field-items -->
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      array[<a href="#FindOrderResponseDto">FindOrderResponseDto</a>]
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>[ {
-  "cores" : "cores",
-  "transfer" : "transfer",
-  "storage" : "storage",
-  "category" : "category",
-  "purchase_date" : "2000-01-23T04:56:07.000+00:00",
-  "expiration_date" : "2000-01-23T04:56:07.000+00:00",
-  "order_id" : 0,
-  "ram" : "ram"
-}, {
-  "cores" : "cores",
-  "transfer" : "transfer",
-  "storage" : "storage",
-  "category" : "category",
-  "purchase_date" : "2000-01-23T04:56:07.000+00:00",
-  "expiration_date" : "2000-01-23T04:56:07.000+00:00",
-  "order_id" : 0,
-  "ram" : "ram"
-} ]</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">401</h4>
-    The logged user does not have permission or does not have the service in question
-        <a href="#"></a>
-    <h4 class="field-label">404</h4>
-    The service in question was not found
-        <a href="#"></a>
-    <h4 class="field-label">200</h4>
-    Returns the solicited service
-        
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="findServices"></a>
+  <div class="method"><a name="findAllOrders"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /api/orders</code></pre></div>
-    <div class="method-summary">Returns a certain amount of pages with a certain amount of services from the logged user (<span class="nickname">findServices</span>)</div>
+    <div class="method-summary">Finds the logged in user paginated orders (<span class="nickname">findAllOrders</span>)</div>
     <div class="method-notes"></div>
 
 
@@ -585,48 +301,31 @@
             <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>    </div>  <!-- field-items -->
 
 
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#FindOrderResponseDto">FindOrderResponseDto</a>
-      
-    </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "cores" : "cores",
-  "transfer" : "transfer",
-  "storage" : "storage",
-  "category" : "category",
-  "purchase_date" : "2000-01-23T04:56:07.000+00:00",
-  "expiration_date" : "2000-01-23T04:56:07.000+00:00",
-  "order_id" : 0,
-  "ram" : "ram"
-}</code></pre>
 
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">404</h4>
-    There were no services to be found from the logged user
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
-    Returns the generated pages with the services
-        <a href="#FindOrderResponseDto">FindOrderResponseDto</a>
+    Returns a list of orders according to the pagination properties
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    The request parameters or some other piece of the request is invalid
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    The requester is not authorized to perform this operation
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    There were no orders to be found for the logged in user
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="renewOrder"></a>
+  <div class="method"><a name="findOrder"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/orders/{id}/renew</code></pre></div>
-    <div class="method-summary">Returns if the renewal of a service has been successful (<span class="nickname">renewOrder</span>)</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/orders/{id}</code></pre></div>
+    <div class="method-summary">Finds the logged in user concrete order by its id (<span class="nickname">findOrder</span>)</div>
     <div class="method-notes"></div>
 
     <h3 class="field-label">Path parameters</h3>
@@ -638,36 +337,121 @@
 
 
 
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#RenewOrderResponseDto">RenewOrderResponseDto</a>
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">content (optional)</div>
       
-    </div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "success" : true
-}</code></pre>
 
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">401</h4>
-    The logged user does not have permission or does not have the service in question to renew it
+    The requester is not authorized to perform this operation
         <a href="#"></a>
     <h4 class="field-label">200</h4>
-    The order has been renewed
-        <a href="#RenewOrderResponseDto">RenewOrderResponseDto</a>
+    Returns the concrete requested order
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    The order in question was not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="placeOrder"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/orders</code></pre></div>
+    <div class="method-summary">Places an order to purchase the specified product (<span class="nickname">placeOrder</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#PlaceOrderRequestDto">PlaceOrderRequestDto</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+                </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">400</h4>
+    The request was incomplete or the parameters were invalid
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    The requester is not authorized to perform this operation
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Cannot perform the order because the product does not exist
+        <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    The order from the user was found successfully
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="updateOrder"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /api/orders/{id}</code></pre></div>
+    <div class="method-summary">Updates the details of a given order (<span class="nickname">updateOrder</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  format: int64</div>    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#UpdateOrderRequestDto">UpdateOrderRequestDto</a> (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+                </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">400</h4>
+    Some invalid details where provided that prevented the operation completion
+        <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    The order has been successfully updated
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    The requester is not authorized to perform this operation
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Cannot update the order because it does not exist
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <h1><a name="ProductRestController">ProductRestController</a></h1>
@@ -684,42 +468,10 @@
 
 
 
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      array[<a href="#FindProductResponseDto">FindProductResponseDto</a>]
-      
-    </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>[ {
-  "hourly_price" : 1.4658129805029452,
-  "cores" : "cores",
-  "transfer" : "transfer",
-  "price" : 6,
-  "id" : 0,
-  "storage" : "storage",
-  "category" : "category",
-  "ram" : "ram"
-}, {
-  "hourly_price" : 1.4658129805029452,
-  "cores" : "cores",
-  "transfer" : "transfer",
-  "price" : 6,
-  "id" : 0,
-  "storage" : "storage",
-  "category" : "category",
-  "ram" : "ram"
-} ]</code></pre>
 
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">400</h4>
@@ -729,266 +481,61 @@
     There were no more products to be shown
         <a href="#"></a>
     <h4 class="field-label">200</h4>
-    The list of products was found succesfully
-        
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="placeOrder"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/products/{id}/purchase</code></pre></div>
-    <div class="method-summary">Finds an order with all the user´s products (<span class="nickname">placeOrder</span>)</div>
-    <div class="method-notes"></div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">id (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  format: int64</div>    </div>  <!-- field-items -->
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#PlaceOrderResponseDto">PlaceOrderResponseDto</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "success" : true
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">404</h4>
-    Cannot perform the order because the product does not exist
-        <a href="#"></a>
-    <h4 class="field-label">200</h4>
-    The order from the user was found succesfully
-        <a href="#PlaceOrderResponseDto">PlaceOrderResponseDto</a>
-    <h4 class="field-label">400</h4>
-    Cannot perform placing order
+    The list of products was found successfully
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <h1><a name="SaleRestController">SaleRestController</a></h1>
-  <div class="method"><a name="disableAdSale"></a>
+  <div class="method"><a name="findCurrentDiscount"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/sales/ad/disable</code></pre></div>
-    <div class="method-summary">Disable the cumulative discount for a given user (<span class="nickname">disableAdSale</span>)</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/sales/{type}</code></pre></div>
+    <div class="method-summary">Find the specific details of the specified discount type if active (<span class="nickname">findCurrentDiscount</span>)</div>
     <div class="method-notes"></div>
 
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#DisableSaleResponseDto">DisableSaleResponseDto</a>
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">type (required)</div>
       
-    </div>
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "success" : true
-}</code></pre>
 
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">401</h4>
-    It&#x27;s not possible to disable the cumulative discount because the user is not authorized
-        <a href="#"></a>
-    <h4 class="field-label">400</h4>
-    It&#x27;s not possible to disable the cumulative discount because it&#x27;s already disabled
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
-    Disables the current cumulative discount
-        <a href="#DisableSaleResponseDto">DisableSaleResponseDto</a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="disableOtdSale"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/sales/otd/disable</code></pre></div>
-    <div class="method-summary">Disable the one time discount for a given user (<span class="nickname">disableOtdSale</span>)</div>
-    <div class="method-notes"></div>
-
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#DisableSaleResponseDto">DisableSaleResponseDto</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "success" : true
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">401</h4>
-    It&#x27;s not possible to disable the one time discount because the user is not authorized to perform the operation
+    Returns the current active discount of the specified type
         <a href="#"></a>
     <h4 class="field-label">400</h4>
-    It&#x27;s not possible to disable the one time discount because it&#x27;s already disabled
-        <a href="#"></a>
-    <h4 class="field-label">200</h4>
-    Disable the current one time discount
-        <a href="#DisableSaleResponseDto">DisableSaleResponseDto</a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="findAccumulativeDiscount"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/sales/ad</code></pre></div>
-    <div class="method-summary">Checks the application of a cumulative discount for a given product (<span class="nickname">findAccumulativeDiscount</span>)</div>
-    <div class="method-notes"></div>
-
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#FindAdResponseDto">FindAdResponseDto</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "bulk_amount" : 5,
-  "cores" : "cores",
-  "transfer" : "transfer",
-  "price" : 0,
-  "discount_price" : 1,
-  "discount" : 6,
-  "storage" : "storage",
-  "ram" : "ram"
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">400</h4>
-    It&#x27;s not possible to apply the cumulative discount
+    There is no known existence of the provided discount type
         <a href="#"></a>
     <h4 class="field-label">404</h4>
-    There is currently no cumulative discount active
+    The given discount type is currently inactive
         <a href="#"></a>
-    <h4 class="field-label">200</h4>
-    Obtains the cumulative one time discount
-        <a href="#FindAdResponseDto">FindAdResponseDto</a>
+    <h4 class="field-label">401</h4>
+    The requester has no permissions to perform this operation
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="findOneTimeDiscount"></a>
+  <div class="method"><a name="updateCurrentDiscount"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/sales/otd</code></pre></div>
-    <div class="method-summary">Checks the application of a one time discount for a given product (<span class="nickname">findOneTimeDiscount</span>)</div>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /api/sales/{type}</code></pre></div>
+    <div class="method-summary">Updates the details of the discount of the given type (<span class="nickname">updateCurrentDiscount</span>)</div>
     <div class="method-notes"></div>
 
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#FindOtdResponseDto">FindOtdResponseDto</a>
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">type (required)</div>
       
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "cores" : "cores",
-  "transfer" : "transfer",
-  "price" : 0,
-  "discount_price" : 1,
-  "discount" : 6,
-  "storage" : "storage",
-  "ram" : "ram"
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">404</h4>
-    There is currently no one time discount active
-        <a href="#"></a>
-    <h4 class="field-label">200</h4>
-    Obtains the current one time discount
-        <a href="#FindOtdResponseDto">FindOtdResponseDto</a>
-    <h4 class="field-label">400</h4>
-    It&#x27;s not possible to apply the one time discount
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="updateAdSale"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="put"><code class="huge"><span class="http-method">put</span> /api/sales/ad</code></pre></div>
-    <div class="method-summary">Updates the cumulative discount for a given user (<span class="nickname">updateAdSale</span>)</div>
-    <div class="method-notes"></div>
-
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
 
     <h3 class="field-label">Consumes</h3>
     This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
@@ -998,7 +545,7 @@
 
     <h3 class="field-label">Request body</h3>
     <div class="field-items">
-      <div class="param">body <a href="#UpdateAdSaleRequestDto">UpdateAdSaleRequestDto</a> (required)</div>
+      <div class="param">body <a href="#UpdateSaleRequestDto">UpdateSaleRequestDto</a> (required)</div>
       
             <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
                 </div>  <!-- field-items -->
@@ -1006,88 +553,21 @@
 
 
 
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#UpdateSaleResponseDto">UpdateSaleResponseDto</a>
-      
-    </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "success" : true
-}</code></pre>
 
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
 
     <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">404</h4>
+    The given discount type does not exist
+        <a href="#"></a>
     <h4 class="field-label">401</h4>
-    It&#x27;s not possible to update the cumulative discount
+    The requester has no permissions to perform this operation
         <a href="#"></a>
     <h4 class="field-label">200</h4>
-    Updates the current cumulative discount
-        <a href="#UpdateSaleResponseDto">UpdateSaleResponseDto</a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="updateOtdSale"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="put"><code class="huge"><span class="http-method">put</span> /api/sales/otd</code></pre></div>
-    <div class="method-summary">Updates the one time discount for a given user (<span class="nickname">updateOtdSale</span>)</div>
-    <div class="method-notes"></div>
-
-
-    <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
-    <ul>
-      <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Request body</h3>
-    <div class="field-items">
-      <div class="param">body <a href="#UpdateOtdSaleRequestDto">UpdateOtdSaleRequestDto</a> (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
-                </div>  <!-- field-items -->
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#UpdateSaleResponseDto">UpdateSaleResponseDto</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "success" : true
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">401</h4>
-    It&#x27;s not possible to update the one time discount
+    The details of the discount have been successfully updated
         <a href="#"></a>
-    <h4 class="field-label">200</h4>
-    Updates the current one time discount
-        <a href="#UpdateSaleResponseDto">UpdateSaleResponseDto</a>
   </div> <!-- method -->
   <hr/>
   <h1><a name="StatisticsRestController">StatisticsRestController</a></h1>
@@ -1104,43 +584,15 @@
 
 
 
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#StatisticsResponseDto">StatisticsResponseDto</a>
-      
-    </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "week_sales" : [ 6, 6 ],
-  "category_purchases" : [ {
-    "left" : "left",
-    "right" : 5,
-    "value" : 1,
-    "key" : "key"
-  }, {
-    "left" : "left",
-    "right" : 5,
-    "value" : 1,
-    "key" : "key"
-  } ],
-  "accumulated_capital" : 0
-}</code></pre>
 
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     The sales statistics were found successfully
-        <a href="#StatisticsResponseDto">StatisticsResponseDto</a>
+        <a href="#"></a>
     <h4 class="field-label">401</h4>
     The requester is not authorized to perform this operation
         <a href="#"></a>
@@ -1150,7 +602,7 @@
   <div class="method"><a name="generateToken"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/tokens/generate</code></pre></div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/tokens</code></pre></div>
     <div class="method-summary">Generates a token for the provided user credentials (<span class="nickname">generateToken</span>)</div>
     <div class="method-notes"></div>
 
@@ -1171,32 +623,15 @@
 
 
 
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#GenerateTokenResponseDto">GenerateTokenResponseDto</a>
-      
-    </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "token" : "token",
-  "successful" : true
-}</code></pre>
 
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     Returns the generated token
-        <a href="#GenerateTokenResponseDto">GenerateTokenResponseDto</a>
+        <a href="#"></a>
     <h4 class="field-label">400</h4>
     The provided credentials to generate a token were invalid
         <a href="#"></a>
@@ -1205,7 +640,7 @@
   <div class="method"><a name="validateToken"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/tokens/validate</code></pre></div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/tokens</code></pre></div>
     <div class="method-summary">Validates a given token (<span class="nickname">validateToken</span>)</div>
     <div class="method-notes"></div>
 
@@ -1215,35 +650,17 @@
 
 
 
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#ValidateTokenResponseDto">ValidateTokenResponseDto</a>
-      
-    </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "user_id" : 0,
-  "is_valid" : true,
-  "token" : "token"
-}</code></pre>
 
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    Returns the validation response
-        <a href="#ValidateTokenResponseDto">ValidateTokenResponseDto</a>
+    Returns the validation response with the validation result
+        <a href="#"></a>
     <h4 class="field-label">400</h4>
-    No valid token was provided
+    The token was invalid or no token was provided at all
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -1272,145 +689,20 @@
 
 
 
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#RegisterUserResponseDto">RegisterUserResponseDto</a>
-      
-    </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "success" : true
-}</code></pre>
 
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">201</h4>
     The new user creation was successful
-        <a href="#RegisterUserResponseDto">RegisterUserResponseDto</a>
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    The requester is not authorized to perform this operation
+        <a href="#"></a>
     <h4 class="field-label">400</h4>
     The provided input was not valid
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="disableUser"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/users/{id}/disable</code></pre></div>
-    <div class="method-summary">Disables a user account (<span class="nickname">disableUser</span>)</div>
-    <div class="method-notes"></div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">id (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  format: int64</div>    </div>  <!-- field-items -->
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#FindUserResponseDto">FindUserResponseDto</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "address" : "address",
-  "surname" : "surname",
-  "id" : 0,
-  "first_name" : "first_name",
-  "email" : "email",
-  "enabled" : true
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    The user account was successfully disabled
-        <a href="#FindUserResponseDto">FindUserResponseDto</a>
-    <h4 class="field-label">404</h4>
-    There is no user account associated to the given user id
-        <a href="#"></a>
-    <h4 class="field-label">401</h4>
-    The requester is not authorized to perform this operation
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="enableUser"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/users/{id}/enable</code></pre></div>
-    <div class="method-summary">Enables a user account (<span class="nickname">enableUser</span>)</div>
-    <div class="method-notes"></div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">id (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  format: int64</div>    </div>  <!-- field-items -->
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#FindUserResponseDto">FindUserResponseDto</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "address" : "address",
-  "surname" : "surname",
-  "id" : 0,
-  "first_name" : "first_name",
-  "email" : "email",
-  "enabled" : true
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    The user account was successfully enabled
-        <a href="#FindUserResponseDto">FindUserResponseDto</a>
-    <h4 class="field-label">404</h4>
-    There is no user account associated to the given user id
-        <a href="#"></a>
-    <h4 class="field-label">401</h4>
-    The requester is not authorized to perform this operation
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -1432,41 +724,20 @@
 
 
 
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#FindUserResponseDto">FindUserResponseDto</a>
-      
-    </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "address" : "address",
-  "surname" : "surname",
-  "id" : 0,
-  "first_name" : "first_name",
-  "email" : "email",
-  "enabled" : true
-}</code></pre>
 
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Returns the information of a requested user
-        <a href="#FindUserResponseDto">FindUserResponseDto</a>
     <h4 class="field-label">404</h4>
     There was no user associated with the provided user id
         <a href="#"></a>
     <h4 class="field-label">401</h4>
     The requester is not authorized to perform this operation
+        <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Returns the information of a requested user
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -1490,105 +761,20 @@
             <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>    </div>  <!-- field-items -->
 
 
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      array[<a href="#FindUserResponseDto">FindUserResponseDto</a>]
-      
-    </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>[ {
-  "address" : "address",
-  "surname" : "surname",
-  "id" : 0,
-  "first_name" : "first_name",
-  "email" : "email",
-  "enabled" : true
-}, {
-  "address" : "address",
-  "surname" : "surname",
-  "id" : 0,
-  "first_name" : "first_name",
-  "email" : "email",
-  "enabled" : true
-} ]</code></pre>
 
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
 
     <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">401</h4>
+    The requester is not authorized to perform this operation
+        <a href="#"></a>
     <h4 class="field-label">200</h4>
     The list of users was retrieved successfully
-        
+        <a href="#"></a>
     <h4 class="field-label">404</h4>
     There are no users available for the provided pagination information
-        <a href="#"></a>
-    <h4 class="field-label">401</h4>
-    The requester is not authorized to perform this operation
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="getImage"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/users/{id}/picture</code></pre></div>
-    <div class="method-summary">Delivers an image in binary format (<span class="nickname">getImage</span>)</div>
-    <div class="method-notes"></div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">id (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  format: int64</div>    </div>  <!-- field-items -->
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#FindUserResponseDto">FindUserResponseDto</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "address" : "address",
-  "surname" : "surname",
-  "id" : 0,
-  "first_name" : "first_name",
-  "email" : "email",
-  "enabled" : true
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>image/jpeg</code></li>
-      <li><code>image/png</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    The image was successfully delivered
-        <a href="#FindUserResponseDto">FindUserResponseDto</a>
-    <h4 class="field-label">404</h4>
-    The requested image was not found
-        <a href="#"></a>
-    <h4 class="field-label">401</h4>
-    The requester is not authorized to perform this operation
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -1621,36 +807,23 @@
 
 
 
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#UpdateUserResponseDto">UpdateUserResponseDto</a>
-      
-    </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "success" : true
-}</code></pre>
 
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>*/*</code></li>
-    </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    The information update of the user was successful
-        <a href="#UpdateUserResponseDto">UpdateUserResponseDto</a>
     <h4 class="field-label">404</h4>
     There was no user associated with the provided user id
         <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    The requester is not authorized to perform this operation
+        <a href="#"></a>
     <h4 class="field-label">400</h4>
     The provided input was not valid
+        <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    The information update of the user was successful
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -1660,110 +833,14 @@
 
   <h3>Table of Contents</h3>
   <ol>
-    <li><a href="#CancelOrderResponseDto"><code>CancelOrderResponseDto</code></a></li>
-    <li><a href="#DisableSaleResponseDto"><code>DisableSaleResponseDto</code></a></li>
-    <li><a href="#FindAdResponseDto"><code>FindAdResponseDto</code></a></li>
-    <li><a href="#FindOrderResponseDto"><code>FindOrderResponseDto</code></a></li>
-    <li><a href="#FindOtdResponseDto"><code>FindOtdResponseDto</code></a></li>
-    <li><a href="#FindProductResponseDto"><code>FindProductResponseDto</code></a></li>
-    <li><a href="#FindUserResponseDto"><code>FindUserResponseDto</code></a></li>
     <li><a href="#GenerateTokenRequestDto"><code>GenerateTokenRequestDto</code></a></li>
-    <li><a href="#GenerateTokenResponseDto"><code>GenerateTokenResponseDto</code></a></li>
-    <li><a href="#PairStringInteger"><code>PairStringInteger</code></a></li>
-    <li><a href="#PlaceOrderResponseDto"><code>PlaceOrderResponseDto</code></a></li>
+    <li><a href="#PlaceOrderRequestDto"><code>PlaceOrderRequestDto</code></a></li>
     <li><a href="#RegisterUserRequestDto"><code>RegisterUserRequestDto</code></a></li>
-    <li><a href="#RegisterUserResponseDto"><code>RegisterUserResponseDto</code></a></li>
-    <li><a href="#RenewOrderResponseDto"><code>RenewOrderResponseDto</code></a></li>
-    <li><a href="#StatisticsResponseDto"><code>StatisticsResponseDto</code></a></li>
-    <li><a href="#UpdateAdSaleRequestDto"><code>UpdateAdSaleRequestDto</code></a></li>
-    <li><a href="#UpdateOtdSaleRequestDto"><code>UpdateOtdSaleRequestDto</code></a></li>
-    <li><a href="#UpdateSaleResponseDto"><code>UpdateSaleResponseDto</code></a></li>
+    <li><a href="#UpdateOrderRequestDto"><code>UpdateOrderRequestDto</code></a></li>
+    <li><a href="#UpdateSaleRequestDto"><code>UpdateSaleRequestDto</code></a></li>
     <li><a href="#UpdateUserRequestDto"><code>UpdateUserRequestDto</code></a></li>
-    <li><a href="#UpdateUserResponseDto"><code>UpdateUserResponseDto</code></a></li>
-    <li><a href="#ValidateTokenResponseDto"><code>ValidateTokenResponseDto</code></a></li>
   </ol>
 
-  <div class="model">
-    <h3><a name="CancelOrderResponseDto"><code>CancelOrderResponseDto</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">success (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="DisableSaleResponseDto"><code>DisableSaleResponseDto</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">success (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="FindAdResponseDto"><code>FindAdResponseDto</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">discount (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">discount_price (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">bulk_amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">ram (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">cores (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">storage (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">transfer (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="FindOrderResponseDto"><code>FindOrderResponseDto</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">order_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
-<div class="param">category (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">purchase_date (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
-<div class="param">expiration_date (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
-<div class="param">ram (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">cores (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">storage (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">transfer (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="FindOtdResponseDto"><code>FindOtdResponseDto</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">discount (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">discount_price (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">ram (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">cores (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">storage (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">transfer (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="FindProductResponseDto"><code>FindProductResponseDto</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
-<div class="param">category (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">hourly_price (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">ram (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">cores (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">storage (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">transfer (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="FindUserResponseDto"><code>FindUserResponseDto</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
-<div class="param">first_name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">surname (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">address (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">email (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-    </div>  <!-- field-items -->
-  </div>
   <div class="model">
     <h3><a name="GenerateTokenRequestDto"><code>GenerateTokenRequestDto</code></a> <a class="up" href="#__Models">Up</a></h3>
     
@@ -1773,28 +850,10 @@
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="GenerateTokenResponseDto"><code>GenerateTokenResponseDto</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="PlaceOrderRequestDto"><code>PlaceOrderRequestDto</code></a> <a class="up" href="#__Models">Up</a></h3>
     
     <div class="field-items">
-      <div class="param">token (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">successful (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="PairStringInteger"><code>PairStringInteger</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">value (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">key (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">left (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">right (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="PlaceOrderResponseDto"><code>PlaceOrderResponseDto</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">success (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+      <div class="param">product_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -1809,30 +868,15 @@
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="RegisterUserResponseDto"><code>RegisterUserResponseDto</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="UpdateOrderRequestDto"><code>UpdateOrderRequestDto</code></a> <a class="up" href="#__Models">Up</a></h3>
     
     <div class="field-items">
-      <div class="param">success (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+      <div class="param">months (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">cancel (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="RenewOrderResponseDto"><code>RenewOrderResponseDto</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">success (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="StatisticsResponseDto"><code>StatisticsResponseDto</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">accumulated_capital (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
-<div class="param">week_sales (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">array[Integer]</a></span>  format: int32</div>
-<div class="param">category_purchases (optional)</div><div class="param-desc"><span class="param-type"><a href="#PairStringInteger">array[PairStringInteger]</a></span>  </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="UpdateAdSaleRequestDto"><code>UpdateAdSaleRequestDto</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="UpdateSaleRequestDto"><code>UpdateSaleRequestDto</code></a> <a class="up" href="#__Models">Up</a></h3>
     
     <div class="field-items">
       <div class="param">product_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
@@ -1840,23 +884,7 @@
 <div class="param">stop (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">discount (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
 <div class="param">amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="UpdateOtdSaleRequestDto"><code>UpdateOtdSaleRequestDto</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">product_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
-<div class="param">start (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
-<div class="param">stop (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
-<div class="param">discount (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="UpdateSaleResponseDto"><code>UpdateSaleResponseDto</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">success (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -1870,22 +898,7 @@
 <div class="param">address (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">email (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">password (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="UpdateUserResponseDto"><code>UpdateUserResponseDto</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">success (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="ValidateTokenResponseDto"><code>ValidateTokenResponseDto</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">user_id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
-<div class="param">token (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">is_valid (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">enabled (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   </body>
