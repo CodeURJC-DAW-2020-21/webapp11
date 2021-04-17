@@ -12,8 +12,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -42,8 +44,9 @@ public class UserServiceImpl implements UserService {
     public User registerUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Role clientRole = roleRepository.findByName(DEFAULT_ROLE);
-        Role newRole = Role.builder().id(clientRole.getId()).build();
-        user.getRoles().add(newRole);
+        Set<Role> roles = new HashSet<>();
+        roles.add(Role.builder().id(clientRole.getId()).build());
+        user.setRoles(roles);
         return userRepository.saveAndFlush(user);
     }
 
