@@ -36,6 +36,12 @@ Software Engineering Degree, at _University King Juan Carlos_, Spain (2020/2021)
   * [Classes and Templates](#diagrams-2-ctd)
 * [Members Participation](#members-part-2)
 
+**Phase 3**
+* [Installation](#phase-3)
+* [API Documentation](#api-docs-3)
+* [Classes and Templates Updated Diagram](#diagrams-3-ed)
+* [Members Participation](#members-part-3)
+
 # Introduction <a name="introduction"></a>
 
 The main objective of this application is to simulate, as closely as possible, a hosting provider.
@@ -371,3 +377,79 @@ This team member mainly worked on the services listing, one time discount, oders
 | #3 | Fixed multiple bugs | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/7e5e4131603d34db69297ec7d02288f33e952de3) | [UserController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/web/user/controller/UserController.java) | 
 | #4 | Added entity diagram | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/bab79b7722ac715524d545a0dfbd13f1fe05f4cf) | [UserServiceImpl.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blame/main/backend/src/main/java/es/urjc/code/daw/marketplace/service/UserServiceImpl.java)
 | #5 | Improved discount applicability | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/1bafa39d43949420d651e14282fe30c50261c96a) | [SaleServiceImpl.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blame/main/backend/src/main/java/es/urjc/code/daw/marketplace/service/SaleServiceImpl.java) | 
+
+## Phase 3 <a name="phase-3"></a>
+
+### Installation
+
+**Dependencies**
+
+Make sure you have installed:
+- Docker Engine
+- Docker Desktop (Windows only)
+- Docker Compose
+- Maven
+- OpenJDK 11 (Necessary for Maven to build the JAR before packaging it)
+
+Fully working traditional MVC and REST API application.
+
+### Installation instructions<a name="linux-install-linux-2"></a>
+
+**Installation steps**:
+
+1. **Clone repository**:
+
+Clone this repository using Git Command Line (Linux or Windows)
+
+Sample script for Linux:
+```bash
+#!/bin/bash
+cd $HOME
+rm -rf webapp11
+git clone https://github.com/CodeURJC-DAW-2020-21/webapp11
+```
+
+**WARNING**: Before building and executing make sure you've set up the neccesary credentials
+for all the .properties files (for email messages, https certificates, etc) 
+in "webapp11/backend/src/main/resources/*".
+
+2. **Build and execution script**:
+
+Go inside the "webapp11/docker" directory, and open the console, then execute one of the
+following scripts: **_create_image.sh_** (linux) or **_create_image.bat_** (windows).
+
+## API Documentation <a name="api-docs-3"></a>
+
+The documentation that represents all the REST API endpoints can be viewed in 3 different ways:
+- Rendered HTML Static Page [(Click to view the page)](https://rawcdn.githack.com/CodeURJC-DAW-2020-21/webapp11/89222b4850b75515fb1302abe5b497bd85267418/api-docs/api-docs.html)
+- Plain Text HTML [(Click to view the page)](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/api-docs/api-docs.html)
+- YAML Document Format [(Click to view the page)](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/api-docs/api-docs.yaml)
+
+## Classes and Templates Updated Diagram <a name="diagrams-3-ed"></a>
+
+This diagram is a classes and templates diagram of our application,
+represents a high-level view of the entire application without going
+too much into details, basically the flow of the requests thru the
+controllers, rest controllers, services, repositories to the domain 
+entities and the response views or DTO's associated to the request/response.
+
+**Legend**:
+- Yellow (_Views_) represent the view that is loaded upon a given request.
+- Green (_Web Controllers_) represent the controllers that are our web adapters.
+- Light Gray (_Data Transfer Objects_) represent the interface layer representation of the domain model.
+- Purple (_Rest Controllers_) represent the rest controllers that are our web adapters.
+- Red (_Services_) self-contained unit of software that performs a specific task.
+- Blue (_Repositories_) acts like a list of data, basically abstracts data access.
+- Light Pink (_Domain_) represent our domain entities and their relationships.
+
+![alt text](artifacts/clasesytemplates.png)
+
+
+
+
+
+
+
+
+
+
