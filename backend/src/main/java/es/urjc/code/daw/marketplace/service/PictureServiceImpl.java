@@ -60,15 +60,21 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     @SneakyThrows
+    @SuppressWarnings("all")
     public String getEncodedPicture(User user) {
         if(user.getProfilePictureFilename() != null) {
             // Find that user's picture
             final String PICTURES_FOLDER = "user-profile-pictures/";
             File file = new File(PICTURES_FOLDER + user.getProfilePictureFilename());
             if(file.exists()) {
+                String extension = FilenameUtils.getExtension(file.getAbsolutePath());
                 // Convert the picture bytes to base64
                 InputStream targetStream = new FileInputStream(file);
-                return Base64Utils.encodeToString(IOUtils.toByteArray(targetStream));
+                StringBuffer builder = new StringBuffer();
+                builder.append(extension);
+                builder.append(":");
+                builder.append(Base64Utils.encodeToString(IOUtils.toByteArray(targetStream)));
+                return builder.toString();
             }
         }
         return "";
