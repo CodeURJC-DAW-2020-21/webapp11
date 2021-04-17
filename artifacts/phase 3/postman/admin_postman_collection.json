@@ -1004,15 +1004,14 @@
 					}
 				],
 				"url": {
-					"raw": "{{address}}/api/users/29/picture",
+					"raw": "{{address}}/api/users/29",
 					"host": [
 						"{{address}}"
 					],
 					"path": [
 						"api",
 						"users",
-						"29",
-						"picture"
+						"29"
 					]
 				}
 			},
