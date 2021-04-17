@@ -32,7 +32,84 @@
 			},
 			"response": [
 				{
-					"name": "Response",
+					"name": "Bad Credentials",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@localhost\",\r\n    \"password\": \"another_brick_in_the_walls\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/api/tokens",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"api",
+								"tokens"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 Apr 2021 18:28:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status_name\": \"BAD_REQUEST\",\n    \"status_code\": 400,\n    \"content\": \"The provided login credentials were invalid\"\n}"
+				},
+				{
+					"name": "Successful",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
@@ -46,16 +123,13 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/tokens/generate",
-							"protocol": "https",
+							"raw": "{{address}}/api/tokens",
 							"host": [
-								"localhost"
+								"{{address}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
-								"tokens",
-								"generate"
+								"tokens"
 							]
 						}
 					},
@@ -101,7 +175,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 05 Apr 2021 13:41:16 GMT"
+							"value": "Sat, 17 Apr 2021 18:28:03 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -113,7 +187,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ\",\n    \"successful\": true\n}"
+					"body": "{\n    \"status_name\": \"OK\",\n    \"status_code\": 200,\n    \"content\": {\n        \"user_id\": 28,\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxODc3MDQ4MywiaWF0IjoxNjE4Njg0MDgzfQ.pq3guHH057uwmuZStyVe78cuKcLouvn3Op58FM-0rko6USlJnRhEGwQozuBIXyJW7dLdB0l9CHliA1I_vzRlkw\"\n    }\n}"
 				}
 			]
 		},
@@ -141,27 +215,99 @@
 			},
 			"response": [
 				{
-					"name": "Response",
+					"name": "No Token",
 					"originalRequest": {
-						"method": "POST",
+						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcyNjM2MywiaWF0IjoxNjE3NjM5OTYzfQ.7U5RBydkak7RMWKywgVeHTVCmlqm36NGMJtuw4LWpfz4Ohmz89eMcYOwTIoh_zFxy2JjB3Xdb0j4L6WPhJp4ew",
+								"value": "{{token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{address}}/api/tokens",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"api",
+								"tokens"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 Apr 2021 18:29:17 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status_name\": \"BAD_REQUEST\",\n    \"status_code\": 400,\n    \"content\": \"The token was invalid or no token was provided at all\"\n}"
+				},
+				{
+					"name": "Successful",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "https://localhost:8443/api/tokens/validate",
-							"protocol": "https",
+							"raw": "{{address}}/api/tokens",
 							"host": [
-								"localhost"
+								"{{address}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
-								"tokens",
-								"validate"
+								"tokens"
 							]
 						}
 					},
@@ -207,7 +353,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 05 Apr 2021 16:26:15 GMT"
+							"value": "Sat, 17 Apr 2021 18:28:59 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -219,7 +365,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"user_id\": 28,\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcyNjM2MywiaWF0IjoxNjE3NjM5OTYzfQ.7U5RBydkak7RMWKywgVeHTVCmlqm36NGMJtuw4LWpfz4Ohmz89eMcYOwTIoh_zFxy2JjB3Xdb0j4L6WPhJp4ew\",\n    \"is_valid\": true\n}"
+					"body": "{\n    \"status_name\": \"OK\",\n    \"status_code\": 200,\n    \"content\": {\n        \"user_id\": 29,\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJjbGllbnRAbG9jYWxob3N0IiwiaXNzIjoiZGF3LnVyamMuZXMiLCJleHAiOjE2MTg3Njc2MzksImlhdCI6MTYxODY4MTIzOX0.nQ_mQdufVizfJFcpzXGtOwQj63gbf2PqbF5WMrE9YZhDFlUcAkuzueLLoV4EvKYnKvoV51pD43j4gJoGD6-HHQ\",\n        \"is_valid\": true\n    }\n}"
 				}
 			]
 		},
@@ -247,23 +393,21 @@
 			},
 			"response": [
 				{
-					"name": "Response",
+					"name": "Successful",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "https://localhost:8443/api/statistics",
-							"protocol": "https",
+							"raw": "{{address}}/api/statistics",
 							"host": [
-								"localhost"
+								"{{address}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"statistics"
@@ -312,7 +456,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 05 Apr 2021 13:51:35 GMT"
+							"value": "Sat, 17 Apr 2021 18:30:21 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -324,7 +468,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"accumulated_capital\": 1920,\n    \"week_sales\": [\n        33,\n        0,\n        0,\n        0,\n        0,\n        0,\n        0\n    ],\n    \"category_purchases\": [\n        {\n            \"dedicated\": 9\n        },\n        {\n            \"shared\": 15\n        },\n        {\n            \"vps\": 9\n        }\n    ]\n}"
+					"body": "{\n    \"status_name\": \"OK\",\n    \"status_code\": 200,\n    \"content\": {\n        \"accumulated_capital\": 1920,\n        \"week_sales\": [\n            6,\n            4,\n            5,\n            5,\n            7,\n            6,\n            0\n        ],\n        \"category_purchases\": [\n            {\n                \"dedicated\": 9\n            },\n            {\n                \"shared\": 15\n            },\n            {\n                \"vps\": 9\n            }\n        ]\n    }\n}"
 				}
 			]
 		},
@@ -362,23 +506,21 @@
 			},
 			"response": [
 				{
-					"name": "Response 1",
+					"name": "Successful",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "https://localhost:8443/api/users?page=1&amount=10",
-							"protocol": "https",
+							"raw": "{{address}}/api/users?page=1&amount=10",
 							"host": [
-								"localhost"
+								"{{address}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"users"
@@ -437,7 +579,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 05 Apr 2021 13:59:27 GMT"
+							"value": "Sat, 17 Apr 2021 18:31:18 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -449,277 +591,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"id\": 3,\n        \"first_name\": \"Sidney\",\n        \"surname\": \"Schuppe\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"araceli.homenick@gmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 4,\n        \"first_name\": \"Andrea\",\n        \"surname\": \"Abernathy\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"laverne.spencer@gmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 5,\n        \"first_name\": \"Leo\",\n        \"surname\": \"Hilll\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"joshua.walter@yahoo.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 6,\n        \"first_name\": \"Ethel\",\n        \"surname\": \"Boyle\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"alyce.murazik@yahoo.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 7,\n        \"first_name\": \"Lesley\",\n        \"surname\": \"Kozey\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"zachariah.hickle@yahoo.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 8,\n        \"first_name\": \"Pok\",\n        \"surname\": \"Huel\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"yong.gaylord@hotmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 9,\n        \"first_name\": \"Stacia\",\n        \"surname\": \"Luettgen\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"kristine.schmidt@yahoo.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 10,\n        \"first_name\": \"Alfred\",\n        \"surname\": \"Erdman\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"katelyn.mosciski@hotmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 11,\n        \"first_name\": \"Brian\",\n        \"surname\": \"Bosco\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"lawanda.miller@hotmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 12,\n        \"first_name\": \"Anissa\",\n        \"surname\": \"Larson\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"jordan.king@gmail.com\",\n        \"enabled\": true\n    }\n]"
-				},
-				{
-					"name": "Response 4",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "https://localhost:8443/api/users?page=4&amount=10",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"users"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "4"
-								},
-								{
-									"key": "amount",
-									"value": "10"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, no-store, max-age=0, must-revalidate"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "0"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=31536000 ; includeSubDomains"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "SAMEORIGIN"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Mon, 05 Apr 2021 14:00:29 GMT"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=60"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						}
-					],
-					"cookie": [],
-					"body": "[]"
-				},
-				{
-					"name": "Response 3",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "https://localhost:8443/api/users?page=3&amount=10",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"users"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "3"
-								},
-								{
-									"key": "amount",
-									"value": "10"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, no-store, max-age=0, must-revalidate"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "0"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=31536000 ; includeSubDomains"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "SAMEORIGIN"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Mon, 05 Apr 2021 14:00:08 GMT"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=60"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						}
-					],
-					"cookie": [],
-					"body": "[\n    {\n        \"id\": 23,\n        \"first_name\": \"Cyril\",\n        \"surname\": \"Torp\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"norman.breitenberg@hotmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 24,\n        \"first_name\": \"Van\",\n        \"surname\": \"Ullrich\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"felix.barrows@hotmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 25,\n        \"first_name\": \"Lane\",\n        \"surname\": \"Wolf\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"georgette.swaniawski@hotmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 26,\n        \"first_name\": \"Nichol\",\n        \"surname\": \"Rodriguez\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"arlen.walter@gmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 27,\n        \"first_name\": \"Adrianne\",\n        \"surname\": \"Crooks\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"francisco.stoltenberg@hotmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 28,\n        \"first_name\": \"Administrator\",\n        \"surname\": \"\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"admin@localhost\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 29,\n        \"first_name\": \"Peter\",\n        \"surname\": \"Moon\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"client@localhost\",\n        \"enabled\": true\n    }\n]"
-				},
-				{
-					"name": "Response 2",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "https://localhost:8443/api/users?page=2&amount=10",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"users"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "2"
-								},
-								{
-									"key": "amount",
-									"value": "10"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, no-store, max-age=0, must-revalidate"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "0"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=31536000 ; includeSubDomains"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "SAMEORIGIN"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Mon, 05 Apr 2021 13:59:46 GMT"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=60"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						}
-					],
-					"cookie": [],
-					"body": "[\n    {\n        \"id\": 13,\n        \"first_name\": \"Cole\",\n        \"surname\": \"Daugherty\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"frederic.rohan@yahoo.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 14,\n        \"first_name\": \"Fritz\",\n        \"surname\": \"Welch\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"nicholas.brekke@hotmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 15,\n        \"first_name\": \"Garfield\",\n        \"surname\": \"Kunde\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"giuseppina.gaylord@yahoo.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 16,\n        \"first_name\": \"Kory\",\n        \"surname\": \"Batz\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"christoper.ryan@hotmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 17,\n        \"first_name\": \"Anja\",\n        \"surname\": \"Boyer\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"kennith.larson@gmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 18,\n        \"first_name\": \"Stephany\",\n        \"surname\": \"O'Kon\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"roselia.ankunding@gmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 19,\n        \"first_name\": \"Deonna\",\n        \"surname\": \"Smitham\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"eloy.braun@yahoo.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 20,\n        \"first_name\": \"Karol\",\n        \"surname\": \"Bode\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"sanford.prohaska@gmail.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 21,\n        \"first_name\": \"Roselle\",\n        \"surname\": \"Jerde\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"kelvin.zemlak@yahoo.com\",\n        \"enabled\": true\n    },\n    {\n        \"id\": 22,\n        \"first_name\": \"Cecil\",\n        \"surname\": \"Dicki\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"albertine.schaefer@hotmail.com\",\n        \"enabled\": true\n    }\n]"
+					"body": "{\n    \"status_name\": \"OK\",\n    \"status_code\": 200,\n    \"content\": [\n        {\n            \"id\": 3,\n            \"first_name\": \"Contessa\",\n            \"surname\": \"Barrows\",\n            \"address\": \"Main St. 123, New York\",\n            \"email\": \"kurt.grimes@hotmail.com\",\n            \"enabled\": true,\n            \"encoded_image\": \"\"\n        },\n        {\n            \"id\": 4,\n            \"first_name\": \"Mari\",\n            \"surname\": \"Jenkins\",\n            \"address\": \"Main St. 123, New York\",\n            \"email\": \"joya.oconnell@yahoo.com\",\n            \"enabled\": true,\n            \"encoded_image\": \"\"\n        },\n        {\n            \"id\": 5,\n            \"first_name\": \"Kent\",\n            \"surname\": \"Mitchell\",\n            \"address\": \"Main St. 123, New York\",\n            \"email\": \"mitchel.white@gmail.com\",\n            \"enabled\": true,\n            \"encoded_image\": \"\"\n        },\n        {\n            \"id\": 6,\n            \"first_name\": \"Erika\",\n            \"surname\": \"Kessler\",\n            \"address\": \"Main St. 123, New York\",\n            \"email\": \"amado.schinner@hotmail.com\",\n            \"enabled\": true,\n            \"encoded_image\": \"\"\n        },\n        {\n            \"id\": 7,\n            \"first_name\": \"Lonny\",\n            \"surname\": \"Frami\",\n            \"address\": \"Main St. 123, New York\",\n            \"email\": \"nicholas.spinka@gmail.com\",\n            \"enabled\": true,\n            \"encoded_image\": \"\"\n        },\n        {\n            \"id\": 8,\n            \"first_name\": \"Marcelino\",\n            \"surname\": \"Buckridge\",\n            \"address\": \"Main St. 123, New York\",\n            \"email\": \"zachery.will@yahoo.com\",\n            \"enabled\": true,\n            \"encoded_image\": \"\"\n        },\n        {\n            \"id\": 9,\n            \"first_name\": \"Orval\",\n            \"surname\": \"Wiegand\",\n            \"address\": \"Main St. 123, New York\",\n            \"email\": \"darwin.rau@gmail.com\",\n            \"enabled\": true,\n            \"encoded_image\": \"\"\n        },\n        {\n            \"id\": 10,\n            \"first_name\": \"Shalanda\",\n            \"surname\": \"Kihn\",\n            \"address\": \"Main St. 123, New York\",\n            \"email\": \"suanne.erdman@hotmail.com\",\n            \"enabled\": true,\n            \"encoded_image\": \"\"\n        },\n        {\n            \"id\": 11,\n            \"first_name\": \"Jonathan\",\n            \"surname\": \"Dietrich\",\n            \"address\": \"Main St. 123, New York\",\n            \"email\": \"leo.corkery@gmail.com\",\n            \"enabled\": true,\n            \"encoded_image\": \"\"\n        },\n        {\n            \"id\": 12,\n            \"first_name\": \"Raquel\",\n            \"surname\": \"Ankunding\",\n            \"address\": \"Main St. 123, New York\",\n            \"email\": \"marivel.gorczany@yahoo.com\",\n            \"enabled\": true,\n            \"encoded_image\": \"\"\n        }\n    ]\n}"
 				}
 			]
 		},
@@ -748,104 +620,21 @@
 			},
 			"response": [
 				{
-					"name": "Response 1",
+					"name": "Successful",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "https://localhost:8443/api/users/3",
-							"protocol": "https",
+							"raw": "{{address}}/api/users/5",
 							"host": [
-								"localhost"
+								"{{address}}"
 							],
-							"port": "8443",
-							"path": [
-								"api",
-								"users",
-								"3"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, no-store, max-age=0, must-revalidate"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Expires",
-							"value": "0"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=31536000 ; includeSubDomains"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "SAMEORIGIN"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Mon, 05 Apr 2021 14:03:54 GMT"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=60"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"id\": 3,\n    \"first_name\": \"Sidney\",\n    \"surname\": \"Schuppe\",\n    \"address\": \"Main St. 123, New York\",\n    \"email\": \"araceli.homenick@gmail.com\",\n    \"enabled\": true\n}"
-				},
-				{
-					"name": "Response 3",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "https://localhost:8443/api/users/5",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
 							"path": [
 								"api",
 								"users",
@@ -895,7 +684,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 05 Apr 2021 14:04:29 GMT"
+							"value": "Sat, 17 Apr 2021 18:31:41 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -907,30 +696,54 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": 5,\n    \"first_name\": \"Leo\",\n    \"surname\": \"Hilll\",\n    \"address\": \"Main St. 123, New York\",\n    \"email\": \"joshua.walter@yahoo.com\",\n    \"enabled\": true\n}"
-				},
+					"body": "{\n    \"status_name\": \"OK\",\n    \"status_code\": 200,\n    \"content\": {\n        \"id\": 5,\n        \"first_name\": \"Kent\",\n        \"surname\": \"Mitchell\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"mitchel.white@gmail.com\",\n        \"enabled\": true,\n        \"encoded_image\": \"\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "0006 - Admin - Find picture by user id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{address}}/api/users/29",
+					"host": [
+						"{{address}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"29"
+					]
+				}
+			},
+			"response": [
 				{
-					"name": "Response 2",
+					"name": "Successful",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "https://localhost:8443/api/users/4",
-							"protocol": "https",
+							"raw": "{{address}}/api/users/29",
 							"host": [
-								"localhost"
+								"{{address}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"users",
-								"4"
+								"29"
 							]
 						}
 					},
@@ -976,7 +789,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 05 Apr 2021 14:04:16 GMT"
+							"value": "Sat, 17 Apr 2021 18:31:53 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -988,34 +801,9 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": 4,\n    \"first_name\": \"Andrea\",\n    \"surname\": \"Abernathy\",\n    \"address\": \"Main St. 123, New York\",\n    \"email\": \"laverne.spencer@gmail.com\",\n    \"enabled\": true\n}"
+					"body": "{\n    \"status_name\": \"OK\",\n    \"status_code\": 200,\n    \"content\": {\n        \"id\": 29,\n        \"first_name\": \"Peter\",\n        \"surname\": \"Moon\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"client@localhost\",\n        \"enabled\": true,\n        \"encoded_image\": \"\"\n    }\n}"
 				}
 			]
-		},
-		{
-			"name": "0006 - Admin - Find picture by user id",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{address}}/api/users/29",
-					"host": [
-						"{{address}}"
-					],
-					"path": [
-						"api",
-						"users",
-						"29"
-					]
-				}
-			},
-			"response": []
 		},
 		{
 			"name": "0007 - Admin - Disable user by user id",
@@ -1063,28 +851,34 @@
 			},
 			"response": [
 				{
-					"name": "Response",
+					"name": "Successful",
 					"originalRequest": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"enabled\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "https://localhost:8443/api/users/3/disable",
-							"protocol": "https",
+							"raw": "{{address}}/api/users/5",
 							"host": [
-								"localhost"
+								"{{address}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"users",
-								"3",
-								"disable"
+								"5"
 							],
 							"query": [
 								{
@@ -1142,7 +936,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 05 Apr 2021 14:16:24 GMT"
+							"value": "Sat, 17 Apr 2021 18:32:14 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -1154,7 +948,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"success\": true\n}"
+					"body": "{\n    \"status_name\": \"OK\",\n    \"status_code\": 200,\n    \"content\": {\n        \"id\": 5,\n        \"first_name\": \"Kent\",\n        \"surname\": \"Mitchell\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"mitchel.white@gmail.com\",\n        \"enabled\": false,\n        \"encoded_image\": \"\"\n    }\n}"
 				}
 			]
 		},
@@ -1204,28 +998,34 @@
 			},
 			"response": [
 				{
-					"name": "Response",
+					"name": "Successful",
 					"originalRequest": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"enabled\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "https://localhost:8443/api/users/3/enable",
-							"protocol": "https",
+							"raw": "{{address}}/api/users/5",
 							"host": [
-								"localhost"
+								"{{address}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"users",
-								"3",
-								"enable"
+								"5"
 							],
 							"query": [
 								{
@@ -1283,7 +1083,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 05 Apr 2021 14:20:42 GMT"
+							"value": "Sat, 17 Apr 2021 18:33:51 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -1295,7 +1095,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"success\": true\n}"
+					"body": "{\n    \"status_name\": \"OK\",\n    \"status_code\": 200,\n    \"content\": {\n        \"id\": 5,\n        \"first_name\": \"Kent\",\n        \"surname\": \"Mitchell\",\n        \"address\": \"Main St. 123, New York\",\n        \"email\": \"mitchel.white@gmail.com\",\n        \"enabled\": true,\n        \"encoded_image\": \"\"\n    }\n}"
 				}
 			]
 		},
@@ -1345,28 +1145,34 @@
 			},
 			"response": [
 				{
-					"name": "Response",
+					"name": "Successful",
 					"originalRequest": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"enabled\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "https://localhost:8443/api/sales/otd/disable",
-							"protocol": "https",
+							"raw": "{{address}}/api/sales/onetime",
 							"host": [
-								"localhost"
+								"{{address}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"sales",
-								"otd",
-								"disable"
+								"onetime"
 							],
 							"query": [
 								{
@@ -1424,7 +1230,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 05 Apr 2021 14:22:39 GMT"
+							"value": "Sat, 17 Apr 2021 19:02:19 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -1436,7 +1242,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"success\": true\n}"
+					"body": "{\n    \"status_name\": \"OK\",\n    \"status_code\": 200,\n    \"content\": \"The sale has been successfully disabled\"\n}"
 				}
 			]
 		},
@@ -1486,19 +1292,19 @@
 			},
 			"response": [
 				{
-					"name": "Response",
+					"name": "Successful",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"10-04-2021\",\r\n    \"discount\": 50\r\n}",
+							"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"10-04-2021\",\r\n    \"discount\": 50,\r\n    \"enabled\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1506,16 +1312,14 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/sales/otd",
-							"protocol": "https",
+							"raw": "{{address}}/api/sales/onetime",
 							"host": [
-								"localhost"
+								"{{address}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"sales",
-								"otd"
+								"onetime"
 							],
 							"query": [
 								{
@@ -1573,7 +1377,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 05 Apr 2021 14:38:59 GMT"
+							"value": "Sat, 17 Apr 2021 19:02:52 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -1585,7 +1389,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"success\": true\n}"
+					"body": "{\n    \"status_name\": \"OK\",\n    \"status_code\": 200,\n    \"content\": {\n        \"price\": 5,\n        \"discount\": 50,\n        \"discount_price\": 2,\n        \"ram\": \"1 GB\",\n        \"cores\": \"1 vCPU\",\n        \"storage\": \"32 GB\",\n        \"transfer\": \"1 TB\"\n    }\n}"
 				}
 			]
 		},
@@ -1638,19 +1442,19 @@
 			},
 			"response": [
 				{
-					"name": "Response",
+					"name": "Successful",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"10-04-2021\",\r\n    \"discount\": 50\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1658,16 +1462,14 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/sales/otd",
-							"protocol": "https",
+							"raw": "{{address}}/api/sales/onetime",
 							"host": [
-								"localhost"
+								"{{address}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"sales",
-								"otd"
+								"onetime"
 							],
 							"query": [
 								{
@@ -1725,7 +1527,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 05 Apr 2021 14:43:25 GMT"
+							"value": "Sat, 17 Apr 2021 19:03:08 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -1737,7 +1539,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"price\": 5,\n    \"discount\": 50,\n    \"discount_price\": 2,\n    \"ram\": \"1 GB\",\n    \"cores\": \"1 vCPU\",\n    \"storage\": \"32 GB\",\n    \"transfer\": \"1 TB\"\n}"
+					"body": "{\n    \"status_name\": \"OK\",\n    \"status_code\": 200,\n    \"content\": {\n        \"price\": 5,\n        \"discount\": 50,\n        \"discount_price\": 2,\n        \"ram\": \"1 GB\",\n        \"cores\": \"1 vCPU\",\n        \"storage\": \"32 GB\",\n        \"transfer\": \"1 TB\"\n    }\n}"
 				}
 			]
 		},
@@ -1787,28 +1589,34 @@
 			},
 			"response": [
 				{
-					"name": "Response",
+					"name": "Successful",
 					"originalRequest": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"enabled\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "https://localhost:8443/api/sales/ad/disable",
-							"protocol": "https",
+							"raw": "{{address}}/api/sales/accumulative",
 							"host": [
-								"localhost"
+								"{{address}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"sales",
-								"ad",
-								"disable"
+								"accumulative"
 							],
 							"query": [
 								{
@@ -1866,7 +1674,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 05 Apr 2021 14:46:29 GMT"
+							"value": "Sat, 17 Apr 2021 19:03:36 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -1878,7 +1686,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"success\": true\n}"
+					"body": "{\n    \"status_name\": \"OK\",\n    \"status_code\": 200,\n    \"content\": \"The sale has been successfully disabled\"\n}"
 				}
 			]
 		},
@@ -1928,19 +1736,19 @@
 			},
 			"response": [
 				{
-					"name": "Response",
+					"name": "Successful",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"25-08-2025\",\r\n    \"discount\": 50,\r\n    \"amount\": 2\r\n}",
+							"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"25-08-2025\",\r\n    \"discount\": 50,\r\n    \"amount\": 2,\r\n    \"enabled\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1948,16 +1756,14 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/sales/ad",
-							"protocol": "https",
+							"raw": "{{address}}/api/sales/accumulative",
 							"host": [
-								"localhost"
+								"{{address}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"sales",
-								"ad"
+								"accumulative"
 							],
 							"query": [
 								{
@@ -2015,7 +1821,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 05 Apr 2021 14:49:36 GMT"
+							"value": "Sat, 17 Apr 2021 19:03:55 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -2027,7 +1833,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"success\": true\n}"
+					"body": "{\n    \"status_name\": \"OK\",\n    \"status_code\": 200,\n    \"content\": {\n        \"price\": 5,\n        \"discount\": 50,\n        \"discount_price\": 2,\n        \"bulk_amount\": 2,\n        \"ram\": \"1 GB\",\n        \"cores\": \"1 vCPU\",\n        \"storage\": \"32 GB\",\n        \"transfer\": \"1 TB\"\n    }\n}"
 				}
 			]
 		},
@@ -2068,36 +1874,25 @@
 			},
 			"response": [
 				{
-					"name": "Response",
+					"name": "Successful",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJhZG1pbkBsb2NhbGhvc3QiLCJpc3MiOiJkYXcudXJqYy5lcyIsImV4cCI6MTYxNzcxNjQ3NiwiaWF0IjoxNjE3NjMwMDc2fQ.Qthql3UGk6qsy8NmgVLq6UuSxWL26hS8n7g88T50XWXLpU0HRq2GRvbi25FFRi5L7A8m2PZT015MpOV_q0fieQ",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"product_id\": 30,\r\n    \"start\": \"05-04-2021\",\r\n    \"stop\": \"10-04-2021\",\r\n    \"discount\": 50\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "https://localhost:8443/api/sales/ad",
-							"protocol": "https",
+							"raw": "{{address}}/api/sales/accumulative",
 							"host": [
-								"localhost"
+								"{{address}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"sales",
-								"ad"
+								"accumulative"
 							],
 							"query": [
 								{
@@ -2155,7 +1950,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 05 Apr 2021 14:50:34 GMT"
+							"value": "Sat, 17 Apr 2021 19:04:11 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -2167,7 +1962,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"price\": 5,\n    \"discount\": 50,\n    \"discount_price\": 2,\n    \"bulk_amount\": 2,\n    \"ram\": \"1 GB\",\n    \"cores\": \"1 vCPU\",\n    \"storage\": \"32 GB\",\n    \"transfer\": \"1 TB\"\n}"
+					"body": "{\n    \"status_name\": \"OK\",\n    \"status_code\": 200,\n    \"content\": {\n        \"price\": 5,\n        \"discount\": 50,\n        \"discount_price\": 2,\n        \"bulk_amount\": 2,\n        \"ram\": \"1 GB\",\n        \"cores\": \"1 vCPU\",\n        \"storage\": \"32 GB\",\n        \"transfer\": \"1 TB\"\n    }\n}"
 				}
 			]
 		}

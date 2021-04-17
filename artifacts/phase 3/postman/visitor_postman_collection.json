@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"first_name\": \"Myself\",\r\n    \"surname\": \"Hoster\",\r\n    \"address\": \"My new cool street\",\r\n    \"email\": \"dawhostservices@gmail.com\",\r\n    \"password\": \"some_random_password\"\r\n}",
+					"raw": "{\r\n    \"first_name\": \"Myself\",\r\n    \"surname\": \"Hoster\",\r\n    \"address\": \"My new cool street\",\r\n    \"email\": \"sscideveloper@gmail.com\",\r\n    \"password\": \"some_random_password\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -32,13 +32,13 @@
 			},
 			"response": [
 				{
-					"name": "Response",
+					"name": "Successful",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"first_name\": \"Myself\",\r\n    \"surname\": \"Hoster\",\r\n    \"address\": \"My new cool street\",\r\n    \"email\": \"dawhostservices@gmail.com\",\r\n    \"password\": \"some_random_password\"\r\n}",
+							"raw": "{\r\n    \"first_name\": \"Myself\",\r\n    \"surname\": \"Hoster\",\r\n    \"address\": \"My new cool street\",\r\n    \"email\": \"sscideveloper@gmail.com\",\r\n    \"password\": \"some_random_password\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -46,12 +46,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/users",
-							"protocol": "https",
+							"raw": "{{address}}/api/users",
 							"host": [
-								"localhost"
+								"{{address}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"users"
@@ -104,7 +102,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 05 Apr 2021 16:34:45 GMT"
+							"value": "Sat, 17 Apr 2021 20:03:44 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -116,7 +114,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"success\": true\n}"
+					"body": "{\n    \"status_name\": \"OK\",\n    \"status_code\": 200,\n    \"content\": {\n        \"id\": 76,\n        \"first_name\": \"Myself\",\n        \"surname\": \"Hoster\",\n        \"address\": \"My new cool street\",\n        \"email\": \"sscideveloper@gmail.com\",\n        \"enabled\": true,\n        \"encoded_image\": \"\"\n    }\n}"
 				}
 			]
 		},
@@ -127,7 +125,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"dawhostservices@gmail.com\",\r\n    \"password\": \"some_random_password\"\r\n}",
+					"raw": "{\r\n    \"email\": \"sscideveloper@gmail.com\",\r\n    \"password\": \"some_random_password\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -147,13 +145,13 @@
 			},
 			"response": [
 				{
-					"name": "Response",
+					"name": "Successful",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"dawhostservices@gmail.com\",\r\n    \"password\": \"some_random_password\"\r\n}",
+							"raw": "{\r\n    \"email\": \"sscideveloper@gmail.com\",\r\n    \"password\": \"some_random_password\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -161,16 +159,13 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/tokens/generate",
-							"protocol": "https",
+							"raw": "{{address}}/api/tokens",
 							"host": [
-								"localhost"
+								"{{address}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
-								"tokens",
-								"generate"
+								"tokens"
 							]
 						}
 					},
@@ -216,7 +211,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 05 Apr 2021 16:36:00 GMT"
+							"value": "Sat, 17 Apr 2021 20:04:47 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -228,7 +223,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJkYXdob3N0c2VydmljZXNAZ21haWwuY29tIiwiaXNzIjoiZGF3LnVyamMuZXMiLCJleHAiOjE2MTc3MjY5NjAsImlhdCI6MTYxNzY0MDU2MH0.yTn9f00ByehLTikGXAtkuMPrzqrHRSVzjCJ9cfj_3VTRbQ30rSC77FqpSQQPr85FetLhB4JPb1UOkAJAgU1tGg\",\n    \"successful\": true\n}"
+					"body": "{\n    \"status_name\": \"OK\",\n    \"status_code\": 200,\n    \"content\": {\n        \"user_id\": 76,\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJzc2NpZGV2ZWxvcGVyQGdtYWlsLmNvbSIsImlzcyI6ImRhdy51cmpjLmVzIiwiZXhwIjoxNjE4Nzc2Mjg3LCJpYXQiOjE2MTg2ODk4ODd9.NjWQn1VtUa9DTMor65QREJdeE-t7s4fO85ZSbA-wSb3s30ODDpwiIwkRn4dn3H4C3wkBmb0R3DrwCms99F8xgg\"\n    }\n}"
 				}
 			]
 		},
@@ -256,27 +251,24 @@
 			},
 			"response": [
 				{
-					"name": "Response",
+					"name": "Successful",
 					"originalRequest": {
-						"method": "POST",
+						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJkYXdob3N0c2VydmljZXNAZ21haWwuY29tIiwiaXNzIjoiZGF3LnVyamMuZXMiLCJleHAiOjE2MTc3MjY5NjAsImlhdCI6MTYxNzY0MDU2MH0.yTn9f00ByehLTikGXAtkuMPrzqrHRSVzjCJ9cfj_3VTRbQ30rSC77FqpSQQPr85FetLhB4JPb1UOkAJAgU1tGg",
+								"value": "{{token}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "https://localhost:8443/api/tokens/validate",
-							"protocol": "https",
+							"raw": "{{address}}/api/tokens",
 							"host": [
-								"localhost"
+								"{{address}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
-								"tokens",
-								"validate"
+								"tokens"
 							]
 						}
 					},
@@ -322,7 +314,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 05 Apr 2021 16:36:35 GMT"
+							"value": "Sat, 17 Apr 2021 20:05:02 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -334,7 +326,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"user_id\": 76,\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJkYXdob3N0c2VydmljZXNAZ21haWwuY29tIiwiaXNzIjoiZGF3LnVyamMuZXMiLCJleHAiOjE2MTc3MjY5NjAsImlhdCI6MTYxNzY0MDU2MH0.yTn9f00ByehLTikGXAtkuMPrzqrHRSVzjCJ9cfj_3VTRbQ30rSC77FqpSQQPr85FetLhB4JPb1UOkAJAgU1tGg\",\n    \"is_valid\": true\n}"
+					"body": "{\n    \"status_name\": \"OK\",\n    \"status_code\": 200,\n    \"content\": {\n        \"user_id\": 29,\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhdWQiOiJVbml2ZXJzaWRhZCBSZXkgSnVhbiBDYXJsb3MiLCJzdWIiOiJjbGllbnRAbG9jYWxob3N0IiwiaXNzIjoiZGF3LnVyamMuZXMiLCJleHAiOjE2MTg3NzI2OTYsImlhdCI6MTYxODY4NjI5Nn0.mNAyxjRoFEx_JVQHLajiRM_6yo-LcoUWGKFaTxuUz-zDYBdEE7gRyciNjvYoI35QQlqKBZ3dNAg2SbX_Kcy2TA\",\n        \"is_valid\": true\n    }\n}"
 				}
 			]
 		},
@@ -356,17 +348,15 @@
 			},
 			"response": [
 				{
-					"name": "Response",
+					"name": "Successful",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/products",
-							"protocol": "https",
+							"raw": "{{address}}/api/products",
 							"host": [
-								"localhost"
+								"{{address}}"
 							],
-							"port": "8443",
 							"path": [
 								"api",
 								"products"
@@ -415,7 +405,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 05 Apr 2021 16:43:20 GMT"
+							"value": "Sat, 17 Apr 2021 20:05:14 GMT"
 						},
 						{
 							"key": "Keep-Alive",
@@ -427,7 +417,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"id\": 30,\n        \"category\": \"shared\",\n        \"price\": 5,\n        \"hourly_price\": 0.0075,\n        \"ram\": \"1 GB\",\n        \"cores\": \"1 vCPU\",\n        \"storage\": \"32 GB\",\n        \"transfer\": \"1 TB\"\n    },\n    {\n        \"id\": 31,\n        \"category\": \"shared\",\n        \"price\": 10,\n        \"hourly_price\": 0.015,\n        \"ram\": \"2 GB\",\n        \"cores\": \"1 vCPU\",\n        \"storage\": \"64 GB\",\n        \"transfer\": \"1 TB\"\n    },\n    {\n        \"id\": 32,\n        \"category\": \"shared\",\n        \"price\": 20,\n        \"hourly_price\": 0.03,\n        \"ram\": \"4 GB\",\n        \"cores\": \"2 vCPU\",\n        \"storage\": \"128 GB\",\n        \"transfer\": \"2 TB\"\n    },\n    {\n        \"id\": 33,\n        \"category\": \"shared\",\n        \"price\": 25,\n        \"hourly_price\": 0.0375,\n        \"ram\": \"4 GB\",\n        \"cores\": \"2 vCPU\",\n        \"storage\": \"256 GB\",\n        \"transfer\": \"5 TB\"\n    },\n    {\n        \"id\": 34,\n        \"category\": \"shared\",\n        \"price\": 35,\n        \"hourly_price\": 0.0525,\n        \"ram\": \"8 GB\",\n        \"cores\": \"4 vCPU\",\n        \"storage\": \"512 GB\",\n        \"transfer\": \"5 TB\"\n    },\n    {\n        \"id\": 35,\n        \"category\": \"vps\",\n        \"price\": 10,\n        \"hourly_price\": 0.015,\n        \"ram\": \"1 GB\",\n        \"cores\": \"1 vCPU\",\n        \"storage\": \"128 GB\",\n        \"transfer\": \"1 TB\"\n    },\n    {\n        \"id\": 36,\n        \"category\": \"vps\",\n        \"price\": 15,\n        \"hourly_price\": 0.0225,\n        \"ram\": \"2 GB\",\n        \"cores\": \"2 vCPU\",\n        \"storage\": \"256 GB\",\n        \"transfer\": \"2 TB\"\n    },\n    {\n        \"id\": 37,\n        \"category\": \"vps\",\n        \"price\": 20,\n        \"hourly_price\": 0.03,\n        \"ram\": \"4 GB\",\n        \"cores\": \"2 vCPU\",\n        \"storage\": \"512 GB\",\n        \"transfer\": \"5 TB\"\n    },\n    {\n        \"id\": 38,\n        \"category\": \"dedicated\",\n        \"price\": 60,\n        \"hourly_price\": 0.09,\n        \"ram\": \"16 GB\",\n        \"cores\": \"6 vCPU\",\n        \"storage\": \"2 TB\",\n        \"transfer\": \"25 TB\"\n    },\n    {\n        \"id\": 39,\n        \"category\": \"dedicated\",\n        \"price\": 140,\n        \"hourly_price\": 0.21,\n        \"ram\": \"32 GB\",\n        \"cores\": \"12 vCPU\",\n        \"storage\": \"5 TB\",\n        \"transfer\": \"50 TB\"\n    },\n    {\n        \"id\": 40,\n        \"category\": \"dedicated\",\n        \"price\": 300,\n        \"hourly_price\": 0.45,\n        \"ram\": \"64 GB\",\n        \"cores\": \"16 vCPU\",\n        \"storage\": \"8 TB\",\n        \"transfer\": \"100 TB\"\n    }\n]"
+					"body": "{\n    \"status_name\": \"OK\",\n    \"status_code\": 200,\n    \"content\": [\n        {\n            \"id\": 30,\n            \"category\": \"shared\",\n            \"price\": 5,\n            \"hourly_price\": 0.0075,\n            \"ram\": \"1 GB\",\n            \"cores\": \"1 vCPU\",\n            \"storage\": \"32 GB\",\n            \"transfer\": \"1 TB\"\n        },\n        {\n            \"id\": 31,\n            \"category\": \"shared\",\n            \"price\": 10,\n            \"hourly_price\": 0.015,\n            \"ram\": \"2 GB\",\n            \"cores\": \"1 vCPU\",\n            \"storage\": \"64 GB\",\n            \"transfer\": \"1 TB\"\n        },\n        {\n            \"id\": 32,\n            \"category\": \"shared\",\n            \"price\": 20,\n            \"hourly_price\": 0.03,\n            \"ram\": \"4 GB\",\n            \"cores\": \"2 vCPU\",\n            \"storage\": \"128 GB\",\n            \"transfer\": \"2 TB\"\n        },\n        {\n            \"id\": 33,\n            \"category\": \"shared\",\n            \"price\": 25,\n            \"hourly_price\": 0.0375,\n            \"ram\": \"4 GB\",\n            \"cores\": \"2 vCPU\",\n            \"storage\": \"256 GB\",\n            \"transfer\": \"5 TB\"\n        },\n        {\n            \"id\": 34,\n            \"category\": \"shared\",\n            \"price\": 35,\n            \"hourly_price\": 0.0525,\n            \"ram\": \"8 GB\",\n            \"cores\": \"4 vCPU\",\n            \"storage\": \"512 GB\",\n            \"transfer\": \"5 TB\"\n        },\n        {\n            \"id\": 35,\n            \"category\": \"vps\",\n            \"price\": 10,\n            \"hourly_price\": 0.015,\n            \"ram\": \"1 GB\",\n            \"cores\": \"1 vCPU\",\n            \"storage\": \"128 GB\",\n            \"transfer\": \"1 TB\"\n        },\n        {\n            \"id\": 36,\n            \"category\": \"vps\",\n            \"price\": 15,\n            \"hourly_price\": 0.0225,\n            \"ram\": \"2 GB\",\n            \"cores\": \"2 vCPU\",\n            \"storage\": \"256 GB\",\n            \"transfer\": \"2 TB\"\n        },\n        {\n            \"id\": 37,\n            \"category\": \"vps\",\n            \"price\": 20,\n            \"hourly_price\": 0.03,\n            \"ram\": \"4 GB\",\n            \"cores\": \"2 vCPU\",\n            \"storage\": \"512 GB\",\n            \"transfer\": \"5 TB\"\n        },\n        {\n            \"id\": 38,\n            \"category\": \"dedicated\",\n            \"price\": 60,\n            \"hourly_price\": 0.09,\n            \"ram\": \"16 GB\",\n            \"cores\": \"6 vCPU\",\n            \"storage\": \"2 TB\",\n            \"transfer\": \"25 TB\"\n        },\n        {\n            \"id\": 39,\n            \"category\": \"dedicated\",\n            \"price\": 140,\n            \"hourly_price\": 0.21,\n            \"ram\": \"32 GB\",\n            \"cores\": \"12 vCPU\",\n            \"storage\": \"5 TB\",\n            \"transfer\": \"50 TB\"\n        },\n        {\n            \"id\": 40,\n            \"category\": \"dedicated\",\n            \"price\": 300,\n            \"hourly_price\": 0.45,\n            \"ram\": \"64 GB\",\n            \"cores\": \"16 vCPU\",\n            \"storage\": \"8 TB\",\n            \"transfer\": \"100 TB\"\n        }\n    ]\n}"
 				}
 			]
 		}
