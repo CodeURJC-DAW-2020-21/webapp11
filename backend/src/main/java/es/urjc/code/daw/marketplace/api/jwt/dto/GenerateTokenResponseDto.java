@@ -1,19 +1,23 @@
 package es.urjc.code.daw.marketplace.api.jwt.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
+import org.apache.commons.lang3.StringUtils;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class GenerateTokenResponseDto {
 
-    public static GenerateTokenResponseDto create(String token, boolean successful) {
-        return new GenerateTokenResponseDto(token, successful);
-    }
+    @JsonProperty("user_id")
+    @Builder.Default
+    private Long userId = -1L;
 
-    private String token;
-    private boolean successful;
+    @JsonProperty("token")
+    @Builder.Default
+    private String token = StringUtils.EMPTY;
+
 
 }

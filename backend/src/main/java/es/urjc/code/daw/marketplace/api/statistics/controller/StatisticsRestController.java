@@ -1,5 +1,6 @@
 package es.urjc.code.daw.marketplace.api.statistics.controller;
 
+import es.urjc.code.daw.marketplace.api.common.RestResponseDto;
 import es.urjc.code.daw.marketplace.api.statistics.dto.StatisticsResponseDto;
 import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.service.AuthenticationService;
@@ -51,22 +52,32 @@ public class StatisticsRestController {
             path = ROOT_ROUTE,
             method = RequestMethod.GET
     )
-    public ResponseEntity<StatisticsResponseDto> findStatistics() {
+    public ResponseEntity<RestResponseDto> findStatistics() {
         User loggedUser = authenticationService.getTokenUser();
+        if(loggedUser == null) {
+            final String message = "The token was invalid or no token was provided at all";
+            RestResponseDto response = RestResponseDto.builder().status(HttpStatus.UNAUTHORIZED).content(message).build();
+            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+        }
         // Ensure the user that requests the statistics is an admin
-        if(!loggedUser.isAdmin()) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        if(!loggedUser.isAdmin()) {
+            final String message = "You have no permission to perform this operation (only the order owner or the admin)";
+            RestResponseDto response = RestResponseDto.builder().status(HttpStatus.UNAUTHORIZED).content(message).build();
+            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+        }
         // Find the required statistics
         List<Integer> currentWeekSales = productService.findSalesPerDayInWeek();
         List<Pair<String, Integer>> categoryWeeklyPurchases = productService.findCategoryToWeeklyPurchases();
         Long accumulatedCapital = productService.findAccumulatedCapital();
         // Build the statistics response manually
-        StatisticsResponseDto response = StatisticsResponseDto.builder()
+        StatisticsResponseDto content = StatisticsResponseDto.builder()
                 .accumulatedCapital(accumulatedCapital)
                 .categoryWeeklyPurchases(categoryWeeklyPurchases)
                 .currentWeekSales(currentWeekSales)
             .build();
         // Return a successful response
-        return ResponseEntity.ok(response);
+        RestResponseDto response = RestResponseDto.builder().status(HttpStatus.OK).content(content).build();
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 }

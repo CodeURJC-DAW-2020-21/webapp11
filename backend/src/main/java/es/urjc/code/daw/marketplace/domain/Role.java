@@ -3,6 +3,7 @@ package es.urjc.code.daw.marketplace.domain;
 import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -22,6 +23,6 @@ public class Role implements Serializable {
     private String name;
 
     @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
+    private Set<User> users = new HashSet<>();
 
 }

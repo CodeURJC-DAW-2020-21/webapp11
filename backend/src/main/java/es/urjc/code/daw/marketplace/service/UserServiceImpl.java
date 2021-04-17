@@ -42,7 +42,8 @@ public class UserServiceImpl implements UserService {
     public User registerUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Role clientRole = roleRepository.findByName(DEFAULT_ROLE);
-        user.getRoles().add(Role.builder().id(clientRole.getId()).build());
+        Role newRole = Role.builder().id(clientRole.getId()).build();
+        user.getRoles().add(newRole);
         return userRepository.saveAndFlush(user);
     }
 
@@ -110,7 +111,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUserById(Long id) {
-        return userRepository.findUserById(id);
+        try {
+            return userRepository.findUserById(id);
+        } catch(Exception exception) {
+            return null;
+        }
     }
 
     @Override

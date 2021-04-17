@@ -13,9 +13,6 @@ import java.util.Date;
 @NoArgsConstructor
 public class UpdateOrderRequestDto {
 
-    @JsonProperty("order_id")
-    private Long orderId;
-
     @JsonProperty("months")
     private Integer monthsRenewed;
 

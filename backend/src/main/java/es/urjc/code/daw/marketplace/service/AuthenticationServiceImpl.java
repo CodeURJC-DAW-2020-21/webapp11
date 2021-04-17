@@ -3,6 +3,7 @@ package es.urjc.code.daw.marketplace.service;
 import es.urjc.code.daw.marketplace.domain.User;
 import es.urjc.code.daw.marketplace.security.jwt.JwtTokenService;
 import es.urjc.code.daw.marketplace.security.jwt.extractor.TokenExtractor;
+import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,6 +30,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
+    @SneakyThrows
     public void authenticate(Object principal, Object credentials) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(principal, credentials)
@@ -39,12 +41,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public User getTokenUser() {
         String token = tokenExtractor.containsToken() ? tokenExtractor.extractToken() : StringUtils.EMPTY;
         String email = tokenService.extractTokenSubject(token);
-        User loggedUser = userService.findUserByEmail(email);
-        if (loggedUser == null){
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
-        } else {
-            return loggedUser;
-        }
+        return userService.findUserByEmail(email);
     }
 
 }

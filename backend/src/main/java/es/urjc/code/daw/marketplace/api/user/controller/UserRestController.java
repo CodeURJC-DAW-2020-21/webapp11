@@ -1,5 +1,6 @@
 package es.urjc.code.daw.marketplace.api.user.controller;
 
+import es.urjc.code.daw.marketplace.api.common.RestResponseDto;
 import es.urjc.code.daw.marketplace.api.user.dto.*;
 import es.urjc.code.daw.marketplace.api.user.mapper.RestUserMapper;
 import es.urjc.code.daw.marketplace.domain.User;
@@ -15,6 +16,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -77,22 +79,34 @@ public class UserRestController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<RegisterUserResponseDto> createUser(@RequestBody RegisterUserRequestDto request,
-                                                              UriComponentsBuilder uriComponentsBuilder) {
-        // Build the domain user from the request
-        User requestUser = userMapper.asRegisterUser(request);
-        // Save the built user
-        User storedUser = userService.registerUser(requestUser);
-        // Construct the user welcome email message
-        final String title = EmailMessageFactory.newWelcomeTitle();
-        final String message = EmailMessageFactory.newWelcomeMessage(storedUser);
-        // Send the message
-        emailService.sendEmail(storedUser.getEmail(), title, message);
-        // Create the location header to be returned
-        final String storedResourceUri = BASE_ROUTE + "/{id}";
-        UriComponents components = uriComponentsBuilder.path(storedResourceUri).buildAndExpand(storedUser.getId());
-        // Return a successful response with the location header
-        return ResponseEntity.created(components.toUri()).body(RegisterUserResponseDto.successful());
+    public ResponseEntity<RestResponseDto> createUser(@RequestBody RegisterUserRequestDto request,
+                                                      UriComponentsBuilder uriComponentsBuilder) {
+        try {
+            // Build the domain user from the request
+            User requestUser = userMapper.asRegisterUser(request);
+            // Save the built user
+            User storedUser = userService.registerUser(requestUser);
+            // Construct the user welcome email message
+            final String emailTitle = EmailMessageFactory.newWelcomeTitle();
+            final String emailMessage = EmailMessageFactory.newWelcomeMessage(storedUser);
+            // Send the message
+            try {
+                emailService.sendEmail(storedUser.getEmail(), emailTitle, emailMessage);
+            } catch(Exception exception) {
+                final String message = "The welcome email message sending has failed";
+                RestResponseDto response = RestResponseDto.builder().status(HttpStatus.INTERNAL_SERVER_ERROR).content(message).build();
+                return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+            // Create the location header to be returned
+            final String storedResourceUri = BASE_ROUTE + "/{id}";
+            UriComponents components = uriComponentsBuilder.path(storedResourceUri).buildAndExpand(storedUser.getId());
+            // Return a successful response with the location header
+            FindUserResponseDto findUser = userMapper.asFindUserResponse(storedUser, StringUtils.EMPTY);
+            RestResponseDto response = RestResponseDto.builder().status(HttpStatus.OK).content(findUser).build();
+            return ResponseEntity.created(components.toUri()).body(response);
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
     @Operation(summary = "Updates the information of a user")
@@ -125,16 +139,27 @@ public class UserRestController {
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<UpdateUserResponseDto> updateUser(@PathVariable("id") Long userId,
-                                                            @RequestBody UpdateUserRequestDto request) {
+    public ResponseEntity<RestResponseDto> updateUser(@PathVariable("id") Long userId,
+                                                      @RequestBody UpdateUserRequestDto request) {
         User loggedUser = authenticationService.getTokenUser();
+        if(loggedUser == null) {
+            final String message = "The token was invalid or no token was provided at all";
+            RestResponseDto response = RestResponseDto.builder().status(HttpStatus.UNAUTHORIZED).content(message).build();
+            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+        }
         // Ensure the logged in user has permissions to update
         if(!loggedUser.isAdmin() && userId.longValue() != loggedUser.getId().longValue()) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            final String message = "You have no permission to perform this operation (only the order owner or the admin)";
+            RestResponseDto response = RestResponseDto.builder().status(HttpStatus.UNAUTHORIZED).content(message).build();
+            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
         }
         // Map the user to update to a domain entity
         User updateUser = userMapper.asUpdateUser(request);
-        if(updateUser == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if(updateUser == null) {
+            final String message = "There is no user associated to the provided user id";
+            RestResponseDto response = RestResponseDto.builder().status(HttpStatus.NOT_FOUND).content(message).build();
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
         // Set the id to the the user to be modified id
         updateUser.setId(userId);
         // Ensure the picture to be updated is present in the request and if so update the picture
@@ -148,9 +173,11 @@ public class UserRestController {
             updateUser.setProfilePictureFilename(filename);
         }
         // Update the user data
-        userService.updateUser(updateUser, loggedUser.isAdmin());
+        User storedUser = userService.updateUser(updateUser, loggedUser.isAdmin());
         // Send a successful response
-        return ResponseEntity.ok(UpdateUserResponseDto.successful());
+        FindUserResponseDto findUser = userMapper.asFindUserResponse(storedUser, pictureService.getEncodedPicture(storedUser));
+        RestResponseDto response = RestResponseDto.builder().status(HttpStatus.OK).content(findUser).build();
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @Operation(summary = "Finds the user information")
@@ -177,21 +204,33 @@ public class UserRestController {
             path = BASE_ROUTE + "/{id}",
             method = RequestMethod.GET
     )
-    public ResponseEntity<FindUserResponseDto> findUser(@PathVariable("id") Long userId) throws Exception {
+    public ResponseEntity<RestResponseDto> findUser(@PathVariable("id") Long userId) throws Exception {
         User loggedUser = authenticationService.getTokenUser();
+        if(loggedUser == null) {
+            final String message = "The token was invalid or no token was provided at all";
+            RestResponseDto response = RestResponseDto.builder().status(HttpStatus.UNAUTHORIZED).content(message).build();
+            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+        }
         // Ensure the logged in user has permissions to update
         if(!loggedUser.isAdmin() && userId.longValue() != loggedUser.getId().longValue()) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            final String message = "You have no permission to perform this operation (only the order owner or the admin)";
+            RestResponseDto response = RestResponseDto.builder().status(HttpStatus.UNAUTHORIZED).content(message).build();
+            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
         }
         // Ensure the user associated to the provided id exists
         User findUser = userService.findUserById(userId);
-        if(findUser == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if(findUser == null) {
+            final String message = "There is no user associated to the provided user id";
+            RestResponseDto response = RestResponseDto.builder().status(HttpStatus.NOT_FOUND).content(message).build();
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
         // Find the base64 encoded picture
         String encodedImage = pictureService.getEncodedPicture(findUser);
         // Build the response with the user and encoded image
-        FindUserResponseDto response = userMapper.asFindUserResponse(findUser, encodedImage);
+        FindUserResponseDto content = userMapper.asFindUserResponse(findUser, encodedImage);
         // Send successful response
-        return ResponseEntity.ok(response);
+        RestResponseDto response = RestResponseDto.builder().status(HttpStatus.OK).content(content).build();
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @Operation(summary = "Finds a paginated list of users")
@@ -218,21 +257,35 @@ public class UserRestController {
             path = BASE_ROUTE,
             method = RequestMethod.GET
     )
-    public ResponseEntity<List<FindUserResponseDto>> findUsers(@RequestParam("page") Integer page,
+    public ResponseEntity<RestResponseDto> findUsers(@RequestParam("page") Integer page,
                                                                @RequestParam("amount") Integer amount) {
         User loggedUser = authenticationService.getTokenUser();
+        if(loggedUser == null) {
+            final String message = "The token was invalid or no token was provided at all";
+            RestResponseDto response = RestResponseDto.builder().status(HttpStatus.UNAUTHORIZED).content(message).build();
+            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+        }
         // Ensure the requester is an admin
-        if(!loggedUser.isAdmin()) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        if(!loggedUser.isAdmin()) {
+            final String message = "You have no permission to perform this operation (only the order owner or the admin)";
+            RestResponseDto response = RestResponseDto.builder().status(HttpStatus.UNAUTHORIZED).content(message).build();
+            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+        }
         // Find all users
         List<User> users = userService.findAllUsers(PageRequest.of(page - 1, amount));
-        if(users.isEmpty()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if(users.isEmpty()) {
+            final String message = "There are no users to be returned (user list is empty)";
+            RestResponseDto response = RestResponseDto.builder().status(HttpStatus.NOT_FOUND).content(message).build();
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
         // Map users to DTO's
-        List<FindUserResponseDto> response = users.stream().map(user -> {
+        List<FindUserResponseDto> content = users.stream().map(user -> {
             String encodedImage = pictureService.getEncodedPicture(user);
             return userMapper.asFindUserResponse(user, encodedImage);
         }).collect(Collectors.toList());
         // Send successful response
-        return ResponseEntity.ok(response);
+        RestResponseDto response = RestResponseDto.builder().status(HttpStatus.OK).content(content).build();
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 }

@@ -7,6 +7,7 @@ import com.auth0.jwt.interfaces.JWTVerifier;
 import es.urjc.code.daw.marketplace.security.jwt.config.JwtProperties;
 import es.urjc.code.daw.marketplace.security.jwt.exception.CannotCreateJwtVerifierException;
 import es.urjc.code.daw.marketplace.util.TimeUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Component;
 
@@ -36,13 +37,17 @@ public class JwtTokenServiceImpl implements JwtTokenService {
 
     @Override
     public String generateTokenFor(String subject) {
-        return JWT.create()
-                .withIssuer(properties.getIssuer())
-                .withAudience(properties.getAudience())
-                .withIssuedAt(TimeUtils.now())
-                .withSubject(subject)
-                .withExpiresAt(TimeUtils.sumsMillisToDate(TimeUtils.now(), properties.getExpirationMillis()))
-            .sign(HMAC512(properties.getSecret().getBytes()));
+        try {
+            return JWT.create()
+                    .withIssuer(properties.getIssuer())
+                    .withAudience(properties.getAudience())
+                    .withIssuedAt(TimeUtils.now())
+                    .withSubject(subject)
+                    .withExpiresAt(TimeUtils.sumsMillisToDate(TimeUtils.now(), properties.getExpirationMillis()))
+                    .sign(HMAC512(properties.getSecret().getBytes()));
+        } catch(Exception exception) {
+            return StringUtils.EMPTY;
+        }
     }
 
     @Override

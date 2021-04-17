@@ -1,5 +1,6 @@
 package es.urjc.code.daw.marketplace.api.product.controller;
 
+import es.urjc.code.daw.marketplace.api.common.RestResponseDto;
 import es.urjc.code.daw.marketplace.api.product.dto.FindProductResponseDto;
 import es.urjc.code.daw.marketplace.api.product.mapper.RestProductMapper;
 import es.urjc.code.daw.marketplace.domain.Product;
@@ -10,6 +11,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,15 +59,20 @@ public class ProductRestController {
             path = BASE_ROUTE,
             method = RequestMethod.GET
     )
-    public ResponseEntity<List<FindProductResponseDto>> findAllProducts() {
+    public ResponseEntity<RestResponseDto> findAllProducts() {
         // Find all the available products
         List<Product> products = productService.findAllProducts();
         // If there are no products return the appropriate response
-        if(products.isEmpty()) return ResponseEntity.notFound().build();
+        if(products.isEmpty()) {
+            final String message = "There are no products to be returned (product list is empty)";
+            RestResponseDto response = RestResponseDto.builder().status(HttpStatus.NOT_FOUND).content(message).build();
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
         // All the found products map them to DTO's
-        List<FindProductResponseDto> response = products.stream().map(restProductMapper::asFindResponse).collect(Collectors.toList());
+        List<FindProductResponseDto> content = products.stream().map(restProductMapper::asFindResponse).collect(Collectors.toList());
         // Send the successful response with all the DTO products
-        return ResponseEntity.ok(response);
+        RestResponseDto response = RestResponseDto.builder().status(HttpStatus.OK).content(content).build();
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 }

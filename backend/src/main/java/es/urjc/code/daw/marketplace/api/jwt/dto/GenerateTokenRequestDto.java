@@ -1,15 +1,19 @@
 package es.urjc.code.daw.marketplace.api.jwt.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
+@Builder
 public class GenerateTokenRequestDto {
 
+    @JsonProperty("email")
     private String email;
+
+    @JsonProperty("password")
     private String password;
 
 }

@@ -80,9 +80,10 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public void updateCurrentOtd(OneTimeDiscount discount) {
+    public OneTimeDiscount updateCurrentOtd(OneTimeDiscount discount) {
         disableCurrentOtd();
-        if(discount.getEnabled()) otdRepository.saveAndFlush(discount);
+        if(discount.getEnabled()) return otdRepository.saveAndFlush(discount);
+        return null;
     }
 
     @Override
@@ -91,9 +92,10 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public void updateCurrentAd(AccumulativeDiscount discount) {
+    public AccumulativeDiscount updateCurrentAd(AccumulativeDiscount discount) {
         disableCurrentAd();
-        if(discount.getEnabled()) adRepository.saveAndFlush(discount);
+        if(discount.getEnabled()) return adRepository.saveAndFlush(discount);
+        return null;
     }
 
     @Override
