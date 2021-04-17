@@ -20,12 +20,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/tokens",
-					"protocol": "https",
+					"raw": "{{address}}/api/tokens",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"tokens"
@@ -131,12 +129,10 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:8443/api/tokens",
-					"protocol": "https",
+					"raw": "{{address}}/api/tokens",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"tokens"
@@ -239,12 +235,10 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:8443/api/orders?page=2&amount=10",
-					"protocol": "https",
+					"raw": "{{address}}/api/orders?page=1&amount=10",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"orders"
@@ -252,7 +246,7 @@
 					"query": [
 						{
 							"key": "page",
-							"value": "2"
+							"value": "1"
 						},
 						{
 							"key": "amount",
@@ -456,12 +450,10 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:8443/api/orders/46",
-					"protocol": "https",
+					"raw": "{{address}}/api/orders/46",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"orders",
@@ -565,12 +557,10 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:8443/api/orders/46/renew",
-					"protocol": "https",
+					"raw": "{{address}}/api/orders/46/renew",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"orders",
@@ -676,12 +666,10 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:8443/api/orders/46/cancel",
-					"protocol": "https",
+					"raw": "{{address}}/api/orders/46/cancel",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"orders",
@@ -787,12 +775,10 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:8443/api/orders/46/pdf",
-					"protocol": "https",
+					"raw": "{{address}}/api/orders/46/pdf",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"orders",
@@ -902,12 +888,10 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:8443/api/users/29",
-					"protocol": "https",
+					"raw": "{{address}}/api/users/29",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"users",
@@ -1020,12 +1004,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/users/29",
-					"protocol": "https",
+					"raw": "{{address}}/api/users/29",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"users",

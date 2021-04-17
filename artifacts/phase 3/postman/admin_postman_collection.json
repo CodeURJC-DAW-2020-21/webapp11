@@ -20,12 +20,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/tokens",
-					"protocol": "https",
+					"raw": "{{address}}/api/tokens",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"tokens"
@@ -131,12 +129,10 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:8443/api/tokens",
-					"protocol": "https",
+					"raw": "{{address}}/api/tokens",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"tokens"
@@ -239,12 +235,10 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:8443/api/statistics",
-					"protocol": "https",
+					"raw": "{{address}}/api/statistics",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"statistics"
@@ -346,12 +340,10 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:8443/api/users?page=1&amount=10",
-					"protocol": "https",
+					"raw": "{{address}}/api/users?page=1&amount=10",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"users"
@@ -743,12 +735,10 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:8443/api/users/5",
-					"protocol": "https",
+					"raw": "{{address}}/api/users/5",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"users",
@@ -1014,12 +1004,10 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:8443/api/users/29/picture",
-					"protocol": "https",
+					"raw": "{{address}}/api/users/29/picture",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"users",
@@ -1051,12 +1039,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/users/5",
-					"protocol": "https",
+					"raw": "{{address}}/api/users/5",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"users",
@@ -1194,12 +1180,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/users/5",
-					"protocol": "https",
+					"raw": "{{address}}/api/users/5",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"users",
@@ -1337,12 +1321,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/sales/onetime",
-					"protocol": "https",
+					"raw": "{{address}}/api/sales/onetime",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"sales",
@@ -1480,12 +1462,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/sales/onetime",
-					"protocol": "https",
+					"raw": "{{address}}/api/sales/onetime",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"sales",
@@ -1634,12 +1614,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/sales/onetime",
-					"protocol": "https",
+					"raw": "{{address}}/api/sales/onetime",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"sales",
@@ -1785,12 +1763,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/sales/accumulative",
-					"protocol": "https",
+					"raw": "{{address}}/api/sales/accumulative",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"sales",
@@ -1928,12 +1904,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/sales/accumulative",
-					"protocol": "https",
+					"raw": "{{address}}/api/sales/accumulative",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"sales",
@@ -2070,12 +2044,10 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:8443/api/sales/accumulative",
-					"protocol": "https",
+					"raw": "{{address}}/api/sales/accumulative",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"sales",

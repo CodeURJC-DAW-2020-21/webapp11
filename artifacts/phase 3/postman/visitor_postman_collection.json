@@ -20,12 +20,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/users",
-					"protocol": "https",
+					"raw": "{{address}}/api/users",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"users"
@@ -137,12 +135,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/tokens",
-					"protocol": "https",
+					"raw": "{{address}}/api/tokens",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"tokens"
@@ -248,12 +244,10 @@
 					}
 				],
 				"url": {
-					"raw": "https://localhost:8443/api/tokens",
-					"protocol": "https",
+					"raw": "{{address}}/api/tokens",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"tokens"
@@ -350,12 +344,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:8443/api/products",
-					"protocol": "https",
+					"raw": "{{address}}/api/products",
 					"host": [
-						"localhost"
+						"{{address}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"products"
