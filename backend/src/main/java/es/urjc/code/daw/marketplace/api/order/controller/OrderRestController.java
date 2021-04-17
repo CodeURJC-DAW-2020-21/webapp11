@@ -187,13 +187,11 @@ public class OrderRestController {
             @ApiResponse(
                     responseCode = "200",
                     description = "The order from the user was found successfully",
-                    content = {@Content(
-                            schema = @Schema(implementation = PlaceOrderResponseDto.class)
-                    )}
+                    content = @Content
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "Cannot perform placing order",
+                    description = "The request was incomplete or the parameters were invalid",
                     content = @Content
             ),
             @ApiResponse(
@@ -258,9 +256,7 @@ public class OrderRestController {
             @ApiResponse(
                     responseCode = "200",
                     description = "The order has been successfully updated",
-                    content = {@Content(
-                            schema = @Schema(implementation = PlaceOrderResponseDto.class)
-                    )}
+                    content = @Content
             ),
             @ApiResponse(
                     responseCode = "400",

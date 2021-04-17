@@ -38,9 +38,7 @@ public class StatisticsRestController {
             @ApiResponse(
                     responseCode = "200",
                     description = "The sales statistics were found successfully",
-                    content = {@Content(
-                            schema = @Schema(implementation = StatisticsResponseDto.class)
-                    )}
+                    content = @Content
             ),
             @ApiResponse(
                     responseCode = "401",

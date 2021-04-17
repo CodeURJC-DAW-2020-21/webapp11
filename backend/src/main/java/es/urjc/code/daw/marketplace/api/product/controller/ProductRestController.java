@@ -38,9 +38,7 @@ public class ProductRestController {
             @ApiResponse(
                     responseCode = "200",
                     description = "The list of products was found successfully",
-                    content = {@Content(
-                            array = @ArraySchema(schema = @Schema(implementation = FindProductResponseDto.class))
-                    )}
+                    content = @Content
             ),
             @ApiResponse(
                     responseCode = "400",

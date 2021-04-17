@@ -59,9 +59,7 @@ public class UserRestController {
             @ApiResponse(
                     responseCode = "201",
                     description = "The new user creation was successful",
-                    content = {@Content(
-                            schema = @Schema(implementation = RegisterUserResponseDto.class)
-                    )}
+                    content = @Content
             ),
             @ApiResponse(
                     responseCode = "400",
@@ -114,9 +112,7 @@ public class UserRestController {
             @ApiResponse(
                     responseCode = "200",
                     description = "The information update of the user was successful",
-                    content = {@Content(
-                            schema = @Schema(implementation = UpdateUserResponseDto.class)
-                    )}
+                    content = @Content
             ),
             @ApiResponse(
                     responseCode = "400",
@@ -185,9 +181,7 @@ public class UserRestController {
             @ApiResponse(
                     responseCode = "200",
                     description = "Returns the information of a requested user",
-                    content = {@Content(
-                            schema = @Schema(implementation = FindUserResponseDto.class)
-                    )}
+                    content = @Content
             ),
             @ApiResponse(
                     responseCode = "401",
@@ -238,9 +232,7 @@ public class UserRestController {
             @ApiResponse(
                     responseCode = "200",
                     description = "The list of users was retrieved successfully",
-                    content = {@Content(
-                            array = @ArraySchema(schema = @Schema(implementation = FindUserResponseDto.class))
-                    )}
+                    content = @Content
             ),
             @ApiResponse(
                     responseCode = "401",

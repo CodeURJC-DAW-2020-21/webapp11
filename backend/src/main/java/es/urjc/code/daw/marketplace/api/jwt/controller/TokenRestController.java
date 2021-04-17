@@ -82,12 +82,12 @@ public class TokenRestController {
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Returns the validation response",
+                    description = "Returns the validation response with the validation result",
                     content = @Content
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "No valid token was provided",
+                    description = "The token was invalid or no token was provided at all",
                     content = @Content
             ),
     })

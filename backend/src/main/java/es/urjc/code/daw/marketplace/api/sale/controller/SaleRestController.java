@@ -46,10 +46,7 @@ public class SaleRestController {
             @ApiResponse(
                     responseCode = "200",
                     description = "Returns the current active discount of the specified type",
-                    content = {
-                            @Content(schema = @Schema(implementation = FindOtdResponseDto.class)),
-                            @Content(schema = @Schema(implementation = FindAdResponseDto.class))
-                    }
+                    content = @Content
             ),
             @ApiResponse(
                     responseCode = "400",
@@ -135,9 +132,7 @@ public class SaleRestController {
             @ApiResponse(
                     responseCode = "200",
                     description = "The details of the discount have been successfully updated",
-                    content = {
-                            @Content(schema = @Schema(implementation = UpdateSaleResponseDto.class))
-                    }
+                    content = @Content
             ),
             @ApiResponse(
                     responseCode = "401",
