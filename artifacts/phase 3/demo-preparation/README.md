@@ -1,6 +1,6 @@
 # Demo Preparation
 
-- ✖ Verified whole functionality list more than twice
+- ✔ Verified whole functionality list more than twice
 
 ### Questionnaire requirements
 
@@ -15,8 +15,8 @@
 - ✔ Permissions handling, we take into account the different roles and were cautious not to allow clients perform admin stuff, or visitors to access the panel.
 - ✔ We made sure to rehuse the traditional web controllers services to encapsulate all the domain logic inside of them (because of our anemic domain model) and so we use the same services in both types of controllers (REST and Web).
 - ✔ Script de construccion de la app.
-- ✖ Dockerfile and Docker compose.
-- ✖ Images of DockerHub in the docker-compose.
+- ✔ Dockerfile and Docker compose.
+- ✔ Images of DockerHub in the docker-compose.
 - ✖ Updated class diagram with the new rest controllers.
 - ✖ Readme contains all the members participation.
 
