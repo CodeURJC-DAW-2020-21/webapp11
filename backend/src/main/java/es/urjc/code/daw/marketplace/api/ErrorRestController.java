@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class ErrorRestController {
 
-    @Operation(summary = "Send an error if some process has failed o the page does not exist")
+    @Operation(summary = "Send an error if some process has failed")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "400",
@@ -26,13 +27,20 @@ public class ErrorRestController {
                     content = @Content
             ),
     })
-
-    @RequestMapping(path = "/api/error")
+    @RequestMapping(path = "/api/error", method = RequestMethod.GET)
     public ResponseEntity<String> error() {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
-    @RequestMapping(path = "/api/not_found")
+    @Operation(summary = "Send an error if the page does not exist")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "There was an error when trying to perform a operation",
+                    content = @Content
+            ),
+    })
+    @RequestMapping(path = "/api/not_found", method = RequestMethod.GET)
     public ResponseEntity<String> notFound() {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
