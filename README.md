@@ -453,7 +453,7 @@ entities and the response views or DTO's associated to the request/response.
 
 ![alt text](artifacts/clasesytemplates.png)
 
-### Members Participation <a name="members-part-2"></a>
+### Members Participation <a name="members-part-3"></a>
 
 #### Serghei Sergheev
 
@@ -481,16 +481,15 @@ This team member mainly worked on the order and statisctics controllers, the cre
 
 #### Alberto Mautone
 
-This team member mainly worked on the mailing service, the html generation, and register functionality, also
-created the database diagram.
+This team member mainly worked on the sales REST API section, the creation, disabling of the sales, also the adaptation of the existent services to work for both rest and web controllers.
 
 | Number | Description | Commit | Focused on Files |
 | ------------- | ------------- | ------------- | ------------- |
-| #1 | Added security, draft entities and configuration | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
-| #2 | Added templates and static resources | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
-| #3 | Fixed pricing and made it work | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
-| #4 | Added working profile pictures | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
-| #5 | Added working sales | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
+| #1 | Added "updates current accumulative discount" | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/eda3ce02ad5a66e6b5d9e70c0dce4fef8f9cb555) | [SaleRestController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/sale/controller/SaleRestController.java) |
+| #2 | Added "disables current one time discount" | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/cafa1b3ccb3191dd237036cbec442fc24de0ad82) | [RestSaleMapper.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/sale/mapper/RestSaleMapper.java) |
+| #3 | Documented SalesRestController | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/9619041900d1481b36b26c796cf61e7e824024ab) | [UserRestController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/user/controller/UserRestController.java) |
+| #4 | Added "disables current accumulative discount" | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/bf83ab0982b789f92832c9c301846bf543530124) | [RestUserMapper.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/user/mapper/RestUserMapper.java) |
+| #5 | Updated UserRestController | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/7f31d4a0034798cec41e5753137cd56496466123) | [UserServiceImpl.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/service/UserServiceImpl.java) |
 
 #### Alejandro José Rodriguez Montero
 
@@ -498,11 +497,11 @@ This team member mainly worked on the service overview, classes and templates di
 
 | Number | Description | Commit | Focused on Files |
 | ------------- | ------------- | ------------- | ------------- |
-| #1 | Added security, draft entities and configuration | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
-| #2 | Added templates and static resources | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
-| #3 | Fixed pricing and made it work | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
-| #4 | Added working profile pictures | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
-| #5 | Added working sales | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
+| #1 | Added the obtaining products method | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/b8ebf4f42b78a47cdf460f72cd6bd99ae2835b48) | [ProductRestController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/product/controller/ProductRestController.java) |
+| #2 | Added purchase products method | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/7fd6968edd768667d3658fa2df224ddce1203dfe) | [OrderRestController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/order/controller/OrderRestController.java) |
+| #3 | Documented with open api | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/9cc88df2f7e9866a7562361b0bf0019e32bccd30) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
+| #4 | Added PlaceOrderResponseDto | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/24cfa7df0c1bd6f28a0cf92cf0a12ea1fd42d9f8) | [PlaceOrderResponseDto.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/order/dto/PlaceOrderResponseDto.java) |
+| #5 | Update OrderRestController and ProductRestController | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/1a7631f8e93930ab34439b478c5ad87690207dca) | [UpdateOrderRequestDto.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/order/dto/UpdateOrderRequestDto.java) |
 
 #### Álvaro Noguerales Ramos
 
@@ -510,11 +509,11 @@ This team member mainly worked on the services listing, one time discount, oders
 
 | Number | Description | Commit | Focused on Files |
 | ------------- | ------------- | ------------- | ------------- |
-| #1 | Added security, draft entities and configuration | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
-| #2 | Added templates and static resources | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
-| #3 | Fixed pricing and made it work | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
-| #4 | Added working profile pictures | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
-| #5 | Added working sales | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
+| #1 | Added "Find otd" in rest controller | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/ad244160a96c72c18b43a1640f8469e7095dc020) | [SaleRestController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/sale/controller/SaleRestController.java) |
+| #2 | Added "Find ad" in rest controller | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/4ba85577f211f3ed24e7d4f1edfcf7dae334b959) | [SaleRestController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/sale/controller/SaleRestController.java) |
+| #3 | Added "Update otd" in rest controller | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/76f8a1e067bcd08b3a6c45e00ed517b28eb5b4f2) | [SaleRestController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/sale/controller/SaleRestController.java) |
+| #4 | Added documented api error  | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/4a169cb29b4967b7e329f49d925a547386a32d6d) | [SaleRestController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/sale/controller/SaleRestController.java) |
+| #5 | Modified routes for REST API best practices  | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/5d93d7b37e5e7c9ed7e2bcf9674c51b739eb86ba) | [SaleRestController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/sale/controller/SaleRestController.java) |
 
 
 
