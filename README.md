@@ -380,9 +380,9 @@ This team member mainly worked on the services listing, one time discount, oders
 
 ## Phase 3 <a name="phase-3"></a>
 
-### Installation
+## Installation
 
-**Dependencies**
+### Dependencies (or Prerequisites)
 
 Make sure you have installed:
 - Docker Engine
@@ -425,6 +425,15 @@ The documentation that represents all the REST API endpoints can be viewed in 3 
 - Plain Text HTML [(Click to view the page)](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/api-docs/api-docs.html)
 - YAML Document Format [(Click to view the page)](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/api-docs/api-docs.yaml)
 
+If you want to test the API make sure to check our postman collections:
+- Admin collection [(Click to view the collection)](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/artifacts/phase%203/postman/admin_postman_collection.json)
+- Client collection [(Click to view the collection)](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/artifacts/phase%203/postman/client_postman_collection.json)
+- Visitor collection [(Click to view the collection)](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/artifacts/phase%203/postman/visitor_postman_collection.json)
+
+Note: those collections have two defined variables:
+- _**{{token}}**_: represents the current token value with the bearer included, i.e. "Token rj88jf348jf438jf48..."
+- _**{{address}}**_: represents the url of the current server, i.e. "https://localhost:8443"
+
 ## Classes and Templates Updated Diagram <a name="diagrams-3-ed"></a>
 
 This diagram is a classes and templates diagram of our application,
@@ -444,7 +453,68 @@ entities and the response views or DTO's associated to the request/response.
 
 ![alt text](artifacts/clasesytemplates.png)
 
+### Members Participation <a name="members-part-2"></a>
 
+#### Serghei Sergheev
+
+This team member added the skeleton structure of the rest application, security (jwts), error handling, postman collections, bugfixes, and helped
+team members with everything that was necessary.
+
+| Number | Description | Commit | Focused on Files |
+| ------------- | ------------- | ------------- | ------------- |
+| #1 | Added JWT (Json Web Tokens) auth | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/f2fceb1201f5fee6d6ca6532691c60e3dc8c92cb) | [TokenRestController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/jwt/controller/TokenRestController.java) |
+| #2 | Added Postman Collections | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/fad5000847df15a82296dec2bec76e56cf87007a) | [OrderRestController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/order/controller/OrderRestController.java) |
+| #3 | Refactored REST API for best practices | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/3acb49075913c56a8c9fa7590d9a5d498c1f8dd1) | [ProductRestController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/product/controller/ProductRestController.java) |
+| #4 | Integrated image retrieval in find user | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/039e42e05617eee8a62a7970cc950776ca74219f) | [SaleRestController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/sale/controller/SaleRestController.java) |
+| #5 | Performed general improvements  | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/fac231e27e154d3742383219cec9ab9e5a465b71) | [UserRestController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/user/controller/UserRestController.java) |
+
+#### Allan Robert Cobb
+
+This team member mainly worked on the order and statisctics controllers, the creation of docker batch scripts (and other docker windows related stuff), helped testing the docker containers and helped team members.
+| Number | Description | Commit | Focused on Files |
+| ------------- | ------------- | ------------- | ------------- |
+| #1 | Implemented Order Mapper and FinderOrderResponseDto | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/7b5ee8cbc7e9c64130dfdde9db86435f1284ff3b) | [OrderRestController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/order/controller/OrderRestController.java) |
+| #2 | Added findServices method (from OrderRestController) | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/232ee3b7f3d1966ac61d91fc8f62a5cfe06d2c07) | [RestOrderMapper.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/order/mapper/RestOrderMapper.java) |
+| #3 | Added exportOrderToPdf method (from OrderRestController) | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/40493fae6f253c2f6971d3bbeff9dd36e3e93f3a) | [StatisticsRestController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/statistics/controller/StatisticsRestController.java) |
+| #4 | Created StatisticsResponseDto & StatisticsRestController | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/3856f1c4fb40ddea2b1ccc46ae0b99459ac267fc) | [FindOrderResponseDto.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/order/dto/FindOrderResponseDto.java) |
+| #5 | Created windows batch docker script | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/eaa64fd3a68ca59d2f221dac4994b2256da58df7) | [create_image.bat](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/docker/create_image.bat) |
+
+#### Alberto Mautone
+
+This team member mainly worked on the mailing service, the html generation, and register functionality, also
+created the database diagram.
+
+| Number | Description | Commit | Focused on Files |
+| ------------- | ------------- | ------------- | ------------- |
+| #1 | Added security, draft entities and configuration | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
+| #2 | Added templates and static resources | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
+| #3 | Fixed pricing and made it work | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
+| #4 | Added working profile pictures | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
+| #5 | Added working sales | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
+
+#### Alejandro José Rodriguez Montero
+
+This team member mainly worked on the service overview, classes and templates diagram, pdf exportation and multiple bug fixes.
+
+| Number | Description | Commit | Focused on Files |
+| ------------- | ------------- | ------------- | ------------- |
+| #1 | Added security, draft entities and configuration | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
+| #2 | Added templates and static resources | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
+| #3 | Fixed pricing and made it work | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
+| #4 | Added working profile pictures | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
+| #5 | Added working sales | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
+
+#### Álvaro Noguerales Ramos
+
+This team member mainly worked on the services listing, one time discount, oders, and bug fixes, also created the entity diagram.
+
+| Number | Description | Commit | Focused on Files |
+| ------------- | ------------- | ------------- | ------------- |
+| #1 | Added security, draft entities and configuration | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
+| #2 | Added templates and static resources | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
+| #3 | Fixed pricing and made it work | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
+| #4 | Added working profile pictures | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
+| #5 | Added working sales | [> See commit](aaaaaaaaaaaaaaaaaaaaaaaaa) | [UserServiceImpl.class](aaaaaaaaaaaaaaa) |
 
 
 
