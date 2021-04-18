@@ -17,8 +17,8 @@
 - ✔ Script de construccion de la app.
 - ✔ Dockerfile and Docker compose.
 - ✔ Images of DockerHub in the docker-compose.
-- ✖ Updated class diagram with the new rest controllers.
-- ✖ Readme contains all the members participation.
+- ✔ Updated class diagram with the new rest controllers.
+- ✔ Readme contains all the members participation.
 
 ### Functionality by user type (REST API)
 
