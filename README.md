@@ -418,6 +418,8 @@ in "webapp11/backend/src/main/resources/*".
 Go inside the "webapp11/docker" directory, and open the console, then execute one of the
 following scripts: **_create_image.sh_** (linux) or **_create_image.bat_** (windows).
 
+You may also check [our published docker image here](https://hub.docker.com/r/dawhost/marketplace).
+
 ## API Documentation <a name="api-docs-3"></a>
 
 The documentation that represents all the REST API endpoints can be viewed in 3 different ways:
