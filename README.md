@@ -493,7 +493,7 @@ This team member mainly worked on the sales REST API section, the creation, disa
 
 #### Alejandro José Rodriguez Montero
 
-This team member mainly worked on the service overview, classes and templates diagram, pdf exportation and multiple bug fixes.
+This team member participated on several controlers, mostly focused on product and order rest controllers.
 
 | Number | Description | Commit | Focused on Files |
 | ------------- | ------------- | ------------- | ------------- |
@@ -505,7 +505,7 @@ This team member mainly worked on the service overview, classes and templates di
 
 #### Álvaro Noguerales Ramos
 
-This team member mainly worked on the services listing, one time discount, oders, and bug fixes, also created the entity diagram.
+This team member mainly focused on the sale rest controllers and the different discounts.
 
 | Number | Description | Commit | Focused on Files |
 | ------------- | ------------- | ------------- | ------------- |
