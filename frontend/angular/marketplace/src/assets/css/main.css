@@ -9,6 +9,9 @@ body, html {
 #body {
   display: flex;
   flex-direction: column;
+}
+
+body {
   background: radial-gradient(ellipse at bottom, #1b2735 15%, #161925 75%) no-repeat center center fixed;
   background-size: cover;
   -webkit-background-size: cover;
@@ -20,6 +23,10 @@ body, html {
   flex: 1 0 auto;
 }
 
+.highlight:hover {
+  background: rgba(255, 255, 255, 0.125);
+}
+
 #footer {
   flex-shrink: 0;
 }
@@ -27,6 +34,22 @@ body, html {
 /*
  * Navigation
  */
+
+#profile-picture {
+  object-fit: scale-down;
+  width: 240px;
+  height: 240px;
+  border-radius: 160px;
+  border: 7px solid rgb(190, 190, 190);
+}
+
+.profile-picture {
+  object-fit: scale-down;
+  width: 40px;
+  height: 40px;
+  border-radius: 160px;
+  border: 3px solid rgb(190, 190, 190);
+}
 
 .products-menu {
   width: 210px !important;

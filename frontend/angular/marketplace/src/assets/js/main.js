@@ -1,8 +1,12 @@
 $(document).ready(() => {
 
+  $("#year").text(new Date().getFullYear());
+
   registerNavigationEvents();
-  registerHighlightEffect();
   registerCarouselSettings();
+  registerServiceOverview();
+  registerPanel();
+  registerAboutBox();
 
 });
 
@@ -35,31 +39,201 @@ const registerNavigationEvents = () => {
 }
 
 /*
- * Registers a new animation effect (all highlight classes)
- */
-const registerHighlightEffect = () => {
-  const registerHighlight = (element) => {
-    const getColorForEvent = (eventName) => {
-      const color = "rgba(255, 255, 255, {opacity})";
-      const opacity = eventName === "mouseenter" ? "0.1" : "0.025";
-      return color.replace("{opacity}", opacity);
-    };
-    const performColorSwitch = (eventName) => {
-      element.css("background-color", getColorForEvent(eventName));
-    };
-    element
-      .on("mouseenter", (event) => performColorSwitch(event.type, element))
-      .on("mouseleave", (event) => performColorSwitch(event.type, element));
-  };
-  $(".highlight").each(function () {
-    registerHighlight($(this));
-  });
-}
-
-/*
  * Register carousel default properties (if carousel exists)
  */
 const registerCarouselSettings = () => {
   const carousel = $(".carousel");
   if(carousel.length) carousel.carousel({ interval: 6000 });
+}
+
+const registerServiceOverview = () => {
+
+  if($("#start-server").length) {
+    let progressHandler = null;
+
+    const stopAllBarsFluctuation = () => {
+      clearInterval(progressHandler);
+      resetAllBarsProgress();
+      changeButtonsStatus(false);
+    }
+
+    const startAllBarsFluctuation = () => {
+      progressHandler = simulateServerStatusFluctuation();
+      changeButtonsStatus(true);
+    }
+
+    const restartAllBarsFluctuation = () => {
+      stopAllBarsFluctuation();
+      $(`#start-server`).addClass("d-none");
+      changeRestartingServerSpinner(true);
+      setTimeout(startAllBarsFluctuation, 5000);
+      setTimeout(() => changeRestartingServerSpinner(false), 5000);
+    }
+
+    $('#start-server').click(startAllBarsFluctuation);
+    $('#stop-server').click(stopAllBarsFluctuation);
+    $('#restart-server').click(restartAllBarsFluctuation);
+
+    startAllBarsFluctuation();
+
+  }
+
+}
+
+
+const changeRestartingServerSpinner = (shouldShow) => {
+  if(shouldShow) {
+    $(`#restart-server-info`).removeClass("d-none");
+  } else {
+    $(`#restart-server-info`).addClass("d-none");
+  }
+}
+
+const changeButtonsStatus = (isRunning) => {
+  if(isRunning) {
+    $(`#stop-restart-server`).removeClass("d-none");
+    $(`#start-server`).addClass("d-none");
+  } else {
+    $(`#start-server`).removeClass("d-none");
+    $(`#stop-restart-server`).addClass("d-none");
+  }
+}
+
+const changeBarProgress = (statisticName, percentage) => {
+  $(`#statistic-${statisticName}`).css("width", `${percentage}%`);
+  $(`#statistic-${statisticName}-percentage`).text(`${percentage}`);
+}
+
+const changeBarColor = (statisticName, percentage) => {
+  const resetColor = () => {
+    $(`#statistic-${statisticName}`).removeClass("bg-danger");
+    $(`#statistic-${statisticName}`).removeClass("bg-warning");
+    $(`#statistic-${statisticName}`).removeClass("bg-success");
+  }
+  resetColor();
+
+  if(percentage > 0 && percentage < 50) {
+    $(`#statistic-${statisticName}`).addClass("bg-success");
+  } else if(percentage >= 50 && percentage < 75) {
+    $(`#statistic-${statisticName}`).addClass("bg-warning");
+  } else {
+    $(`#statistic-${statisticName}`).addClass("bg-danger");
+  }
+}
+
+const simulateServerStatusFluctuation = () => {
+
+  function randomInRange(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+
+  const fluctuateProgress = () => {
+    const currentStatus = {};
+    currentStatus["cpu"] = 75;
+    currentStatus["ram"] = 50;
+
+    const updateStatus = () => {
+      const randomCpu = randomInRange(-2, 5);
+      let resultCpu = currentStatus["cpu"] + randomCpu;
+      if(resultCpu < 0) resultCpu = 0;
+      if(resultCpu > 100) resultCpu = 100;
+      changeBarColor("cpu", resultCpu);
+      changeBarProgress("cpu", resultCpu);
+
+      const randomRam = randomInRange(-2, 5);
+      let resultRam = currentStatus["ram"] + randomRam;
+      if(resultRam < 0) resultRam = 0;
+      if(resultRam > 100) resultRam = 100;
+      changeBarColor("ram", resultRam);
+      changeBarProgress("ram", resultRam);
+    }
+
+    return setInterval(() => updateStatus(), 1000 );
+  }
+
+  return fluctuateProgress();
+}
+
+const resetAllBarsProgress = () => {
+  changeBarColor("cpu", 0);
+  changeBarProgress("cpu", 0);
+  changeBarColor("ram", 0);
+  changeBarProgress("ram", 0);
+}
+
+const registerPanel = () => {
+  if($("#weekly-sales-chart").length) {
+
+    const registerContentSwitch = () => {
+
+      $(".content-button").each(function(){
+        const currentButton = $(this);
+
+        currentButton.click(() => {
+          $(".content").addClass("d-none");
+          $(".content-button").removeClass("active");
+          currentButton.addClass("active");
+          const contentId = currentButton.data('daw-content');
+          $("#" + contentId).removeClass("d-none");
+        });
+      });
+
+    }
+
+    registerContentSwitch();
+
+    const weeklySalesElement = document.getElementById('weekly-sales-chart').getContext('2d');
+
+    const weeklySalesChart = new Chart(weeklySalesElement, {
+      type: 'line',
+      data: {
+        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        datasets: [{
+          label: 'Sales in a day',
+          backgroundColor: 'rgb(21,76,121)',
+          borderColor: 'rgb(6,57,112)',
+          data: [0, 10, 5, 2, 20, 30, 45]
+        }]
+      },
+      options: {
+        plugins: {
+          datalabels: {
+            color: '#FFF'
+          }
+        }
+      }
+    });
+
+    const weeklyServicesElement = document.getElementById('weekly-services-chart').getContext('2d');
+
+    const weeklyServicesChart = new Chart(weeklyServicesElement, {
+      type: 'pie',
+      data: {
+        labels: ['Shared', 'VPS', 'Dedicated'],
+        datasets: [{
+          data: [10, 5, 5],
+          backgroundColor: ["	#ADD8E6", "#1E90FF", "	#0000FF"],
+          hoverBackgroundColor: ['#5cb85c', '#5cb85c', '#5cb85c']
+        }]
+      }
+    });
+  }
+
+}
+
+const registerAboutBox = () => {
+
+  const deviceNavigationStyleSwitcher = () => {
+    const size = deviceSize();
+    if (size === "lg" || size === "xl") {
+      $(".about-box").removeClass("rounded");
+      $(".about-box").addClass("rounded-pill");
+    } else {
+      $(".about-box").removeClass("rounded-pill");
+      $(".about-box").addClass("rounded");
+    }
+  }
+  $(window).on('load', deviceNavigationStyleSwitcher);
+  $(window).on('resize', deviceNavigationStyleSwitcher);
+
 }
