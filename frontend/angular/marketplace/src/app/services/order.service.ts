@@ -17,7 +17,7 @@ export class OrderService {
   ) { }
 
   /**
-   * Places an order for given product id.
+   * Places an order for the product identified by its given id.
    * @param productId the identifier correspondent to the product that is about to be bought
    * @return observable an observable result of a boolean representing the correct order placement, an error otherwise
    */
