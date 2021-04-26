@@ -1,18 +1,19 @@
-<!-- infrastructure-features -->
-<div data-name="infrastructure-features" class="container mt-5 text-light">
-
-  <!-- brief-description-->
+<div class="container mt-5 text-light">
   <div class="row">
     <div class="col-12 text-center text-white">
-      <h3>Select the plan for your application needs</h3>
-      <p class="text-secondary">
-        <i>No other plan offers more choice. With multiple configurations, you’re sure to find the right performance at the right price.</i>
-      </p>
+      <!-- heading -->
+      <section>
+        <h3>Select the plan for your application needs</h3>
+        <p class="text-secondary">
+          <i>No other plan offers more choice. With multiple configurations, you’re sure to find the right performance at the right price.</i>
+        </p>
+      </section><!-- / heading -->
       <nav>
+        <!-- category selector -->
         <div class="nav nav-tabs d-flex justify-content-center align-items-center" role="tablist">
           <button (click)="switchToCategory('shared')"
-                  type="button"
                   class="nav-link mx-1 bg-transparent text-white active"
+                  type="button"
                   data-bs-toggle="tab"
                   data-bs-target="#"
                   role="tab"
@@ -26,11 +27,12 @@
                   class="nav-link mx-1 bg-transparent text-white"
                   type="button"
                   data-bs-toggle="tab"
-                  data-bs-target="#nav-profile"
+                  data-bs-target="#"
                   role="tab"
                   aria-selected="false"
                   style="width: 220px;">
-            <i class="bi bi-hdd text-light"></i>&nbsp;
+            <i class="bi bi-hdd text-light"></i>
+            <span>&nbsp;</span>
             <span>Virtual Private Server</span>
           </button>
           <button (click)="switchToCategory('dedicated')"
@@ -41,15 +43,14 @@
                   role="tab"
                   aria-selected="false"
                   style="width: 220px;">
-            <i class="bi bi-hdd-rack text-light"></i>&nbsp;
+            <i class="bi bi-hdd-rack text-light"></i>
+            <span>&nbsp;</span>
             <span>Dedicated Server</span>
           </button>
-        </div>
+        </div><!-- / category selector -->
       </nav>
-
-      <!-- shared pricing -->
+      <!-- pricing -->
       <div class="mt-4">
-
         <!-- monthly price  -->
         <div class="row">
           <div class="col-12">
@@ -57,7 +58,6 @@
             <span style="font-size: 16px;">/MO</span>
           </div>
         </div><!-- / monthly price  -->
-
         <!-- hourly price  -->
         <div class="row">
           <div class="col-12">
@@ -67,7 +67,6 @@
             </small>
           </div>
         </div><!-- / hourly price  -->
-
         <!-- configuration selector  -->
         <div class="row">
           <div class="d-flex justify-content-center col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-2">
@@ -83,7 +82,6 @@
             </div>
           </div>
         </div><!-- / configuration selector  -->
-
         <!-- specs -->
         <div class="row">
           <div class="d-flex justify-content-center col mx-auto mb-4">
@@ -109,7 +107,6 @@
             </div>
           </div>
         </div><!-- / specs -->
-
         <!-- info  -->
         <div class="row justify-content-center mx-auto">
           <div class="col-6 mb-3 px-5">
@@ -119,19 +116,17 @@
             </span>
           </div>
         </div>
-
         <!-- purchase  -->
         <div class="row">
           <div class="col mx-auto mb-2 d-flex align-items-center justify-content-center">
             <button id="pricing-spec-purchase-shared" type="button" class="btn btn-outline-light">
-              <i class="bi bi-cart-plus"></i>&nbsp;
+              <i class="bi bi-cart-plus"></i>
+              <span>&nbsp;</span>
               <span>Buy now</span>
             </button>
           </div>
         </div><!-- / purchase  -->
-
-      </div><!-- / shared pricing -->
-
+      </div><!-- / pricing -->
     </div>
-  </div><!-- / brief-description-->
-</div><!-- / infrastructure-features -->
+  </div>
+</div>
