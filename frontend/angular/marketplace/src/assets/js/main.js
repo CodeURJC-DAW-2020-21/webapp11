@@ -5,7 +5,6 @@ $(document).ready(() => {
   registerNavigationEvents();
   registerCarouselSettings();
   registerServiceOverview();
-  registerPanel();
   registerAboutBox();
 
 });
@@ -161,28 +160,6 @@ const resetAllBarsProgress = () => {
   changeBarProgress("ram", 0);
 }
 
-const registerPanel = () => {
-  if($("#weekly-sales-chart").length) {
-
-    const registerContentSwitch = () => {
-
-      $(".content-button").each(function () {
-        const currentButton = $(this);
-
-        currentButton.click(() => {
-          $(".content").addClass("d-none");
-          $(".content-button").removeClass("active");
-          currentButton.addClass("active");
-          const contentId = currentButton.data('daw-content');
-          $("#" + contentId).removeClass("d-none");
-        });
-      });
-
-    }
-
-    registerContentSwitch();
-  }
-}
 
 const registerAboutBox = () => {
 

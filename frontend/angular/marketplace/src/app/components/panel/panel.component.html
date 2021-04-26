@@ -1,3 +1,4 @@
+
 <!-- page title -->
 <div class="d-flex justify-content-center text-white text-center">
   <div class="row">
@@ -22,41 +23,67 @@
 
 <div class="container mt-3 text-white">
   <nav>
-    <div class="d-flex justify-content-center nav nav-tabs text-center" id="nav-tab" role="tablist">
+    <div class="d-flex justify-content-center nav nav-tabs text-center"
+         id="nav-tab"
+         role="tablist"
+         aria-orientation="horizontal">
       <button class="nav-link content-button bg-transparent text-white active"
-              data-daw-content="statistics-content"
+              id="v-pills-stats-tab"
               type="button"
+              data-bs-toggle="pill"
+              data-bs-target="#v-pills-stats"
+              role="tab"
+              aria-controls="v-pills-stats"
+              aria-selected="true"
               style="width: 200px;">
         <i class="bi bi-bar-chart"></i>&nbsp;
         <span class="animated-link">Statistics</span>
       </button>
-      <button class="nav-link content-button bg-transparent text-white "
-              data-daw-content="management-content"
+      <button class="nav-link content-button bg-transparent text-white"
+              id="v-pills-clients-tab"
               type="button"
+              data-bs-toggle="pill"
+              data-bs-target="#v-pills-clients"
+              role="tab"
+              aria-controls="v-pills-clients"
+              aria-selected="false"
               style="width: 200px;">
         <i class="bi bi-people"></i>&nbsp;
         <span class="animated-link">Manage Clients</span>
       </button>
-      <button class="nav-link content-button bg-transparent text-white "
-              data-daw-content="sale-content"
+      <button class="nav-link content-button bg-transparent text-white"
+              id="v-pills-sale-1-tab"
               type="button"
+              data-bs-toggle="pill"
+              data-bs-target="#v-pills-sale-1"
+              role="tab"
+              aria-controls="v-pills-sale-1"
+              aria-selected="false"
               style="width: 200px;">
         <i class="bi bi-percent"></i>&nbsp;
         <span class="animated-link">Sale</span>
       </button>
-      <button class="nav-link content-button bg-transparent text-white "
-              data-daw-content="sale-accumulative-content"
+      <button class="nav-link content-button bg-transparent text-white"
+              id="v-pills-sale-2-tab"
               type="button"
+              data-bs-toggle="pill"
+              data-bs-target="#v-pills-sale-2"
+              role="tab"
+              aria-controls="v-pills-sale-2"
+              aria-selected="false"
               style="width: 200px;">
         <i class="bi bi-arrow-repeat"></i>&nbsp;
         <span class="animated-link">Accumulative Sale</span>
       </button>
     </div>
   </nav>
-
+<div class="tab-content">
   <!-- statistics content -->
-  <div id="statistics-content" class="container content border border-secondary rounded p-2">
-    <div class="row justify-content-center me-auto">
+  <div id="v-pills-stats"
+       role="tabpanel"
+       aria-labelledby="v-pills-stats-tab"
+       class="container content border border-secondary rounded p-2 tab-pane fade show active">
+    <div  class="row justify-content-center me-auto">
 
       <!-- left box-->
       <div class="col-lg-5 col-md-10 col-sm-10 col-10 border border-light rounded p-1 pt-4 m-4 pb-4 text-white">
@@ -118,7 +145,10 @@
   </div><!-- / statistics content -->
 
   <!-- client management content -->
-  <div id="management-content" class="d-none container content border border-secondary rounded p-2">
+  <div id="v-pills-clients"
+       role="tabpanel"
+       aria-labelledby="v-pills-clients-tab"
+       class="tab-pane fade container content border border-secondary rounded p-2">
     <div class="row justify-content-center">
       <div class="col-12 mx-auto">
 
@@ -207,7 +237,10 @@
   </div><!-- / client management content -->
 
   <!-- sale content -->
-  <div id="sale-content" class="d-none container content border border-secondary rounded p-2">
+  <div id="v-pills-sale-1"
+       role="tabpanel"
+       aria-labelledby="v-pills-sale-1-tab"
+       class="tab-pane fade container content border border-secondary rounded p-2">
     <div class="row justify-content-center">
       <div class="col-12 mx-auto">
 
@@ -316,7 +349,10 @@
   </div><!-- / sale content -->
 
   <!-- accumulative sale content -->
-  <div id="sale-accumulative-content" class="d-none container content border border-secondary rounded p-2">
+  <div id="v-pills-sale-2"
+       role="tabpanel"
+       aria-labelledby="v-pills-sale-2-tab"
+       class="tab-pane fade container content border border-secondary rounded p-2">
     <div class="row justify-content-center">
       <div class="col-12 mx-auto">
 
@@ -444,4 +480,7 @@
       </div>
     </div>
   </div><!-- / accumulative content -->
+
+</div>
+
 </div>
