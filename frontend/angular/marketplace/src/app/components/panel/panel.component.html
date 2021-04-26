@@ -1,0 +1,446 @@
+<!-- page title -->
+<div class="d-flex justify-content-center text-white text-center">
+  <div class="row">
+    <div class="col-12 px-5">
+      <h3>
+        <span>Administrator Control Panel</span>
+      </h3>
+      <p class="text-secondary mb-0">
+                <span class="fst-italic">
+                  "The most intuitive panel to manage
+                  your sales, and track your earnings"
+                </span>
+      </p>
+    </div>
+  </div>
+</div><!-- / page title -->
+
+<!-- horizontal line -->
+<div class="container text-light mt-0">
+  <hr />
+</div><!-- / horizontal line -->
+
+<div class="container mt-3 text-white">
+  <nav>
+    <div class="d-flex justify-content-center nav nav-tabs text-center" id="nav-tab" role="tablist">
+      <button class="nav-link content-button bg-transparent text-white active"
+              data-daw-content="statistics-content"
+              type="button"
+              style="width: 200px;">
+        <i class="bi bi-bar-chart"></i>
+        <span class="animated-link">Statistics</span>
+      </button>
+      <button class="nav-link content-button bg-transparent text-white "
+              data-daw-content="management-content"
+              type="button"
+              style="width: 200px;">
+        <i class="bi bi-people"></i>
+        <span class="animated-link">Manage Clients</span>
+      </button>
+      <button class="nav-link content-button bg-transparent text-white "
+              data-daw-content="sale-content"
+              type="button"
+              style="width: 200px;">
+        <i class="bi bi-percent"></i>
+        <span class="animated-link">Sale</span>
+      </button>
+      <button class="nav-link content-button bg-transparent text-white "
+              data-daw-content="sale-accumulative-content"
+              type="button"
+              style="width: 200px;">
+        <i class="bi bi-arrow-repeat"></i>
+        <span class="animated-link">Accumulative Sale</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- statistics content -->
+  <div id="statistics-content" class="container content border border-secondary rounded p-2">
+    <div class="row justify-content-center me-auto">
+
+      <!-- left box-->
+      <div class="col-lg-5 col-md-10 col-sm-10 col-10 border border-light rounded p-1 pt-4 m-4 pb-4 text-white">
+
+        <!-- title -->
+        <h5 class="text-center px-3">
+          <span class="animated-link">Weekly Purchased Services</span>
+        </h5><!-- title -->
+
+        <!-- centered content -->
+        <div class="container">
+          <div class="row align-items-center h-100">
+            <div class="col-12 mx-auto">
+              <div class="jumbotron text-center">
+                <canvas id="weekly-services-chart" class="text-white"></canvas>
+              </div>
+            </div>
+          </div>
+        </div><!-- / centered content -->
+
+      </div><!-- / left box-->
+
+      <!-- right box -->
+      <div class="col-lg-5 col-md-10 col-sm-10 col-10 border border-light rounded p-1 pt-4 m-4 pb-4 text-white">
+
+        <!-- title -->
+        <h5 class="text-center px-3">
+          <span class="animated-link">Weekly Sales</span>
+        </h5><!-- title -->
+
+        <!-- current date -->
+        <p class="text-center">
+          <span class="text-light">Today is</span>
+          <span class="text-secondary">Wed 24 February 2021</span>
+        </p><!-- / current date -->
+
+        <!-- centered content -->
+        <div class="container">
+          <div class="row align-items-center h-100">
+            <div class="col-12 mx-auto">
+              <div class="jumbotron text-center">
+                <canvas id="weekly-sales-chart" class="text-white"></canvas>
+              </div>
+            </div>
+          </div>
+        </div><!-- / centered content -->
+
+      </div><!-- / right box -->
+    </div>
+
+    <!-- accumulated capital -->
+    <div class="row text-center">
+      <h4>
+        <span>Accumulated Capital:</span>
+        <span class="text-success">$10000</span>
+      </h4>
+    </div><!-- / accumulated capital -->
+
+  </div><!-- / statistics content -->
+
+  <!-- client management content -->
+  <div id="management-content" class="d-none container content border border-secondary rounded p-2">
+    <div class="row justify-content-center">
+      <div class="col-12 mx-auto">
+
+        <!-- registered clients-->
+        <div class="row py-0 m-0">
+          <div class="col-12">
+            <table class="table table-bordered border-secondary text-white text-center">
+
+              <!-- table header -->
+              <thead>
+              <tr>
+                <th scope="col">Client Information</th>
+                <th scope="col">Actions</th>
+                <th scope="col">More details</th>
+              </tr>
+              </thead><!-- / table header -->
+
+              <tbody>
+
+              <!-- concrete client -->
+              <tr>
+                <th scope="row">
+                  <div class="container">
+                    <div class="row align-items-center h-100">
+                      <div class="col-12 mx-auto">
+                        <div class="jumbotron mx-0">
+                          <img class="profile-picture" src="./assets/img/profile.png"/>
+                          <small><span class="badge bg-danger">ADMIN</span></small>
+                          <span class="fw-normal align-middle">Jack Sparrow</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  <div class="container">
+                    <div class="row align-items-center h-100">
+                      <div class="col-12 mx-auto">
+                        <div class="jumbotron mt-1">
+                          <div class="btn-group btn-group-sm" role="group">
+                            <button type="button" class="btn btn-outline-danger">Disable Account</button>
+                            <button type="button" class="btn btn-outline-success disabled">Enable Account</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="btn-group btn-group-sm mt-1" role="group">
+                    <a routerLink="/profile" type="button" class="btn btn-outline-light">View</a>
+                  </div>
+                </td>
+              </tr><!-- / concrete client -->
+
+              </tbody>
+
+            </table>
+
+            <!-- load more button -->
+            <div class="row">
+              <div class="col-12 text-center">
+                <button type="button" class="load-more-button btn btn-sm btn-outline-light" data-daw-loading-element="loading-more">
+                  <i class="bi bi-plus-circle"></i>
+                  <span class="align-middle">Load more</span>
+                </button>
+              </div>
+            </div><!-- / load more button -->
+
+            <!-- load more button -->
+            <div id="loading-more" class="row d-none">
+              <div class="col-12 text-center text-white">
+                <div class="d-flex justify-content-center">
+                  <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              </div>
+            </div><!-- / load more button -->
+
+          </div>
+
+        </div><!-- / registered clients-->
+      </div>
+    </div>
+  </div><!-- / client management content -->
+
+  <!-- sale content -->
+  <div id="sale-content" class="d-none container content border border-secondary rounded p-2">
+    <div class="row justify-content-center">
+      <div class="col-12 mx-auto">
+
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-0 d-flex align-items-center justify-content-center">
+
+            <!-- discount box -->
+            <div class="text-center card w-100 bg-transparent border border-1 border-light">
+              <h3 class="card-title mt-4 mb-0">
+                <i class="bi bi-wallet2"></i>
+                <span class="animated-link">Current Sale</span>
+              </h3>
+
+              <div class="mt-2">
+                <span class="badge bg-danger">Currently Inactive</span>
+              </div>
+
+              <div class="card-body">
+
+                <p class="text-secondary">This discount is a non-recurrent one time discount</p>
+
+                <p><small id="flash-message" class="text-danger fw-bold"></small></p>
+
+                <!-- start date -->
+                <div class="row">
+                  <div class="col-12 text-center mb-2">
+                    <i class="bi bi-calendar-check"></i>
+                    <span>Start Date</span>
+                    <div class="input-group mb-3 px-4 mt-2">
+                      <input type="date"
+                             id="sale-start"
+                             style="min-width: 100%; width: 50px; min-height: 38px;"
+                             class="border border-3 border-light"
+                             aria-describedby="sale-start">
+                    </div>
+                  </div>
+                </div><!-- / start date -->
+
+                <!-- stop date -->
+                <div class="row">
+                  <div class="col-12 text-center mb-2">
+                    <i class="bi bi-calendar-x"></i>
+                    <span>Stop Date</span>
+                    <div class="input-group mb-3 px-4 mt-2">
+                      <input type="date"
+                             id="sale-stop"
+                             style="min-width: 100%; width: 50px; min-height: 38px;"
+                             class="border border-3 border-light"
+                             aria-describedby="sale-stop">
+                    </div>
+                  </div>
+                </div><!-- / stop date -->
+
+                <!-- discount percentage -->
+                <div class="row">
+                  <div class="col-12 text-center mb-2">
+                    <i class="bi bi-percent"></i>
+                    <span>Discount Percentage</span>
+                    <div class="input-group mb-3 px-4 mt-2">
+                      <input type="text"
+                             id="discount-percentage"
+                             style="min-width: 100%; width: 50px; min-height: 38px;"
+                             class="border border-3 border-light"
+                             aria-describedby="sale-stop"
+                             placeholder="50%"
+                             aria-label="discount-percentage">
+                    </div>
+                  </div>
+                </div><!-- / discount percentage -->
+
+                <!-- discounted packages -->
+                <div class="row">
+                  <div class="col-12 text-center mb-2">
+                    <i class="bi bi-box-seam"></i>
+                    <span>Discounted Packages</span>
+                    <div class="input-group mb-3 px-4 mt-2">
+                      <select class="form-select"
+                              size="3"
+                              id="discount-packages"
+                              aria-label="Default select example"
+                              style="min-width: 100%; width: 50px; min-height: 38px;">
+                        <option selected>Packages where discount is applied</option>
+                        <option value="1">Shared Server</option>
+                        <option value="2">Virtual Private Server</option>
+                        <option value="3">Dedicated Server</option>
+                      </select>
+                    </div>
+                  </div>
+                </div><!-- / discounted packages -->
+
+                <p class="card-text text-warning">
+                  <span>The sale modification will be made effective immediately</span>
+                </p>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                  <button type="button" class="btn btn-outline-success" style="width: 140px;">Update</button>
+                  <button type="button" class="btn btn-outline-danger" style="width: 140px;">Disable</button>
+                </div>
+              </div>
+            </div><!-- / discount box -->
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- / sale content -->
+
+  <!-- accumulative sale content -->
+  <div id="sale-accumulative-content" class="d-none container content border border-secondary rounded p-2">
+    <div class="row justify-content-center">
+      <div class="col-12 mx-auto">
+
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-0 d-flex align-items-center justify-content-center">
+
+            <!-- discount box -->
+            <div class="text-center card w-100 bg-transparent border border-1 border-light">
+              <h3 class="card-title mt-4 mb-0">
+                <i class="bi bi-wallet2"></i>
+                <span class="animated-link">Accumulative Sale</span>
+              </h3>
+
+              <div class="mt-2">
+                <span class="badge bg-danger">Currently Inactive</span>
+              </div>
+
+              <div class="card-body">
+
+                <p class="text-secondary">
+                  Every X packages bought of a category you will
+                  get an Y percent discount for the next X bought
+                  packages.
+                </p>
+
+                <p><small id="flash-message" class="text-danger fw-bold"></small></p>
+
+                <!-- start date -->
+                <div class="row">
+                  <div class="col-12 text-center mb-2">
+                    <i class="bi bi-calendar-check"></i>
+                    <span>Start Date</span>
+                    <div class="input-group mb-3 px-4 mt-2">
+                      <input type="date"
+                             id="sale-start"
+                             style="min-width: 100%; width: 50px; min-height: 38px;"
+                             class="border border-3 border-light"
+                             aria-describedby="sale-start">
+                    </div>
+                  </div>
+                </div><!-- / start date -->
+
+                <!-- stop date -->
+                <div class="row">
+                  <div class="col-12 text-center mb-2">
+                    <i class="bi bi-calendar-x"></i>
+                    <span>Stop Date</span>
+                    <div class="input-group mb-3 px-4 mt-2">
+                      <input type="date"
+                             id="sale-stop"
+                             style="min-width: 100%; width: 50px; min-height: 38px;"
+                             class="border border-3 border-light"
+                             aria-describedby="sale-stop">
+                    </div>
+                  </div>
+                </div><!-- / stop date -->
+
+                <!-- discount percentage -->
+                <div class="row">
+                  <div class="col-12 text-center mb-2">
+                    <i class="bi bi-percent"></i>
+                    <span>Discount Percentage</span>
+                    <div class="input-group mb-3 px-4 mt-2">
+                      <input type="text"
+                             id="discount-percentage"
+                             style="min-width: 100%; width: 50px; min-height: 38px;"
+                             class="border border-3 border-light"
+                             aria-describedby="sale-stop"
+                             placeholder="50%"
+                             aria-label="discount-percentage">
+                    </div>
+                  </div>
+                </div><!-- / discount percentage -->
+
+                <!-- packages amount -->
+                <div class="row">
+                  <div class="col-12 text-center mb-2">
+                    <i class="bi bi-calculator"></i>
+                    <span>Packages Amount</span>
+                    <div class="input-group mb-3 px-4 mt-2">
+                      <input type="text"
+                             id="discount-percentage"
+                             style="min-width: 100%; width: 50px; min-height: 38px;"
+                             class="border border-3 border-light"
+                             aria-describedby="sale-stop"
+                             placeholder="5"
+                             aria-label="discount-percentage">
+                    </div>
+                  </div>
+                </div><!-- / packages amount -->
+
+                <!-- discounted packages -->
+                <div class="row">
+                  <div class="col-12 text-center mb-2">
+                    <i class="bi bi-box-seam"></i>
+                    <span>Discounted Packages</span>
+                    <div class="input-group mb-3 px-4 mt-2">
+                      <select class="form-select"
+                              size="3"
+                              id="discount-packages"
+                              aria-label="Default select example"
+                              style="min-width: 100%; width: 50px; min-height: 38px;">
+                        <option selected>Packages where discount is applied</option>
+                        <option value="1">Shared Server</option>
+                        <option value="2">Virtual Private Server</option>
+                        <option value="3">Dedicated Server</option>
+                      </select>
+                    </div>
+                  </div>
+                </div><!-- / discounted packages -->
+
+                <p class="card-text text-warning">
+                  <span>The sale modification will be made effective immediately</span>
+                </p>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                  <button type="button" class="btn btn-outline-success" style="width: 140px;">Update</button>
+                  <button type="button" class="btn btn-outline-danger" style="width: 140px;">Disable</button>
+                </div>
+              </div>
+            </div><!-- / discount box -->
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- / accumulative content -->
