@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ProductService} from '../../services/product.service';
+import {Product} from '../../models/product.model';
+import {Error} from '../../models/error.model';
 
 @Component({
   selector: 'app-pricing',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PricingComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private productService: ProductService,
+    private products: Product[]
+  ) { }
 
   ngOnInit(): void {
+
+  }
+
+  displayAllProducts(): void {
+    const observable = this.productService.findAllProducts();
+    observable.subscribe((response) => {
+      if (response instanceof Error) {
+        // Display error
+      } else {
+        this.products = response;
+      }
+    });
   }
 
 }
