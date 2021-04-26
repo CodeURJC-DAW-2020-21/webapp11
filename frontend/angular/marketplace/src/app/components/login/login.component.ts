@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   logIn(): void {
     const observable = this.loginService.logIn(this.email, this.password);
     observable.subscribe((response) => {
-      const status = response.getStatusCode;
+      const status = response.statusCode;
       if (status === 200) {
         this.state = 'SUCCESS';
         this.message = 'You have been successfully logged in! Redirecting...';
