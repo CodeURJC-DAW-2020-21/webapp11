@@ -9,12 +9,12 @@ export class ProductMapper {
   constructor() { }
 
   asProducts(response: any): Product[] {
-    return response.content.map((item: any) => {
+    return response.map((item: any) => {
       return new Product(
-        item.order_id,
+        item.id,
         item.category,
-        item.purchase_date,
-        item.expiration_date,
+        item.price,
+        item.hourly_price,
         item.ram,
         item.cores,
         item.storage,

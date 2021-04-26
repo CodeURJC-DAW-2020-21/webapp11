@@ -4,36 +4,38 @@ import {Observable, throwError} from 'rxjs';
 import {Product} from '../models/product.model';
 import { Error } from '../models/error.model';
 import {HttpClient} from '@angular/common/http';
-import {ProductMapper} from './product.mapper';
+import {ProductMapper} from '../mappers/product.mapper';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private ROUTE = 'https://localhost/api/products';
+  private BASE_ROUTE = 'https://localhost:8443/api/products';
 
   constructor(
-    private http: HttpClient,
+    private httpClient: HttpClient,
     private productMapper: ProductMapper
   ) { }
 
+  /**
+   * Returns an observable that might return a list of products or an error.
+   * @return observable an observable that might return a list of products or an error.
+   */
   findAllProducts(): Observable<Product[] | Error> {
     return new Observable<Product[] | Error>((subscriber) => {
-      this.http.get<any>(this.ROUTE)
+      this.httpClient.get<any>(this.BASE_ROUTE)
         .subscribe(
-          (data) => {
-            const products = this.productMapper.asProducts(data.content);
+          (responseBody) => {
+            // Map the products to its correspondent display model
+            const products = this.productMapper.asProducts(responseBody.content);
             subscriber.next(products);
           },
-          (error) => {
-            const json = error.error;
-            if ('content' in json) {
-              subscriber.next(new Error('answered', json.content));
-            } else {
-              const message = 'Could not connect to the server. Is the server down?';
-              subscriber.next(new Error('unanswered', message));
-            }
+          (errorResponse) => {
+            const responseBody = errorResponse.error;
+            // If the response body has content, then the server has answered (otherwise could not connect to server)
+            const error = 'content' in responseBody ? Error.answered(responseBody.content) : Error.unanswered();
+            subscriber.next(error);
           }
         );
     });

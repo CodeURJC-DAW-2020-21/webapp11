@@ -3,40 +3,40 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthResponse } from '../models/auth-response.model';
 import { TokenService } from './token.service';
+import {AuthResponseMapper} from '../mappers/auth.mapper';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
 
-  static readonly ROUTE: string = 'https://localhost:8443/api/tokens';
+  private BASE_ROUTE = 'https://localhost:8443/api/tokens';
 
-  constructor(private http: HttpClient, private tokenService: TokenService) {
+  constructor(
+    private httpClient: HttpClient,
+    private authMapper: AuthResponseMapper,
+    private tokenService: TokenService) {
   }
 
   /**
-   * Returns an observable result of the authentication response {@link AuthResponse}.
-   * @param email the email of the user that is to be logged in
-   * @param password the password of the user that is to be logged in
+   * Returns an observable result of {@link AuthResponse}.
+   * @param email the email credential
+   * @param password the password credential
+   * @return an observable result of {@link AuthResponse}
    */
   logIn(email: string, password: string): Observable<AuthResponse> {
     return new Observable((subscriber) => {
-      this.http.post<any>(LoginService.ROUTE, {email, password})
+      this.httpClient.post<any>(this.BASE_ROUTE, { email, password })
         .subscribe(
-          (data) => {
-            const response = new AuthResponse(data.status_name, data.status_code, data.content);
-            this.tokenService.saveToken(data.content.token);
-            subscriber.next(response);
+          (responseBody) => {
+            const authResponse = this.authMapper.asAuthResponse(responseBody);
+            // Store the provided token
+            this.tokenService.saveToken(authResponse.content.token);
+            subscriber.next(authResponse);
           },
-          (error) => {
-            const json = error.error;
-            if (json.content == null) {
-              // If the server did not respond
-              const response = new AuthResponse();
-              subscriber.next(response);
-            } else {
-              // If the server sent an error response
-              const response = new AuthResponse(json.status_name, json.status_code, json.content);
-              subscriber.next(response);
-            }
+          (errorResponse) => {
+            const responseBody = errorResponse.error;
+            // If the response body has content, then the server has answered (otherwise could not connect to server)
+            const error = 'content' in responseBody ? this.authMapper.asAuthResponse(responseBody) : new AuthResponse();
+            subscriber.next(error);
           }
         );
     });
