@@ -17,7 +17,23 @@
             <!-- body -->
             <div class="card-body">
 
-              <p><small id="flash-message" class="text-danger fw-bold"></small></p>
+              <p *ngIf="state === 'SUCCESS'">
+                <small class="text-success fw-bold">
+                  <span [textContent]="message"></span>
+                </small>
+              </p>
+
+              <p *ngIf="state === 'ERROR'">
+                <small class="text-danger fw-bold">
+                  <span [textContent]="message"></span>
+                </small>
+              </p>
+
+              <p *ngIf="state === 'DOWN'">
+                <small class="text-warning fw-bold">
+                  <span [textContent]="message"></span>
+                </small>
+              </p>
 
               <p>Please, Sign in with existing account</p>
 
