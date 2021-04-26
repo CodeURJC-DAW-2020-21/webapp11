@@ -25,8 +25,7 @@ export class OrderService {
     return new Observable<boolean | Error>((subscriber) => {
       const requestBody = { product_id: productId };
       const requestOptions = { headers: new HttpHeaders({ Authorization: this.tokenService.getToken() }) };
-      this.httpClient.post<any>(
-        this.BASE_ROUTE, requestBody, requestOptions)
+      this.httpClient.post<any>(this.BASE_ROUTE, requestBody, requestOptions)
         .subscribe(
           () => {
             subscriber.next(true);
