@@ -21,6 +21,9 @@ import { ServiceComponent } from './components/service/service.component';
 import { PanelComponent } from './components/panel/panel.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CategoryPurchasesChartComponent } from './components/panel/category-purchases-chart/category-purchases-chart.component';
+import { ChartsModule } from 'ng2-charts';
+import { WeeklySalesChartComponent } from './components/panel/weekly-sales-chart/weekly-sales-chart.component';
 
 /*
  * Routing to the correspondent components
@@ -59,14 +62,17 @@ const routes: Routes = [
     ServicesComponent,
     ProfileComponent,
     ServiceComponent,
-    PanelComponent
+    PanelComponent,
+    CategoryPurchasesChartComponent,
+    WeeklySalesChartComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

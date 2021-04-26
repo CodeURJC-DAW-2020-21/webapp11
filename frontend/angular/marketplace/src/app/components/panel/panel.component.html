@@ -71,7 +71,7 @@
           <div class="row align-items-center h-100">
             <div class="col-12 mx-auto">
               <div class="jumbotron text-center">
-                <canvas id="weekly-services-chart" class="text-white"></canvas>
+                <app-category-purchases-chart></app-category-purchases-chart>
               </div>
             </div>
           </div>
@@ -98,7 +98,7 @@
           <div class="row align-items-center h-100">
             <div class="col-12 mx-auto">
               <div class="jumbotron text-center">
-                <canvas id="weekly-sales-chart" class="text-white"></canvas>
+                <app-weekly-sales-chart></app-weekly-sales-chart>
               </div>
             </div>
           </div>
@@ -111,7 +111,7 @@
     <div class="row text-center">
       <h4>
         <span>Accumulated Capital:&nbsp;</span>
-        <span class="text-success">$10000</span>
+        <span class="text-success">${{accumulatedCapital}}</span>
       </h4>
     </div><!-- / accumulated capital -->
 
@@ -444,3 +444,4 @@
       </div>
     </div>
   </div><!-- / accumulative content -->
+</div>
