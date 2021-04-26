@@ -72,8 +72,8 @@ export class PricingComponent implements OnInit {
   }
 
   purchaseProduct(): void {
-    const currentProduct = this.categoryToProducts.get(this.selectedCategory)[this.selectedProductIndex];
-    const observable = this.orderService.placeOrder(currentProduct.id);
+    const selectedProduct = this.categoryToProducts.get(this.selectedCategory)[this.selectedProductIndex];
+    const observable = this.orderService.placeOrder(selectedProduct.id);
     observable.subscribe((response) => {
       if (response instanceof Error) {
         this.errorMessage = response.message;
