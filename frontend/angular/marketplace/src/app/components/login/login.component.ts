@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   public message: string;
   public state: string;
 
-  constructor(private authService: LoginService) {
+  constructor(private loginService: LoginService) {
     this.email = '';
     this.password = '';
     this.message = '';
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   logIn(): void {
-    const observable = this.authService.logIn(this.email, this.password);
+    const observable = this.loginService.logIn(this.email, this.password);
     observable.subscribe((response) => {
       const status = response.getStatusCode;
       if (status === 200) {
