@@ -12,9 +12,8 @@ export class LoginService {
 
   constructor(
     private httpClient: HttpClient,
-    private authMapper: AuthResponseMapper,
-    private tokenService: TokenService) {
-  }
+    private authResponseMapper: AuthResponseMapper,
+    private tokenService: TokenService) { }
 
   /**
    * Returns an observable result of {@link AuthResponse}.
@@ -27,7 +26,7 @@ export class LoginService {
       this.httpClient.post<any>(this.BASE_ROUTE, { email, password })
         .subscribe(
           (responseBody) => {
-            const authResponse = this.authMapper.asAuthResponse(responseBody);
+            const authResponse = this.authResponseMapper.asAuthResponse(responseBody);
             // Store the provided token
             this.tokenService.saveToken(authResponse.content.token);
             subscriber.next(authResponse);
@@ -35,7 +34,7 @@ export class LoginService {
           (errorResponse) => {
             const responseBody = errorResponse.error;
             // If the response body has content, then the server has answered (otherwise could not connect to server)
-            const error = 'content' in responseBody ? this.authMapper.asAuthResponse(responseBody) : new AuthResponse();
+            const error = 'content' in responseBody ? this.authResponseMapper.asAuthResponse(responseBody) : new AuthResponse();
             subscriber.next(error);
           }
         );
