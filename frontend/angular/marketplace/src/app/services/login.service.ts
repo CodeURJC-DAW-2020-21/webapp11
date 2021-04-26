@@ -28,7 +28,7 @@ export class LoginService {
           },
           (error) => {
             const json = error.error;
-            if (error.content == null) {
+            if (json.content == null) {
               // If the server did not respond
               const response = new AuthResponse();
               subscriber.next(response);
