@@ -5,7 +5,10 @@
       <section>
         <h3>Select the plan for your application needs</h3>
         <p class="text-secondary">
-          <i>No other plan offers more choice. With multiple configurations, you’re sure to find the right performance at the right price.</i>
+          <i>
+            No other plan offers more choice. With multiple configurations,
+            you’re sure to find the right performance at the right price.
+          </i>
         </p>
       </section><!-- / heading -->
       <nav>
@@ -111,15 +114,15 @@
         <div class="row justify-content-center mx-auto">
           <div class="col-6 mb-3 px-5">
             <span>
-                Servers suitable for <i>all kinds of purposes</i>, testing,
-                CI/CD, web serving and also for high computational needs.
+              Servers suitable for <i>all kinds of purposes</i>, testing,
+              CI/CD, web serving and also for high computational needs.
             </span>
           </div>
         </div>
         <!-- purchase  -->
         <div class="row">
           <div class="col mx-auto mb-2 d-flex align-items-center justify-content-center">
-            <button id="pricing-spec-purchase-shared" type="button" class="btn btn-outline-light">
+            <button (click)="purchaseProduct()" type="button" class="btn btn-outline-light">
               <i class="bi bi-cart-plus"></i>
               <span>&nbsp;</span>
               <span>Buy now</span>
