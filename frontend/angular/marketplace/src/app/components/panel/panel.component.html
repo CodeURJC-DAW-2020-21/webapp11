@@ -405,7 +405,7 @@
                               class="form-select"
                               aria-label="Default select example"
                               style="min-width: 100%; width: 50px; min-height: 38px;">
-                        <option selected>Packages where discount is applied</option>
+                        <option value="-1" selected>Packages where discount is applied</option>
                         <option *ngFor="let product of products"
                                 [value]="product.id"
                                 (click)="oneTimeSale.productId = product.id">
@@ -582,7 +582,7 @@
                               class="form-select"
                               aria-label="Default select example"
                               style="min-width: 100%; width: 50px; min-height: 38px;">
-                        <option selected>Packages where discount is applied</option>
+                        <option value="-1" selected>Packages where discount is applied</option>
                         <option *ngFor="let product of products"
                                 [value]="product.id"
                                 (click)="accumulativeSale.productId = product.id">
