@@ -1,9 +1,11 @@
 package es.urjc.code.daw.marketplace.api.sale.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.annotation.PostConstruct;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -23,6 +25,17 @@ public class FindAdResponseDto {
 
     @JsonProperty("bulk_amount")
     private Integer bulkAmount;
+
+    @JsonProperty("product_id")
+    private Long discountedProductId;
+
+    @JsonProperty("start_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private Date startDate;
+
+    @JsonProperty("expiry_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private Date expiryDate;
 
     @JsonProperty("ram")
     private String ram;

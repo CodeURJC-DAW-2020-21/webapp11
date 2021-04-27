@@ -32,12 +32,18 @@ public interface RestSaleMapper {
     @Mapping(target = "enabled", source = "isEnabled")
     AccumulativeDiscount asAd(UpdateSaleRequestDto updateOtdSaleDto);
 
+    @Mapping(target = "discountedProductId", source = "product.id")
+    @Mapping(target = "startDate", source = "discount.start")
     @Mapping(target = "discountedPrice", ignore = true)
     @Mapping(target = "discount", source = "discount.discountPercentage")
+    @Mapping(target = "expiryDate", source = "discount.stop")
     FindOtdResponseDto asFindResponse(OneTimeDiscount discount, Product product);
 
+    @Mapping(target = "discountedProductId", source = "product.id")
+    @Mapping(target = "startDate", source = "discount.start")
     @Mapping(target = "discountedPrice", ignore = true)
     @Mapping(target = "discount", source = "discount.discountPercentage")
+    @Mapping(target = "expiryDate", source = "discount.stop")
     FindAdResponseDto asFindResponse(AccumulativeDiscount discount, Product product);
 
 }

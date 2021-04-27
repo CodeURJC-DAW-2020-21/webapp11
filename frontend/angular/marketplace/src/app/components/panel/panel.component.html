@@ -7,10 +7,10 @@
         <span>Administrator Control Panel</span>
       </h3>
       <p class="text-secondary mb-0">
-                <span class="fst-italic">
-                  "The most intuitive panel to manage
-                  your sales, and track your earnings"
-                </span>
+        <span class="fst-italic">
+          "The most intuitive panel to manage
+          your sales, and track your earnings"
+        </span>
       </p>
     </div>
   </div>
@@ -20,6 +20,17 @@
 <div class="container text-light mt-0">
   <hr />
 </div><!-- / horizontal line -->
+
+<div class="row mx-0">
+  <div class="col-12 px-5 mx-0">
+    <div *ngIf="clientEnabledMessage" class="px-5 mx-5 alert text-center bg-transparent border border-1 rounded alert-success border-success text-success fade show" role="alert">
+      <strong>{{clientEnabledMessage}}</strong>
+    </div>
+    <div *ngIf="clientDisabledMessage" class="px-5 mx-5  alert text-center bg-transparent border border-1 rounded alert-danger border-danger text-danger fade show" role="alert">
+      <strong>{{clientDisabledMessage}}</strong>
+    </div>
+  </div>
+</div>
 
 <div class="container mt-3 text-white">
   <nav>
@@ -117,7 +128,7 @@
         <!-- current date -->
         <p class="text-center">
           <span class="text-light">Today is</span>&nbsp;
-          <span class="text-secondary">Wed 24 February 2021</span>
+          <span class="text-secondary">{{ todayDate | date:'EEE dd LLL, yyyy' }}</span>
         </p><!-- / current date -->
 
         <!-- centered content -->
@@ -169,7 +180,7 @@
               <tbody>
 
               <!-- concrete client -->
-              <tr *ngFor="let user of loadedUsers">
+              <tr *ngFor="let user of loadedUsers; index as userIndex;">
                 <th scope="row">
                   <div class="row d-flex float-start" >
                     <div class="col-md-12">
@@ -199,18 +210,35 @@
                     <div class="row align-items-center h-100">
                       <div class="col-12 mx-auto">
                         <div class="jumbotron mt-1">
-                          <div class="btn-group btn-group-sm" role="group">
-                            <button (click)="disableUser(user)"
-                                    type="button"
-                                    class="btn btn-outline-danger">
-                              Disable Account
-                            </button>
-                            <button (click)="enableUser(user)"
-                                    type="button"
-                                    class="btn btn-outline-success disabled">
-                              Enable Account
-                            </button>
-                          </div>
+                          <div *ngIf="user.enabled; then userEnabled else userDisabled"></div>
+                          <ng-template #userEnabled>
+                            <div class="btn-group btn-group-sm" role="group">
+                              <button (click)="disableUser(user, userIndex)"
+                                      type="button"
+                                      class="btn btn-outline-danger">
+                                Disable Account
+                              </button>
+                              <button (click)="enableUser(user, userIndex)"
+                                      type="button"
+                                      class="btn btn-outline-success disabled">
+                                Enable Account
+                              </button>
+                            </div>
+                          </ng-template>
+                          <ng-template #userDisabled>
+                            <div class="btn-group btn-group-sm" role="group">
+                              <button (click)="disableUser(user, userIndex)"
+                                      type="button"
+                                      class="btn btn-outline-danger disabled">
+                                Disable Account
+                              </button>
+                              <button (click)="enableUser(user, userIndex)"
+                                      type="button"
+                                      class="btn btn-outline-success">
+                                Enable Account
+                              </button>
+                            </div>
+                          </ng-template>
                         </div>
                       </div>
                     </div>
@@ -236,6 +264,7 @@
               <div class="col-12 text-center">
                 <button (click)="loadNextUsers()" type="button" class="load-more-button btn btn-sm btn-outline-light" data-daw-loading-element="loading-more">
                   <i class="bi bi-plus-circle"></i>
+                  <span>&nbsp;</span>
                   <span class="align-middle">Load more</span>
                 </button>
               </div>
@@ -265,8 +294,19 @@
        aria-labelledby="v-pills-sale-1-tab"
        class="tab-pane fade container content border border-secondary rounded p-2">
     <div class="row justify-content-center">
+
       <div class="col-12 mx-auto">
 
+        <div class="row mx-0">
+          <div class="col-12 px-5 mx-0">
+            <div *ngIf="oneTimeSaleUpdatedMessage" class="px-5 mx-5 alert text-center bg-transparent border border-1 rounded alert-success border-success text-success fade show" role="alert">
+              <strong>{{oneTimeSaleUpdatedMessage}}</strong>
+            </div>
+            <div *ngIf="oneTimeSaleDisabledMessage" class="px-5 mx-5  alert text-center bg-transparent border border-1 rounded alert-info border-info text-info fade show" role="alert">
+              <strong>{{oneTimeSaleDisabledMessage}}</strong>
+            </div>
+          </div>
+        </div>
         <div class="row">
           <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-0 d-flex align-items-center justify-content-center">
 
@@ -274,27 +314,42 @@
             <div class="text-center card w-100 bg-transparent border border-1 border-light">
               <h3 class="card-title mt-4 mb-0">
                 <i class="bi bi-wallet2"></i>
+                <span>&nbsp;</span>
                 <span class="animated-link">Current Sale</span>
               </h3>
 
+
               <div class="mt-2">
-                <span class="badge bg-danger">Currently Inactive</span>
+                <div *ngIf="oneTimeProductId !== -1; then otSaleEnabled else otSaleDisabled"></div>
+                <ng-template #otSaleEnabled>
+                  <div class="btn-group btn-group-sm" role="group">
+                    <span class="badge bg-success">Currently Active</span>
+                  </div>
+                </ng-template>
+                <ng-template #otSaleDisabled>
+                  <div class="btn-group btn-group-sm" role="group">
+                    <span class="badge bg-danger">Currently Inactive</span>
+                  </div>
+                </ng-template>
               </div>
 
               <div class="card-body">
 
                 <p class="text-secondary">This discount is a non-recurrent one time discount</p>
 
-                <p><small id="flash-message" class="text-danger fw-bold"></small></p>
+                <!-- message -->
 
                 <!-- start date -->
                 <div class="row">
                   <div class="col-12 text-center mb-2">
                     <i class="bi bi-calendar-check"></i>
+                    <span>&nbsp;</span>
                     <span>Start Date</span>
                     <div class="input-group mb-3 px-4 mt-2">
                       <input type="date"
-                             id="sale-start"
+                             name="oneTimeSale.startDate"
+                             [ngModel]="oneTimeSale.startDate | date:'yyyy-MM-dd'"
+                             (ngModelChange)="oneTimeSale.startDate = $event"
                              style="min-width: 100%; width: 50px; min-height: 38px;"
                              class="border border-3 border-light"
                              aria-describedby="sale-start">
@@ -306,10 +361,13 @@
                 <div class="row">
                   <div class="col-12 text-center mb-2">
                     <i class="bi bi-calendar-x"></i>
+                    <span>&nbsp;</span>
                     <span>Stop Date</span>
                     <div class="input-group mb-3 px-4 mt-2">
                       <input type="date"
-                             id="sale-stop"
+                             name="oneTimeSale.expiryDate"
+                             [ngModel]="oneTimeSale.expiryDate | date:'yyyy-MM-dd'"
+                             (ngModelChange)="oneTimeSale.expiryDate = $event"
                              style="min-width: 100%; width: 50px; min-height: 38px;"
                              class="border border-3 border-light"
                              aria-describedby="sale-stop">
@@ -321,10 +379,12 @@
                 <div class="row">
                   <div class="col-12 text-center mb-2">
                     <i class="bi bi-percent"></i>
+                    <span>&nbsp;</span>
                     <span>Discount Percentage</span>
                     <div class="input-group mb-3 px-4 mt-2">
                       <input type="text"
-                             id="discount-percentage"
+                             [ngModel]="oneTimeSale.discountPercentage"
+                             (ngModelChange)="oneTimeSale.discountPercentage = $event"
                              style="min-width: 100%; width: 50px; min-height: 38px;"
                              class="border border-3 border-light"
                              aria-describedby="sale-stop"
@@ -338,17 +398,21 @@
                 <div class="row">
                   <div class="col-12 text-center mb-2">
                     <i class="bi bi-box-seam"></i>
-                    <span>Discounted Packages</span>
+                    <span>&nbsp;</span>
+                    <span>Discounted Package</span>
                     <div class="input-group mb-3 px-4 mt-2">
-                      <select class="form-select"
-                              size="3"
-                              id="discount-packages"
+                      <select [(ngModel)]="oneTimeSale.productId"
+                              class="form-select"
                               aria-label="Default select example"
                               style="min-width: 100%; width: 50px; min-height: 38px;">
                         <option selected>Packages where discount is applied</option>
-                        <option value="1">Shared Server</option>
-                        <option value="2">Virtual Private Server</option>
-                        <option value="3">Dedicated Server</option>
+                        <option *ngFor="let product of products"
+                                [value]="product.id"
+                                (click)="oneTimeSale.productId = product.id">
+                          #{{product.id}} - ${{product.price}} -
+                          {{product.ram}} RAM, {{product.cores}} CORES,
+                          {{product.storage}} STORAGE, {{product.transfer}} TRANSFER
+                        </option>
                       </select>
                     </div>
                   </div>
@@ -358,8 +422,19 @@
                   <span>The sale modification will be made effective immediately</span>
                 </p>
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                  <button type="button" class="btn btn-outline-success" style="width: 140px;">Update</button>
-                  <button type="button" class="btn btn-outline-danger" style="width: 140px;">Disable</button>
+                  <div *ngIf="oneTimeProductId !== -1; then otdButtonYes else otdButtonNot"></div>
+                  <ng-template #otdButtonYes>
+                    <div class="btn-group btn-group-sm" role="group">
+                      <button (click)="updateOnetimeSale()" type="button" class="btn btn-outline-success" style="width: 140px;">Update</button>
+                      <button (click)="disableOnetimeSale()" type="button" class="btn btn-outline-danger" style="width: 140px;">Disable</button>
+                    </div>
+                  </ng-template>
+                  <ng-template #otdButtonNot>
+                    <div class="btn-group btn-group-sm" role="group">
+                      <button (click)="updateOnetimeSale()" type="button" class="btn btn-outline-success" style="width: 140px;">Update</button>
+                      <button type="button" class="btn btn-outline-danger disabled" style="width: 140px;">Disable</button>
+                    </div>
+                  </ng-template>
                 </div>
               </div>
             </div><!-- / discount box -->
@@ -377,8 +452,18 @@
        aria-labelledby="v-pills-sale-2-tab"
        class="tab-pane fade container content border border-secondary rounded p-2">
     <div class="row justify-content-center">
-      <div class="col-12 mx-auto">
 
+      <div class="col-12 mx-auto">
+        <div class="row mx-0">
+          <div class="col-12 px-5 mx-0">
+            <div *ngIf="accumulativeSaleUpdatedMessage" class="px-5 mx-5 alert text-center bg-transparent border border-1 rounded alert-success border-success text-success fade show" role="alert">
+              <strong>{{accumulativeSaleUpdatedMessage}}</strong>
+            </div>
+            <div *ngIf="accumulativeSaleDisabledMessage" class="px-5 mx-5  alert text-center bg-transparent border border-1 rounded alert-info border-info text-info fade show" role="alert">
+              <strong>{{accumulativeSaleDisabledMessage}}</strong>
+            </div>
+          </div>
+        </div>
         <div class="row">
           <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-0 d-flex align-items-center justify-content-center">
 
@@ -386,11 +471,22 @@
             <div class="text-center card w-100 bg-transparent border border-1 border-light">
               <h3 class="card-title mt-4 mb-0">
                 <i class="bi bi-wallet2"></i>
+                <span>&nbsp;</span>
                 <span class="animated-link">Accumulative Sale</span>
               </h3>
 
               <div class="mt-2">
-                <span class="badge bg-danger">Currently Inactive</span>
+                <div *ngIf="accumulativeProductId !== -1; then adSaleEnabled else adSaleDisabled"></div>
+                <ng-template #adSaleEnabled>
+                  <div class="btn-group btn-group-sm" role="group">
+                    <span class="badge bg-success">Currently Active</span>
+                  </div>
+                </ng-template>
+                <ng-template #adSaleDisabled>
+                  <div class="btn-group btn-group-sm" role="group">
+                    <span class="badge bg-danger">Currently Inactive</span>
+                  </div>
+                </ng-template>
               </div>
 
               <div class="card-body">
@@ -407,10 +503,12 @@
                 <div class="row">
                   <div class="col-12 text-center mb-2">
                     <i class="bi bi-calendar-check"></i>
+                    <span>&nbsp;</span>
                     <span>Start Date</span>
                     <div class="input-group mb-3 px-4 mt-2">
                       <input type="date"
-                             id="sale-start"
+                             [ngModel]="accumulativeSale.startDate | date:'yyyy-MM-dd'"
+                             (ngModelChange)="accumulativeSale.startDate = $event"
                              style="min-width: 100%; width: 50px; min-height: 38px;"
                              class="border border-3 border-light"
                              aria-describedby="sale-start">
@@ -422,10 +520,12 @@
                 <div class="row">
                   <div class="col-12 text-center mb-2">
                     <i class="bi bi-calendar-x"></i>
+                    <span>&nbsp;</span>
                     <span>Stop Date</span>
                     <div class="input-group mb-3 px-4 mt-2">
                       <input type="date"
-                             id="sale-stop"
+                             [ngModel]="accumulativeSale.expiryDate | date:'yyyy-MM-dd'"
+                             (ngModelChange)="accumulativeSale.expiryDate = $event"
                              style="min-width: 100%; width: 50px; min-height: 38px;"
                              class="border border-3 border-light"
                              aria-describedby="sale-stop">
@@ -437,10 +537,12 @@
                 <div class="row">
                   <div class="col-12 text-center mb-2">
                     <i class="bi bi-percent"></i>
+                    <span>&nbsp;</span>
                     <span>Discount Percentage</span>
                     <div class="input-group mb-3 px-4 mt-2">
                       <input type="text"
-                             id="discount-percentage"
+                             [ngModel]="accumulativeSale.discountPercentage"
+                             (ngModelChange)="accumulativeSale.discountPercentage = $event"
                              style="min-width: 100%; width: 50px; min-height: 38px;"
                              class="border border-3 border-light"
                              aria-describedby="sale-stop"
@@ -454,10 +556,12 @@
                 <div class="row">
                   <div class="col-12 text-center mb-2">
                     <i class="bi bi-calculator"></i>
+                    <span>&nbsp;</span>
                     <span>Packages Amount</span>
                     <div class="input-group mb-3 px-4 mt-2">
                       <input type="text"
-                             id="discount-percentage"
+                             [ngModel]="accumulativeSale.bulkAmount"
+                             (ngModelChange)="accumulativeSale.bulkAmount = $event"
                              style="min-width: 100%; width: 50px; min-height: 38px;"
                              class="border border-3 border-light"
                              aria-describedby="sale-stop"
@@ -471,17 +575,21 @@
                 <div class="row">
                   <div class="col-12 text-center mb-2">
                     <i class="bi bi-box-seam"></i>
+                    <span>&nbsp;</span>
                     <span>Discounted Packages</span>
                     <div class="input-group mb-3 px-4 mt-2">
-                      <select class="form-select"
-                              size="3"
-                              id="discount-packages"
+                      <select [(ngModel)]="accumulativeSale.productId"
+                              class="form-select"
                               aria-label="Default select example"
                               style="min-width: 100%; width: 50px; min-height: 38px;">
                         <option selected>Packages where discount is applied</option>
-                        <option value="1">Shared Server</option>
-                        <option value="2">Virtual Private Server</option>
-                        <option value="3">Dedicated Server</option>
+                        <option *ngFor="let product of products"
+                                [value]="product.id"
+                                (click)="accumulativeSale.productId = product.id">
+                          #{{product.id}} - ${{product.price}} -
+                          {{product.ram}} RAM, {{product.cores}} CORES,
+                          {{product.storage}} STORAGE, {{product.transfer}} TRANSFER
+                        </option>
                       </select>
                     </div>
                   </div>
@@ -491,8 +599,19 @@
                   <span>The sale modification will be made effective immediately</span>
                 </p>
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                  <button type="button" class="btn btn-outline-success" style="width: 140px;">Update</button>
-                  <button type="button" class="btn btn-outline-danger" style="width: 140px;">Disable</button>
+                  <div *ngIf="accumulativeProductId !== -1; then adButtonYes else adButtonNot"></div>
+                  <ng-template #adButtonYes>
+                    <div class="btn-group btn-group-sm" role="group">
+                      <button (click)="updateAccumulativeSale()" type="button" class="btn btn-outline-success" style="width: 140px;">Update</button>
+                      <button (click)="disableAccumulativeSale()" type="button" class="btn btn-outline-danger" style="width: 140px;">Disable</button>
+                    </div>
+                  </ng-template>
+                  <ng-template #adButtonNot>
+                    <div class="btn-group btn-group-sm" role="group">
+                      <button (click)="updateAccumulativeSale()" type="button" class="btn btn-outline-success" style="width: 140px;">Update</button>
+                      <button type="button" class="btn btn-outline-danger disabled" style="width: 140px;">Disable</button>
+                    </div>
+                  </ng-template>
                 </div>
               </div>
             </div><!-- / discount box -->
