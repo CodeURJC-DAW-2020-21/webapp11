@@ -40,4 +40,24 @@ export class OrderService {
     });
   }
 
+  renewOrder(orderId: number): Observable<any | Error> {
+    const ROUTE = this.BASE_ROUTE + '/' + orderId;
+    return new Observable<any | Error>((subscriber) => {
+      const requestBody = { months: 1 };
+      const requestOptions = { headers: new HttpHeaders({ Authorization: this.tokenService.getToken() }) };
+      this.httpClient.put<any>(ROUTE, requestBody, requestOptions)
+        .subscribe(
+          (responseBody) => {
+            subscriber.next(responseBody);
+          },
+          (errorResponse) => {
+            const responseBody = errorResponse.error;
+            // If the response body has content, then the server has answered (otherwise could not connect to server)
+            const error = 'content' in responseBody ? Error.answered(responseBody.content) : Error.unanswered();
+            subscriber.next(error);
+          }
+        );
+    });
+  }
+
 }
