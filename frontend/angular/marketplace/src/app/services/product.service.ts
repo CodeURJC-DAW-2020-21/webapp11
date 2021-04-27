@@ -27,7 +27,7 @@ export class ProductService {
       this.httpClient.get<any>(this.BASE_ROUTE)
         .subscribe(
           (responseBody) => {
-            // Map the products to its correspondent display model
+            // Map the products to its correspondent model
             const products = this.productMapper.asProducts(responseBody.content);
             subscriber.next(products);
           },

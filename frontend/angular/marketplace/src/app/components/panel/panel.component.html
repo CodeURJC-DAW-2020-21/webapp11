@@ -169,17 +169,28 @@
               <tbody>
 
               <!-- concrete client -->
-              <tr>
+              <tr *ngFor="let user of loadedUsers">
                 <th scope="row">
-                  <div class="container">
-                    <div class="row align-items-center h-100">
-                      <div class="col-12 mx-auto">
-                        <div class="jumbotron mx-0">
-                          <img class="profile-picture" src="./assets/img/profile.png"/>
-                          &nbsp;<small><span class="badge bg-danger">ADMIN</span></small>&nbsp;
-                          <span class="fw-normal align-middle">Jack Sparrow</span>
-                        </div>
-                      </div>
+                  <div class="row d-flex float-start" >
+                    <div class="col-md-12">
+                      <div *ngIf="user.hasProfilePicture(); then hasPicture else hasNoPicture"></div>
+                      <ng-template #hasPicture>
+                        <img class="profile-picture" src="{{user.encodedImage}}"/>
+                      </ng-template>
+                      <ng-template #hasNoPicture>
+                        <img class="profile-picture" src="./assets/img/profile.png"/>
+                      </ng-template>
+                      <span class="fw-normal align-middle">&nbsp;</span>
+                      <div *ngIf="user.isAdmin; then thenBlock else elseBlock"></div>
+                      <ng-template #thenBlock>
+                        <small><span class="badge bg-danger">ADMIN</span></small>&nbsp;
+                      </ng-template>
+                      <ng-template #elseBlock>
+                        <small><span class="badge bg-info">CLIENT</span></small>&nbsp;
+                      </ng-template>
+                      <span class="fw-normal align-middle">{{user.firstName}}</span>
+                      <span class="fw-normal align-middle">&nbsp;</span>
+                      <span class="fw-normal align-middle">{{user.surname}}</span>
                     </div>
                   </div>
                 </th>
@@ -189,8 +200,16 @@
                       <div class="col-12 mx-auto">
                         <div class="jumbotron mt-1">
                           <div class="btn-group btn-group-sm" role="group">
-                            <button type="button" class="btn btn-outline-danger">Disable Account</button>
-                            <button type="button" class="btn btn-outline-success disabled">Enable Account</button>
+                            <button (click)="disableUser(user)"
+                                    type="button"
+                                    class="btn btn-outline-danger">
+                              Disable Account
+                            </button>
+                            <button (click)="enableUser(user)"
+                                    type="button"
+                                    class="btn btn-outline-success disabled">
+                              Enable Account
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -199,7 +218,11 @@
                 </td>
                 <td>
                   <div class="btn-group btn-group-sm mt-1" role="group">
-                    <a routerLink="/profile" type="button" class="btn btn-outline-light">View</a>
+                    <a (click)="viewUser(user)"
+                       type="button"
+                       class="btn btn-outline-light">
+                      View
+                    </a>
                   </div>
                 </td>
               </tr><!-- / concrete client -->
@@ -211,7 +234,7 @@
             <!-- load more button -->
             <div class="row">
               <div class="col-12 text-center">
-                <button type="button" class="load-more-button btn btn-sm btn-outline-light" data-daw-loading-element="loading-more">
+                <button (click)="loadNextUsers()" type="button" class="load-more-button btn btn-sm btn-outline-light" data-daw-loading-element="loading-more">
                   <i class="bi bi-plus-circle"></i>
                   <span class="align-middle">Load more</span>
                 </button>

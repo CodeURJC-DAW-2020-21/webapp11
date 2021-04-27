@@ -67,12 +67,12 @@ public class PictureServiceImpl implements PictureService {
             final String PICTURES_FOLDER = "user-profile-pictures/";
             File file = new File(PICTURES_FOLDER + user.getProfilePictureFilename());
             if(file.exists()) {
-                String extension = FilenameUtils.getExtension(file.getAbsolutePath());
-                // Convert the picture bytes to base64
+                String mimeType = Files.probeContentType(file.toPath());
                 InputStream targetStream = new FileInputStream(file);
                 StringBuffer builder = new StringBuffer();
-                builder.append(extension);
-                builder.append(":");
+                builder.append("data:");
+                builder.append(mimeType);
+                builder.append(";base64,");
                 builder.append(Base64Utils.encodeToString(IOUtils.toByteArray(targetStream)));
                 return builder.toString();
             }

@@ -29,6 +29,9 @@ public class FindUserResponseDto {
     @JsonProperty("enabled")
     private Boolean isEnabled = true;
 
+    @JsonProperty("is_admin")
+    private Boolean isAdmin = false;
+
     @JsonProperty("encoded_image")
     private String encodedImage = StringUtils.EMPTY;
 

@@ -30,6 +30,7 @@ public interface RestUserMapper {
     @Mapping(target="isEnabled", source="enabled")
     User asUpdateUser(UpdateUserRequestDto request);
 
+    @Mapping(target = "isAdmin", source = "user.admin")
     @Mapping(target = "encodedImage", source = "encodedImage")
     FindUserResponseDto asFindUserResponse(User user, String encodedImage);
 
