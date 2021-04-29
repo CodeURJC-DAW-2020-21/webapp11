@@ -231,7 +231,7 @@
               <small>
                 <span>&nbsp;</span>
                 <span *ngIf="loggedUser.isAdmin" class="badge bg-danger">ADMIN</span>
-                <span *ngIf="!loggedUser.isAdmin" class="badge bg-secondary">CLIENT</span>
+                <span *ngIf="!loggedUser.isAdmin" class="badge bg-info">CLIENT</span>
                 <span>&nbsp;</span>
               </small>
 
@@ -251,7 +251,7 @@
               </li><!-- / my services-->
 
               <!-- control panel-->
-              <li>
+              <li *ngIf="loggedUser.isAdmin">
                 <a routerLink="/panel" class="nav-link">
                   <i class="bi bi-toggles2"></i>
                   <span>&nbsp;</span>

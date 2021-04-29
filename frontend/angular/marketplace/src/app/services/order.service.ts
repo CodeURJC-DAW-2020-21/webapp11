@@ -3,6 +3,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Error} from '../models/error.model';
 import {TokenService} from './token.service';
+import {Order} from '../models/order.model';
+import {OrderMapper} from '../mappers/order.mapper';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,7 @@ export class OrderService {
 
   constructor(
     private httpClient: HttpClient,
+    private orderMapper: OrderMapper,
     private tokenService: TokenService
   ) { }
 
@@ -40,15 +43,16 @@ export class OrderService {
     });
   }
 
-  renewOrder(orderId: number): Observable<any | Error> {
+  renewOrder(orderId: number): Observable<Order | Error> {
     const ROUTE = this.BASE_ROUTE + '/' + orderId;
-    return new Observable<any | Error>((subscriber) => {
+    return new Observable<Order | Error>((subscriber) => {
       const requestBody = { months: 1 };
       const requestOptions = { headers: new HttpHeaders({ Authorization: this.tokenService.getToken() }) };
       this.httpClient.put<any>(ROUTE, requestBody, requestOptions)
         .subscribe(
           (responseBody) => {
-            subscriber.next(responseBody);
+            const order = this.orderMapper.asOrder(responseBody.content);
+            subscriber.next(order);
           },
           (errorResponse) => {
             const responseBody = errorResponse.error;
@@ -60,18 +64,40 @@ export class OrderService {
     });
   }
 
-  findOrders(userId: number): Observable<boolean | Error> {
-    return new Observable<boolean | Error>((subscriber) => {
+  findOrders(page: number, amount: number): Observable<Order[] | Error> {
+    const ROUTE = `${this.BASE_ROUTE}?page=${page}&amount=${amount}`;
+    return new Observable<Order[] | Error>((subscriber) => {
       const requestOptions = { headers: new HttpHeaders({ Authorization: this.tokenService.getToken() }) };
-      this.httpClient.get<any>(this.BASE_ROUTE, requestOptions)
+      this.httpClient.get<any>(ROUTE, requestOptions)
         .subscribe(
-          () => {
-            subscriber.next(true);
+          (responseBody) => {
+            const orders = this.orderMapper.asOrders(responseBody.content);
+            subscriber.next(orders);
           },
           (errorResponse) => {
             const responseBody = errorResponse.error;
             // If the response body has content, then the server has answered (otherwise could not connect to server)
-            const error = 'content' in responseBody ? Error.answered(responseBody.content) : Error.unanswered();
+            const error = responseBody != null ? Error.answered(responseBody.content) : Error.unanswered();
+            subscriber.next(error);
+          }
+        );
+    });
+  }
+
+  findOrder(orderId: number): Observable<Order | Error> {
+    const ROUTE = `${this.BASE_ROUTE}/${orderId}`;
+    return new Observable<Order | Error>((subscriber) => {
+      const requestOptions = { headers: new HttpHeaders({ Authorization: this.tokenService.getToken() }) };
+      this.httpClient.get<any>(ROUTE, requestOptions)
+        .subscribe(
+          (responseBody) => {
+            const order = this.orderMapper.asOrder(responseBody.content);
+            subscriber.next(order);
+          },
+          (errorResponse) => {
+            const responseBody = errorResponse.error;
+            // If the response body has content, then the server has answered (otherwise could not connect to server)
+            const error = responseBody != null ? Error.answered(responseBody.content) : Error.unanswered();
             subscriber.next(error);
           }
         );
