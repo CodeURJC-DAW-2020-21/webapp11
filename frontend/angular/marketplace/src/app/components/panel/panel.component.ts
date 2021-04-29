@@ -7,6 +7,7 @@ import {Sale} from '../../models/sale.model';
 import {SaleService} from '../../services/sale.service';
 import {ProductService} from '../../services/product.service';
 import {Product} from '../../models/product.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-panel',
@@ -39,6 +40,7 @@ export class PanelComponent implements OnInit {
   public products: Product[] = [];
 
   constructor(
+    private router: Router,
     private statisticsService: StatisticsService,
     private userService: UserService,
     private saleService: SaleService,
@@ -118,6 +120,7 @@ export class PanelComponent implements OnInit {
   }
 
   viewUser(user: User): void {
+    this.router.navigate(['/profile']).then();
     return;
   }
 

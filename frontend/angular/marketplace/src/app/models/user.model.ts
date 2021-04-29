@@ -4,6 +4,7 @@ export class User {
     public id: number = 0,
     public firstName: string = '',
     public surname: string = '',
+    public address: string = '',
     public email: string = '',
     public enabled: boolean = true,
     public encodedImage: string = '',

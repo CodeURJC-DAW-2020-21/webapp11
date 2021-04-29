@@ -21,6 +21,25 @@ export class UserService {
     private userMapper: UserMapper
   ) { }
 
+  findUser(userId: number): Observable<User | Error> {
+    const ROUTE = `${this.BASE_ROUTE}/${userId}`;
+    return new Observable<User | Error>((subscriber) => {
+      const requestOptions = { headers: new HttpHeaders({ Authorization: this.tokenService.getToken() }) };
+      this.httpClient.get<any>(ROUTE, requestOptions)
+        .subscribe(
+          (responseBody) => {
+            const user = this.userMapper.asUser(responseBody.content);
+            subscriber.next(user);
+          },
+          (errorResponse) => {
+            const responseBody = errorResponse.error;
+            const error = 'content' in responseBody ? Error.answered(responseBody.content) : Error.unanswered();
+            subscriber.next(error);
+          }
+        );
+    });
+  }
+
   findUsers(page: number, amount: number): Observable<User[] | Error> {
     const ROUTE = `${this.BASE_ROUTE}?page=${page}&amount=${amount}`;
     return new Observable<User[] | Error>((subscriber) => {
@@ -74,6 +93,25 @@ export class UserService {
           (errorResponse) => {
             const responseBody = errorResponse.error;
             const error = 'content' in responseBody ? Error.answered(responseBody.content) : Error.unanswered();
+            subscriber.next(error);
+          }
+        );
+    });
+  }
+
+  registerUser(registerUser: User): Observable<User | Error> {
+    return new Observable<User | Error>((subscriber) => {
+      const mapped = this.userMapper.asRegisterRequest(registerUser);
+      this.httpClient.post<any>(this.BASE_ROUTE, mapped)
+        .subscribe(
+          (responseBody) => {
+            const user = this.userMapper.asUser(responseBody.content);
+            subscriber.next(user);
+          },
+          (errorResponse) => {
+            console.log(errorResponse);
+            const responseBody = errorResponse.error;
+            const error = responseBody != null ? Error.answered(responseBody.content) : Error.unanswered();
             subscriber.next(error);
           }
         );

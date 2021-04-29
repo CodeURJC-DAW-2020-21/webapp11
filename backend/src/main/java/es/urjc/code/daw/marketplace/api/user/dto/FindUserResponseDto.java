@@ -33,6 +33,6 @@ public class FindUserResponseDto {
     private Boolean isAdmin = false;
 
     @JsonProperty("encoded_image")
-    private String encodedImage = StringUtils.EMPTY;
+    private String encodedImage = "";
 
 }

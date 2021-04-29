@@ -18,12 +18,23 @@ export class UserMapper {
       item.id,
       item.first_name,
       item.surname,
+      '',
       item.email,
       item.enabled,
       item.encoded_image,
       item.is_admin,
       ''
     );
+  }
+
+  asRegisterRequest(user: User): any {
+    return {
+      first_name: user.firstName,
+      surname: user.surname,
+      address: user.address,
+      email: user.email,
+      password: user.password
+    };
   }
 
 }

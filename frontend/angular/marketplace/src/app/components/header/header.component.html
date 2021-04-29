@@ -209,7 +209,7 @@
       <ul class="navbar-nav mt-2 mt-lg-0 mr-4">
 
         <!-- non-logged-in account -->
-        <li id="not-logged-in" class="nav-item mx-auto">
+        <li *ngIf="loggedUser.email === ''" id="not-logged-in" class="nav-item mx-auto">
           <a class="nav-link" routerLink="/login">
             <i class="bi bi-person-circle"></i>&nbsp;
             <span>Account</span>
@@ -217,7 +217,7 @@
         </li><!-- / non-logged-in account -->
 
         <!-- logged-in account -->
-        <li id="logged-in" class="nav-item mx-auto d-none">
+        <li *ngIf="loggedUser.email !== ''" id="logged-in" class="nav-item mx-auto">
           <div class="dropdown">
 
             <!-- displayed name -->
@@ -229,11 +229,13 @@
               <i id="account-image" class="bi bi-person-circle"></i>
 
               <small>
-                <span id="account-rank" class="badge bg-danger">ADMIN</span>
-                <!-- <span id="account-rank" class="badge bg-secondary">CLIENT</span> -->
+                <span>&nbsp;</span>
+                <span *ngIf="loggedUser.isAdmin" class="badge bg-danger">ADMIN</span>
+                <span *ngIf="!loggedUser.isAdmin" class="badge bg-secondary">CLIENT</span>
+                <span>&nbsp;</span>
               </small>
 
-              <span id="account-name">Jack Sparrow</span>
+              <span id="account-name">{{loggedUser.firstName}} {{loggedUser.surname}}</span>
             </a><!-- / displayed name -->
 
             <!-- account menu -->
@@ -243,6 +245,7 @@
               <li>
                 <a routerLink="/services" class="nav-link">
                   <i class="bi bi-bag"></i>
+                  <span>&nbsp;</span>
                   <span class="animated-link">My Services</span>
                 </a>
               </li><!-- / my services-->
@@ -251,6 +254,7 @@
               <li>
                 <a routerLink="/panel" class="nav-link">
                   <i class="bi bi-toggles2"></i>
+                  <span>&nbsp;</span>
                   <span class="animated-link">Control Panel</span>
                 </a>
               </li><!-- / control panel-->
@@ -259,14 +263,16 @@
               <li>
                 <a routerLink="/profile" class="nav-link">
                   <i class="bi bi-person-fill"></i>
+                  <span>&nbsp;</span>
                   <span class="animated-link">Profile</span>
                 </a>
               </li><!-- / profile -->
 
               <!-- logout -->
               <li>
-                <a routerLink="/logout" class="nav-link">
+                <a (click)="logOut()" href="#" class="nav-link">
                   <i class="bi bi-box-arrow-right"></i>
+                  <span>&nbsp;</span>
                   <span class="animated-link">Logout</span>
                 </a>
               </li><!-- / logout -->

@@ -29,6 +29,8 @@ export class LoginService {
             const authResponse = this.authResponseMapper.asAuthResponse(responseBody);
             // Store the provided token
             this.tokenService.saveToken(authResponse.content.token);
+            // Store the user id
+            localStorage.setItem('user_id', responseBody.content.user_id);
             subscriber.next(authResponse);
           },
           (errorResponse) => {

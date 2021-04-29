@@ -80,32 +80,27 @@ public class UserRestController {
     )
     public ResponseEntity<RestResponseDto> createUser(@RequestBody RegisterUserRequestDto request,
                                                       UriComponentsBuilder uriComponentsBuilder) {
+        // Build the domain user from the request
+        User requestUser = userMapper.asRegisterUser(request);
+        // Save the built user
+        User storedUser = userService.registerUser(requestUser);
+        // Construct the user welcome email message
+        final String emailTitle = EmailMessageFactory.newWelcomeTitle();
+        final String emailMessage = EmailMessageFactory.newWelcomeMessage(storedUser);
+        // Send the message
         try {
-            // Build the domain user from the request
-            User requestUser = userMapper.asRegisterUser(request);
-            // Save the built user
-            User storedUser = userService.registerUser(requestUser);
-            // Construct the user welcome email message
-            final String emailTitle = EmailMessageFactory.newWelcomeTitle();
-            final String emailMessage = EmailMessageFactory.newWelcomeMessage(storedUser);
-            // Send the message
-            try {
-                emailService.sendEmail(storedUser.getEmail(), emailTitle, emailMessage);
-            } catch(Exception exception) {
-                final String message = "The welcome email message sending has failed";
-                RestResponseDto response = RestResponseDto.builder().status(HttpStatus.INTERNAL_SERVER_ERROR).content(message).build();
-                return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-            // Create the location header to be returned
-            final String storedResourceUri = BASE_ROUTE + "/{id}";
-            UriComponents components = uriComponentsBuilder.path(storedResourceUri).buildAndExpand(storedUser.getId());
-            // Return a successful response with the location header
-            FindUserResponseDto findUser = userMapper.asFindUserResponse(storedUser, StringUtils.EMPTY);
-            RestResponseDto response = RestResponseDto.builder().status(HttpStatus.OK).content(findUser).build();
-            return ResponseEntity.created(components.toUri()).body(response);
-        } catch(Exception e){
-            throw new RuntimeException(e);
+            emailService.sendEmail(storedUser.getEmail(), emailTitle, emailMessage);
+        } catch(Exception exception) {
+            final String message = "The welcome email message sending has failed";
+            RestResponseDto response = RestResponseDto.builder().status(HttpStatus.INTERNAL_SERVER_ERROR).content(message).build();
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        // Create the location header to be returned
+        final String storedResourceUri = BASE_ROUTE + "/{id}";
+        UriComponents components = uriComponentsBuilder.path(storedResourceUri).buildAndExpand(storedUser.getId());
+        // Return a successful response with the location header
+        RestResponseDto response = RestResponseDto.builder().status(HttpStatus.OK).build();
+        return ResponseEntity.created(components.toUri()).body(response);
     }
 
     @Operation(summary = "Updates the information of a user")
