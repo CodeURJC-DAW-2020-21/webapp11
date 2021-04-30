@@ -54,27 +54,30 @@
       <tbody>
 
       <!-- concrete service -->
-      <tr>
+      <tr *ngFor="let order of loadedOrders;">
         <th scope="row">
-          <i class="bi bi-share align-middle text-light"></i>
-          <span class="fw-normal align-middle">&nbsp;Shared Server</span>
+          <span class="fw-normal align-middle">#{{order.orderId}} - <b>{{order.category}}</b></span>
         </th>
         <td>
           <ul class="list-inline my-0">
             <li class="list-inline-item align-middle">
-              <span class="fw-bold">1 GB&nbsp;</span>
+              <span class="fw-bold">{{order.ram}}</span>
+              <span>&nbsp;</span>
               <span class="fw-normal">RAM</span>
             </li>
             <li class="list-inline-item align-middle">
-              <span class="fw-bold">2 vCPU&nbsp;</span>
+              <span class="fw-bold">{{order.cores}}</span>
+              <span>&nbsp;</span>
               <span class="fw-normal">CORE</span>
             </li>
             <li class="list-inline-item align-middle">
-              <span class="fw-bold">32 GB&nbsp;</span>
+              <span class="fw-bold">{{order.storage}}</span>
+              <span>&nbsp;</span>
               <span class="fw-normal">STORAGE</span>
             </li>
             <li class="list-inline-item align-middle text-purple">
-              <span class="fw-bold">1 TB&nbsp;</span>
+              <span class="fw-bold">{{order.transfer}}</span>
+              <span>&nbsp;</span>
               <span class="fw-normal">TRANSFER</span>
             </li>
           </ul>
@@ -86,82 +89,7 @@
         </td>
         <td>
           <div>
-            <span>Feb 10, 2022</span>
-          </div>
-        </td>
-      </tr><!-- / concrete service -->
-
-      <!-- concrete service -->
-      <tr>
-        <th scope="row">
-          <i class="bi bi-hdd align-middle text-light"></i>
-          <span class="fw-normal align-middle">&nbsp;Virtual Private Server</span></th>
-        <td>
-          <ul class="list-inline my-0">
-            <li class="list-inline-item align-middle">
-              <span class="fw-bold">1 GB&nbsp;</span>
-              <span class="fw-normal">RAM</span>
-            </li>
-            <li class="list-inline-item align-middle">
-              <span class="fw-bold">1 vCPU&nbsp;</span>
-              <span class="fw-normal">CORE</span>
-            </li>
-            <li class="list-inline-item align-middle">
-              <span class="fw-bold">128 TB&nbsp;</span>
-              <span class="fw-normal">STORAGE</span>
-            </li>
-            <li class="list-inline-item align-middle text-purple">
-              <span class="fw-bold">1 TB&nbsp;</span>
-              <span class="fw-normal">TRANSFER</span>
-            </li>
-          </ul>
-        </td>
-        <td>
-          <div class="btn-group btn-group-sm" role="group">
-            <a routerLink="/service" type="button" class="btn btn-outline-light">View</a>
-          </div>
-        </td>
-        <td>
-          <div>
-            <span>Nov 21, 2022</span>
-          </div>
-        </td>
-      </tr><!-- / concrete service -->
-
-      <!-- concrete service -->
-      <tr>
-        <th scope="row">
-          <i class="bi bi-hdd-rack align-middle text-light"></i>
-          <span class="fw-normal align-middle">&nbsp;Virtual Private Server</span>
-        </th>
-        <td>
-          <ul class="list-inline my-0">
-            <li class="list-inline-item align-middle">
-              <span class="fw-bold">16 GB&nbsp;</span>
-              <span class="fw-normal">RAM</span>
-            </li>
-            <li class="list-inline-item align-middle">
-              <span class="fw-bold">6 vCPU&nbsp;</span>
-              <span class="fw-normal">CORE</span>
-            </li>
-            <li class="list-inline-item align-middle">
-              <span class="fw-bold">2 TB&nbsp;</span>
-              <span class="fw-normal">STORAGE</span>
-            </li>
-            <li class="list-inline-item align-middle text-purple">
-              <span class="fw-bold">25 TB&nbsp;</span>
-              <span class="fw-normal">TRANSFER</span>
-            </li>
-          </ul>
-        </td>
-        <td>
-          <div class="btn-group btn-group-sm" role="group">
-            <a routerLink="/service" type="button" class="btn btn-outline-light">View</a>
-          </div>
-        </td>
-        <td>
-          <div>
-            <span>Jan 18, 2022</span>
+            <span>{{order.expirationDate}}</span>
           </div>
         </td>
       </tr><!-- / concrete service -->
@@ -173,7 +101,7 @@
     <!-- load more button -->
     <div class="row">
       <div class="col-12 text-center">
-        <button type="button" class="load-more-button btn btn-sm btn-outline-light" data-daw-loading-element="loading-more">
+        <button (click)="loadNextOrders()" type="button" class="load-more-button btn btn-sm btn-outline-light" data-daw-loading-element="loading-more">
           <i class="bi bi-plus-circle"></i>
           <span class="align-middle">&nbsp;Load more</span>
         </button>

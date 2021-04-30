@@ -26,7 +26,7 @@ export class ServiceComponent implements OnInit {
       } else {
         // If renew order success -> refresh windows
         alert('I renewed the service successfully!');
-        console.log(response.content);
+        console.log(response);
       }
     });
   }
