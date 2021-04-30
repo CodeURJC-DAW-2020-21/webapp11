@@ -24,12 +24,18 @@ export class LoginComponent implements OnInit {
   }
 
   logIn(): void {
+    if (!/\S+@\S+(\.\S+)?/.test(this.email)) {
+      this.state = 'ERROR';
+      this.message = 'Please provide a valid email address!';
+      return;
+    }
     const observable = this.loginService.logIn(this.email, this.password);
     observable.subscribe((response) => {
       const status = response.statusCode;
       if (status === 200) {
         this.state = 'SUCCESS';
         this.message = 'You have been successfully logged in! Redirecting...';
+        window.location.replace('/home');
       } else if (status === 400) {
         this.state = 'ERROR';
         this.message = 'The provided credentials are missing or invalid!';
