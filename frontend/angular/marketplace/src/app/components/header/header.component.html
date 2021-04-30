@@ -1,15 +1,13 @@
 <nav class="navbar navbar-expand-md navbar-dark mx-2">
-
   <!-- container -->
   <div class="container-fluid">
-
     <!-- logo -->
     <a id="logo" routerLink="/home" class="navbar-brand d-flex">
       <span class="text-light">DAW</span>
       <span class="text-secondary">Host</span>
       <span class="text-light">Services</span>
-    </a><!-- / logo -->
-
+    </a>
+    <!-- / logo -->
     <!-- hamburger -->
     <button class="navbar-toggler"
             data-bs-target="#nav-items"
@@ -19,207 +17,198 @@
             aria-label="Toggle navigation menu"
             type="button">
       <span class="navbar-toggler-icon"></span>
-    </button><!-- / hamburger -->
-
+    </button>
+    <!-- / hamburger -->
     <!-- navigation items -->
     <div id="nav-items" class="collapse navbar-collapse">
-
       <!-- left side items -->
       <ul class="navbar-nav me-auto mb-2 mb-md-0 mt-1">
-
         <!-- links -->
         <li class="nav-item nav-link dropdown mx-auto">
           <div class="d-flex justify-content-center"
                data-bs-toggle="dropdown">
             <span>Products</span>
           </div>
-
           <!-- mobile products -->
           <ul id="menu-products-mobile"
               class="dropdown-menu products-menu bg-dark-blue"
               aria-labelledby="products-dropdown">
-
             <!-- shared server product -->
             <li class="nav-item mx-auto">
               <div class="d-flex justify-content-center">
                 <a href="pricing.html" class="nav-link card-title">
                   <i class="bi bi-share text-light"></i>&nbsp;
+
                   <span class="animated-link">Shared Server</span>
                 </a>
               </div>
-            </li><!-- / shared server product -->
-
+            </li>
+            <!-- / shared server product -->
             <!-- vps product -->
             <li class="nav-item mx-auto">
               <div class="d-flex justify-content-center">
                 <a href="pricing.html" class="nav-link card-title">
                   <i class="bi bi-hdd text-light"></i>&nbsp;
+
                   <span class="animated-link">Virtual Private Server</span>
                 </a>
               </div>
-            </li><!-- / vps product -->
-
+            </li>
+            <!-- / vps product -->
             <!-- dedicated server product -->
             <li class="nav-item mx-auto">
               <div class="d-flex justify-content-center">
                 <a href="pricing.html" class="nav-link card-title">
                   <i class="bi bi-hdd-rack text-light"></i>&nbsp;
+
                   <span class="animated-link">Dedicated Server</span>
                 </a>
               </div>
-            </li><!-- / dedicated server product -->
-
-          </ul><!-- / mobile products -->
-
+            </li>
+            <!-- / dedicated server product -->
+          </ul>
+          <!-- / mobile products -->
           <!-- desktop products -->
           <ul id="menu-products-desktop"
               class="products-menu dropdown-menu bg-dark-blue"
               aria-labelledby="products-dropdown">
-
             <!-- dropdown header  -->
             <li class="nav-item mx-auto">
               <h6 class="dropdown-header text-center">
                 <span>Choose what suits you best!</span>
               </h6>
-            </li><!-- / dropdown header -->
-
+            </li>
+            <!-- / dropdown header -->
             <!-- shared server product -->
             <li>
               <div class="card bg-grey-transparent m-2">
                 <div class="card-body highlight p-1">
                   <div class="row">
-
                     <!-- icon -->
                     <div class="col-2 d-flex justify-content-center align-items-center">
                       <i class="bi bi-share text-light"></i>
-                    </div><!-- / icon -->
-
+                    </div>
+                    <!-- / icon -->
                     <!-- content -->
                     <div class="col-10">
-
                       <!-- link -->
                       <a routerLink="/pricing" class="card-title animated-link text-white">
                         <span>Shared Server</span>
-                      </a><!-- / link -->
-
+                      </a>
+                      <!-- / link -->
                       <!-- description-->
                       <h6 class="card-subtitle text-muted text-truncate mb-2"
                           title="A Burstable Portion of vCPU."
                           data-toggle="tooltip"
                           data-placement="bottom">
                         <span>A Burstable Portion of vCPU.</span>
-                      </h6><!-- / description-->
-
-                    </div><!-- / content -->
-
+                      </h6>
+                      <!-- / description-->
+                    </div>
+                    <!-- / content -->
                   </div>
                 </div>
               </div>
-            </li><!-- / shared server product -->
-
+            </li>
+            <!-- / shared server product -->
             <!-- vps product -->
             <li>
               <div class="card bg-grey-transparent m-2">
                 <div class="card-body highlight p-1">
                   <div class="row">
-
                     <!-- icon -->
                     <div class="col-2 d-flex justify-content-center align-items-center">
                       <i class="bi bi-hdd text-light"></i>
-                    </div><!-- / icon -->
-
+                    </div>
+                    <!-- / icon -->
                     <!-- content -->
                     <div class="col-10">
-
                       <!-- link -->
                       <a routerLink="/pricing" class="card-title animated-link text-white">
                         <span>Virtual Private Server</span>
-                      </a><!-- / link -->
-
+                      </a>
+                      <!-- / link -->
                       <!-- description-->
                       <h6 class="card-subtitle text-muted text-truncate mb-2"
                           title="General Purpose Usage."
                           data-toggle="tooltip"
                           data-placement="bottom">
                         <span>General Purpose Usage.</span>
-                      </h6><!-- / description-->
-
-                    </div><!-- / content -->
-
+                      </h6>
+                      <!-- / description-->
+                    </div>
+                    <!-- / content -->
                   </div>
                 </div>
               </div>
-            </li><!-- / vps product -->
-
+            </li>
+            <!-- / vps product -->
             <!-- dedicated server product -->
             <li>
               <div class="card bg-grey-transparent m-2">
                 <div class="card-body highlight p-1">
                   <div class="row">
-
                     <!-- icon -->
                     <div class="col-2 d-flex justify-content-center align-items-center">
                       <i class="bi bi-hdd-rack text-light"></i>
-                    </div><!-- / icon -->
-
+                    </div>
+                    <!-- / icon -->
                     <!-- content -->
                     <div class="col-10">
-
                       <!-- link -->
                       <a routerLink="/pricing" class="card-title animated-link text-white">
                         <span>Dedicated Server</span>
-                      </a><!-- / link -->
-
+                      </a>
+                      <!-- / link -->
                       <!-- description-->
                       <h6 class="card-subtitle text-muted text-truncate mb-2"
                           title="CPU & Memory Optimized."
                           data-toggle="tooltip"
                           data-placement="bottom">
                         <span>CPU & Memory Optimized.</span>
-                      </h6><!-- / description-->
-
-                    </div><!-- / content -->
-
+                      </h6>
+                      <!-- / description-->
+                    </div>
+                    <!-- / content -->
                   </div>
                 </div>
               </div>
-            </li><!-- / dedicated server product -->
-
-          </ul><!-- / desktop products -->
-
-        </li><!-- / links -->
-
+            </li>
+            <!-- / dedicated server product -->
+          </ul>
+          <!-- / desktop products -->
+        </li>
+        <!-- / links -->
         <!-- pricing -->
         <li class="nav-item mx-auto">
           <a class="nav-link" routerLink="/pricing">
             <span>Pricing</span>
           </a>
-        </li><!-- / pricing -->
-
+        </li>
+        <!-- / pricing -->
         <!-- about -->
         <li class="nav-item mx-auto">
           <a class="nav-link" routerLink="/about">
             <span>About us</span>
           </a>
-        </li><!-- / about -->
-
-      </ul><!-- / left side items -->
-
+        </li>
+        <!-- / about -->
+      </ul>
+      <!-- / left side items -->
       <!-- right side items -->
       <ul class="navbar-nav mt-2 mt-lg-0 mr-4">
-
         <!-- non-logged-in account -->
         <li *ngIf="loggedUser.email === ''" id="not-logged-in" class="nav-item mx-auto">
           <a class="nav-link" routerLink="/login">
             <i class="bi bi-person-circle"></i>&nbsp;
+
             <span>Account</span>
           </a>
-        </li><!-- / non-logged-in account -->
-
+        </li>
+        <!-- / non-logged-in account -->
         <!-- logged-in account -->
         <li *ngIf="loggedUser.email !== ''" id="logged-in" class="nav-item mx-auto">
           <div class="dropdown">
-
             <!-- displayed name -->
             <a href="#"
                class="nav-link dropdown-toggle text-center"
@@ -227,20 +216,17 @@
                data-bs-toggle="dropdown"
                aria-expanded="false">
               <i id="account-image" class="bi bi-person-circle"></i>
-
               <small>
                 <span>&nbsp;</span>
                 <span *ngIf="loggedUser.isAdmin" class="badge bg-danger">ADMIN</span>
                 <span *ngIf="!loggedUser.isAdmin" class="badge bg-info">CLIENT</span>
                 <span>&nbsp;</span>
               </small>
-
               <span id="account-name">{{loggedUser.firstName}} {{loggedUser.surname}}</span>
-            </a><!-- / displayed name -->
-
+            </a>
+            <!-- / displayed name -->
             <!-- account menu -->
             <ul class="account-menu dropdown-menu text-center bg-dark-blue">
-
               <!-- my services-->
               <li>
                 <a routerLink="/services" class="nav-link">
@@ -248,8 +234,8 @@
                   <span>&nbsp;</span>
                   <span class="animated-link">My Services</span>
                 </a>
-              </li><!-- / my services-->
-
+              </li>
+              <!-- / my services-->
               <!-- control panel-->
               <li *ngIf="loggedUser.isAdmin">
                 <a routerLink="/panel" class="nav-link">
@@ -257,8 +243,8 @@
                   <span>&nbsp;</span>
                   <span class="animated-link">Control Panel</span>
                 </a>
-              </li><!-- / control panel-->
-
+              </li>
+              <!-- / control panel-->
               <!-- profile -->
               <li>
                 <a routerLink="/profile" class="nav-link">
@@ -266,8 +252,8 @@
                   <span>&nbsp;</span>
                   <span class="animated-link">Profile</span>
                 </a>
-              </li><!-- / profile -->
-
+              </li>
+              <!-- / profile -->
               <!-- logout -->
               <li>
                 <a (click)="logOut()" href="#" class="nav-link">
@@ -275,17 +261,18 @@
                   <span>&nbsp;</span>
                   <span class="animated-link">Logout</span>
                 </a>
-              </li><!-- / logout -->
-
-            </ul><!-- / account menu -->
-
+              </li>
+              <!-- / logout -->
+            </ul>
+            <!-- / account menu -->
           </div>
-        </li><!-- / logged-in account -->
-
-      </ul><!-- / right side items -->
-
-    </div><!-- / navigation items -->
-
-  </div><!-- / container -->
-
-</nav><!-- / navigation -->
+        </li>
+        <!-- / logged-in account -->
+      </ul>
+      <!-- / right side items -->
+    </div>
+    <!-- / navigation items -->
+  </div>
+  <!-- / container -->
+</nav>
+<!-- / navigation -->

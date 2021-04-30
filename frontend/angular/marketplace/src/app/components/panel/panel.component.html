@@ -1,4 +1,5 @@
 
+
 <!-- page title -->
 <div class="d-flex justify-content-center text-white text-center">
   <div class="row">
@@ -7,20 +8,20 @@
         <span>Administrator Control Panel</span>
       </h3>
       <p class="text-secondary mb-0">
-        <span class="fst-italic">
+				<span class="fst-italic">
           "The most intuitive panel to manage
           your sales, and track your earnings"
         </span>
       </p>
     </div>
   </div>
-</div><!-- / page title -->
-
+</div>
+<!-- / page title -->
 <!-- horizontal line -->
 <div class="container text-light mt-0">
   <hr />
-</div><!-- / horizontal line -->
-
+</div>
+<!-- / horizontal line -->
 <div class="row mx-0">
   <div class="col-12 px-5 mx-0">
     <div *ngIf="clientEnabledMessage" class="px-5 mx-5 alert text-center bg-transparent border border-1 rounded alert-success border-success text-success fade show" role="alert">
@@ -31,7 +32,6 @@
     </div>
   </div>
 </div>
-
 <div class="container mt-3 text-white">
   <nav>
     <div class="d-flex justify-content-center nav nav-tabs text-center"
@@ -48,6 +48,7 @@
               aria-selected="true"
               style="width: 200px;">
         <i class="bi bi-bar-chart"></i>&nbsp;
+
         <span class="animated-link">Statistics</span>
       </button>
       <button class="nav-link content-button bg-transparent text-white"
@@ -60,6 +61,7 @@
               aria-selected="false"
               style="width: 200px;">
         <i class="bi bi-people"></i>&nbsp;
+
         <span class="animated-link">Manage Clients</span>
       </button>
       <button class="nav-link content-button bg-transparent text-white"
@@ -72,6 +74,7 @@
               aria-selected="false"
               style="width: 200px;">
         <i class="bi bi-percent"></i>&nbsp;
+
         <span class="animated-link">Sale</span>
       </button>
       <button class="nav-link content-button bg-transparent text-white"
@@ -84,545 +87,528 @@
               aria-selected="false"
               style="width: 200px;">
         <i class="bi bi-arrow-repeat"></i>&nbsp;
+
         <span class="animated-link">Accumulative Sale</span>
       </button>
     </div>
   </nav>
-<div class="tab-content">
-  <!-- statistics content -->
-  <div id="v-pills-stats"
-       role="tabpanel"
-       aria-labelledby="v-pills-stats-tab"
-       class="container content border border-secondary rounded p-2 tab-pane fade show active">
-    <div  class="row justify-content-center me-auto">
-
-      <!-- left box-->
-      <div class="col-lg-5 col-md-10 col-sm-10 col-10 border border-light rounded p-1 pt-4 m-4 pb-4 text-white">
-
-        <!-- title -->
-        <h5 class="text-center px-3">
-          <span class="animated-link">Weekly Purchased Services</span>
-        </h5><!-- title -->
-
-        <!-- centered content -->
-        <div class="container">
-          <div class="row align-items-center h-100">
-            <div class="col-12 mx-auto">
-              <div class="jumbotron text-center">
-                <app-category-purchases-chart></app-category-purchases-chart>
+  <div class="tab-content">
+    <!-- statistics content -->
+    <div id="v-pills-stats"
+         role="tabpanel"
+         aria-labelledby="v-pills-stats-tab"
+         class="container content border border-secondary rounded p-2 tab-pane fade show active">
+      <div  class="row justify-content-center me-auto">
+        <!-- left box-->
+        <div class="col-lg-5 col-md-10 col-sm-10 col-10 border border-light rounded p-1 pt-4 m-4 pb-4 text-white">
+          <!-- title -->
+          <h5 class="text-center px-3">
+            <span class="animated-link">Weekly Purchased Services</span>
+          </h5>
+          <!-- title -->
+          <!-- centered content -->
+          <div class="container">
+            <div class="row align-items-center h-100">
+              <div class="col-12 mx-auto">
+                <div class="jumbotron text-center">
+                  <app-category-purchases-chart></app-category-purchases-chart>
+                </div>
               </div>
             </div>
           </div>
-        </div><!-- / centered content -->
+          <!-- / centered content -->
+        </div>
+        <!-- / left box-->
+        <!-- right box -->
+        <div class="col-lg-5 col-md-10 col-sm-10 col-10 border border-light rounded p-1 pt-4 m-4 pb-4 text-white">
+          <!-- title -->
+          <h5 class="text-center px-3">
+            <span class="animated-link">Weekly Sales</span>
+          </h5>
+          <!-- title -->
+          <!-- current date -->
+          <p class="text-center">
+            <span class="text-light">Today is</span>&nbsp;
 
-      </div><!-- / left box-->
-
-      <!-- right box -->
-      <div class="col-lg-5 col-md-10 col-sm-10 col-10 border border-light rounded p-1 pt-4 m-4 pb-4 text-white">
-
-        <!-- title -->
-        <h5 class="text-center px-3">
-          <span class="animated-link">Weekly Sales</span>
-        </h5><!-- title -->
-
-        <!-- current date -->
-        <p class="text-center">
-          <span class="text-light">Today is</span>&nbsp;
-          <span class="text-secondary">{{ todayDate | date:'EEE dd LLL, yyyy' }}</span>
-        </p><!-- / current date -->
-
-        <!-- centered content -->
-        <div class="container">
-          <div class="row align-items-center h-100">
-            <div class="col-12 mx-auto">
-              <div class="jumbotron text-center">
-                <app-weekly-sales-chart></app-weekly-sales-chart>
+            <span class="text-secondary">{{ todayDate | date:'EEE dd LLL, yyyy' }}</span>
+          </p>
+          <!-- / current date -->
+          <!-- centered content -->
+          <div class="container">
+            <div class="row align-items-center h-100">
+              <div class="col-12 mx-auto">
+                <div class="jumbotron text-center">
+                  <app-weekly-sales-chart></app-weekly-sales-chart>
+                </div>
               </div>
             </div>
           </div>
-        </div><!-- / centered content -->
-
-      </div><!-- / right box -->
+          <!-- / centered content -->
+        </div>
+        <!-- / right box -->
+      </div>
+      <!-- accumulated capital -->
+      <div class="row text-center">
+        <h4>
+          <span>Accumulated Capital:&nbsp;</span>
+          <span class="text-success">${{accumulatedCapital}}</span>
+        </h4>
+      </div>
+      <!-- / accumulated capital -->
     </div>
+    <!-- / statistics content -->
+    <!-- client management content -->
+    <div id="v-pills-clients"
+         role="tabpanel"
+         aria-labelledby="v-pills-clients-tab"
+         class="tab-pane fade container content border border-secondary rounded p-2">
+      <div class="row justify-content-center">
+        <div class="col-12 mx-auto">
+          <!-- registered clients-->
+          <div class="row py-0 m-0">
+            <div class="col-12">
+              <table class="table table-bordered border-secondary text-white text-center">
+                <!-- table header -->
+                <thead>
+                <tr>
+                  <th scope="col">Client Information</th>
+                  <th scope="col">Actions</th>
+                  <th scope="col">More details</th>
+                </tr>
+                </thead>
+                <!-- / table header -->
+                <tbody>
+                <!-- concrete client -->
+                <tr *ngFor="let user of loadedUsers; index as userIndex;">
+                  <th scope="row">
+                    <div class="row d-flex float-start" >
+                      <div class="col-md-12">
+                        <div *ngIf="user.hasProfilePicture(); then hasPicture else hasNoPicture"></div>
+                        <ng-template #hasPicture>
+                          <img class="profile-picture" src="{{user.encodedImage}}"/>
+                        </ng-template>
+                        <ng-template #hasNoPicture>
+                          <img class="profile-picture" src="./assets/img/profile.png"/>
+                        </ng-template>
+                        <span class="fw-normal align-middle">&nbsp;</span>
+                        <div *ngIf="user.isAdmin; then thenBlock else elseBlock"></div>
+                        <ng-template #thenBlock>
+                          <small>
+                            <span class="badge bg-danger">ADMIN</span>
+                          </small>&nbsp;
 
-    <!-- accumulated capital -->
-    <div class="row text-center">
-      <h4>
-        <span>Accumulated Capital:&nbsp;</span>
-        <span class="text-success">${{accumulatedCapital}}</span>
-      </h4>
-    </div><!-- / accumulated capital -->
+                        </ng-template>
+                        <ng-template #elseBlock>
+                          <small>
+                            <span class="badge bg-info">CLIENT</span>
+                          </small>&nbsp;
 
-  </div><!-- / statistics content -->
-
-  <!-- client management content -->
-  <div id="v-pills-clients"
-       role="tabpanel"
-       aria-labelledby="v-pills-clients-tab"
-       class="tab-pane fade container content border border-secondary rounded p-2">
-    <div class="row justify-content-center">
-      <div class="col-12 mx-auto">
-
-        <!-- registered clients-->
-        <div class="row py-0 m-0">
-          <div class="col-12">
-            <table class="table table-bordered border-secondary text-white text-center">
-
-              <!-- table header -->
-              <thead>
-              <tr>
-                <th scope="col">Client Information</th>
-                <th scope="col">Actions</th>
-                <th scope="col">More details</th>
-              </tr>
-              </thead><!-- / table header -->
-
-              <tbody>
-
-              <!-- concrete client -->
-              <tr *ngFor="let user of loadedUsers; index as userIndex;">
-                <th scope="row">
-                  <div class="row d-flex float-start" >
-                    <div class="col-md-12">
-                      <div *ngIf="user.hasProfilePicture(); then hasPicture else hasNoPicture"></div>
-                      <ng-template #hasPicture>
-                        <img class="profile-picture" src="{{user.encodedImage}}"/>
-                      </ng-template>
-                      <ng-template #hasNoPicture>
-                        <img class="profile-picture" src="./assets/img/profile.png"/>
-                      </ng-template>
-                      <span class="fw-normal align-middle">&nbsp;</span>
-                      <div *ngIf="user.isAdmin; then thenBlock else elseBlock"></div>
-                      <ng-template #thenBlock>
-                        <small><span class="badge bg-danger">ADMIN</span></small>&nbsp;
-                      </ng-template>
-                      <ng-template #elseBlock>
-                        <small><span class="badge bg-info">CLIENT</span></small>&nbsp;
-                      </ng-template>
-                      <span class="fw-normal align-middle">{{user.firstName}}</span>
-                      <span class="fw-normal align-middle">&nbsp;</span>
-                      <span class="fw-normal align-middle">{{user.surname}}</span>
+                        </ng-template>
+                        <span class="fw-normal align-middle">{{user.firstName}}</span>
+                        <span class="fw-normal align-middle">&nbsp;</span>
+                        <span class="fw-normal align-middle">{{user.surname}}</span>
+                      </div>
                     </div>
-                  </div>
-                </th>
-                <td>
-                  <div class="container">
-                    <div class="row align-items-center h-100">
-                      <div class="col-12 mx-auto">
-                        <div class="jumbotron mt-1">
-                          <div *ngIf="user.enabled; then userEnabled else userDisabled"></div>
-                          <ng-template #userEnabled>
-                            <div class="btn-group btn-group-sm" role="group">
-                              <button (click)="disableUser(user, userIndex)"
-                                      type="button"
-                                      class="btn btn-outline-danger">
-                                Disable Account
-                              </button>
-                              <button (click)="enableUser(user, userIndex)"
-                                      type="button"
-                                      class="btn btn-outline-success disabled">
-                                Enable Account
-                              </button>
-                            </div>
-                          </ng-template>
-                          <ng-template #userDisabled>
-                            <div class="btn-group btn-group-sm" role="group">
-                              <button (click)="disableUser(user, userIndex)"
-                                      type="button"
-                                      class="btn btn-outline-danger disabled">
-                                Disable Account
-                              </button>
-                              <button (click)="enableUser(user, userIndex)"
-                                      type="button"
-                                      class="btn btn-outline-success">
-                                Enable Account
-                              </button>
-                            </div>
-                          </ng-template>
+                  </th>
+                  <td>
+                    <div class="container">
+                      <div class="row align-items-center h-100">
+                        <div class="col-12 mx-auto">
+                          <div class="jumbotron mt-1">
+                            <div *ngIf="user.enabled; then userEnabled else userDisabled"></div>
+                            <ng-template #userEnabled>
+                              <div class="btn-group btn-group-sm" role="group">
+                                <button (click)="disableUser(user, userIndex)"
+                                        type="button"
+                                        class="btn btn-outline-danger">
+                                  Disable Account
+                                </button>
+                                <button (click)="enableUser(user, userIndex)"
+                                        type="button"
+                                        class="btn btn-outline-success disabled">
+                                  Enable Account
+                                </button>
+                              </div>
+                            </ng-template>
+                            <ng-template #userDisabled>
+                              <div class="btn-group btn-group-sm" role="group">
+                                <button (click)="disableUser(user, userIndex)"
+                                        type="button"
+                                        class="btn btn-outline-danger disabled">
+                                  Disable Account
+                                </button>
+                                <button (click)="enableUser(user, userIndex)"
+                                        type="button"
+                                        class="btn btn-outline-success">
+                                  Enable Account
+                                </button>
+                              </div>
+                            </ng-template>
+                          </div>
                         </div>
                       </div>
                     </div>
+                  </td>
+                  <td>
+                    <div class="btn-group btn-group-sm mt-1" role="group">
+                      <a (click)="viewUser(user)"
+                         type="button"
+                         class="btn btn-outline-light">
+                        View
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+                <!-- / concrete client -->
+                </tbody>
+              </table>
+              <!-- load more button -->
+              <div class="row">
+                <div class="col-12 text-center">
+                  <button (click)="loadNextUsers()" type="button" class="load-more-button btn btn-sm btn-outline-light" data-daw-loading-element="loading-more">
+                    <i class="bi bi-plus-circle"></i>
+                    <span>&nbsp;</span>
+                    <span class="align-middle">Load more</span>
+                  </button>
+                </div>
+              </div>
+              <!-- / load more button -->
+              <!-- load more button -->
+              <div id="loading-more" class="row d-none">
+                <div class="col-12 text-center text-white">
+                  <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
                   </div>
-                </td>
-                <td>
-                  <div class="btn-group btn-group-sm mt-1" role="group">
-                    <a (click)="viewUser(user)"
-                       type="button"
-                       class="btn btn-outline-light">
-                      View
-                    </a>
-                  </div>
-                </td>
-              </tr><!-- / concrete client -->
-
-              </tbody>
-
-            </table>
-
-            <!-- load more button -->
-            <div class="row">
-              <div class="col-12 text-center">
-                <button (click)="loadNextUsers()" type="button" class="load-more-button btn btn-sm btn-outline-light" data-daw-loading-element="loading-more">
-                  <i class="bi bi-plus-circle"></i>
+                </div>
+              </div>
+              <!-- / load more button -->
+            </div>
+          </div>
+          <!-- / registered clients-->
+        </div>
+      </div>
+    </div>
+    <!-- / client management content -->
+    <!-- sale content -->
+    <div id="v-pills-sale-1"
+         role="tabpanel"
+         aria-labelledby="v-pills-sale-1-tab"
+         class="tab-pane fade container content border border-secondary rounded p-2">
+      <div class="row justify-content-center">
+        <div class="col-12 mx-auto">
+          <div class="row mx-0">
+            <div class="col-12 px-5 mx-0">
+              <div *ngIf="oneTimeSaleUpdatedMessage" class="px-5 mx-5 alert text-center bg-transparent border border-1 rounded alert-success border-success text-success fade show" role="alert">
+                <strong>{{oneTimeSaleUpdatedMessage}}</strong>
+              </div>
+              <div *ngIf="oneTimeSaleDisabledMessage" class="px-5 mx-5  alert text-center bg-transparent border border-1 rounded alert-info border-info text-info fade show" role="alert">
+                <strong>{{oneTimeSaleDisabledMessage}}</strong>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-0 d-flex align-items-center justify-content-center">
+              <!-- discount box -->
+              <div class="text-center card w-100 bg-transparent border border-1 border-light">
+                <h3 class="card-title mt-4 mb-0">
+                  <i class="bi bi-wallet2"></i>
                   <span>&nbsp;</span>
-                  <span class="align-middle">Load more</span>
-                </button>
-              </div>
-            </div><!-- / load more button -->
-
-            <!-- load more button -->
-            <div id="loading-more" class="row d-none">
-              <div class="col-12 text-center text-white">
-                <div class="d-flex justify-content-center">
-                  <div class="spinner-border" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                  </div>
-                </div>
-              </div>
-            </div><!-- / load more button -->
-
-          </div>
-
-        </div><!-- / registered clients-->
-      </div>
-    </div>
-  </div><!-- / client management content -->
-
-  <!-- sale content -->
-  <div id="v-pills-sale-1"
-       role="tabpanel"
-       aria-labelledby="v-pills-sale-1-tab"
-       class="tab-pane fade container content border border-secondary rounded p-2">
-    <div class="row justify-content-center">
-
-      <div class="col-12 mx-auto">
-
-        <div class="row mx-0">
-          <div class="col-12 px-5 mx-0">
-            <div *ngIf="oneTimeSaleUpdatedMessage" class="px-5 mx-5 alert text-center bg-transparent border border-1 rounded alert-success border-success text-success fade show" role="alert">
-              <strong>{{oneTimeSaleUpdatedMessage}}</strong>
-            </div>
-            <div *ngIf="oneTimeSaleDisabledMessage" class="px-5 mx-5  alert text-center bg-transparent border border-1 rounded alert-info border-info text-info fade show" role="alert">
-              <strong>{{oneTimeSaleDisabledMessage}}</strong>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-0 d-flex align-items-center justify-content-center">
-
-            <!-- discount box -->
-            <div class="text-center card w-100 bg-transparent border border-1 border-light">
-              <h3 class="card-title mt-4 mb-0">
-                <i class="bi bi-wallet2"></i>
-                <span>&nbsp;</span>
-                <span class="animated-link">Current Sale</span>
-              </h3>
-
-
-              <div class="mt-2">
-                <div *ngIf="oneTimeProductId !== -1; then otSaleEnabled else otSaleDisabled"></div>
-                <ng-template #otSaleEnabled>
-                  <div class="btn-group btn-group-sm" role="group">
-                    <span class="badge bg-success">Currently Active</span>
-                  </div>
-                </ng-template>
-                <ng-template #otSaleDisabled>
-                  <div class="btn-group btn-group-sm" role="group">
-                    <span class="badge bg-danger">Currently Inactive</span>
-                  </div>
-                </ng-template>
-              </div>
-
-              <div class="card-body">
-
-                <p class="text-secondary">This discount is a non-recurrent one time discount</p>
-
-                <!-- message -->
-
-                <!-- start date -->
-                <div class="row">
-                  <div class="col-12 text-center mb-2">
-                    <i class="bi bi-calendar-check"></i>
-                    <span>&nbsp;</span>
-                    <span>Start Date</span>
-                    <div class="input-group mb-3 px-4 mt-2">
-                      <input type="date"
-                             name="oneTimeSale.startDate"
-                             [ngModel]="oneTimeSale.startDate | date:'yyyy-MM-dd'"
-                             (ngModelChange)="oneTimeSale.startDate = $event"
-                             style="min-width: 100%; width: 50px; min-height: 38px;"
-                             class="border border-3 border-light"
-                             aria-describedby="sale-start">
-                    </div>
-                  </div>
-                </div><!-- / start date -->
-
-                <!-- stop date -->
-                <div class="row">
-                  <div class="col-12 text-center mb-2">
-                    <i class="bi bi-calendar-x"></i>
-                    <span>&nbsp;</span>
-                    <span>Stop Date</span>
-                    <div class="input-group mb-3 px-4 mt-2">
-                      <input type="date"
-                             name="oneTimeSale.expiryDate"
-                             [ngModel]="oneTimeSale.expiryDate | date:'yyyy-MM-dd'"
-                             (ngModelChange)="oneTimeSale.expiryDate = $event"
-                             style="min-width: 100%; width: 50px; min-height: 38px;"
-                             class="border border-3 border-light"
-                             aria-describedby="sale-stop">
-                    </div>
-                  </div>
-                </div><!-- / stop date -->
-
-                <!-- discount percentage -->
-                <div class="row">
-                  <div class="col-12 text-center mb-2">
-                    <i class="bi bi-percent"></i>
-                    <span>&nbsp;</span>
-                    <span>Discount Percentage</span>
-                    <div class="input-group mb-3 px-4 mt-2">
-                      <input type="text"
-                             [ngModel]="oneTimeSale.discountPercentage"
-                             (ngModelChange)="oneTimeSale.discountPercentage = $event"
-                             style="min-width: 100%; width: 50px; min-height: 38px;"
-                             class="border border-3 border-light"
-                             aria-describedby="sale-stop"
-                             placeholder="50%"
-                             aria-label="discount-percentage">
-                    </div>
-                  </div>
-                </div><!-- / discount percentage -->
-
-                <!-- discounted packages -->
-                <div class="row">
-                  <div class="col-12 text-center mb-2">
-                    <i class="bi bi-box-seam"></i>
-                    <span>&nbsp;</span>
-                    <span>Discounted Package</span>
-                    <div class="input-group mb-3 px-4 mt-2">
-                      <select [(ngModel)]="oneTimeSale.productId"
-                              class="form-select"
-                              aria-label="Default select example"
-                              style="min-width: 100%; width: 50px; min-height: 38px;">
-                        <option value="-1" selected>Package where discount is applied</option>
-                        <option *ngFor="let product of products"
-                                [value]="product.id"
-                                (click)="oneTimeSale.productId = product.id">
-                          #{{product.id}} - ${{product.price}} -
-                          {{product.ram}} RAM, {{product.cores}} CORES,
-                          {{product.storage}} STORAGE, {{product.transfer}} TRANSFER
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                </div><!-- / discounted packages -->
-
-                <p class="card-text text-warning">
-                  <span>The sale modification will be made effective immediately</span>
-                </p>
-                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                  <div *ngIf="oneTimeProductId !== -1; then otdButtonYes else otdButtonNot"></div>
-                  <ng-template #otdButtonYes>
+                  <span class="animated-link">Current Sale</span>
+                </h3>
+                <div class="mt-2">
+                  <div *ngIf="oneTimeProductId !== -1; then otSaleEnabled else otSaleDisabled"></div>
+                  <ng-template #otSaleEnabled>
                     <div class="btn-group btn-group-sm" role="group">
-                      <button (click)="updateOnetimeSale()" type="button" class="btn btn-outline-success" style="width: 140px;">Update</button>
-                      <button (click)="disableOnetimeSale()" type="button" class="btn btn-outline-danger" style="width: 140px;">Disable</button>
+                      <span class="badge bg-success">Currently Active</span>
                     </div>
                   </ng-template>
-                  <ng-template #otdButtonNot>
+                  <ng-template #otSaleDisabled>
                     <div class="btn-group btn-group-sm" role="group">
-                      <button (click)="updateOnetimeSale()" type="button" class="btn btn-outline-success" style="width: 140px;">Update</button>
-                      <button type="button" class="btn btn-outline-danger disabled" style="width: 140px;">Disable</button>
+                      <span class="badge bg-danger">Currently Inactive</span>
                     </div>
                   </ng-template>
                 </div>
+                <div class="card-body">
+                  <p class="text-secondary">This discount is a non-recurrent one time discount</p>
+                  <!-- message -->
+                  <!-- start date -->
+                  <div class="row">
+                    <div class="col-12 text-center mb-2">
+                      <i class="bi bi-calendar-check"></i>
+                      <span>&nbsp;</span>
+                      <span>Start Date</span>
+                      <div class="input-group mb-3 px-4 mt-2">
+                        <input type="date"
+                               name="oneTimeSale.startDate"
+                               [ngModel]="oneTimeSale.startDate | date:'yyyy-MM-dd'"
+                               (ngModelChange)="oneTimeSale.startDate = $event"
+                               style="min-width: 100%; width: 50px; min-height: 38px;"
+                               class="border border-3 border-light"
+                               aria-describedby="sale-start">
+                      </div>
+                    </div>
+                  </div>
+                  <!-- / start date -->
+                  <!-- stop date -->
+                  <div class="row">
+                    <div class="col-12 text-center mb-2">
+                      <i class="bi bi-calendar-x"></i>
+                      <span>&nbsp;</span>
+                      <span>Stop Date</span>
+                      <div class="input-group mb-3 px-4 mt-2">
+                        <input type="date"
+                               name="oneTimeSale.expiryDate"
+                               [ngModel]="oneTimeSale.expiryDate | date:'yyyy-MM-dd'"
+                               (ngModelChange)="oneTimeSale.expiryDate = $event"
+                               style="min-width: 100%; width: 50px; min-height: 38px;"
+                               class="border border-3 border-light"
+                               aria-describedby="sale-stop">
+                      </div>
+                    </div>
+                  </div>
+                  <!-- / stop date -->
+                  <!-- discount percentage -->
+                  <div class="row">
+                    <div class="col-12 text-center mb-2">
+                      <i class="bi bi-percent"></i>
+                      <span>&nbsp;</span>
+                      <span>Discount Percentage</span>
+                      <div class="input-group mb-3 px-4 mt-2">
+                        <input type="text"
+                               [ngModel]="oneTimeSale.discountPercentage"
+                               (ngModelChange)="oneTimeSale.discountPercentage = $event"
+                               style="min-width: 100%; width: 50px; min-height: 38px;"
+                               class="border border-3 border-light"
+                               aria-describedby="sale-stop"
+                               placeholder="50%"
+                               aria-label="discount-percentage">
+                      </div>
+                    </div>
+                  </div>
+                  <!-- / discount percentage -->
+                  <!-- discounted packages -->
+                  <div class="row">
+                    <div class="col-12 text-center mb-2">
+                      <i class="bi bi-box-seam"></i>
+                      <span>&nbsp;</span>
+                      <span>Discounted Package</span>
+                      <div class="input-group mb-3 px-4 mt-2">
+                        <select [(ngModel)]="oneTimeSale.productId"
+                                class="form-select"
+                                aria-label="Default select example"
+                                style="min-width: 100%; width: 50px; min-height: 38px;">
+                          <option value="-1" selected>Package where discount is applied</option>
+                          <option *ngFor="let product of products"
+                                  [value]="product.id"
+                                  (click)="oneTimeSale.productId = product.id">
+                            #{{product.id}} - ${{product.price}} -
+                            {{product.ram}} RAM, {{product.cores}} CORES,
+                            {{product.storage}} STORAGE, {{product.transfer}} TRANSFER
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- / discounted packages -->
+                  <p class="card-text text-warning">
+                    <span>The sale modification will be made effective immediately</span>
+                  </p>
+                  <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <div *ngIf="oneTimeProductId !== -1; then otdButtonYes else otdButtonNot"></div>
+                    <ng-template #otdButtonYes>
+                      <div class="btn-group btn-group-sm" role="group">
+                        <button (click)="updateOnetimeSale()" type="button" class="btn btn-outline-success" style="width: 140px;">Update</button>
+                        <button (click)="disableOnetimeSale()" type="button" class="btn btn-outline-danger" style="width: 140px;">Disable</button>
+                      </div>
+                    </ng-template>
+                    <ng-template #otdButtonNot>
+                      <div class="btn-group btn-group-sm" role="group">
+                        <button (click)="updateOnetimeSale()" type="button" class="btn btn-outline-success" style="width: 140px;">Update</button>
+                        <button type="button" class="btn btn-outline-danger disabled" style="width: 140px;">Disable</button>
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
               </div>
-            </div><!-- / discount box -->
-
+              <!-- / discount box -->
+            </div>
           </div>
         </div>
-
       </div>
     </div>
-  </div><!-- / sale content -->
-
-  <!-- accumulative sale content -->
-  <div id="v-pills-sale-2"
-       role="tabpanel"
-       aria-labelledby="v-pills-sale-2-tab"
-       class="tab-pane fade container content border border-secondary rounded p-2">
-    <div class="row justify-content-center">
-
-      <div class="col-12 mx-auto">
-        <div class="row mx-0">
-          <div class="col-12 px-5 mx-0">
-            <div *ngIf="accumulativeSaleUpdatedMessage" class="px-5 mx-5 alert text-center bg-transparent border border-1 rounded alert-success border-success text-success fade show" role="alert">
-              <strong>{{accumulativeSaleUpdatedMessage}}</strong>
-            </div>
-            <div *ngIf="accumulativeSaleDisabledMessage" class="px-5 mx-5  alert text-center bg-transparent border border-1 rounded alert-info border-info text-info fade show" role="alert">
-              <strong>{{accumulativeSaleDisabledMessage}}</strong>
+    <!-- / sale content -->
+    <!-- accumulative sale content -->
+    <div id="v-pills-sale-2"
+         role="tabpanel"
+         aria-labelledby="v-pills-sale-2-tab"
+         class="tab-pane fade container content border border-secondary rounded p-2">
+      <div class="row justify-content-center">
+        <div class="col-12 mx-auto">
+          <div class="row mx-0">
+            <div class="col-12 px-5 mx-0">
+              <div *ngIf="accumulativeSaleUpdatedMessage" class="px-5 mx-5 alert text-center bg-transparent border border-1 rounded alert-success border-success text-success fade show" role="alert">
+                <strong>{{accumulativeSaleUpdatedMessage}}</strong>
+              </div>
+              <div *ngIf="accumulativeSaleDisabledMessage" class="px-5 mx-5  alert text-center bg-transparent border border-1 rounded alert-info border-info text-info fade show" role="alert">
+                <strong>{{accumulativeSaleDisabledMessage}}</strong>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-0 d-flex align-items-center justify-content-center">
-
-            <!-- discount box -->
-            <div class="text-center card w-100 bg-transparent border border-1 border-light">
-              <h3 class="card-title mt-4 mb-0">
-                <i class="bi bi-wallet2"></i>
-                <span>&nbsp;</span>
-                <span class="animated-link">Accumulative Sale</span>
-              </h3>
-
-              <div class="mt-2">
-                <div *ngIf="accumulativeProductId !== -1; then adSaleEnabled else adSaleDisabled"></div>
-                <ng-template #adSaleEnabled>
-                  <div class="btn-group btn-group-sm" role="group">
-                    <span class="badge bg-success">Currently Active</span>
-                  </div>
-                </ng-template>
-                <ng-template #adSaleDisabled>
-                  <div class="btn-group btn-group-sm" role="group">
-                    <span class="badge bg-danger">Currently Inactive</span>
-                  </div>
-                </ng-template>
-              </div>
-
-              <div class="card-body">
-
-                <p class="text-secondary">
-                  Every X packages bought of a category you will
-                  get an Y percent discount for the next X bought
-                  packages.
-                </p>
-
-                <p><small id="flash-message" class="text-danger fw-bold"></small></p>
-
-                <!-- start date -->
-                <div class="row">
-                  <div class="col-12 text-center mb-2">
-                    <i class="bi bi-calendar-check"></i>
-                    <span>&nbsp;</span>
-                    <span>Start Date</span>
-                    <div class="input-group mb-3 px-4 mt-2">
-                      <input type="date"
-                             [ngModel]="accumulativeSale.startDate | date:'yyyy-MM-dd'"
-                             (ngModelChange)="accumulativeSale.startDate = $event"
-                             style="min-width: 100%; width: 50px; min-height: 38px;"
-                             class="border border-3 border-light"
-                             aria-describedby="sale-start">
-                    </div>
-                  </div>
-                </div><!-- / start date -->
-
-                <!-- stop date -->
-                <div class="row">
-                  <div class="col-12 text-center mb-2">
-                    <i class="bi bi-calendar-x"></i>
-                    <span>&nbsp;</span>
-                    <span>Stop Date</span>
-                    <div class="input-group mb-3 px-4 mt-2">
-                      <input type="date"
-                             [ngModel]="accumulativeSale.expiryDate | date:'yyyy-MM-dd'"
-                             (ngModelChange)="accumulativeSale.expiryDate = $event"
-                             style="min-width: 100%; width: 50px; min-height: 38px;"
-                             class="border border-3 border-light"
-                             aria-describedby="sale-stop">
-                    </div>
-                  </div>
-                </div><!-- / stop date -->
-
-                <!-- discount percentage -->
-                <div class="row">
-                  <div class="col-12 text-center mb-2">
-                    <i class="bi bi-percent"></i>
-                    <span>&nbsp;</span>
-                    <span>Discount Percentage</span>
-                    <div class="input-group mb-3 px-4 mt-2">
-                      <input type="text"
-                             [ngModel]="accumulativeSale.discountPercentage"
-                             (ngModelChange)="accumulativeSale.discountPercentage = $event"
-                             style="min-width: 100%; width: 50px; min-height: 38px;"
-                             class="border border-3 border-light"
-                             aria-describedby="sale-stop"
-                             placeholder="50%"
-                             aria-label="discount-percentage">
-                    </div>
-                  </div>
-                </div><!-- / discount percentage -->
-
-                <!-- packages amount -->
-                <div class="row">
-                  <div class="col-12 text-center mb-2">
-                    <i class="bi bi-calculator"></i>
-                    <span>&nbsp;</span>
-                    <span>Packages Amount</span>
-                    <div class="input-group mb-3 px-4 mt-2">
-                      <input type="text"
-                             [ngModel]="accumulativeSale.bulkAmount"
-                             (ngModelChange)="accumulativeSale.bulkAmount = $event"
-                             style="min-width: 100%; width: 50px; min-height: 38px;"
-                             class="border border-3 border-light"
-                             aria-describedby="sale-stop"
-                             placeholder="5"
-                             aria-label="discount-percentage">
-                    </div>
-                  </div>
-                </div><!-- / packages amount -->
-
-                <!-- discounted packages -->
-                <div class="row">
-                  <div class="col-12 text-center mb-2">
-                    <i class="bi bi-box-seam"></i>
-                    <span>&nbsp;</span>
-                    <span>Discounted Package</span>
-                    <div class="input-group mb-3 px-4 mt-2">
-                      <select [(ngModel)]="accumulativeSale.productId"
-                              class="form-select"
-                              aria-label="Default select example"
-                              style="min-width: 100%; width: 50px; min-height: 38px;">
-                        <option value="-1" selected>Package where discount is applied</option>
-                        <option *ngFor="let product of products"
-                                [value]="product.id"
-                                (click)="accumulativeSale.productId = product.id">
-                          #{{product.id}} - ${{product.price}} -
-                          {{product.ram}} RAM, {{product.cores}} CORES,
-                          {{product.storage}} STORAGE, {{product.transfer}} TRANSFER
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                </div><!-- / discounted packages -->
-
-                <p class="card-text text-warning">
-                  <span>The sale modification will be made effective immediately</span>
-                </p>
-                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                  <div *ngIf="accumulativeProductId !== -1; then adButtonYes else adButtonNot"></div>
-                  <ng-template #adButtonYes>
+          <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-0 d-flex align-items-center justify-content-center">
+              <!-- discount box -->
+              <div class="text-center card w-100 bg-transparent border border-1 border-light">
+                <h3 class="card-title mt-4 mb-0">
+                  <i class="bi bi-wallet2"></i>
+                  <span>&nbsp;</span>
+                  <span class="animated-link">Accumulative Sale</span>
+                </h3>
+                <div class="mt-2">
+                  <div *ngIf="accumulativeProductId !== -1; then adSaleEnabled else adSaleDisabled"></div>
+                  <ng-template #adSaleEnabled>
                     <div class="btn-group btn-group-sm" role="group">
-                      <button (click)="updateAccumulativeSale()" type="button" class="btn btn-outline-success" style="width: 140px;">Update</button>
-                      <button (click)="disableAccumulativeSale()" type="button" class="btn btn-outline-danger" style="width: 140px;">Disable</button>
+                      <span class="badge bg-success">Currently Active</span>
                     </div>
                   </ng-template>
-                  <ng-template #adButtonNot>
+                  <ng-template #adSaleDisabled>
                     <div class="btn-group btn-group-sm" role="group">
-                      <button (click)="updateAccumulativeSale()" type="button" class="btn btn-outline-success" style="width: 140px;">Update</button>
-                      <button type="button" class="btn btn-outline-danger disabled" style="width: 140px;">Disable</button>
+                      <span class="badge bg-danger">Currently Inactive</span>
                     </div>
                   </ng-template>
                 </div>
+                <div class="card-body">
+                  <p class="text-secondary">
+                    Every X packages bought of a category you will
+                    get an Y percent discount for the next X bought
+                    packages.
+                  </p>
+                  <p>
+                    <small id="flash-message" class="text-danger fw-bold"></small>
+                  </p>
+                  <!-- start date -->
+                  <div class="row">
+                    <div class="col-12 text-center mb-2">
+                      <i class="bi bi-calendar-check"></i>
+                      <span>&nbsp;</span>
+                      <span>Start Date</span>
+                      <div class="input-group mb-3 px-4 mt-2">
+                        <input type="date"
+                               [ngModel]="accumulativeSale.startDate | date:'yyyy-MM-dd'"
+                               (ngModelChange)="accumulativeSale.startDate = $event"
+                               style="min-width: 100%; width: 50px; min-height: 38px;"
+                               class="border border-3 border-light"
+                               aria-describedby="sale-start">
+                      </div>
+                    </div>
+                  </div>
+                  <!-- / start date -->
+                  <!-- stop date -->
+                  <div class="row">
+                    <div class="col-12 text-center mb-2">
+                      <i class="bi bi-calendar-x"></i>
+                      <span>&nbsp;</span>
+                      <span>Stop Date</span>
+                      <div class="input-group mb-3 px-4 mt-2">
+                        <input type="date"
+                               [ngModel]="accumulativeSale.expiryDate | date:'yyyy-MM-dd'"
+                               (ngModelChange)="accumulativeSale.expiryDate = $event"
+                               style="min-width: 100%; width: 50px; min-height: 38px;"
+                               class="border border-3 border-light"
+                               aria-describedby="sale-stop">
+                      </div>
+                    </div>
+                  </div>
+                  <!-- / stop date -->
+                  <!-- discount percentage -->
+                  <div class="row">
+                    <div class="col-12 text-center mb-2">
+                      <i class="bi bi-percent"></i>
+                      <span>&nbsp;</span>
+                      <span>Discount Percentage</span>
+                      <div class="input-group mb-3 px-4 mt-2">
+                        <input type="text"
+                               [ngModel]="accumulativeSale.discountPercentage"
+                               (ngModelChange)="accumulativeSale.discountPercentage = $event"
+                               style="min-width: 100%; width: 50px; min-height: 38px;"
+                               class="border border-3 border-light"
+                               aria-describedby="sale-stop"
+                               placeholder="50%"
+                               aria-label="discount-percentage">
+                      </div>
+                    </div>
+                  </div>
+                  <!-- / discount percentage -->
+                  <!-- packages amount -->
+                  <div class="row">
+                    <div class="col-12 text-center mb-2">
+                      <i class="bi bi-calculator"></i>
+                      <span>&nbsp;</span>
+                      <span>Packages Amount</span>
+                      <div class="input-group mb-3 px-4 mt-2">
+                        <input type="text"
+                               [ngModel]="accumulativeSale.bulkAmount"
+                               (ngModelChange)="accumulativeSale.bulkAmount = $event"
+                               style="min-width: 100%; width: 50px; min-height: 38px;"
+                               class="border border-3 border-light"
+                               aria-describedby="sale-stop"
+                               placeholder="5"
+                               aria-label="discount-percentage">
+                      </div>
+                    </div>
+                  </div>
+                  <!-- / packages amount -->
+                  <!-- discounted packages -->
+                  <div class="row">
+                    <div class="col-12 text-center mb-2">
+                      <i class="bi bi-box-seam"></i>
+                      <span>&nbsp;</span>
+                      <span>Discounted Package</span>
+                      <div class="input-group mb-3 px-4 mt-2">
+                        <select [(ngModel)]="accumulativeSale.productId"
+                                class="form-select"
+                                aria-label="Default select example"
+                                style="min-width: 100%; width: 50px; min-height: 38px;">
+                          <option value="-1" selected>Package where discount is applied</option>
+                          <option *ngFor="let product of products"
+                                  [value]="product.id"
+                                  (click)="accumulativeSale.productId = product.id">
+                            #{{product.id}} - ${{product.price}} -
+                            {{product.ram}} RAM, {{product.cores}} CORES,
+                            {{product.storage}} STORAGE, {{product.transfer}} TRANSFER
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- / discounted packages -->
+                  <p class="card-text text-warning">
+                    <span>The sale modification will be made effective immediately</span>
+                  </p>
+                  <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <div *ngIf="accumulativeProductId !== -1; then adButtonYes else adButtonNot"></div>
+                    <ng-template #adButtonYes>
+                      <div class="btn-group btn-group-sm" role="group">
+                        <button (click)="updateAccumulativeSale()" type="button" class="btn btn-outline-success" style="width: 140px;">Update</button>
+                        <button (click)="disableAccumulativeSale()" type="button" class="btn btn-outline-danger" style="width: 140px;">Disable</button>
+                      </div>
+                    </ng-template>
+                    <ng-template #adButtonNot>
+                      <div class="btn-group btn-group-sm" role="group">
+                        <button (click)="updateAccumulativeSale()" type="button" class="btn btn-outline-success" style="width: 140px;">Update</button>
+                        <button type="button" class="btn btn-outline-danger disabled" style="width: 140px;">Disable</button>
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
               </div>
-            </div><!-- / discount box -->
-
+              <!-- / discount box -->
+            </div>
           </div>
         </div>
-
       </div>
     </div>
-  </div><!-- / accumulative content -->
-
-</div>
-
+    <!-- / accumulative content -->
+  </div>
 </div>

@@ -5,7 +5,7 @@ export class Error {
     public message: string = '',
   ) {}
 
-  static fromErrorResponse(errorResponse: any): Error {
+  static from(errorResponse: any): Error {
     if (errorResponse.status === 400) { return Error.badRequest(); }
     if (errorResponse.status === 401) { return Error.unauthorized(); }
     if (errorResponse.status === 404) { return Error.notFound(); }

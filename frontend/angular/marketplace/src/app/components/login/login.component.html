@@ -4,70 +4,62 @@
     <div class="col-12 mb-2 text-white">
       <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-2 d-flex align-items-center justify-content-center">
-
           <!-- login box -->
           <div class="centered-box card w-100">
-
             <!-- title -->
             <h3 class="card-title mt-3 mb-0">
               <i class="bi bi-person"></i>
               <span>&nbsp;Account</span>
-            </h3><!-- / title -->
-
+            </h3>
+            <!-- / title -->
             <!-- body -->
             <div class="card-body">
-
               <p *ngIf="state === 'SUCCESS'">
                 <small class="text-success fw-bold">
                   <span [textContent]="message"></span>
                 </small>
               </p>
-
               <p *ngIf="state === 'ERROR'">
                 <small class="text-danger fw-bold">
                   <span [textContent]="message"></span>
                 </small>
               </p>
-
               <p *ngIf="state === 'DOWN'">
                 <small class="text-warning fw-bold">
                   <span [textContent]="message"></span>
                 </small>
               </p>
-
               <p>Please, Sign in with existing account</p>
-
               <!-- form inputs -->
               <div class="input-group mb-3 px-4">
-                <span class="input-group-text bg-transparent text-white" id="username-label">
-                  <i class="bi bi-person-check-fill"></i>
-                </span>
+								<span class="input-group-text bg-transparent text-white" id="username-label">
+									<i class="bi bi-person-check-fill"></i>
+								</span>
                 <input id="username" type="text" class="form-control" placeholder="Username"
                        [(ngModel)]="email" aria-label="Username" aria-describedby="username-label">
               </div>
-
               <div class="input-group mb-3 px-4">
-                <span class="input-group-text bg-transparent text-white" id="password-label">
-                  <i class="bi bi-key-fill"></i>
-                </span>
+									<span class="input-group-text bg-transparent text-white" id="password-label">
+										<i class="bi bi-key-fill"></i>
+									</span>
                 <input id="password" type="password" class="form-control" placeholder="Password"
                        [(ngModel)]="password" aria-label="Username" aria-describedby="password-label">
-              </div><!-- / form inputs -->
-
+              </div>
+              <!-- / form inputs -->
               <p class="card-text">
                 <span>Or, you may want to&nbsp;</span>
                 <a routerLink="/register" class="fw-bold">create a new account</a>
               </p>
-
               <button (click)="logIn()" id="login-button" type="button" class="btn btn-sm btn-outline-light w-25">
                 Login
               </button>
-            </div><!-- / body -->
-
-          </div><!-- / login box -->
-
+            </div>
+            <!-- / body -->
+          </div>
+          <!-- / login box -->
         </div>
       </div>
     </div>
   </div>
-</div><!-- / center -->
+</div>
+<!-- / center -->

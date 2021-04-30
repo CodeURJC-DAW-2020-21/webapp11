@@ -6,25 +6,24 @@
         <span>My Services</span>
       </h3>
       <p class="text-secondary mb-0">
-        <span class="fst-italic">
+				<span class="fst-italic">
           "Manage your services easily from
           this user panel, click renew and enjoy!"
         </span>
       </p>
     </div>
   </div>
-</div><!-- / page title -->
-
+</div>
+<!-- / page title -->
 <!-- horizontal line -->
 <div class="container text-light mt-0">
   <hr />
-</div><!-- / horizontal line -->
-
+</div>
+<!-- / horizontal line -->
 <!-- hired services -->
 <div class="row px-5 mx-0">
   <div class="col-12">
     <table class="table table-bordered border-secondary text-white text-center">
-
       <!-- table header -->
       <thead>
       <tr>
@@ -49,14 +48,15 @@
           </div>
         </th>
       </tr>
-      </thead><!-- / table header -->
-
+      </thead>
+      <!-- / table header -->
       <tbody>
-
       <!-- concrete service -->
       <tr *ngFor="let order of loadedOrders;">
         <th scope="row">
-          <span class="fw-normal align-middle">#{{order.orderId}} - <b>{{order.category}}</b></span>
+						<span class="fw-normal align-middle">#{{order.orderId}} -
+							<b>{{order.category}}</b>
+						</span>
         </th>
         <td>
           <ul class="list-inline my-0">
@@ -92,12 +92,10 @@
             <span>{{order.expirationDate}}</span>
           </div>
         </td>
-      </tr><!-- / concrete service -->
-
+      </tr>
+      <!-- / concrete service -->
       </tbody>
-
     </table>
-
     <!-- load more button -->
     <div class="row">
       <div class="col-12 text-center">
@@ -106,8 +104,8 @@
           <span class="align-middle">&nbsp;Load more</span>
         </button>
       </div>
-    </div><!-- / load more button -->
-
+    </div>
+    <!-- / load more button -->
     <!-- load more button -->
     <div id="loading-more" class="row d-none">
       <div class="col-12 text-center text-white">
@@ -117,8 +115,8 @@
           </div>
         </div>
       </div>
-    </div><!-- / load more button -->
-
+    </div>
+    <!-- / load more button -->
   </div>
-
-</div><!-- / hired services -->
+</div>
+<!-- / hired services -->
