@@ -13,7 +13,8 @@ export class AuthResponseMapper {
     return new AuthResponse(
       response.status_name,
       response.status_code,
-      response.content
+      response.content.user_id,
+      response.content.token
     );
   }
 

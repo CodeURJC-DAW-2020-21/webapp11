@@ -18,7 +18,7 @@ export class UserMapper {
       item.id,
       item.first_name,
       item.surname,
-      '',
+      item.address,
       item.email,
       item.enabled,
       item.encoded_image,

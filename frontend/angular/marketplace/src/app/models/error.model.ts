@@ -21,6 +21,10 @@ export class Error {
     return new Error('not_found', 'The resource was not found');
   }
 
+  static badRequest(): Error {
+    return new Error('bad_request', 'Bad request');
+  }
+
   isAnswered(): boolean {
     return this.type === 'answered';
   }
@@ -35,6 +39,10 @@ export class Error {
 
   isNotFound(): boolean {
     return this.type === 'not_found';
+  }
+
+  isBadRequest(): boolean {
+    return this.type === 'bad_request';
   }
 
 }
