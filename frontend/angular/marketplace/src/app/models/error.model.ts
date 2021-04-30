@@ -5,6 +5,14 @@ export class Error {
     public message: string = '',
   ) {}
 
+  static fromErrorResponse(errorResponse: any): Error {
+    if (errorResponse.status === 400) { return Error.badRequest(); }
+    if (errorResponse.status === 401) { return Error.unauthorized(); }
+    if (errorResponse.status === 404) { return Error.notFound(); }
+    if (errorResponse.status !== 0) { return Error.answered(errorResponse.error.content); }
+    return Error.unanswered();
+  }
+
   static answered(errorMessage: string): Error {
     return new Error('answered', errorMessage);
   }
