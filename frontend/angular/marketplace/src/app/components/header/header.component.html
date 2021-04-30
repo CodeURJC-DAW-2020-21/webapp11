@@ -36,7 +36,7 @@
             <!-- shared server product -->
             <li class="nav-item mx-auto">
               <div class="d-flex justify-content-center">
-                <a href="pricing.html" class="nav-link card-title">
+                <a #shared routerLink="/pricing" [queryParams]="{category: 'shared'}" class="nav-link card-title">
                   <i class="bi bi-share text-light"></i>&nbsp;
 
                   <span class="animated-link">Shared Server</span>
@@ -47,7 +47,7 @@
             <!-- vps product -->
             <li class="nav-item mx-auto">
               <div class="d-flex justify-content-center">
-                <a href="pricing.html" class="nav-link card-title">
+                <a #vps routerLink="/pricing" [queryParams]="{category: 'vps'}" class="nav-link card-title">
                   <i class="bi bi-hdd text-light"></i>&nbsp;
 
                   <span class="animated-link">Virtual Private Server</span>
@@ -58,7 +58,7 @@
             <!-- dedicated server product -->
             <li class="nav-item mx-auto">
               <div class="d-flex justify-content-center">
-                <a href="pricing.html" class="nav-link card-title">
+                <a #dedicated routerLink="/pricing" [queryParams]="{category: 'dedicated'}" class="nav-link card-title">
                   <i class="bi bi-hdd-rack text-light"></i>&nbsp;
 
                   <span class="animated-link">Dedicated Server</span>
@@ -92,7 +92,7 @@
                     <!-- content -->
                     <div class="col-10">
                       <!-- link -->
-                      <a routerLink="/pricing" class="card-title animated-link text-white">
+                      <a routerLink="/pricing" [queryParams]="{category: 'shared'}" class="card-title animated-link text-white">
                         <span>Shared Server</span>
                       </a>
                       <!-- / link -->
@@ -124,7 +124,7 @@
                     <!-- content -->
                     <div class="col-10">
                       <!-- link -->
-                      <a routerLink="/pricing" class="card-title animated-link text-white">
+                      <a routerLink="/pricing" [queryParams]="{category: 'vps'}" class="card-title animated-link text-white">
                         <span>Virtual Private Server</span>
                       </a>
                       <!-- / link -->
@@ -156,7 +156,7 @@
                     <!-- content -->
                     <div class="col-10">
                       <!-- link -->
-                      <a routerLink="/pricing" class="card-title animated-link text-white">
+                      <a routerLink="/pricing" [queryParams]="{category: 'dedicated'}" class="card-title animated-link text-white">
                         <span>Dedicated Server</span>
                       </a>
                       <!-- / link -->

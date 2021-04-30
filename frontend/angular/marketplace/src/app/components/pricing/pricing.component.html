@@ -16,7 +16,8 @@
         <!-- category selector -->
         <div class="nav nav-tabs d-flex justify-content-center align-items-center" role="tablist">
           <button (click)="switchToCategory('shared')"
-                  class="nav-link mx-1 bg-transparent text-white active"
+                  class="nav-link mx-1 bg-transparent text-white"
+                  [class.active] = "selectedCategory === '' || selectedCategory === 'shared'"
                   type="button"
                   data-bs-toggle="tab"
                   data-bs-target="#"
@@ -29,6 +30,7 @@
           </button>
           <button (click)="switchToCategory('vps')"
                   class="nav-link mx-1 bg-transparent text-white"
+                  [class.active] = "selectedCategory === 'vps'"
                   type="button"
                   data-bs-toggle="tab"
                   data-bs-target="#"
@@ -41,6 +43,7 @@
           </button>
           <button (click)="switchToCategory('dedicated')"
                   class="nav-link mx-1 bg-transparent text-white"
+                  [class.active] = "selectedCategory === 'dedicated'"
                   type="button"
                   data-bs-toggle="tab"
                   data-bs-target="#nav-profile"

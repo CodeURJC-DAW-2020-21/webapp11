@@ -3,7 +3,7 @@ import {ProductService} from '../../services/product.service';
 import {Product} from '../../models/product.model';
 import {Error} from '../../models/error.model';
 import {OrderService} from '../../services/order.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-pricing',
@@ -21,10 +21,16 @@ export class PricingComponent implements OnInit {
   public errorMessage = '';
 
   constructor(
+    private activated: ActivatedRoute,
+    private router: Router,
     private productService: ProductService,
-    private orderService: OrderService,
-    private router: Router
-  ) { }
+    private orderService: OrderService
+  ) {
+    this.activated.queryParams.subscribe(params => {
+      this.selectedCategory = params.category == null ? '' : params.category;
+      this.refreshCategory();
+    });
+  }
 
   ngOnInit(): void {
     this.loadAllProducts();
@@ -51,7 +57,13 @@ export class PricingComponent implements OnInit {
     if (this.categoryToProducts.size === 0) {
       return;
     }
-    this.selectedCategory = this.categoryToProducts.keys().next().value;
+    if (this.selectedCategory === '') {
+      this.selectedCategory = this.categoryToProducts.keys().next().value;
+    }
+    this.refreshCategory();
+  }
+
+  refreshCategory(): void {
     this.switchToCategory(this.selectedCategory);
   }
 
