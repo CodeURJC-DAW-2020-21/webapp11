@@ -1,0 +1,7 @@
+.image {
+  object-fit: scale-down;
+  width: 240px;
+  height: 240px;
+  border-radius: 160px;
+  border: 7px solid rgb(190, 190, 190);
+}
