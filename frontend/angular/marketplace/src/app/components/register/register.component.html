@@ -4,6 +4,7 @@
     <div class="col-12 mb-2 text-white">
       <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 mx-auto px-5 mb-2 d-flex align-items-center justify-content-center">
+
           <!-- register box -->
           <div class="centered-box card w-100">
             <h3 class="card-title mt-3 mb-0">
@@ -11,67 +12,72 @@
               <span>&nbsp;Register</span>
             </h3>
             <div class="card-body">
-              <p>
-                <small id="flash-message" class="text-danger fw-bold"></small>
-              </p>
+
+              <p><small class="text-danger fw-bold">{{error}}</small></p>
+
               <p>Please, fill in the following details:</p>
+
               <!-- form inputs -->
               <div class="input-group mb-3 px-4">
-								<span class="input-group-text bg-transparent text-white" id="first-name-label">
-									<i class="bi bi-person-plus"></i>
-								</span>
-                <input id="first-name" type="text" class="form-control" placeholder="First Name"
+                        <span class="input-group-text bg-transparent text-white" id="first-name-label">
+                          <i class="bi bi-person-plus"></i>
+                        </span>
+                <input [(ngModel)]="user.firstName" type="text" class="form-control" placeholder="First Name"
                        aria-label="First Name" aria-describedby="first-name-label">
               </div>
+
               <div class="input-group mb-3 px-4">
-									<span class="input-group-text bg-transparent text-white" id="surname-label">
-										<i class="bi bi-person-dash"></i>
-									</span>
-                <input id="surname" type="text" class="form-control" placeholder="Surname"
+                        <span class="input-group-text bg-transparent text-white" id="surname-label">
+                          <i class="bi bi-person-dash"></i>
+                        </span>
+                <input [(ngModel)]="user.surname" type="text" class="form-control" placeholder="Surname"
                        aria-label="Surname" aria-describedby="surname-label">
               </div>
+
               <div class="input-group mb-3 px-4">
-										<span class="input-group-text bg-transparent text-white" id="email-label">
-											<i class="bi bi-envelope-fill"></i>
-										</span>
-                <input id="email" type="text" class="form-control" placeholder="Email"
+                        <span class="input-group-text bg-transparent text-white" id="email-label">
+                          <i class="bi bi-envelope-fill"></i>
+                        </span>
+                <input [(ngModel)]="user.email" type="text" class="form-control" placeholder="Email"
                        aria-label="Email" aria-describedby="email-label">
               </div>
+
               <div class="input-group mb-3 px-4">
-											<span class="input-group-text bg-transparent text-white" id="address-label">
-												<i class="bi bi-house-door-fill"></i>
-											</span>
-                <input id="address" type="text" class="form-control" placeholder="Address"
+                        <span class="input-group-text bg-transparent text-white" id="address-label">
+                          <i class="bi bi-house-door-fill"></i>
+                        </span>
+                <input [(ngModel)]="user.address" type="text" class="form-control" placeholder="Address"
                        aria-label="Address" aria-describedby="address-label">
               </div>
+
               <div class="input-group mb-3 px-4">
-												<span class="input-group-text bg-transparent text-white" id="password-label">
-													<i class="bi bi-key-fill"></i>
-												</span>
-                <input id="password" type="password" class="form-control" placeholder="Password"
+                <span class="input-group-text bg-transparent text-white" id="password-label">
+                  <i class="bi bi-key-fill"></i>
+                </span>
+                <input [(ngModel)]="password1" type="password" class="form-control" placeholder="Password"
                        aria-label="Password" aria-describedby="password-label">
               </div>
+
               <div class="input-group mb-3 px-4">
-													<span class="input-group-text bg-transparent text-white" id="confirm-password-label">
-														<i class="bi bi-key"></i>
-													</span>
-                <input id="confirm-password" type="password" class="form-control" placeholder="Confirm Password"
+                <span class="input-group-text bg-transparent text-white" id="confirm-password-label">
+                  <i class="bi bi-key"></i>
+                </span>
+                <input [(ngModel)]="password2" type="password" class="form-control" placeholder="Confirm Password"
                        aria-label="Confirm Password" aria-describedby="confirm-password-label">
-              </div>
-              <!-- / form inputs -->
+              </div><!-- / form inputs -->
+
               <p class="card-text">
                 <span>If you already own an account,&nbsp;</span>
                 <a routerLink="/login" class="fw-bold">click here</a>
               </p>
-              <button id="register-button" type="button" class="btn btn-sm btn-outline-light w-25">
+              <button (click)="register()" type="button" class="btn btn-sm btn-outline-light w-25">
                 Register
               </button>
             </div>
-          </div>
-          <!-- / register box -->
+          </div><!-- / register box -->
+
         </div>
       </div>
     </div>
   </div>
-</div>
-<!-- / center -->
+</div><!-- / center -->
