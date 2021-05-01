@@ -7,8 +7,8 @@
               it</span>
     </div>
   </div>
-</div>
-<!-- / service expired alert -->
+</div><!-- / service expired alert -->
+
 <!-- page title -->
 <div class="d-flex justify-content-center text-white text-center">
   <div class="row">
@@ -17,144 +17,162 @@
       <span class="text-danger">{{errorMessage}}</span>
     </div>
   </div>
-</div>
-<!-- / page title -->
+</div><!-- / page title -->
+
 <!-- horizontal line -->
 <div class="container text-light mt-0">
   <hr />
-</div>
-<!-- / horizontal line -->
+</div><!-- / horizontal line -->
+
 <!-- first content -->
 <div class="row px-5 py-0 m-0">
   <div class="col-12 px-5 py-0 text-center text-white">
+
     <!-- boxes container -->
     <div class="row justify-content-center">
+
       <!-- service details -->
       <div class="col-lg-4 col-sm-10 col-xs-12">
+
         <!-- title -->
         <h5>
           <i class="bi bi-newspaper"></i>
           <span class="animated-link">&nbsp;Service Details</span>
-        </h5>
-        <!-- / title -->
+
+        </h5><!-- / title -->
+
         <!-- content -->
         <div class="container border border-secondary rounded p-2" style="height: 150px">
           <div class="row align-items-center h-100" style="font-size: 14px">
             <div class="col-12 mx-auto">
               <div class="jumbotron">
+
                 <!-- service id -->
                 <div class="d-block">
                   <span class="fw-bold">Service Id:&nbsp;</span>
-                  <span id="service-id">1234</span>
-                </div>
-                <!-- / service id -->
+                  <span id="service-id">{{order.orderId}}</span>
+                </div><!-- / service id -->
+
                 <!-- service category -->
                 <div class="d-block">
                   <span class="fw-bold">Category:&nbsp;</span>
-                  <span id="service-category">Shared</span>
-                </div>
-                <!-- / service category -->
+                  <span id="service-category">{{order.category}}</span>
+                </div><!-- / service category -->
+
                 <!-- service purchase date -->
                 <div class="d-block">
                   <span class="fw-bold">Purchase Date:&nbsp;</span>
-                  <span id="service-purchase">Mon, 22 Feb 2021 16:09:32</span>
-                </div>
-                <!-- / service purchase date -->
+                  <span id="service-purchase">{{order.purchaseDate}}</span>
+                </div><!-- / service purchase date -->
+
                 <!-- service expiry date -->
                 <div class="d-block">
                   <span class="fw-bold">Expiry Date:&nbsp;</span>
-                  <span id="service-expiry">Mon, 21 Mar 2021 16:09:32</span>
-                </div>
-                <!-- / service expiry date -->
+                  <span id="service-expiry">{{order.expirationDate}}</span>
+                </div><!-- / service expiry date -->
+
               </div>
             </div>
           </div>
-        </div>
-        <!-- / content -->
-      </div>
-      <!-- / service details -->
+        </div><!-- / content -->
+
+      </div><!-- / service details -->
+
       <!-- service actions-->
       <div class="col-lg-4 col-sm-10 col-xs-12">
         <!-- title -->
         <h5>
           <i class="bi bi-disc"></i>
           <span class="animated-link">&nbsp;Service Actions</span>
-        </h5>
-        <!-- / title -->
+        </h5><!-- / title -->
+
         <!-- content -->
         <div class="container border border-secondary rounded p-2" style="height: 150px">
           <div class="row align-items-center h-100">
             <div class="col-12 mx-auto">
               <div class="jumbotron">
+
                 <!-- renew service button -->
                 <div class="d-block">
-                  <button (click)="renewService()" type="button" class="btn btn-outline-success btn-sm mb-2">
+                  <button (click)="renewOrder()"
+                          [class.disabled]="order.isExpired"
+                          [class.btn-outline-secondary]="order.isExpired"
+                          [class.btn-outline-success]="!order.isExpired"
+                          type="button"
+                          class="btn btn-sm mb-2">
                     Renew Service
                   </button>
-                </div>
-                <!-- / renew service button -->
+                </div><!-- / renew service button -->
+
                 <!-- cancel service button -->
                 <div class="d-block">
-                  <button id="cancel-button" type="button" class="btn btn-outline-danger btn-sm mb-2">
+                  <button
+                          [class.disabled]="order.isExpired"
+                          [class.btn-outline-secondary]="order.isExpired"
+                          [class.btn-outline-danger]="!order.isExpired"
+                          type="button"
+                          class="btn btn-sm mb-2">
                     Cancel Service
                   </button>
-                </div>
-                <!-- / cancel service button -->
+                </div><!-- / cancel service button -->
+
                 <!-- download receipt button -->
                 <div class="d-block">
                   <button id="receipt-button" type="button" class="btn btn-outline-light btn-sm mb-2">
                     Download Receipt
                   </button>
-                </div>
-                <!-- / download receipt button -->
+                </div><!-- / download receipt button -->
+
               </div>
             </div>
           </div>
-        </div>
-        <!-- / content -->
-      </div>
-      <!-- / service actions-->
+        </div><!-- / content -->
+
+      </div><!-- / service actions-->
+
       <!-- server status -->
       <div class="col-lg-4 col-sm-10 col-xs-12">
+
         <!-- title -->
         <h5>
           <i class="bi bi-layers"></i>
           <span class="animated-link">&nbsp;Server Status</span>
-        </h5>
-        <!-- / title -->
+        </h5><!-- / title -->
+
         <!-- content -->
         <div class="container border border-secondary rounded p-2" style="height: 150px">
           <div class="row align-items-center h-100">
             <div class="col-12 mx-auto">
               <div class="jumbotron">
+
                 <!-- cpu bar -->
                 <div class="d-block mb-1">
                   <div class="progress" data-bs-toggle="tooltip" title="CPU Usage Percentage (%)">
-                    <div id="statistic-cpu" class="progress-bar bg-primary" role="progressbar" aria-valuenow="0"
+                    <div id="statistic-cpu" class="progress-bar" [class]="cpuColor" role="progressbar" [attr.aria-valuenow]="cpuNow" [style.width.%]="cpuNow"
                          aria-valuemin="0" aria-valuemax="100">
                       <small class="fw-bold">
-                        <span>CPU:</span>
-                        <span id="statistic-cpu-percentage">0</span>
+                        <span>CPU:&nbsp;</span>
+                        <span>{{cpuNow}}</span>
                         <span>%</span>
                       </small>
                     </div>
                   </div>
-                </div>
-                <!-- / cpu bar -->
+                </div><!-- / cpu bar -->
+
                 <!-- ram bar -->
                 <div class="d-block mb-1">
                   <div class="progress" data-bs-toggle="tooltip" title="RAM Usage Percentage (%)">
-                    <div id="statistic-ram" class="progress-bar bg-success" role="progressbar" aria-valuenow="0"
+                    <div id="statistic-ram" class="progress-bar" [class]="ramColor" role="progressbar" [attr.aria-valuenow]="ramNow" [style.width.%]="ramNow"
                          aria-valuemin="0" aria-valuemax="100">
                       <small class="fw-bold">
-                        <span>RAM:</span>
-                        <span id="statistic-ram-percentage">0</span>
+                        <span>RAM:&nbsp;</span>
+                        <span>{{ramNow}}</span>
                         <span>%</span>
                       </small>
                     </div>
                   </div>
-                </div>
-                <!-- / ram bar -->
+                </div><!-- / ram bar -->
+
                 <!-- support info -->
                 <div class="d-block mb-1">
                   <small class="m-0 p-0 fw-light">
@@ -162,72 +180,94 @@
                     <span>If you are having any trouble call technical
                             support.</span>
                   </small>
-                </div>
-                <!-- / support info -->
+                </div><!-- / support info -->
+
                 <!-- on service started buttons -->
                 <div class="d-block mb-1">
-                  <button id="start-server" type="button" class="btn btn-sm btn-outline-success d-none"
+                  <button *ngIf="!serverStarted"
+                          (click)="startAnimation()"
+                          type="button"
+                          class="btn btn-sm"
+                          [class.disabled]="order.isExpired"
+                          [class.btn-outline-secondary]="order.isExpired"
+                          [class.btn-outline-success]="!order.isExpired"
                           style="width: 110px">
                     Start Server
                   </button>
-                  <div id="stop-restart-server" class="btn-group" role="group">
-                    <button id="stop-server" type="button" class="btn btn-sm btn-outline-danger"
+                  <div *ngIf="!restartingServer && serverStarted" class="btn-group" role="group">
+                    <button (click)="stopAnimation()"
+                            type="button"
+                            class="btn btn-sm"
+                            [class.disabled]="order.isExpired"
+                            [class.btn-outline-secondary]="order.isExpired"
+                            [class.btn-outline-danger]="!order.isExpired"
                             style="width: 110px">
                       Stop Server
                     </button>
-                    <button id="restart-server" type="button" class="btn btn-sm btn-outline-warning"
+                    <button (click)="restartServer()"
+                            type="button"
+                            class="btn btn-sm"
+                            [class.disabled]="order.isExpired"
+                            [class.btn-outline-secondary]="order.isExpired"
+                            [class.btn-outline-warning]="!order.isExpired"
                             style="width: 110px">
                       Restart Server
                     </button>
                   </div>
-                </div>
-                <!-- / on service started buttons -->
+                </div><!-- / on service started buttons -->
+
                 <!-- restart server spinner -->
-                <div id="restart-server-info" class="d-none text-white">
+                <div *ngIf="restartingServer" class="text-white">
                   <div class="spinner-grow" style="width: 1rem; height: 1rem" role="status">
                     <span class="visually-hidden">Restarting Server...</span>
                   </div>
-                  <span>Restarting Server...</span>
-                </div>
-                <!-- / restart server spinner -->
+                  <span>&nbsp;Restarting Server...</span>
+                </div><!-- / restart server spinner -->
+
               </div>
             </div>
           </div>
-        </div>
-        <!-- / content -->
-      </div>
-      <!-- / server status -->
-    </div>
-    <!-- / boxes container -->
+        </div><!-- / content -->
+
+      </div><!-- / server status -->
+
+    </div><!-- / boxes container -->
+
   </div>
-</div>
-<!-- / first content -->
+
+</div><!-- / first content -->
+
 <!-- horizontal line -->
 <div class="container text-light mt-0">
   <hr />
-</div>
-<!-- / horizontal line -->
+</div><!-- / horizontal line -->
+
 <!-- second content -->
 <div class="row px-5 py-0 m-0">
   <div class="col-12 px-5 py-0 text-center text-white">
+
     <!-- box container -->
     <div class="row justify-content-center">
+
       <!-- connection details -->
       <div class="col-lg-12 col-sm-10 col-xs-12">
+
         <!-- title -->
         <h5>
           <i class="bi bi-globe"></i>
           <span class="animated-link">&nbsp;Connection Details</span>
-        </h5>
-        <!-- / title -->
+        </h5><!-- / title -->
+
         <!-- content -->
         <div class="container border border-secondary rounded">
           <div class="row align-items-center h-100" style="font-size: 14px">
+
             <!-- left side -->
             <div class="col-lg-6 col-sm-12 col-xs-12 mx-auto">
               <div class="jumbotron">
                 <div class="row p-3">
                   <div class="col-12 pt-2 border border-secondary rounded">
+
                     <!-- public ip address -->
                     <div class="row mb-2">
                       <div class="col-lg-4 col-sm-12 col-xs-12 text-center">
@@ -235,11 +275,19 @@
                         <span>&nbsp;Public IP Address:</span>
                       </div>
                       <div class="col-lg-8 col-sm-12 col-xs-12 text-center">
-                        <input readonly type="text"
-                               class="text-center bg-transparent text-white border border-light w-100" value="127.0.0.1" />
+                        <input *ngIf="!order.isExpired"
+                               readonly type="text"
+                               class="text-center bg-transparent text-white border border-light w-100"
+                               value="127.0.0.1"
+                        />
+                        <input *ngIf="order.isExpired"
+                               readonly type="text"
+                               class="text-center bg-transparent text-white border border-light w-100"
+                               value="N/A"
+                        />
                       </div>
-                    </div>
-                    <!-- / public ip address -->
+                    </div><!-- / public ip address -->
+
                     <!-- ssh port -->
                     <div class="row mb-2">
                       <div class="col-lg-4 col-sm-12 col-xs-12 text-center">
@@ -247,21 +295,30 @@
                         <span>&nbsp;SSH Port:</span>
                       </div>
                       <div class="col-lg-8 col-sm-12 col-xs-12 text-center">
-                        <input readonly type="text"
-                               class="text-center bg-transparent text-white border border-light w-100" value="22" />
+                        <input *ngIf="!order.isExpired"
+                               readonly type="text"
+                               class="text-center bg-transparent text-white border border-light w-100"
+                               value="22"
+                        />
+                        <input *ngIf="order.isExpired"
+                               readonly type="text"
+                               class="text-center bg-transparent text-white border border-light w-100"
+                               value="N/A"
+                        />
                       </div>
-                    </div>
-                    <!-- / ssh port -->
+                    </div><!-- / ssh port -->
+
                   </div>
                 </div>
               </div>
-            </div>
-            <!-- / left side -->
+            </div><!-- / left side -->
+
             <!-- right side -->
             <div class="col-lg-6 col-sm-12 col-xs-12 mx-auto">
               <div class="jumbotron">
                 <div class="row p-3">
                   <div class="col-12 pt-2 border border-secondary rounded">
+
                     <!-- ssh user -->
                     <div class="row mb-2">
                       <div class="col-lg-4 col-sm-12 col-xs-12 text-center">
@@ -269,11 +326,19 @@
                         <span>&nbsp;SSH User:</span>
                       </div>
                       <div class="col-lg-8 col-sm-12 col-xs-12 text-center">
-                        <input readonly type="text"
-                               class="text-center bg-transparent text-white border border-light w-100" value="root" />
+                        <input *ngIf="!order.isExpired"
+                               readonly type="text"
+                               class="text-center bg-transparent text-white border border-light w-100"
+                               value="root"
+                        />
+                        <input *ngIf="order.isExpired"
+                               readonly type="text"
+                               class="text-center bg-transparent text-white border border-light w-100"
+                               value="N/A"
+                        />
                       </div>
-                    </div>
-                    <!-- / ssh user -->
+                    </div><!-- / ssh user -->
+
                     <!-- ssh password -->
                     <div class="row mb-2">
                       <div class="col-lg-4 col-sm-12 col-xs-12 text-center">
@@ -281,40 +346,48 @@
                         <span>&nbsp;SSH Password:</span>
                       </div>
                       <div class="col-lg-8 col-sm-12 col-xs-12 text-center">
-                        <input readonly type="text"
+                        <input *ngIf="!order.isExpired"
+                               readonly type="text"
                                class="text-center bg-transparent text-white border border-light w-100"
-                               value="dGhldHJ1dGhpc291dHRoZXJl" />
+                               value="dGhldHJ1dGhpc291dHRoZXJl"
+                        />
+                        <input *ngIf="order.isExpired"
+                               readonly type="text"
+                               class="text-center bg-transparent text-white border border-light w-100"
+                               value="N/A"
+                        />
                       </div>
-                    </div>
-                    <!-- / ssh password -->
+                    </div><!-- / ssh password -->
+
                   </div>
                 </div>
               </div>
-            </div>
-            <!-- / right side -->
+            </div><!-- / right side -->
+
           </div>
-        </div>
-        <!-- / content -->
-      </div>
-      <!-- / connection details -->
-    </div>
-    <!-- / box container -->
+        </div><!-- / content -->
+
+      </div><!-- / connection details -->
+
+    </div><!-- / box container -->
+
   </div>
-</div>
-<!-- / second content -->
+
+</div><!-- / second content -->
+
 <!-- horizontal line -->
 <div class="container text-light mt-0">
   <hr />
-</div>
-<!-- / horizontal line -->
+</div><!-- / horizontal line -->
+
 <div class="row px-5 mt-2 py-0 m-0">
   <div class="col-12 px-5 py-0 text-center text-white">
+
     <!-- title -->
     <h5>
       <i class="bi bi-question-circle"></i>
       <span class="animated-link">&nbsp;Technical Support</span>
-    </h5>
-    <!-- / title -->
+    </h5><!-- / title -->
     <p>
       <span>tech.support@dawhostservices.com</span>
     </p>

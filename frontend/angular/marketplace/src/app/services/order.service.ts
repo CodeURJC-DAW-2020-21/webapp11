@@ -37,9 +37,9 @@ export class OrderService {
     });
   }
 
-  renewOrder(orderId: number): Observable<Order | Error> {
+  renewOrder(orderId: number): Observable<Order> {
     const ROUTE = this.BASE_ROUTE + '/' + orderId;
-    return new Observable<Order | Error>((subscriber) => {
+    return new Observable<Order>((subscriber: Subscriber<Order>) => {
       const requestBody = { months: 1 };
       const requestOptions = { headers: new HttpHeaders({ Authorization: this.tokenService.getToken() }) };
       this.httpClient.put<any>(ROUTE, requestBody, requestOptions)
@@ -49,10 +49,8 @@ export class OrderService {
             subscriber.next(order);
           },
           (errorResponse) => {
-            const responseBody = errorResponse.error;
-            // If the response body has content, then the server has answered (otherwise could not connect to server)
-            const error = 'content' in responseBody ? Error.answered(responseBody.content) : Error.unanswered();
-            subscriber.next(error);
+            const error = Error.from(errorResponse);
+            subscriber.error(error);
           }
         );
     });
@@ -69,18 +67,16 @@ export class OrderService {
             subscriber.next(orders);
           },
           (errorResponse) => {
-            const responseBody = errorResponse.error;
-            // If the response body has content, then the server has answered (otherwise could not connect to server)
-            const error = responseBody != null ? Error.answered(responseBody.content) : Error.unanswered();
-            subscriber.next(error);
+            const error = Error.from(errorResponse);
+            subscriber.error(error);
           }
         );
     });
   }
 
-  findOrder(orderId: number): Observable<Order | Error> {
+  findOrder(orderId: number): Observable<Order> {
     const ROUTE = `${this.BASE_ROUTE}/${orderId}`;
-    return new Observable<Order | Error>((subscriber) => {
+    return new Observable<Order>((subscriber: Subscriber<Order>) => {
       const requestOptions = { headers: new HttpHeaders({ Authorization: this.tokenService.getToken() }) };
       this.httpClient.get<any>(ROUTE, requestOptions)
         .subscribe(
@@ -89,10 +85,8 @@ export class OrderService {
             subscriber.next(order);
           },
           (errorResponse) => {
-            const responseBody = errorResponse.error;
-            // If the response body has content, then the server has answered (otherwise could not connect to server)
-            const error = responseBody != null ? Error.answered(responseBody.content) : Error.unanswered();
-            subscriber.next(error);
+            const error = Error.from(errorResponse);
+            subscriber.error(error);
           }
         );
     });
