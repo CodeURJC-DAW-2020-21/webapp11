@@ -22,9 +22,9 @@ export class UserService {
     private userMapper: UserMapper
   ) { }
 
-  findUser(userId: number): Observable<User | Error> {
+  findUser(userId: number): Observable<User> {
     const ROUTE = `${this.BASE_ROUTE}/${userId}`;
-    return new Observable<User | Error>((subscriber) => {
+    return new Observable<User>((subscriber: Subscriber<User>) => {
       const requestOptions = { headers: new HttpHeaders({ Authorization: this.tokenService.getToken() }) };
       this.httpClient.get<any>(ROUTE, requestOptions)
         .subscribe(
@@ -33,9 +33,8 @@ export class UserService {
             subscriber.next(user);
           },
           (errorResponse) => {
-            const responseBody = errorResponse.error;
-            const error = 'content' in responseBody ? Error.answered(responseBody.content) : Error.unanswered();
-            subscriber.next(error);
+            const error = Error.from(errorResponse);
+            subscriber.error(error);
           }
         );
     });
@@ -95,6 +94,26 @@ export class UserService {
             const responseBody = errorResponse.error;
             const error = 'content' in responseBody ? Error.answered(responseBody.content) : Error.unanswered();
             subscriber.next(error);
+          }
+        );
+    });
+  }
+
+  saveUser(user: User): Observable<User> {
+    const ROUTE = `${this.BASE_ROUTE}/${user.id}`;
+    return new Observable<User>((subscriber: Subscriber<User>) => {
+      const requestBody = this.userMapper.asSaveRequest(user);
+      console.log(requestBody);
+      const requestOptions = { headers: new HttpHeaders({ Authorization: this.tokenService.getToken() }) };
+      this.httpClient.put<any>(ROUTE, requestBody, requestOptions)
+        .subscribe(
+          (responseBody) => {
+            const requestUser = this.userMapper.asUser(responseBody.content);
+            subscriber.next(requestUser);
+          },
+          (errorResponse) => {
+            const error = Error.from(errorResponse);
+            subscriber.error(error);
           }
         );
     });

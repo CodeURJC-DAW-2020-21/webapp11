@@ -37,4 +37,25 @@ export class UserMapper {
     };
   }
 
+  asSaveRequest(user: User): any {
+    let contentType = '';
+    let encodedImage = '';
+    if (user.encodedImage !== '') {
+      const firstSplit = user.encodedImage.split(';');
+      contentType = firstSplit[0].split(':')[1];
+      const secondSplit = firstSplit[1].split(',');
+      encodedImage = secondSplit[1];
+    }
+    return {
+      enabled: true,
+      first_name: user.firstName,
+      surname: user.surname,
+      address: user.address,
+      email: user.email,
+      password: user.password,
+      content_type: contentType,
+      encoded_picture: encodedImage
+    };
+  }
+
 }

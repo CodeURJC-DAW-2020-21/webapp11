@@ -36,8 +36,6 @@ public class PictureServiceImpl implements PictureService {
         String extension = FilenameUtils.getExtension(fileName);
         String newName = userId + "." + extension;
 
-
-        String filename = StringUtils.cleanPath(Objects.requireNonNull(profilePicture.getOriginalFilename()));
         Path uploadPath = Paths.get(BASE_DIR + File.separator + newName);
 
         if (!Files.exists(uploadPath)) {
@@ -49,10 +47,9 @@ public class PictureServiceImpl implements PictureService {
         }
 
         try (InputStream inputStream = profilePicture.getInputStream()) {
-            Path filePath = new File(BASE_DIR + File.separator + newName).toPath();
-            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(inputStream, uploadPath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ioe) {
-            throw new RuntimeException("Could not save image file: " + filename, ioe);
+            throw new RuntimeException("Other process is using the image (usually caused by antivirus)");
         }
 
         return newName;

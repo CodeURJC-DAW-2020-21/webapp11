@@ -155,7 +155,7 @@ public class UserRestController {
         // Set the id to the the user to be modified id
         updateUser.setId(userId);
         // Ensure the picture to be updated is present in the request and if so update the picture
-        if(!Objects.isNull(request.getEncodedPicture()) && !Objects.isNull(request.getContentType())) {
+        if(!Objects.isNull(request.getEncodedPicture()) && !Objects.isNull(request.getContentType()) && StringUtils.isNotEmpty(request.getContentType())) {
             byte[] bytePicture = Base64.decodeBase64(request.getEncodedPicture());
             final String DEFAULT_FILENAME = "." + request.getContentType().split("/")[1];
             // Decode the base64 picture into a stream of bytes

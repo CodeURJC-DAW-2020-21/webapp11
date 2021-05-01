@@ -8,9 +8,9 @@
       </h3>
       <p class="text-secondary mb-0">
 				<span class="fst-italic">
-                  "Change your avatar and personal details
-                  in the most easy way!"
-                </span>
+          "Change your avatar and personal details
+          in the most easy way!"
+        </span>
       </p>
     </div>
   </div>
@@ -50,49 +50,49 @@
 										<span class="input-group-text bg-transparent text-white" id="first-name-label">
 											<i class="bi bi-person-plus"></i>
 										</span>
-                    <input [(ngModel)]="userDisplay.firstName" type="text" class="form-control" placeholder="First Name"
+                    <input [(ngModel)]="user.firstName" type="text" class="form-control" placeholder="First Name"
                            aria-label="First Name" aria-describedby="first-name-label">
                   </div>
                   <div class="input-group mb-3 px-2">
 											<span class="input-group-text bg-transparent text-white" id="surname-label">
 												<i class="bi bi-person-dash"></i>
 											</span>
-                    <input [(ngModel)]="userDisplay.surname" type="text" class="form-control" placeholder="Surname"
+                    <input [(ngModel)]="user.surname" type="text" class="form-control" placeholder="Surname"
                            aria-label="Surname" aria-describedby="surname-label">
                   </div>
                   <div class="input-group mb-3 px-2">
 												<span class="input-group-text bg-transparent text-white" id="email-label">
 													<i class="bi bi-envelope-fill"></i>
 												</span>
-                    <input [(ngModel)]="userDisplay.email" type="text" class="form-control" placeholder="Email"
+                    <input [(ngModel)]="user.email" type="text" class="form-control" placeholder="Email"
                            aria-label="Email" aria-describedby="email-label">
                   </div>
                   <div class="input-group mb-3 px-2">
 													<span class="input-group-text bg-transparent text-white" id="address-label">
 														<i class="bi bi-house-door-fill"></i>
 													</span>
-                    <input [(ngModel)]="userDisplay.address" type="text" class="form-control" placeholder="Address"
+                    <input [(ngModel)]="user.address" type="text" class="form-control" placeholder="Address"
                            aria-label="Address" aria-describedby="address-label">
                   </div>
                   <div class="input-group mb-3 px-2">
 														<span class="input-group-text bg-transparent text-white" id="password-label">
 															<i class="bi bi-key-fill"></i>
 														</span>
-                    <input [(ngModel)]="password1" type="password" class="form-control" placeholder="New Password"
+                    <input [(ngModel)]="initialPassword" type="password" class="form-control" placeholder="New Password"
                            aria-label="Password" aria-describedby="password-label">
                   </div>
                   <div class="input-group mb-3 px-2">
 															<span class="input-group-text bg-transparent text-white" id="confirm-password-label">
 																<i class="bi bi-key"></i>
 															</span>
-                    <input [(ngModel)]="password2" type="password" class="form-control" placeholder="Confirm New Password"
+                    <input [(ngModel)]="confirmPassword" type="password" class="form-control" placeholder="Confirm New Password"
                            aria-label="Confirm Password" aria-describedby="confirm-password-label">
                   </div>
                   <!-- / form inputs -->
                   <p class="card-text">
                     <small class="text-danger fw-light">Multiple modifications may result in a ban.</small>
                   </p>
-                  <button id="register-button" type="button" class="btn btn-sm btn-outline-light">
+                  <button (click)="saveUser()" type="button" class="btn btn-sm btn-outline-light">
                     Confirm changes
                   </button>
                 </div>
@@ -122,8 +122,8 @@
                   <div class="row">
                     <div class="col-12">
                       <div class="text-center" >
-                        <img *ngIf="userDisplay.encodedImage === ''" class="image" src="./assets/img/profile.png"/>
-                        <img *ngIf="userDisplay.encodedImage !== ''" class="image" src="{{userDisplay.encodedImage}}"/>
+                        <img *ngIf="user.encodedImage === ''" class="image" src="./assets/img/profile.png"/>
+                        <img *ngIf="user.encodedImage !== ''" class="image" src="{{user.encodedImage}}"/>
                       </div>
                     </div>
                   </div>
@@ -136,7 +136,10 @@
                         <span class="fw-bold">won't be public</span>.
                       </div>
                       <div class="input-group">
-                        <input type="file" class="form-control bg-transparent text-white" aria-label="Upload">
+                        <input (change)="pictureUploadEvent($event)"
+                               type="file"
+                               class="form-control bg-transparent text-white"
+                               aria-label="Upload">
                       </div>
                     </div>
                   </div>
