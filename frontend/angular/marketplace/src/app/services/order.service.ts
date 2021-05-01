@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subscriber} from 'rxjs';
 import {Error} from '../models/error.model';
 import {TokenService} from './token.service';
 import {Order} from '../models/order.model';
@@ -20,20 +20,18 @@ export class OrderService {
     private tokenService: TokenService
   ) { }
 
-  placeOrder(productId: number): Observable<boolean | Error> {
-    return new Observable<boolean | Error>((subscriber) => {
+  placeOrder(productId: number): Observable<boolean> {
+    return new Observable<boolean>((subscriber: Subscriber<boolean>) => {
       const requestBody = { product_id: productId };
       const requestOptions = { headers: new HttpHeaders({ Authorization: this.tokenService.getToken() }) };
       this.httpClient.post<any>(this.BASE_ROUTE, requestBody, requestOptions)
         .subscribe(
-          () => {
+          (responseBody) => {
             subscriber.next(true);
           },
           (errorResponse) => {
-            const responseBody = errorResponse.error;
-            // If the response body has content, then the server has answered (otherwise could not connect to server)
-            const error = 'content' in responseBody ? Error.answered(responseBody.content) : Error.unanswered();
-            subscriber.next(error);
+            const error = Error.from(errorResponse);
+            subscriber.error(error);
           }
         );
     });

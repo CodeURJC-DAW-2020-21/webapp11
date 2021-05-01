@@ -84,15 +84,21 @@ export class PricingComponent implements OnInit {
   }
 
   purchaseProduct(): void {
-    const selectedProduct = this.categoryToProducts.get(this.selectedCategory)[this.selectedProductIndex];
+    const selectedProduct = this.getSelectedProduct();
     const observable = this.orderService.placeOrder(selectedProduct.id);
-    observable.subscribe((response) => {
-      if (response instanceof Error) {
-        this.errorMessage = response.message;
-      } else {
+    observable.subscribe(
+      (success: boolean) => {
         this.router.navigate(['/services']).then();
+      },
+      (error: Error) => {
+        if (error.isUnauthorized()) { this.router.navigate(['/login']).then(); return; }
+        this.router.navigate(['/error']).then();
       }
-    });
+    );
+  }
+
+  getSelectedProduct(): Product {
+    return this.categoryToProducts.get(this.selectedCategory)[this.selectedProductIndex];
   }
 
 }

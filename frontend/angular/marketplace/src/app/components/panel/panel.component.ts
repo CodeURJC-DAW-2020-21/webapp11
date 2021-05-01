@@ -16,6 +16,8 @@ import {Router} from '@angular/router';
 })
 export class PanelComponent implements OnInit {
 
+  public loadAllowed = false;
+
   private currentPage = 1;
   private loadAmount = 10;
 
@@ -36,7 +38,6 @@ export class PanelComponent implements OnInit {
   public accumulativeSaleDisabledMessage = '';
   public accumulativeProductId = -1;
 
-
   public products: Product[] = [];
 
   constructor(
@@ -48,10 +49,21 @@ export class PanelComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadStatistics();
-    this.loadNextUsers();
-    this.loadSales();
-    this.loadProducts();
+    const userId = localStorage.getItem('user_id');
+    const isUserLogged = userId != null;
+    if (!isUserLogged) { return; }
+    const observable = this.userService.findUser(Number(userId));
+    observable.subscribe((user: User) => {
+      if (user.isAdmin) {
+        this.loadAllowed = true;
+        this.loadStatistics();
+        this.loadNextUsers();
+        this.loadSales();
+        this.loadProducts();
+      } else {
+        this.router.navigate(['/error']).then();
+      }
+    });
   }
 
   loadStatistics(): void {

@@ -1,4 +1,4 @@
-
+<div *ngIf="loadAllowed">
 
 <!-- page title -->
 <div class="d-flex justify-content-center text-white text-center">
@@ -22,16 +22,7 @@
   <hr />
 </div>
 <!-- / horizontal line -->
-<div class="row mx-0">
-  <div class="col-12 px-5 mx-0">
-    <div *ngIf="clientEnabledMessage" class="px-5 mx-5 alert text-center bg-transparent border border-1 rounded alert-success border-success text-success fade show" role="alert">
-      <strong>{{clientEnabledMessage}}</strong>
-    </div>
-    <div *ngIf="clientDisabledMessage" class="px-5 mx-5  alert text-center bg-transparent border border-1 rounded alert-danger border-danger text-danger fade show" role="alert">
-      <strong>{{clientDisabledMessage}}</strong>
-    </div>
-  </div>
-</div>
+
 <div class="container mt-3 text-white">
   <nav>
     <div class="d-flex justify-content-center nav nav-tabs text-center"
@@ -164,6 +155,16 @@
          class="tab-pane fade container content border border-secondary rounded p-2">
       <div class="row justify-content-center">
         <div class="col-12 mx-auto">
+          <div class="row mx-0">
+            <div class="col-12 px-5 mx-0">
+              <div *ngIf="clientEnabledMessage" class="px-5 mx-5 alert text-center bg-transparent border border-1 rounded alert-success border-success text-success fade show" role="alert">
+                <strong>{{clientEnabledMessage}}</strong>
+              </div>
+              <div *ngIf="clientDisabledMessage" class="px-5 mx-5  alert text-center bg-transparent border border-1 rounded alert-danger border-danger text-danger fade show" role="alert">
+                <strong>{{clientDisabledMessage}}</strong>
+              </div>
+            </div>
+          </div>
           <!-- registered clients-->
           <div class="row py-0 m-0">
             <div class="col-12">
@@ -611,4 +612,6 @@
     </div>
     <!-- / accumulative content -->
   </div>
+</div>
+
 </div>
