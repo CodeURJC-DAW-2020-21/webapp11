@@ -1,8 +1,7 @@
 
 # Download dependencies
-FROM adoptopenjdk/openjdk11:latest
-FROM maven:latest
-FROM node:14
+FROM debian:buster-slim
+RUN apt-get update && apt-get install openjdk-11-jdk maven nodejs -y
 
 # Compile the angular frontend
 RUN mkdir -p /usr/marketplace
