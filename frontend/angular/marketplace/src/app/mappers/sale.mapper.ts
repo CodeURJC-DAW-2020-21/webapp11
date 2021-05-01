@@ -14,12 +14,14 @@ export class SaleMapper {
       response.bulk_amount,
       response.discount,
       response.discount_price,
+      response.price,
       this.formatToIso(response.start_date),
       this.formatToIso(response.expiry_date),
       response.ram,
       response.cores,
       response.storage,
-      response.transfer
+      response.transfer,
+      response.category
     );
   }
 

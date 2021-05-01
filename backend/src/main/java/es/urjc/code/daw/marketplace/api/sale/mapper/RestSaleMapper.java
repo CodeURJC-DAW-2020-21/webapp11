@@ -37,6 +37,7 @@ public interface RestSaleMapper {
     @Mapping(target = "discountedPrice", ignore = true)
     @Mapping(target = "discount", source = "discount.discountPercentage")
     @Mapping(target = "expiryDate", source = "discount.stop")
+    @Mapping(target = "category", source = "product.category")
     FindOtdResponseDto asFindResponse(OneTimeDiscount discount, Product product);
 
     @Mapping(target = "discountedProductId", source = "product.id")
@@ -44,6 +45,7 @@ public interface RestSaleMapper {
     @Mapping(target = "discountedPrice", ignore = true)
     @Mapping(target = "discount", source = "discount.discountPercentage")
     @Mapping(target = "expiryDate", source = "discount.stop")
+    @Mapping(target = "category", source = "product.category")
     FindAdResponseDto asFindResponse(AccumulativeDiscount discount, Product product);
 
 }

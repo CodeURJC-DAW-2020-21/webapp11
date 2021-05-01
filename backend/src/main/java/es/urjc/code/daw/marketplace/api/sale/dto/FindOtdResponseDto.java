@@ -34,6 +34,9 @@ public class FindOtdResponseDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date expiryDate;
 
+    @JsonProperty("category")
+    private String category;
+
     @JsonProperty("ram")
     private String ram;
 

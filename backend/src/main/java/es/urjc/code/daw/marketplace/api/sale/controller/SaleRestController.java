@@ -82,11 +82,6 @@ public class SaleRestController {
             RestResponseDto response = RestResponseDto.builder().status(HttpStatus.BAD_REQUEST).content(message).build();
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
-        if(!loggedUser.isAdmin()) {
-            final String message = "You have no permission to perform this operation (only the order owner or the admin)";
-            RestResponseDto response = RestResponseDto.builder().status(HttpStatus.UNAUTHORIZED).content(message).build();
-            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
-        }
         // Return the details of the specified discount type if they exist
         if(saleType.equals("onetime")) {
             // Check if there is a one time discount active

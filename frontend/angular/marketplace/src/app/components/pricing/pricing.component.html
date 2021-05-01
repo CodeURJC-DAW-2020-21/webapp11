@@ -1,3 +1,32 @@
+<div class="mx-5 my-3">
+  <div class="alert text-center bg-transparent border border-1 mx-5 rounded alert-light border-light text-light fade show" role="alert">
+    <div *ngIf="selectedSale === 'onetime' && oneTimeSale.productId != -1">
+      <p class="m-1 px-3">
+        <span class="badge badge-pill bg-success">SALE ACTIVE!</span>
+        We offer a <b>one time <span class="text-success">{{oneTimeSale.discountPercentage}}%
+        </span> discount</b> on the <b>{{oneTimeSale.category}}</b>
+        servers category with the configuration: <b>{{oneTimeSale.ram}} RAM</b>,
+        <b>{{oneTimeSale.cores}} CORES</b>, <b>{{oneTimeSale.storage}} STORAGE</b>, <b>{{oneTimeSale.transfer}} TRANSFER</b>
+        before it was <b class="text-danger"><s>${{oneTimeSale.price}}</s></b> priced,
+        but for your first purchase it will be <b class="text-success">${{oneTimeSale.discountedPrice}}</b>
+      </p>
+    </div>
+    <div *ngIf="selectedSale === 'accumulative' && accumulativeSale.productId != -1">
+      <p class="m-1 px-3">
+        <span class="badge badge-pill bg-success">SALE ACTIVE!</span>
+        We offer a <b class="text-success">{{accumulativeSale.discountPercentage}}%</b> <b>accumulative
+        discount</b> on the <b>{{accumulativeSale.category}}</b> servers category with
+        the configuration: <b>{{accumulativeSale.ram}} RAM</b>,
+        <b>{{accumulativeSale.cores}} CORES</b>, <b>{{accumulativeSale.storage}} STORAGE</b>,
+        <b>{{accumulativeSale.transfer}} TRANSFER</b> if you buy <b>{{accumulativeSale.bulkAmount}}</b> servers
+        all the next purchases on the same package will cost now
+        <b class="text-success">${{accumulativeSale.discountedPrice}}</b> (previous cost
+        <b class="text-danger"><s>${{accumulativeSale.price}}</s></b>)
+      </p>
+    </div>
+  </div>
+</div>
+
 <div class="container mt-5 text-light">
   <div class="row">
     <div class="col-12 text-center text-white">

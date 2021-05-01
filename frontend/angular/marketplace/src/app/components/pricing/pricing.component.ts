@@ -4,6 +4,8 @@ import {Product} from '../../models/product.model';
 import {Error} from '../../models/error.model';
 import {OrderService} from '../../services/order.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Sale} from '../../models/sale.model';
+import {SaleService} from '../../services/sale.service';
 
 @Component({
   selector: 'app-pricing',
@@ -13,6 +15,11 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class PricingComponent implements OnInit {
 
   private categoryToProducts: Map<string, Product[]> = new Map<string, Product[]>();
+
+  public selectedSale = 'onetime';
+
+  public oneTimeSale: Sale = new Sale();
+  public accumulativeSale: Sale = new Sale();
 
   public selectedProduct: Product = new Product();
   public selectedCategory = '';
@@ -24,7 +31,8 @@ export class PricingComponent implements OnInit {
     private activated: ActivatedRoute,
     private router: Router,
     private productService: ProductService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private saleService: SaleService
   ) {
     this.activated.queryParams.subscribe(params => {
       this.selectedCategory = params.category == null ? '' : params.category;
@@ -34,6 +42,19 @@ export class PricingComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAllProducts();
+    this.loadSales();
+  }
+
+  loadSales(): void {
+    this.saleService.findSale('onetime').subscribe((response) => {
+      if (response instanceof Error) { return; }
+      this.oneTimeSale = response;
+    });
+    this.saleService.findSale('accumulative').subscribe((response) => {
+      if (response instanceof Error) { return; }
+      this.accumulativeSale = response;
+    });
+    this.startAnnouncements();
   }
 
   loadAllProducts(): void {
@@ -99,6 +120,24 @@ export class PricingComponent implements OnInit {
 
   getSelectedProduct(): Product {
     return this.categoryToProducts.get(this.selectedCategory)[this.selectedProductIndex];
+  }
+
+  startAnnouncements(): void {
+    setTimeout(() => { this.nextAnnouncement(); }, 10000);
+  }
+
+  nextAnnouncement(): void {
+    let nextSale = 'accumulative';
+    if (this.selectedSale === 'onetime' && this.accumulativeSale.productId !== -1) {
+      nextSale = 'accumulative';
+    }
+    else if (this.selectedSale === 'accumulative' && this.oneTimeSale.productId !== -1) {
+      nextSale = 'onetime';
+    }
+    else {
+      nextSale = '';
+    }
+    this.selectedSale = nextSale;
   }
 
 }
