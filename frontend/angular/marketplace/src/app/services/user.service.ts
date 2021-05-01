@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import {TokenService} from './token.service';
-import {Observable, throwError} from 'rxjs';
+import {Observable, Subscriber, throwError} from 'rxjs';
 import {Product} from '../models/product.model';
 import { Error } from '../models/error.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ProductMapper} from '../mappers/product.mapper';
 import {User} from '../models/user.model';
 import {UserMapper} from '../mappers/user.mapper';
+import {Constants} from '../configs/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private BASE_ROUTE = 'https://localhost:8443/api/users';
+  private BASE_ROUTE = `${Constants.BASE_URL}/api/users`;
 
   constructor(
     private httpClient: HttpClient,
@@ -99,20 +100,17 @@ export class UserService {
     });
   }
 
-  registerUser(registerUser: User): Observable<User | Error> {
-    return new Observable<User | Error>((subscriber) => {
-      const mapped = this.userMapper.asRegisterRequest(registerUser);
-      this.httpClient.post<any>(this.BASE_ROUTE, mapped)
+  registerUser(registerUser: User): Observable<boolean> {
+    return new Observable<boolean>((subscriber: Subscriber<boolean>) => {
+      const registerRequest = this.userMapper.asRegisterRequest(registerUser);
+      this.httpClient.post<any>(this.BASE_ROUTE, registerRequest)
         .subscribe(
           (responseBody) => {
-            const user = this.userMapper.asUser(responseBody.content);
-            subscriber.next(user);
+            subscriber.next(true);
           },
           (errorResponse) => {
-            console.log(errorResponse);
-            const responseBody = errorResponse.error;
-            const error = responseBody != null ? Error.answered(responseBody.content) : Error.unanswered();
-            subscriber.next(error);
+            const error = Error.from(errorResponse);
+            subscriber.error(error);
           }
         );
     });

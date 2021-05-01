@@ -1,14 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subscriber} from 'rxjs';
 import {TokenService} from './token.service';
 import {AuthResponseMapper} from '../mappers/auth.mapper';
 import {Error} from '../models/error.model';
+import {Constants} from '../configs/constants';
 
 @Injectable({providedIn: 'root'})
 export class LoginService {
 
-  private BASE_ROUTE = 'https://127.0.0.1:8443/api/tokens';
+  private BASE_ROUTE = `${Constants.BASE_URL}/api/tokens`;
 
   constructor(
     private httpClient: HttpClient,
@@ -16,15 +17,15 @@ export class LoginService {
     private tokenService: TokenService
   ) { }
 
-  logIn(email: string, password: string): Observable<void> {
-    return new Observable((subscriber) => {
+  logIn(email: string, password: string): Observable<boolean> {
+    return new Observable((subscriber: Subscriber<boolean>) => {
       this.httpClient.post<any>(this.BASE_ROUTE, {email, password})
         .subscribe(
           (responseBody) => {
             const authResponse = this.authResponseMapper.asAuthResponse(responseBody);
             this.tokenService.saveToken(authResponse.token);
-            localStorage.setItem('user_id', String(authResponse.userId));
-            subscriber.next();
+            this.storeUserId(authResponse.userId);
+            subscriber.next(true);
           },
           (errorResponse) => {
             const error = Error.from(errorResponse);
@@ -32,6 +33,12 @@ export class LoginService {
           }
         );
     });
+  }
+
+  storeUserId(userId: number): void {
+    const key = 'user_id';
+    const value = String(userId);
+    localStorage.setItem(key, value);
   }
 
 }

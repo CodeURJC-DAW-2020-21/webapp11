@@ -5,13 +5,14 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {TokenService} from './token.service';
 import {Statistics} from '../models/statistics.model';
 import {StatisticsMapper} from '../mappers/statistics.mapper';
+import {Constants} from '../configs/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StatisticsService {
 
-  private BASE_ROUTE = 'https://localhost:8443/api/statistics';
+  private BASE_ROUTE = `${Constants.BASE_URL}/api/statistics`;
 
   constructor(
     private httpClient: HttpClient,

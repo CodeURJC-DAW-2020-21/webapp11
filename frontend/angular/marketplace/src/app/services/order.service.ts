@@ -5,13 +5,14 @@ import {Error} from '../models/error.model';
 import {TokenService} from './token.service';
 import {Order} from '../models/order.model';
 import {OrderMapper} from '../mappers/order.mapper';
+import {Constants} from '../configs/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
 
-  private BASE_ROUTE = 'https://localhost:8443/api/orders';
+  private BASE_ROUTE = `${Constants.BASE_URL}/api/orders`;
 
   constructor(
     private httpClient: HttpClient,
@@ -19,11 +20,6 @@ export class OrderService {
     private tokenService: TokenService
   ) { }
 
-  /**
-   * Places an order for the product identified by its given id.
-   * @param productId the identifier correspondent to the product that is about to be bought
-   * @return observable an observable result of a boolean representing the correct order placement, an error otherwise
-   */
   placeOrder(productId: number): Observable<boolean | Error> {
     return new Observable<boolean | Error>((subscriber) => {
       const requestBody = { product_id: productId };

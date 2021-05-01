@@ -30,24 +30,27 @@ export class LoginComponent {
   }
 
   logIn(): void {
-    if (!this.isValidEmail(this.email)) {
-      this.displayMessage('ERROR', this.INVALID_EMAIL_MESSAGE);
-      return;
-    }
+    if (!this.isValid()) { return; }
     const observable = this.loginService.logIn(this.email, this.password);
     observable.subscribe(
-      () => {
+      (success: boolean) => {
+        if (!success) { return; }
         this.displayMessage('SUCCESS', this.SUCCESS_MESSAGE);
         window.location.replace('/home');
       },
       (error: Error) => {
-        if (error.isBadRequest()) {
-          this.displayMessage('ERROR', this.ERROR_MESSAGE);
-        } else {
-          this.displayMessage('DOWN', this.DOWN_MESSAGE);
-        }
+        if (error.isBadRequest()) { this.displayMessage('ERROR', this.ERROR_MESSAGE); }
+        else { this.displayMessage('DOWN', this.DOWN_MESSAGE); }
       }
     );
+  }
+
+  isValid(): boolean {
+    if (!this.isValidEmail(this.email)) {
+      this.displayMessage('ERROR', this.INVALID_EMAIL_MESSAGE);
+      return false;
+    }
+    return true;
   }
 
   isValidEmail(email: string): boolean {

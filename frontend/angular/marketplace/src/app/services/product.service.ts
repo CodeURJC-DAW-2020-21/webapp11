@@ -5,23 +5,20 @@ import {Product} from '../models/product.model';
 import { Error } from '../models/error.model';
 import {HttpClient} from '@angular/common/http';
 import {ProductMapper} from '../mappers/product.mapper';
+import {Constants} from '../configs/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private BASE_ROUTE = 'https://localhost:8443/api/products';
+  private BASE_ROUTE = `${Constants.BASE_URL}/api/products`;
 
   constructor(
     private httpClient: HttpClient,
     private productMapper: ProductMapper
   ) { }
 
-  /**
-   * Returns an observable that might return a list of products or an error.
-   * @return observable an observable that might return a list of products or an error.
-   */
   findAllProducts(): Observable<Product[] | Error> {
     return new Observable<Product[] | Error>((subscriber) => {
       this.httpClient.get<any>(this.BASE_ROUTE)

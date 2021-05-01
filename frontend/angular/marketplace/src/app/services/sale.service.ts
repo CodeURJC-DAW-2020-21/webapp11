@@ -7,13 +7,14 @@ import {Statistics} from '../models/statistics.model';
 import {StatisticsMapper} from '../mappers/statistics.mapper';
 import {SaleMapper} from '../mappers/sale.mapper';
 import {Sale} from '../models/sale.model';
+import {Constants} from '../configs/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SaleService {
 
-  private BASE_ROUTE = 'https://localhost:8443/api/sales';
+  private BASE_ROUTE = `${Constants.BASE_URL}/api/sales`;
 
   constructor(
     private httpClient: HttpClient,

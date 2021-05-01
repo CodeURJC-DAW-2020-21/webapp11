@@ -13,7 +13,8 @@
             </h3>
             <div class="card-body">
 
-              <p><small class="text-danger fw-bold">{{error}}</small></p>
+              <p *ngIf="errorMessage"><small class="text-danger fw-bold">{{errorMessage}}</small></p>
+              <p *ngIf="successMessage"><small class="text-success fw-bold">{{successMessage}}</small></p>
 
               <p>Please, fill in the following details:</p>
 
@@ -54,7 +55,7 @@
                 <span class="input-group-text bg-transparent text-white" id="password-label">
                   <i class="bi bi-key-fill"></i>
                 </span>
-                <input [(ngModel)]="password1" type="password" class="form-control" placeholder="Password"
+                <input [(ngModel)]="initialPassword" type="password" class="form-control" placeholder="Password"
                        aria-label="Password" aria-describedby="password-label">
               </div>
 
@@ -62,7 +63,7 @@
                 <span class="input-group-text bg-transparent text-white" id="confirm-password-label">
                   <i class="bi bi-key"></i>
                 </span>
-                <input [(ngModel)]="password2" type="password" class="form-control" placeholder="Confirm Password"
+                <input [(ngModel)]="confirmPassword" type="password" class="form-control" placeholder="Confirm Password"
                        aria-label="Confirm Password" aria-describedby="confirm-password-label">
               </div><!-- / form inputs -->
 
