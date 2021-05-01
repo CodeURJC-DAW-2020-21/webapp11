@@ -66,6 +66,25 @@ export class ServiceComponent implements OnInit {
     );
   }
 
+  cancelOrder(): void {
+    if (this.order.orderId === -1) { return; }
+    const observable = this.orderService.cancelOrder(this.order.orderId);
+    observable.subscribe(
+      (order: Order) => {
+        this.order = order;
+        this.stopAnimation();
+      },
+      (error: Error) => {
+        this.router.navigate(['/error']).then();
+      }
+    );
+  }
+
+  downloadPdfOrder(): void {
+    if (this.order.orderId === -1) { return; }
+    this.orderService.downloadPdfOrder(this.order.orderId);
+  }
+
   runAnimation(): void {
     if (this.order.isExpired) {
       this.serverStarted = false;

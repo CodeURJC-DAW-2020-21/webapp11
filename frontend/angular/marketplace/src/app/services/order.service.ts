@@ -6,6 +6,7 @@ import {TokenService} from './token.service';
 import {Order} from '../models/order.model';
 import {OrderMapper} from '../mappers/order.mapper';
 import {Constants} from '../configs/constants';
+import * as fileSaver from 'file-saver';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,25 @@ export class OrderService {
     });
   }
 
+  cancelOrder(orderId: number): Observable<Order> {
+    const ROUTE = this.BASE_ROUTE + '/' + orderId;
+    return new Observable<Order>((subscriber: Subscriber<Order>) => {
+      const requestBody = { cancel: true };
+      const requestOptions = { headers: new HttpHeaders({ Authorization: this.tokenService.getToken() }) };
+      this.httpClient.put<any>(ROUTE, requestBody, requestOptions)
+        .subscribe(
+          (responseBody) => {
+            const order = this.orderMapper.asOrder(responseBody.content);
+            subscriber.next(order);
+          },
+          (errorResponse) => {
+            const error = Error.from(errorResponse);
+            subscriber.error(error);
+          }
+        );
+    });
+  }
+
   findOrders(page: number, amount: number): Observable<Order[] | Error> {
     const ROUTE = `${this.BASE_ROUTE}?page=${page}&amount=${amount}`;
     return new Observable<Order[] | Error>((subscriber) => {
@@ -90,6 +110,13 @@ export class OrderService {
           }
         );
     });
+  }
+
+  downloadPdfOrder(orderId: number): void {
+    const ROUTE = `${this.BASE_ROUTE}/${orderId}?content=pdf`;
+    const FILE_NAME = `order_${orderId}.pdf`;
+    const requestOptions: any = { headers: new HttpHeaders({ Authorization: this.tokenService.getToken() }), responseType: 'blob' };
+    this.httpClient.get<any>(ROUTE, requestOptions).subscribe(blob => { fileSaver.saveAs(blob as unknown as string, FILE_NAME); });
   }
 
 }

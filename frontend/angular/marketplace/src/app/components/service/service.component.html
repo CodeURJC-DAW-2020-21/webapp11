@@ -106,7 +106,7 @@
 
                 <!-- cancel service button -->
                 <div class="d-block">
-                  <button
+                  <button (click)="cancelOrder()"
                           [class.disabled]="order.isExpired"
                           [class.btn-outline-secondary]="order.isExpired"
                           [class.btn-outline-danger]="!order.isExpired"
@@ -118,7 +118,7 @@
 
                 <!-- download receipt button -->
                 <div class="d-block">
-                  <button id="receipt-button" type="button" class="btn btn-outline-light btn-sm mb-2">
+                  <button (click)="downloadPdfOrder()" type="button" class="btn btn-outline-light btn-sm mb-2">
                     Download Receipt
                   </button>
                 </div><!-- / download receipt button -->
