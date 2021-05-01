@@ -1,27 +1,24 @@
 
-#Install node.js
-
+# Download dependencies
+FROM adoptopenjdk/openjdk11:latest
+FROM maven:latest
 FROM node:14
 
+# Compile the angular frontend
+RUN mkdir -p /usr/marketplace
 WORKDIR /usr/marketplace
-
-COPY ../frontend/angular/marketplace/* .
-
+COPY ../* .
+WORKDIR /usr/marketplace/frontend/angular/marketplace
 RUN npm install
+RUN ng build --prod --base-href="/new/"
 
-COPY . .
+# Integrate angular frontend with backend
+RUN mkdir -p /usr/marketplace/backend/src/main/resources/new
+RUN cp dist/marketplace/* /usr/marketplace/backend/src/main/resources/new/
 
-EXPOSE 8080
-CMD [ "node", "server.js" ]
+# Compile backend
+RUN mvn clean install
+WORKDIR /usr/marketplace/backend/target
 
-
-#Install angular
-
-
-
-#Install jdk11
-FROM adoptopenjdk/openjdk11:latest
-
-COPY ./marketplace.jar ./marketplace.jar
-
-CMD ["java", "-jar", "marketplace.jar"]
+# Run application
+CMD ["java", "-jar", "marketplace-0.0.1-SNAPSHOT.jar"]
