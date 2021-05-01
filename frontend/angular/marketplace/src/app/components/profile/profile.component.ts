@@ -14,6 +14,8 @@ export class ProfileComponent implements OnInit {
 
   public user: User = new User();
 
+  public errorMessage = '';
+
   public initialPassword = '';
   public confirmPassword = '';
 
@@ -51,16 +53,52 @@ export class ProfileComponent implements OnInit {
   }
 
   saveUser(): void {
+    if (!this.checkValidInputs()) { return; }
     this.user.encodedImage = this.base64Image;
     const observable = this.userService.saveUser(this.user);
     observable.subscribe(
       (user: User) => {
-        
+        this.user = user;
       },
       (error) => {
         this.router.navigate(['/error']).then();
       }
     );
+  }
+
+  checkValidInputs(): boolean {
+    this.errorMessage = '';
+    if (!/^[a-zA-Z -]+$/.test(this.user.firstName)) {
+      this.errorMessage = 'The first name must be alphabetic';
+      return false;
+    }
+    if (!/^[a-zA-Z -]+$/.test(this.user.surname)) {
+      this.errorMessage = 'The surname must be alphabetic';
+      return false;
+    }
+    if (!/\S+@\S+(\.\S+)?/.test(this.user.email)) {
+      this.errorMessage = 'Please introduce a valid email address';
+      return false;
+    }
+    if (this.user.address === '') {
+      this.errorMessage = 'Address can\'t be empty';
+      return false;
+    }
+    if (this.initialPassword !== this.confirmPassword) {
+      this.errorMessage = 'The two passwords do not match';
+      return false;
+    }
+    if (this.initialPassword !== '') {
+      if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(this.initialPassword)) {
+        this.errorMessage = 'Password must contain at least one digit, one uppercase and must be 8 characters long minimum';
+        return false;
+      }
+      if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(this.confirmPassword)) {
+        this.errorMessage = 'Password must contain at least one digit, one uppercase and must be 8 characters long minimum';
+        return false;
+      }
+    }
+    return true;
   }
 
   pictureUploadEvent(fileInput: any): void {
