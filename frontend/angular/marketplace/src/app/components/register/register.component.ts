@@ -61,7 +61,7 @@ export class RegisterComponent {
       return false;
     }
     if (this.initialPassword !== this.confirmPassword) {
-      this.errorMessage = 'The two password do not match';
+      this.errorMessage = 'The two passwords do not match';
       return false;
     }
     if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(this.initialPassword)) {
