@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
   public user: User = new User();
 
   public errorMessage = '';
+  public displayName = '';
 
   public initialPassword = '';
   public confirmPassword = '';
@@ -41,6 +42,7 @@ export class ProfileComponent implements OnInit {
         (user: User) => {
           user.id = userId;
           this.user = user;
+          this.displayName = `${user.firstName} ${user.surname}`;
         },
         (error) => {
           this.router.navigate(['/error']).then();
@@ -59,6 +61,8 @@ export class ProfileComponent implements OnInit {
     observable.subscribe(
       (user: User) => {
         this.user = user;
+        this.displayName = `${user.firstName} ${user.surname}`;
+        window.location.reload();
       },
       (error) => {
         this.router.navigate(['/error']).then();
