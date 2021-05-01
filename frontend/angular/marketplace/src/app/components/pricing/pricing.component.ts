@@ -123,7 +123,7 @@ export class PricingComponent implements OnInit {
   }
 
   startAnnouncements(): void {
-    setTimeout(() => { this.nextAnnouncement(); }, 10000);
+    setInterval(() => { this.nextAnnouncement(); }, 10000);
   }
 
   nextAnnouncement(): void {
