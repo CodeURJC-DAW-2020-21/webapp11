@@ -575,7 +575,7 @@ docker-compose up -d
 
 You may also check [our published docker image here](https://hub.docker.com/r/dawhost/marketplace).
 
-## Classes and Templates Updated Diagram <a name="diagrams-4-ed"></a>
+## Angular Components Diagram <a name="diagrams-4-ed"></a>
 
 This diagram is a components diagram of our angular frontend application,
 represents a high-level view of the entire frontend structure without going
