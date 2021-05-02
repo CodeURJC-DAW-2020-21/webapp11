@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {TokenService} from '../../services/token.service';
 import {UserService} from '../../services/user.service';
 import {User} from '../../models/user.model';
-import {Error} from '../../models/error.model';
 import {Router} from '@angular/router';
 
 @Component({
