@@ -1,5 +1,6 @@
 export class Constants {
 
-  public static BASE_URL = 'https://127.0.0.1:8443';
+  // Base url fallbacks to default backend's url
+  public static BASE_URL = '';
 
 }
