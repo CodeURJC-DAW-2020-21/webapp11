@@ -3,8 +3,6 @@ import {Observable} from 'rxjs';
 import {Error} from '../models/error.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {TokenService} from './token.service';
-import {Statistics} from '../models/statistics.model';
-import {StatisticsMapper} from '../mappers/statistics.mapper';
 import {SaleMapper} from '../mappers/sale.mapper';
 import {Sale} from '../models/sale.model';
 import {Constants} from '../configs/constants';
@@ -32,8 +30,7 @@ export class SaleService {
             subscriber.next(sale);
           },
           (errorResponse) => {
-            const responseBody = errorResponse.error;
-            const error = 'content' in responseBody ? Error.answered(responseBody.content) : Error.unanswered();
+            const error = Error.from(errorResponse);
             subscriber.next(error);
           }
         );
@@ -52,8 +49,7 @@ export class SaleService {
             subscriber.next(sale);
           },
           (errorResponse) => {
-            const responseBody = errorResponse.error;
-            const error = 'content' in responseBody ? Error.answered(responseBody.content) : Error.unanswered();
+            const error = Error.from(errorResponse);
             subscriber.next(error);
           }
         );
@@ -71,8 +67,7 @@ export class SaleService {
             subscriber.next(true);
           },
           (errorResponse) => {
-            const responseBody = errorResponse.error;
-            const error = 'content' in responseBody ? Error.answered(responseBody.content) : Error.unanswered();
+            const error = Error.from(errorResponse);
             subscriber.next(error);
           }
         );
