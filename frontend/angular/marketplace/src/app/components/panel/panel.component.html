@@ -252,7 +252,7 @@
                   </td>
                   <td>
                     <div class="btn-group btn-group-sm mt-1" role="group">
-                      <a (click)="viewUser(user)"
+                      <a routerLink="/profile" [queryParams]="{id: user.id}"
                          type="button"
                          class="btn btn-outline-light">
                         View

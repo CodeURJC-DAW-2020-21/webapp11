@@ -135,7 +135,15 @@ export class PricingComponent implements OnInit {
       nextSale = 'onetime';
     }
     else {
-      nextSale = '';
+      if (this.oneTimeSale.productId !== -1) {
+        nextSale = 'onetime';
+      }
+      else if (this.accumulativeSale.productId !== -1) {
+        nextSale = 'accumulative';
+      }
+      else {
+        nextSale = '';
+      }
     }
     this.selectedSale = nextSale;
   }

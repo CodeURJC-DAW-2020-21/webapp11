@@ -131,11 +131,6 @@ export class PanelComponent implements OnInit {
     });
   }
 
-  viewUser(user: User): void {
-    this.router.navigate(['/profile']).then();
-    return;
-  }
-
   updateOnetimeSale(): void {
     const observable = this.saleService.updateSale('onetime', this.oneTimeSale);
     observable.subscribe((response) => {
