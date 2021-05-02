@@ -443,14 +443,14 @@
     <h4 class="field-label">400</h4>
     Some invalid details where provided that prevented the operation completion
         <a href="#"></a>
-    <h4 class="field-label">200</h4>
-    The order has been successfully updated
-        <a href="#"></a>
     <h4 class="field-label">401</h4>
     The requester is not authorized to perform this operation
         <a href="#"></a>
     <h4 class="field-label">404</h4>
     Cannot update the order because it does not exist
+        <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    The order has been successfully updated
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -477,11 +477,11 @@
     <h4 class="field-label">400</h4>
     Can not access to find products
         <a href="#"></a>
-    <h4 class="field-label">404</h4>
-    There were no more products to be shown
-        <a href="#"></a>
     <h4 class="field-label">200</h4>
     The list of products was found successfully
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    There were no more products to be shown
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -510,14 +510,14 @@
 
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Returns the current active discount of the specified type
+    <h4 class="field-label">404</h4>
+    The given discount type is currently inactive
         <a href="#"></a>
     <h4 class="field-label">400</h4>
     There is no known existence of the provided discount type
         <a href="#"></a>
-    <h4 class="field-label">404</h4>
-    The given discount type is currently inactive
+    <h4 class="field-label">200</h4>
+    Returns the current active discount of the specified type
         <a href="#"></a>
     <h4 class="field-label">401</h4>
     The requester has no permissions to perform this operation
@@ -559,14 +559,14 @@
 
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">404</h4>
-    The given discount type does not exist
+    <h4 class="field-label">200</h4>
+    The details of the discount have been successfully updated
         <a href="#"></a>
     <h4 class="field-label">401</h4>
     The requester has no permissions to perform this operation
         <a href="#"></a>
-    <h4 class="field-label">200</h4>
-    The details of the discount have been successfully updated
+    <h4 class="field-label">404</h4>
+    The given discount type does not exist
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -629,11 +629,11 @@
 
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Returns the generated token
-        <a href="#"></a>
     <h4 class="field-label">400</h4>
     The provided credentials to generate a token were invalid
+        <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Returns the generated token
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -656,11 +656,11 @@
 
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Returns the validation response with the validation result
-        <a href="#"></a>
     <h4 class="field-label">400</h4>
     The token was invalid or no token was provided at all
+        <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Returns the validation response with the validation result
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -698,11 +698,11 @@
     <h4 class="field-label">201</h4>
     The new user creation was successful
         <a href="#"></a>
-    <h4 class="field-label">401</h4>
-    The requester is not authorized to perform this operation
-        <a href="#"></a>
     <h4 class="field-label">400</h4>
     The provided input was not valid
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    The requester is not authorized to perform this operation
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -770,11 +770,11 @@
     <h4 class="field-label">401</h4>
     The requester is not authorized to perform this operation
         <a href="#"></a>
-    <h4 class="field-label">200</h4>
-    The list of users was retrieved successfully
-        <a href="#"></a>
     <h4 class="field-label">404</h4>
     There are no users available for the provided pagination information
+        <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    The list of users was retrieved successfully
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -813,17 +813,17 @@
 
 
     <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    The information update of the user was successful
+        <a href="#"></a>
     <h4 class="field-label">404</h4>
     There was no user associated with the provided user id
-        <a href="#"></a>
-    <h4 class="field-label">401</h4>
-    The requester is not authorized to perform this operation
         <a href="#"></a>
     <h4 class="field-label">400</h4>
     The provided input was not valid
         <a href="#"></a>
-    <h4 class="field-label">200</h4>
-    The information update of the user was successful
+    <h4 class="field-label">401</h4>
+    The requester is not authorized to perform this operation
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>

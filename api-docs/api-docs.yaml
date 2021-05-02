@@ -3,7 +3,7 @@ info:
   title: OpenAPI definition
   version: v0
 servers:
-- url: https://192.168.0.161:8443
+- url: https://127.0.0.1:8443
   description: Generated server url
 paths:
   /api/users/{id}:
@@ -45,14 +45,14 @@ paths:
               $ref: '#/components/schemas/UpdateUserRequestDto'
         required: true
       responses:
-        "404":
-          description: There was no user associated with the provided user id
-        "401":
-          description: The requester is not authorized to perform this operation
-        "400":
-          description: The provided input was not valid
         "200":
           description: The information update of the user was successful
+        "404":
+          description: There was no user associated with the provided user id
+        "400":
+          description: The provided input was not valid
+        "401":
+          description: The requester is not authorized to perform this operation
   /api/sales/{type}:
     get:
       tags:
@@ -66,12 +66,12 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: Returns the current active discount of the specified type
-        "400":
-          description: There is no known existence of the provided discount type
         "404":
           description: The given discount type is currently inactive
+        "400":
+          description: There is no known existence of the provided discount type
+        "200":
+          description: Returns the current active discount of the specified type
         "401":
           description: The requester has no permissions to perform this operation
     put:
@@ -92,12 +92,12 @@ paths:
               $ref: '#/components/schemas/UpdateSaleRequestDto'
         required: true
       responses:
-        "404":
-          description: The given discount type does not exist
-        "401":
-          description: The requester has no permissions to perform this operation
         "200":
           description: The details of the discount have been successfully updated
+        "401":
+          description: The requester has no permissions to perform this operation
+        "404":
+          description: The given discount type does not exist
   /api/orders/{id}:
     get:
       tags:
@@ -145,12 +145,12 @@ paths:
         "400":
           description: Some invalid details where provided that prevented the operation
             completion
-        "200":
-          description: The order has been successfully updated
         "401":
           description: The requester is not authorized to perform this operation
         "404":
           description: Cannot update the order because it does not exist
+        "200":
+          description: The order has been successfully updated
   /api/users:
     get:
       tags:
@@ -173,10 +173,10 @@ paths:
       responses:
         "401":
           description: The requester is not authorized to perform this operation
-        "200":
-          description: The list of users was retrieved successfully
         "404":
           description: There are no users available for the provided pagination information
+        "200":
+          description: The list of users was retrieved successfully
     post:
       tags:
       - user-rest-controller
@@ -191,10 +191,10 @@ paths:
       responses:
         "201":
           description: The new user creation was successful
-        "401":
-          description: The requester is not authorized to perform this operation
         "400":
           description: The provided input was not valid
+        "401":
+          description: The requester is not authorized to perform this operation
   /api/tokens:
     get:
       tags:
@@ -202,10 +202,10 @@ paths:
       summary: Validates a given token
       operationId: validateToken
       responses:
-        "200":
-          description: Returns the validation response with the validation result
         "400":
           description: The token was invalid or no token was provided at all
+        "200":
+          description: Returns the validation response with the validation result
     post:
       tags:
       - token-rest-controller
@@ -218,10 +218,10 @@ paths:
               $ref: '#/components/schemas/GenerateTokenRequestDto'
         required: true
       responses:
-        "200":
-          description: Returns the generated token
         "400":
           description: The provided credentials to generate a token were invalid
+        "200":
+          description: Returns the generated token
   /api/orders:
     get:
       tags:
@@ -291,10 +291,10 @@ paths:
       responses:
         "400":
           description: Can not access to find products
-        "404":
-          description: There were no more products to be shown
         "200":
           description: The list of products was found successfully
+        "404":
+          description: There were no more products to be shown
   /api/not_found:
     get:
       tags:
