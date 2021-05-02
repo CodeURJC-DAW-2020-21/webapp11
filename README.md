@@ -42,6 +42,11 @@ Software Engineering Degree, at _University King Juan Carlos_, Spain (2020/2021)
 * [Classes and Templates Updated Diagram](#diagrams-3-ed)
 * [Members Participation](#members-part-3)
 
+**Phase 4**
+* [Installation](#phase-4)
+* [Angular Components Diagram](#diagrams-4-ed)
+* [Members Participation](#members-part-4)
+
 # Introduction <a name="introduction"></a>
 
 The main objective of this application is to simulate, as closely as possible, a hosting provider.
@@ -517,7 +522,73 @@ This team member mainly focused on the sale rest controllers and the different d
 | #4 | Added documented api error  | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/4a169cb29b4967b7e329f49d925a547386a32d6d) | [SaleRestController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/sale/controller/SaleRestController.java) |
 | #5 | Modified routes for REST API best practices  | [> See commit](https://github.com/CodeURJC-DAW-2020-21/webapp11/commit/5d93d7b37e5e7c9ed7e2bcf9674c51b739eb86ba) | [SaleRestController.class](https://github.com/CodeURJC-DAW-2020-21/webapp11/blob/main/backend/src/main/java/es/urjc/code/daw/marketplace/api/sale/controller/SaleRestController.java) |
 
+## Phase 4 <a name="phase-4"></a>
 
+## Installation
+
+### Dependencies (or Prerequisites)
+
+Make sure you have installed:
+- Docker Engine
+- Docker Desktop (Windows only)
+- Docker Compose
+
+Fully working angular, traditional MVC and REST API application.
+
+### Installation instructions<a name="linux-install-linux-3"></a>
+
+**Installation steps**:
+
+1. **Clone repository**:
+
+Clone this repository using Git Command Line (Linux or Windows)
+
+Sample script for Linux:
+```bash
+#!/bin/bash
+cd $HOME
+rm -rf webapp11
+git clone https://github.com/CodeURJC-DAW-2020-21/webapp11
+```
+
+**WARNING**: Before building and executing make sure you've set up the neccesary credentials
+for all the .properties files (for email messages, https certificates, etc) 
+in "webapp11/backend/src/main/resources/*".
+
+2. **Build and execution script**:
+
+Go inside the "webapp11" directory, and open the console, then run the following command:
+
+```
+docker build -t dawhost/marketplace -f ./docker/Dockerfile .
+```
+
+**WARNING**: the build can take even half an hour for the first time (without having the cache) so
+feel free to go and get a coffee.
+
+When the build finishes you can start your application by going inside of the "docker" directory
+and running the following command:
+
+```
+docker-compose up -d
+```
+
+You may also check [our published docker image here](https://hub.docker.com/r/dawhost/marketplace).
+
+## Classes and Templates Updated Diagram <a name="diagrams-4-ed"></a>
+
+This diagram is a components diagram of our angular frontend application,
+represents a high-level view of the entire frontend structure without going
+too much into detail, basically the flow of the requests thru the services,
+mappers, models and components.
+
+**Legend**:
+- Blue (_Components_) are the components of our application (different pieces of html, css, ts).
+- Green (_Services_) are the boundary that communicates with our REST API.
+- Red (_Mappers_) map the received data to the desired display domain model.
+- Yellow (_Models_) represent the display entities with on the expected form to be displayed in the interface.
+
+![alt text](artifacts/angular.png)
 
 
 
