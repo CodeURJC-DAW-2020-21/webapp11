@@ -1,4 +1,4 @@
-<div class="mx-5 my-3">
+<div *ngIf="selectedSale === 'onetime' || selectedSale === 'accumulative'" class="mx-5 my-3">
   <div class="alert text-center bg-transparent border border-1 mx-5 rounded alert-light border-light text-light fade show" role="alert">
     <div *ngIf="selectedSale === 'onetime' && oneTimeSale.productId != -1">
       <p class="m-1 px-3">

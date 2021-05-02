@@ -16,7 +16,7 @@ export class PricingComponent implements OnInit {
 
   private categoryToProducts: Map<string, Product[]> = new Map<string, Product[]>();
 
-  public selectedSale = 'onetime';
+  public selectedSale = '';
 
   public oneTimeSale: Sale = new Sale();
   public accumulativeSale: Sale = new Sale();
@@ -49,10 +49,12 @@ export class PricingComponent implements OnInit {
     this.saleService.findSale('onetime').subscribe((response) => {
       if (response instanceof Error) { return; }
       this.oneTimeSale = response;
+      this.selectedSale = 'onetime';
     });
     this.saleService.findSale('accumulative').subscribe((response) => {
       if (response instanceof Error) { return; }
       this.accumulativeSale = response;
+      this.selectedSale = 'accumulative';
     });
     this.startAnnouncements();
   }
