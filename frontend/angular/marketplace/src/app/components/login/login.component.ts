@@ -36,7 +36,7 @@ export class LoginComponent {
       (success: boolean) => {
         if (!success) { return; }
         this.displayMessage('SUCCESS', this.SUCCESS_MESSAGE);
-        window.location.replace('/home');
+        window.location.replace('/new/home');
       },
       (error: Error) => {
         if (error.isBadRequest()) { this.displayMessage('ERROR', this.ERROR_MESSAGE); }
