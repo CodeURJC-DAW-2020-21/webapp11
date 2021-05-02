@@ -9,7 +9,7 @@ RUN npm run build --prod --base-href="/new/"
 FROM maven:latest as maven
 WORKDIR /backend
 ADD ./backend/ .
-COPY --from=node /app/dist/marketplace/* /backend/src/main/resources/new/
+COPY --from=node /app/dist/marketplace/* /backend/src/main/resources/static/new/
 RUN mvn -f /backend/pom.xml clean package
 
 # Install openjdk11 and run the marketplace
