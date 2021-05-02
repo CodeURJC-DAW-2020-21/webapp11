@@ -70,12 +70,6 @@ public class SaleRestController {
             method = RequestMethod.GET
     )
     public ResponseEntity<?> findCurrentDiscount(@PathVariable("type") String saleType) {
-        User loggedUser = authenticationService.getTokenUser();
-        if(loggedUser == null) {
-            final String message = "The token was invalid or no token was provided at all";
-            RestResponseDto response = RestResponseDto.builder().status(HttpStatus.UNAUTHORIZED).content(message).build();
-            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
-        }
         // Ensure the user that requests to get the current one time discount is an admin and the sale type is not empty
         if(saleType == null || saleType.isEmpty()) {
             final String message = "You must provide a valid non-empty sale type to be found";

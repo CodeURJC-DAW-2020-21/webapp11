@@ -25,8 +25,7 @@ export class SaleService {
   findSale(saleType: string): Observable<Sale | Error> {
     const ROUTE = `${this.BASE_ROUTE}/${saleType}`;
     return new Observable<Sale | Error>((subscriber) => {
-      const requestOptions = { headers: new HttpHeaders({ Authorization: this.tokenService.getToken() }) };
-      this.httpClient.get<any>(ROUTE, requestOptions)
+      this.httpClient.get<any>(ROUTE)
         .subscribe(
           (responseBody) => {
             const sale = this.saleMapper.asSale(responseBody.content);
